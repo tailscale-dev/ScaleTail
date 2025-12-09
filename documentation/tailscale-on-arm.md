@@ -54,7 +54,7 @@ cat << EOF >/etc/init.d/tailscaled
 #!/bin/sh
 DAEMON=/usr/sbin/tailscaled
 PIDFILE=/var/run/tailscaled.pid
-DAEMON_OPTS=""
+DAEMON_OPTS="--state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tailscale/tailscaled.sock"
 
 case "$1" in
   start)
@@ -63,7 +63,9 @@ case "$1" in
     ;;
   stop)
     echo "Stopping tailscaled"
-    start-stop-daemon --stop --quiet --pidfile $PIDFILE
+    start-stop-daemon --stop --quiet ---retry=TERM/9/KILL/11 --pidfile $PIDFILE
+    $DAEMON --cleanup
+    rm -f $PIDFILE
     ;;
   restart)
     $0 stop
