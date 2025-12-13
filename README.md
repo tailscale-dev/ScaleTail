@@ -57,6 +57,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media. | [Details](services/jellyfin)       |
 | 📺 **Jellyseerr**     | A request management and media discovery tool for Jellyfin and Plex users.                 | [Details](services/jellyseerr)     |
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                               | [Details](services/navidrome)      |
+| 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.        | [Details](services/swingmx)        |
 | 🎬 **Overseerr**      | A request management and media discovery tool for Plex and Jellyfin users.                 | [Details](services/overseerr)      |
 | 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.      | [Details](services/plex)           |
 | 📥 **qBittorrent**    | An open-source BitTorrent client.                                                          | [Details](services/qbittorrent)    |
