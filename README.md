@@ -145,6 +145,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.     | [Details](services/ntfy)        |
 | 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                         | [Details](services/lube-logger) |
 | 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                  | [Details](services/mini-qr)     |
+| 🔐 **Hemmelig** | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig) |
 
 ### 🍽️ Food & Wellness
 
