@@ -94,6 +94,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🔗 **Pingvin Share** | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                                                                                  | [Details](services/pingvin-share) |
 | 🔄 **Resilio Sync**  | A fast, reliable, and simple file sync and share solution.                                                                                                                 | [Details](services/resilio-sync)  |
 | 🗂️ **Stirling-PDF**  | A web application for managing and editing PDF files.                                                                                                                      | [Details](services/stirlingpdf)   |
+| 📄 **BentoPDF**      | A lightweight, self-hosted web app for viewing and managing PDF documents.                                                                                                 | [Details](services/bentopdf)      |
 | 🏦 **Subtrackr**     | A self-hosted web app to track subscriptions, renewal dates, costs, and payment methods.                                                                                   | [Details](services/subtrackr)     |
 | 🗃️ **Vaultwarden**   | An unofficial Bitwarden server implementation written in Rust.                                                                                                             | [Details](services/vaultwarden)   |
 | 💸 **Wallos**        | An open-source, self-hostable web app to track and manage your recurring subscriptions and expenses, with multi-currency support, customizable categories, and statistics. | [Details](services/wallos)        |
@@ -139,14 +140,14 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 📱 Utilities
 
-| 📱 Service        | 📝 Description                                                                        | 🔗 Link                          |
-| ---------------- | ------------------------------------------------------------------------------------ | ------------------------------- |
-| 🔁 **ConvertX**   | A fast, full-featured self-hosted conversion API for images, docs, videos, and more. | [Details](services/convertx)    |
-| 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                     | [Details](services/gotify)      |
-| 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.     | [Details](services/ntfy)        |
-| 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                         | [Details](services/lube-logger) |
-| 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                  | [Details](services/mini-qr)     |
-| 🔐 **Hemmelig** | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig) |
+| 📱 Service        | 📝 Description                                                                          | 🔗 Link                          |
+| ---------------- | -------------------------------------------------------------------------------------- | ------------------------------- |
+| 🔁 **ConvertX**   | A fast, full-featured self-hosted conversion API for images, docs, videos, and more.   | [Details](services/convertx)    |
+| 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                       | [Details](services/gotify)      |
+| 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.       | [Details](services/ntfy)        |
+| 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                           | [Details](services/lube-logger) |
+| 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                    | [Details](services/mini-qr)     |
+| 🔐 **Hemmelig**   | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig)    |
 
 ### 🍽️ Food & Wellness
 
