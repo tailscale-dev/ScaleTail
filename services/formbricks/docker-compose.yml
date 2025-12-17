@@ -1,0 +1,266 @@
+services:
+# Make sure you have updated/checked the .env file with the correct variables. 
+# All the ${ xx } need to be defined there.
+  # Tailscale Sidecar Configuration
+  tailscale:
+    image: tailscale/tailscale:latest # Image to be used
+    container_name: tailscale-${SERVICE} # Name for local container management
+    hostname: ${SERVICE} # Name used within your Tailscale environment
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
+      - TS_USERSPACE=false
+      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
+      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+    volumes:
+      - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
+      - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
+    devices:
+      - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
+    cap_add:
+      - net_admin # Tailscale requirement
+    #ports:
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
+    #dns: 
+    #  - ${DNS_SERVER}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
+    restart: always
+
+  postgres:
+    restart: always
+    image: pgvector/pgvector:pg17
+    volumes:
+      - ./${SERVICE}-data/postgres:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=postgres
+
+  redis:
+    restart: always
+    image: valkey/valkey@sha256:12ba4f45a7c3e1d0f076acd616cb230834e75a77e8516dde382720af32832d6d
+    command: valkey-server --appendonly yes
+    volumes:
+      - ./${SERVICE}-data/redis:/data
+
+  formbricks:
+    image: ${IMAGE_URL}
+    network_mode: service:tailscale
+    container_name: app-${SERVICE}
+    environment:
+      ######################################################## REQUIRED ########################################################
+
+      # The url of your Formbricks instance used in the admin panel
+      # Set this to your public-facing URL, e.g., https://example.com
+      WEBAPP_URL: "https://formbricks.<YOUR-TAILNET>.ts.net"
+
+      # Required for next-auth. Should be the same as WEBAPP_URL
+      NEXTAUTH_URL: "https://formbricks.<YOUR-TAILNET>.ts.net"
+
+      # PostgreSQL DB for Formbricks to connect to
+      DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/formbricks?schema=public"
+
+      # NextJS Auth
+      # @see: https://next-auth.js.org/configuration/options#nextauth_secret
+      # You can use: `openssl rand -hex 32` to generate one
+      NEXTAUTH_SECRET: ""
+
+      # Encryption Key is used for 2FA & Single use URLs for Link Surveys
+      # You can use: $(openssl rand -hex 32) to generate one
+      ENCRYPTION_KEY: ""
+
+      # API Secret for running cron jobs.
+      # You can use: $(openssl rand -hex 32) to generate a secure one
+      CRON_SECRET: ""
+
+      # Redis URL for caching, rate limiting, and audit logging
+      # To use external Redis/Valkey: remove the redis service below and update this URL
+      REDIS_URL: "redis://redis:6379"
+
+      # Set the minimum log level(debug, info, warn, error, fatal)
+      # LOG_LEVEL: "info"
+
+      ############################################# OPTIONAL (ENTERPRISE EDITION) #############################################
+
+      # Enterprise License Key (More info at: https://formbricks.com/docs/self-hosting/license)
+      # Required to access Enterprise-only features
+      # ENTERPRISE_LICENSE_KEY: ""
+
+      ############################################# OPTIONAL (EMAIL CONFIGURATION) #############################################
+
+      # Email Configuration
+      # MAIL_FROM: ""
+      # MAIL_FROM_NAME: ""
+      # SMTP_HOST: ""
+      # SMTP_PORT: ""
+      # SMTP_USER: ""
+      # SMTP_PASSWORD: ""
+      # SMTP_AUTHENTICATED: ""
+
+      # (Additional option for TLS (port 465) only)
+      # SMTP_SECURE_ENABLED: ""
+
+      # If set to 0, the server will accept connections without requiring authorization from the list of supplied CAs (default is 1).
+      # SMTP_REJECT_UNAUTHORIZED_TLS: "0"
+
+      ############################################## OPTIONAL (APP CONFIGURATION) ##############################################
+
+      # Set the below to 0 to enable Email Verification for new signups (will required Email Configuration)
+      EMAIL_VERIFICATION_DISABLED: "1"
+
+      # Set the below to 0 to enable Password Reset (will required Email Configuration)
+      PASSWORD_RESET_DISABLED: "1"
+
+      # Set the below to 1 to disable logins with email
+      # EMAIL_AUTH_DISABLED: ""
+
+      # Set the below to 1 to disable invites
+      # INVITE_DISABLED: ""
+
+      # Set the below if you want to ship JS & CSS files from a complete URL instead of the current domain
+      # ASSET_PREFIX_URL: ""
+
+      # Set the below to your Unsplash API Key for their Survey Backgrounds
+      # UNSPLASH_ACCESS_KEY: ""
+
+      # Set the below to your public domain (default is WEBAPP_URL)
+      # PUBLIC_URL: ""
+
+      # The SENTRY_DSN is used for error tracking and performance monitoring with Sentry.
+      # SENTRY_DSN: ""
+      # It's used for authentication when uploading source maps to Sentry, to make errors more readable.
+      # SENTRY_AUTH_TOKEN: ""
+      # The SENTRY_ENVIRONMENT is used to identify the environment in Sentry.
+      # SENTRY_ENVIRONMENT: ""
+
+      ################################################### OPTIONAL (STORAGE) ###################################################
+
+      # Set S3 Storage configuration (required for the file upload in serverless environments like Vercel)
+      # S3_ACCESS_KEY: ""
+      # S3_SECRET_KEY: ""
+      # S3_REGION: ""
+      # S3_BUCKET_NAME: ""
+
+      # Set a third party S3 compatible storage service endpoint like StorJ leave empty if you use Amazon S3
+      # S3_ENDPOINT_URL: ""
+
+      # Force path style for S3 compatible storage (0 for disabled, 1 for enabled)
+      # S3_FORCE_PATH_STYLE: "0"
+
+      ############################################# OPTIONAL (OAUTH CONFIGURATION) #############################################
+
+      # Set the below from Cloudflare Turnstile if you want to enable turnstile in signups
+      # TURNSTILE_SITE_KEY: ""
+      # TURNSTILE_SECRET_KEY: ""
+
+      # Set the below keys to enable recaptcha V3 for survey responses bot protection(only available in the Enterprise Edition)
+      # RECAPTCHA_SITE_KEY: ""
+      # RECAPTCHA_SECRET_KEY: ""
+
+      # Set the below from GitHub if you want to enable GitHub OAuth
+      # GITHUB_ID: ""
+      # GITHUB_SECRET: ""
+
+      # Set the below from Google if you want to enable Google OAuth
+      # GOOGLE_CLIENT_ID: ""
+      # GOOGLE_CLIENT_SECRET: ""
+
+      # Set the below from Azure Active Directory Login if you want to enable Azure AD OAuth
+      # AZUREAD_CLIENT_ID: ""
+      # AZUREAD_CLIENT_SECRET: ""
+      # AZUREAD_TENANT_ID: ""
+
+      # Set the below to OpenID Connect Provider if you want to enable OIDC
+      # OIDC_CLIENT_ID: ""
+      # OIDC_CLIENT_SECRET: ""
+      # OIDC_ISSUER: ""
+      # OIDC_DISPLAY_NAME: ""
+      # OIDC_SIGNING_ALGORITHM: ""
+
+      # Set the below to SAML Provider if you want to enable SAML
+      # SAML_DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/formbricks-saml?sslmode=disable"
+
+      ########################################## OPTIONAL (THIRD PARTY INTEGRATIONS) ###########################################
+
+      # Oauth credentials for Notion Integration
+      # NOTION_OAUTH_CLIENT_ID: ""
+      # NOTION_OAUTH_CLIENT_SECRET: ""
+
+      # Oauth credentials for Google Sheet Integration
+      # GOOGLE_SHEETS_CLIENT_ID: ""
+      # GOOGLE_SHEETS_CLIENT_SECRET: ""
+      # GOOGLE_SHEETS_REDIRECT_URL: ""
+
+      # Oauth credentials for Airtable Integration
+      # AIRTABLE_CLIENT_ID: ""
+
+      # Oauth credentials for Slack Integration
+      # SLACK_CLIENT_ID: ""
+      # SLACK_CLIENT_SECRET: ""
+
+      ############################################### OPTIONAL (LEGAL INFORMATION) ################################################
+
+      # Set the below to have your own Privacy Page URL on auth & link survey page
+      # PRIVACY_URL: ""
+
+      # Set the below to have your own Terms Page URL on auth & link survey page
+      # TERMS_URL: ""
+
+      # Set the below to have your own Imprint Page URL on auth & link survey page
+      # IMPRINT_URL: ""
+
+      # Set the below to have your own Address on email footer
+      # IMPRINT_ADDRESS: ""
+
+      ########################################## OPTIONAL (SERVER CONFIGURATION) ###########################################
+
+      # Set the below to 1 to disable Rate Limiting across Formbricks
+      # RATE_LIMITING_DISABLED: "1"
+
+      # Set the below to send OpenTelemetry data for tracing
+      # OPENTELEMETRY_LISTENER_URL: "http://localhost:4318/v1/traces"
+
+      ########################################## OPTIONAL (AUDIT LOGGING) ###########################################
+
+      # Set the below to 1 to enable audit logging.
+      # AUDIT_LOG_ENABLED: "1"
+
+      # Set the below to get the ip address of the user from the request headers
+      # AUDIT_LOG_GET_USER_IP: "1"
+
+      ############################################# OPTIONAL (OTHER) #############################################
+
+      # signup is disabled by default for self-hosted instances, users can only signup using an invite link, in order to allow signup from SSO(without invite), set the below to 1
+      # AUTH_SKIP_INVITE_FOR_SSO: "1"
+
+      # Set the below to automatically assign new users to a specific team, insert an existing team id
+      # (Role Management is an Enterprise feature)
+      # AUTH_SSO_DEFAULT_TEAM_ID: ""
+
+      # Configure the minimum role for user management from UI(owner, manager, disabled)
+      # USER_MANAGEMENT_MINIMUM_ROLE: "manager"
+
+      # Configure the maximum age for the session in seconds. Default is 86400 (24 hours)
+      # SESSION_MAX_AGE: "86400"
+
+      # Container/host settings
+      PUID: "1000"
+      PGID: "1000"
+      TZ: Europe/Amsterdam
+    volumes:
+      - ./${SERVICE}-data/app/config:/config
+      - ./${SERVICE}-data/saml-connection:/home/nextjs/apps/web/saml-connection
+    depends_on:
+      tailscale:
+        condition: service_healthy
+      postgres:
+        condition: service_started
+      redis:
+        condition: service_started
+    restart: always
