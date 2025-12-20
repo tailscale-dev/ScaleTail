@@ -32,8 +32,8 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 🌐 Networking and Security
 
-| 🌐 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 🌐 Service                 | 📝 Description                                                                   | 🔗 Link                                  |
+| ------------------------- | ------------------------------------------------------------------------------- | --------------------------------------- |
 | 🛡️ **AdGuard Home**        | Network-wide software for blocking ads and tracking.                            | [Details](services/adguardhome)         |
 | 🔄 **AdGuardHome Sync**    | A tool for syncing configuration across multiple AdGuard Home instances.        | [Details](services/adguardhome-sync)    |
 | 🌐 **Caddy**               | Caddy is an extensible server platform that uses TLS by default.                | [Details](services/caddy)               |
@@ -48,8 +48,8 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 🎥 Media and Entertainment
 
-| 🎥 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 🎥 Service            | 📝 Description                                                                              | 🔗 Link                             |
+| -------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------- |
 | 🎧 **Audiobookshelf** | A self-hosted audiobook and podcast server with multi-user support and playback syncing.   | [Details](services/audiobookshelf) |
 | 🎥 **Bazarr**         | A companion tool to Radarr and Sonarr for managing subtitles.                              | [Details](services/bazarr)         |
 | 📚 **BookLore**       | A self-hosted application for managing and reading books.                                  | [Details](services/booklore)       |
@@ -66,14 +66,14 @@ If you would like to add your own config, you can use the [service-template](tem
 | 📡 **Sonarr**         | A PVR for Usenet and BitTorrent users to manage TV series.                                 | [Details](services/sonarr)         |
 | 🔗 **Slink**          | A fast, self-hosted alternative to ShareDrop for secure local file sharing.                | [Details](services/slink)          |
 | 📊 **Tautulli**       | A monitoring and tracking tool for Plex Media Server.                                      | [Details](services/tautulli)       |
-| ⚙️ **Configarr**      | Manage and sync configuration for Radarr, Sonarr, and related services.                     | [Details](services/configarr)      |
-| 🖼️ **Posterizarr**    | Automatically generates and updates posters/artwork for media libraries.                    | [Details](services/posterizarr)    |
-| ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.               | [Details](services/recyclarr)      |
+| ⚙️ **Configarr**      | Manage and sync configuration for Radarr, Sonarr, and related services.                    | [Details](services/configarr)      |
+| 🖼️ **Posterizarr**    | Automatically generates and updates posters/artwork for media libraries.                   | [Details](services/posterizarr)    |
+| ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.              | [Details](services/recyclarr)      |
 
 ### 💼 Productivity and Collaboration
 
-| 💼 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 💼 Service           | 📝 Description                                                                                                                                                              | 🔗 Link                            |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | ✂️ **ClipCascade**   | A self-hosted clipboard manager for syncing and organizing clipboard history.                                                                                              | [Details](services/clipcascade)   |
 | 🗂️ **Copyparty**     | A self-hosted file server with accelerated resumable uploads.                                                                                                              | [Details](services/copyparty)     |
 | ✅ **Donetick**      | A self-hosted task and checklist manager for productivity.                                                                                                                 | [Details](services/donetick)      |
@@ -105,15 +105,15 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 📊 Dashboards and Visualization
 
-| 📊 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 📊 Service      | 📝 Description                                                                        | 🔗 Link                       |
+| -------------- | ------------------------------------------------------------------------------------ | ---------------------------- |
 | 🧭 **Glance**   | A concise, customizable dashboard for self-hosted services and personal metrics.     | [Details](services/glance)   |
 | 🏠 **Homepage** | A modern, highly customizable homepage for organizing links and monitoring services. | [Details](services/homepage) |
 
 ### 🛠️ Development Tools
 
-| 🛠️ Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 🛠️ Service                | 📝 Description                                                                                       | 🔗 Link                              |
+| ------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | 🖥️ **Changedetection.io** | A tool for monitoring website changes.                                                              | [Details](services/changedetection) |
 | 🛠️ **Coder**              | Self-hosted cloud dev environments with browser IDEs, Terraform-managed workspaces.                 | [Details](services/coder)           |
 | 🔧 **Cyberchef**          | A web app for encryption, encoding, compression, and data analysis.                                 | [Details](services/cyberchef)       |
@@ -129,8 +129,8 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 📈 Monitoring and Analytics
 
-| 📈 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 📈 Service               | 📝 Description                                                                            | 🔗 Link                                |
+| ----------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
 | 📉 **Beszel**            | A lightweight server monitoring hub with historical data, Docker stats, and alerts.      | [Details](services/beszel)            |
 | 🔎 **Portracker**        | A simple, self-hosted port monitoring and tracking tool for auditing open ports.         | [Details](services/portracker)        |
 | 🚀 **Speedtest Tracker** | A self-hosted tool to monitor and log internet speed tests with detailed visualizations. | [Details](services/speedtest-tracker) |
@@ -138,14 +138,14 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 🏠 Smart Home
 
-| 🏠 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 🏠 Service            | 📝 Description                                                          | 🔗 Link                             |
+| -------------------- | ---------------------------------------------------------------------- | ---------------------------------- |
 | 🏡 **Home Assistant** | An open-source home automation platform for controlling smart devices. | [Details](services/home-assistant) |
 
 ### 📱 Utilities
 
-| 📱 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 📱 Service        | 📝 Description                                                                          | 🔗 Link                          |
+| ---------------- | -------------------------------------------------------------------------------------- | ------------------------------- |
 | 🔁 **ConvertX**   | A fast, full-featured self-hosted conversion API for images, docs, videos, and more.   | [Details](services/convertx)    |
 | 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                       | [Details](services/gotify)      |
 | 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.       | [Details](services/ntfy)        |
@@ -155,8 +155,8 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 🍽️ Food & Wellness
 
-| 🥘 Service | 📝 Description | 🔗 Link |
-| --- | --- | --- |
+| 🥘 Service             | 📝 Description                                                                                                                                  | 🔗 Link                      |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | 🥘 **Mealie**          | A self-hosted recipe manager and meal planner with features like shopping lists, scaling, and importing.                                       | [Details](services/mealie)  |
 | 🥘 **Tandoor Recipes** | A self-hosted recipe manager that also serves as a meal planner that has features such as nutrient tracking, shopping lists, importing and AI. | [Details](services/tandoor) |
 
