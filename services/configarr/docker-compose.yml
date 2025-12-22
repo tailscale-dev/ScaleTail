@@ -40,7 +40,7 @@ services:
     environment:
       - TZ=Europe/Amsterdam
     volumes:
-      - ${PWD}/${SERVICE}-data/config:/app/config
+      - ./${SERVICE}-data/config:/app/config
       - ${PWD}/${SERVICE}-data/dockerrepos:/app/repos
     depends_on:
       tailscale:

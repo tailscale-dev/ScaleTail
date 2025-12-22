@@ -70,6 +70,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🖼️ **Posterizarr**    | Automatically generates and updates posters/artwork for media libraries.                   | [Details](services/posterizarr)    |
 | ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.              | [Details](services/recyclarr)      |
 
+
 ### 💼 Productivity and Collaboration
 
 | 💼 Service           | 📝 Description                                                                                                                                                              | 🔗 Link                            |
@@ -164,7 +165,7 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### Tailscale Funnel vs. Tailscale Serve
 
-Tailscale Funnel securely exposes services to the public internet. Tailscale Serve is for sharing content within a private Tailscale network (Tailnet). You'll need to decide how you want to expose the service, the configurations in this repository exposes the local Tailnet.
+Tailscale Funnel securely exposes services to the public internet. Tailscale Serve is for sharing content within a private Tailscale network (Tailnet). You'll need to decide how you want to expose the service, the configurations in this repository exposes the local Tailnet.
 
 ### Tailscale Funnel
 
