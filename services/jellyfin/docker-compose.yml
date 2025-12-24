@@ -45,8 +45,7 @@ services:
       - TZ=Europe/Amsterdam
       # - JELLYFIN_PublishedServerUrl=192.168.0.5 #optional
     volumes:
-      - ./media/config:/config
-      - ./jellyfin/config:/config
+      - ./${SERVICE}-data/config:/config
       - ./media/tvseries:/data/tvshows
       - ./media/movies:/data/movies
     depends_on:
