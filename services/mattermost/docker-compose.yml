@@ -21,9 +21,9 @@ services:
       - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
     cap_add:
       - net_admin # Tailscale requirement
-    ports:
-      - ${HTTP_PORT}:${HTTP_PORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
-      - ${HTTPS_PORT}:${HTTPS_PORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #ports:
+    #  - ${HTTP_PORT}:${HTTP_PORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - ${HTTPS_PORT}:${HTTPS_PORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
     #  - ${CALLS_PORT}:${CALLS_PORT}/udp
     #  - ${CALLS_PORT}:${CALLS_PORT}/tcp
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
