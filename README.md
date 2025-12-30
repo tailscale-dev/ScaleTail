@@ -10,6 +10,7 @@ If you would like to add your own config, you can use the [service-template](tem
 
 - [ScaleTail - Tailscale Docker Sidecar Configuration Examples](#scaletail---tailscale-docker-sidecar-configuration-examples)
   - [Table of Contents](#table-of-contents)
+    - [Helpful videos and docs](#helpful-videos-and-docs)
   - [Available Configurations](#available-configurations)
     - [🌐 Networking and Security](#-networking-and-security)
     - [🎥 Media and Entertainment](#-media-and-entertainment)
@@ -25,8 +26,14 @@ If you would like to add your own config, you can use the [service-template](tem
     - [Tailscale Funnel](#tailscale-funnel)
     - [Tailscale Serve](#tailscale-serve)
   - [Tailscale Documentation](#tailscale-documentation)
+  - [Contributing](#contributing)
   - [Star History](#star-history)
   - [License](#license)
+
+### Helpful videos and docs
+
+- Tailscale Docker sidecar guide and Serve/Funnel walkthroughs on the official [Tailscale YouTube channel](https://www.youtube.com/@Tailscale) pair well with these examples.
+- The Tailscale [Docker guide](https://tailscale.com/blog/docker-tailscale-guide), [Serve docs](https://tailscale.com/kb/1242/tailscale-serve), and [Funnel docs](https://tailscale.com/kb/1223/funnel) cover the underlying features without duplicating content here.
 
 ## Available Configurations
 
@@ -34,7 +41,7 @@ If you would like to add your own config, you can use the [service-template](tem
 
 | 🌐 Service                 | 📝 Description                                                                   | 🔗 Link                                  |
 | ------------------------- | ------------------------------------------------------------------------------- | --------------------------------------- |
-| 🛡️ **AdGuard Home**        | Network-wide software for blocking ads and tracking.                            | [Details](services/adguardhome)         |
+| 🛡️ **AdGuard Home**        | Network-wide software for blocking ads and tracking.                            | [Details](services/adguardhome)        |
 | 🔄 **AdGuardHome Sync**    | A tool for syncing configuration across multiple AdGuard Home instances.        | [Details](services/adguardhome-sync)    |
 | 🌐 **Caddy**               | Caddy is an extensible server platform that uses TLS by default.                | [Details](services/caddy)               |
 | 🌐 **DDNS Updater**        | A self-hosted solution to keep DNS A/AAAA records updated automatically.        | [Details](services/ddns-updater)        |
@@ -69,7 +76,6 @@ If you would like to add your own config, you can use the [service-template](tem
 | ⚙️ **Configarr**      | Manage and sync configuration for Radarr, Sonarr, and related services.                    | [Details](services/configarr)      |
 | 🖼️ **Posterizarr**    | Automatically generates and updates posters/artwork for media libraries.                   | [Details](services/posterizarr)    |
 | ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.              | [Details](services/recyclarr)      |
-
 
 ### 💼 Productivity and Collaboration
 
@@ -190,6 +196,10 @@ An example configuration for Tailscale Serve for your service is [available here
 - [Tailscale.com - Serve](https://tailscale.com/kb/1242/tailscale-serve)
 - [Tailscale.com - Docker Tailscale Guide](https://tailscale.com/blog/docker-tailscale-guide)
 - [Tailscale - for ARM / OpenPli Setupbox](documentation/tailscale-on-arm.md)
+
+## Contributing
+
+See `CONTRIBUTING.md` for guidance on adding services with the template, documenting gotchas, and keeping Tailscale-sidecar setups consistent.
 
 ## Star History
 
