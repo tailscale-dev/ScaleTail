@@ -1,3 +1,12 @@
+configs:
+  ts-serve:
+    content: |
+      {"TCP":{"443":{"HTTPS":true}},
+      "Web":{"$${TS_CERT_DOMAIN}:443":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:5380"}}}},
+      "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
+
 services:
 # Make sure you have updated/checked the .env file with the correct variables. 
 # All the ${ xx } need to be defined there.
@@ -14,6 +23,9 @@ services:
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
       #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+    configs:
+      - source: ts-serve
+        target: /config/serve.json
     volumes:
       - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
       - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
