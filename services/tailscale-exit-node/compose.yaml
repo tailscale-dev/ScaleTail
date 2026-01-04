@@ -15,12 +15,11 @@ services:
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
       #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
     volumes:
-      - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
       - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
     devices:
       - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
     dns:
-      - 9.9.9.9 # Can be changed to your desired DNS provider
+      - ${DNS_SERVER}
     sysctls:
       net.ipv4.ip_forward: 1
       net.ipv6.conf.all.forwarding: 1
