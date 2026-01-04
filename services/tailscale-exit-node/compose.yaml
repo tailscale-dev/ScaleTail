@@ -19,7 +19,7 @@ services:
     devices:
       - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
     dns:
-      - 9.9.9.9 # Can be changed to your desired DNS provider
+      - ${DNS_SERVER}
     sysctls:
       net.ipv4.ip_forward: 1
       net.ipv6.conf.all.forwarding: 1
