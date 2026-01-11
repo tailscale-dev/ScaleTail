@@ -51,13 +51,7 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Amsterdam
-      #- PUBLIC_APP_URL=https://pocket-id.<your-ts-domain>.ts.net
-      #- TRUST_PROXY=yes
-      #- MAXMIND_LICENSE_KEY=
+    env_file: .env
     volumes:
       - ./${SERVICE}-data:/app/backend/data
     depends_on:
