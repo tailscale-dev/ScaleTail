@@ -7,7 +7,7 @@ This Docker Compose configuration sets up a Hytale game server with Tailscale as
 The Hytale server runs from `deinfreu/hytale-server:experimental` and is configured for UDP port `5520`. The game server data is stored in a named volume (`hytale-data`) to persist across restarts.
 
 Upstream container details and install notes:
-https://deinfreu.github.io/hytale-server-container/installation/container_installation/
+[https://deinfreu.github.io/hytale-server-container/installation/container_installation/](https://deinfreu.github.io/hytale-server-container/installation/container_installation/)
 
 ## Key Notes
 
