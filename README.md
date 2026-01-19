@@ -66,6 +66,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                               | [Details](services/navidrome)      |
 | 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.        | [Details](services/swingmx)        |
 | 🎬 **Overseerr**      | A request management and media discovery tool for Plex and Jellyfin users.                 | [Details](services/overseerr)      |
+| 🎵 **Picard**         | MusicBrainz Picard is a cross-platform music tagger for organizing and tagging music files. | [Details](services/picard)         |
 | 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.      | [Details](services/plex)           |
 | 📥 **qBittorrent**    | An open-source BitTorrent client.                                                          | [Details](services/qbittorrent)    |
 | 📡 **Prowlarr**       | An indexer manager and proxy for applications like Radarr, Sonarr, and Lidarr.             | [Details](services/prowlarr)       |
