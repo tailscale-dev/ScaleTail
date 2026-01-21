@@ -4,7 +4,7 @@ This Docker Compose configuration sets up a Hytale game server with Tailscale as
 
 ## Hytale Server
 
-The Hytale server runs from `deinfreu/hytale-server:experimental` and is configured for UDP port `5520`. The game server data is stored in a named volume (`hytale-data`) to persist across restarts.
+The Hytale server runs from `deinfreu/hytale-server:experimental` and is configured for UDP port `5520`. The game server data is stored in the `${SERVICE}-data` directory to persist across restarts.
 
 Upstream container details and install notes:
 [https://deinfreu.github.io/hytale-server-container/installation/container_installation/](https://deinfreu.github.io/hytale-server-container/installation/container_installation/)
@@ -16,7 +16,7 @@ Upstream container details and install notes:
 
 ## Configuration Overview
 
-In this setup, the `tailscale` service runs the Tailscale client to join your private mesh network. The `hytale` service is configured with `network_mode: service:tailscale`, so all network traffic for the game server is routed through the Tailscale container. The sidecar binds UDP `5520` for Tailnet access only.
+In this setup, the `tailscale` service runs the Tailscale client to join your private mesh network. The `application` service is configured with `network_mode: service:tailscale`, so all network traffic for the game server is routed through the Tailscale container. The sidecar binds UDP `5520` for Tailnet access only.
 
 ## Files to check
 
