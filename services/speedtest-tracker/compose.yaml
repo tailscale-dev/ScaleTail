@@ -57,7 +57,7 @@ services:
       - APP_KEY=
       - DB_CONNECTION=sqlite
       #- APP_NAME=
-      #- APP_URL=
+      - APP_URL= # Base URL used for notifications. example: speedtest.funny-name.ts.net
       #- APP_TIMEZONE=Europe/Amsterdam
       #- DISPLAY_TIMEZONE=Europe/Amsterdam
       #- PUBLIC_DASHBOARD=true
