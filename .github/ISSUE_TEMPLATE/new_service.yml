@@ -1,0 +1,64 @@
+name: 🏗️ New Service Request
+description: Suggest a new service for ScaleTail
+title: '🏗️ New Service: '
+type: 'Feature'
+labels: "new service"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue type is intended to be used to request new services for ScaleTail. 
+        Only services with an existing Docker Compose container on a known container image registry (e.g., Docker Hub, GitHub Container Registry, etc.) are accepted.
+        
+        **Before you start:**
+        Please check if the service has already been requested by searching [existing service requests](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3A%22new%20service%22).
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Service Description
+      description: A clear and concise description of the service you'd like to see implemented.
+      placeholder: I would like to see {SERVICE} implemented...
+    validations:
+      required: true
+
+  - type: input
+    id: link-to-compose
+    attributes:
+      label: Docker Compose File Link
+      description: Please provide a link to your Docker Compose file.
+      placeholder: https://link.to/service.yml
+    validations:
+      required: true
+
+  - type: textarea
+    id: compose-example
+    attributes:
+      label: Docker Compose Configuration
+      description: If applicable, please share the Docker Compose content from the service.
+      placeholder: |
+        Paste the Docker Compose content here...
+
+      render: yaml
+    validations:
+      required: false
+
+  - type: input
+    id: link-to-website-of-service
+    attributes:
+      label: Website of Service
+      description: Please provide a link to the official website of the service.
+      placeholder: https://servicename.com/service
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Would you be willing to work on this service?
+      options:
+        - label: Yes, I'd like to implement this feature
+        - label: I could help with parts of this feature
+        - label: No, I'm just suggesting the feature
+    validations:
+      required: true
