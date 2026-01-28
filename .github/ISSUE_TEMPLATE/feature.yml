@@ -1,0 +1,50 @@
+name: ⚡️ Feature Request
+description: Suggest a new feature or enhancement for ScaleTail
+title: '⚡️ Feature: '
+type: 'Feature'
+labels: "enhancement"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This issue type is intended to be used for new features for the Tailscale sidecar or environment variables. 
+        
+        **Before you start:**
+        Please check if the feature has already been requested by searching [existing feature requests](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3Aenhancement).
+  - type: textarea
+    id: description
+    attributes:
+      label: Feature Description
+      description: A clear and concise description of the feature you'd like to see implemented.
+      placeholder: I would like to see...
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem It Solves
+      description: Explain what problem this feature solves or what need it addresses.
+      placeholder: This would help with...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe how you envision this feature working.
+      placeholder: I think this could work by...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Would you be willing to work on this feature?
+      options:
+        - label: Yes, I'd like to implement this feature
+        - label: I could help with parts of this feature
+        - label: No, I'm just suggesting the feature
+    validations:
+      required: true
