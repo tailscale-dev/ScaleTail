@@ -1,0 +1,133 @@
+name: 🐞 Bug Report
+description: Report a bug to help improve ScaleTail
+title: '🐞 Bug: '
+type: 'Bug'
+labels: 'bug'
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Before you start:**
+        Please check if the issue has already been reported or completed by searching [existing bugs](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3Abug). 
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise (short) description of what the bug is.
+      placeholder: When I start the docker compose, the app crashes...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+      placeholder: I expected the page to load a new view...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: A clear and concise description of what actually happened.
+      placeholder: Instead, I got an error message saying...
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain your problem.
+      placeholder: Paste screenshots here...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating System
+      description: What operating system is ScaleTail running on?
+      options:
+        - Linux
+        - macOS
+        - Windows
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: tailscale
+    attributes:
+      label: Tailscale Version
+      description: What Tailscale version are you using? (Check Tailscale sidecar container Docker logs or run `tailscale --version' in the Tailscale sidecar container).
+      placeholder: '1.94.1'
+    validations:
+      required: true
+
+  - type: input
+    id: docker
+    attributes:
+      label: Docker Version
+      description: What Docker version are you using? (Run `docker --version`).
+      placeholder: '24.0.6'
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs or Error Messages
+      description: Please share any relevant logs, error messages.
+      placeholder: |
+        Paste any error messages or (Docker) logs here...
+
+        To get Docker logs: docker logs <container-name>
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: compose
+    attributes:
+      label: Docker Compose Configuration
+      description: Please share your compose.yaml file content (remove sensitive data).
+      placeholder: |
+        Paste your compose.yaml content here...
+
+        Please remove any sensitive information like:
+        - API_KEYS
+        - PASSWORDS
+
+      render: yaml
+    validations:
+      required: false
+
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment Configuration (.env file)
+      description: Please share your .env file content (remove sensitive data).
+      placeholder: |
+        Paste your .env file content here...
+
+        Please remove any sensitive information like:
+        - TS_KEY
+        - ENCRYPTION_KEY
+        - JWT_SECRET
+
+      render: shell
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
+      placeholder: Any other relevant information...
+    validations:
+      required: false
+      
