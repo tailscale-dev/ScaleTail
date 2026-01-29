@@ -4,7 +4,7 @@ This repository provides examples of using [Tailscale](https://tailscale.com/) i
 
 The provided configurations showcase how to set up Tailscale alongside Docker services, with a focus on ensuring connectivity, security, and ease of deployment. The examples include configurations for Tailscale authentication, state management, and service routing.
 
-If you would like to add your own config, you can use the [service-template](templates/service-template/) or simply open an [issue](https://github.com/2Tiny2Scale/tailscale-docker-sidecar-configs/issues).
+If you would like to add your own config, you can use the [service-template](templates/service-template/) or open an [issue](https://github.com/2Tiny2Scale/tailscale-docker-sidecar-configs/issues).
 
 ## Table of Contents
 
