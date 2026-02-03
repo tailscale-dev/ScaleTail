@@ -28,6 +28,27 @@ def title_from_id(value: str) -> str:
     return " ".join(p.capitalize() for p in parts if p)
 
 
+def normalize_service_name(value: str) -> str:
+    base = value.strip()
+    patterns = [
+        r"\s+with\s+Tailscale\s+Sidecar\s+Configuration\s*$",
+        r"\s+with\s+Tailscale\s+Sidecar\s*$",
+        r"\s+with\s+Tailscale\s+Configuration\s*$",
+        r"\s+with\s+Tailscale\s*$",
+        r"\s+Tailscale\s+Sidecar\s+Configuration\s*$",
+        r"\s+Tailscale\s+Sidecar\s*$",
+        r"\s+Sidecar\s+Configuration\s*$",
+    ]
+    for pattern in patterns:
+        base = re.sub(pattern, "", base, flags=re.IGNORECASE)
+    base = base.strip(" -")
+    if not base:
+        base = value.strip()
+    if re.search(r"tailscale", base, re.IGNORECASE):
+        return base
+    return f"{base} with Tailscale"
+
+
 def first_heading(text: str) -> Optional[str]:
     for line in text.splitlines():
         line = line.strip()
@@ -150,6 +171,8 @@ def build_template(
 
     if not description:
         description = f"Self-hosted {name} template."
+
+    name = normalize_service_name(name)
 
     env_path = compose_path.parent / ".env"
     rel_env = env_path.relative_to(REPO_ROOT).as_posix()
