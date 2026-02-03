@@ -142,7 +142,8 @@ If you would like to add your own config, you can use the [service-template](tem
 
 | 📈 Service               | 📝 Description                                                                            | 🔗 Link                                |
 | ----------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
-| 📉 **Beszel**            | A lightweight server monitoring hub with historical data, Docker stats, and alerts.      | [Details](services/beszel)            |
+| 📉 **Beszel Hub**        | The Beszel Hub provides historical monitoring data, Docker stats, and alerts.            | [Details](services/beszel-hub)        |
+| 🛰️ **Beszel Agent**      | The Beszel Agent collects stats and reports them back to the Hub.                        | [Details](services/beszel-agent)      |
 | 🔎 **Portracker**        | A simple, self-hosted port monitoring and tracking tool for auditing open ports.         | [Details](services/portracker)        |
 | 🚀 **Speedtest Tracker** | A self-hosted tool to monitor and log internet speed tests with detailed visualizations. | [Details](services/speedtest-tracker) |
 | 📊 **Uptime Kuma**       | A self-hosted monitoring tool like "Uptime Robot".                                       | [Details](services/uptime-kuma)       |
