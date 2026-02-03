@@ -13,6 +13,8 @@ from typing import Dict, List, Optional, Tuple
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SERVICES_DIR = REPO_ROOT / "services"
 ROOT_README = REPO_ROOT / "README.md"
+REPO_SLUG_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
+REF_RE = re.compile(r"^[A-Za-z0-9._/-]+$")
 
 
 def slugify(value: str) -> str:
@@ -105,12 +107,26 @@ def parse_category_map(readme_path: Path) -> Dict[str, str]:
     return mapping
 
 
+def validate_repo_slug(repo: str) -> str:
+    if not REPO_SLUG_RE.match(repo):
+        raise SystemExit(f"Invalid repo slug '{repo}'; expected owner/name")
+    return repo
+
+
+def validate_ref(ref: str) -> str:
+    if not ref or not REF_RE.match(ref):
+        raise SystemExit(f"Invalid ref '{ref}'")
+    if ref.startswith("/") or ref.endswith("/") or ".." in ref or "//" in ref:
+        raise SystemExit(f"Invalid ref '{ref}'")
+    return ref
+
+
 def infer_repo_slug(repo_arg: Optional[str]) -> Optional[str]:
     if repo_arg:
-        return repo_arg
+        return validate_repo_slug(repo_arg)
     env_repo = os.environ.get("GITHUB_REPOSITORY")
     if env_repo:
-        return env_repo
+        return validate_repo_slug(env_repo)
     try:
         url = (
             subprocess.check_output(
@@ -131,7 +147,21 @@ def infer_repo_slug(repo_arg: Optional[str]) -> Optional[str]:
         repo = url.split("github.com/", 1)[-1]
     if repo.endswith(".git"):
         repo = repo[:-4]
-    return repo
+    return validate_repo_slug(repo)
+
+
+def resolve_output_path(output_arg: str) -> Path:
+    output_path = Path(output_arg)
+    if not output_path.is_absolute():
+        output_path = REPO_ROOT / output_path
+    resolved = output_path.resolve()
+    try:
+        resolved.relative_to(REPO_ROOT)
+    except ValueError:
+        raise SystemExit(
+            f"Output path '{resolved}' must be inside repository {REPO_ROOT}"
+        )
+    return resolved
 
 
 def build_raw_base(repo: str, ref: str) -> str:
@@ -219,6 +249,7 @@ def main() -> int:
     repo = infer_repo_slug(args.repo)
     if not repo:
         raise SystemExit("Unable to determine repo slug; pass --repo owner/name")
+    ref = validate_ref(args.ref)
 
     category_map = parse_category_map(ROOT_README)
 
@@ -227,7 +258,7 @@ def main() -> int:
         env_path = compose_path.parent / ".env"
         if not env_path.exists():
             raise SystemExit(f"Missing .env for {compose_path}")
-        templates.append(build_template(compose_path, repo, args.ref, category_map))
+        templates.append(build_template(compose_path, repo, ref, category_map))
 
     templates.sort(key=lambda t: str(t["id"]))
 
@@ -240,7 +271,7 @@ def main() -> int:
         "templates": templates,
     }
 
-    output_path = Path(args.output)
+    output_path = resolve_output_path(args.output)
     output_path.write_text(json.dumps(registry, indent=2) + "\n", encoding="utf-8")
     return 0
 
