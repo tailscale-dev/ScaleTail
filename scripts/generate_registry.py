@@ -46,9 +46,7 @@ def normalize_service_name(value: str) -> str:
     base = base.strip(" -")
     if not base:
         base = value.strip()
-    if re.search(r"tailscale", base, re.IGNORECASE):
-        return base
-    return f"{base} with Tailscale"
+    return base
 
 
 def first_heading(text: str) -> Optional[str]:
