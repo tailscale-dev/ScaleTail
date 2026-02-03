@@ -1,6 +1,6 @@
 # Metube with Tailscale Sidecar Configuration
 
-This Docker Compose configuration sets up [Metube](https://github.com/alexta69/metube) with Tailscale as a sidecar container to securely manage and access your self-hosted bookmark manager over a private Tailscale network. By integrating Tailscale, you can ensure that your Linkding instance remains private and accessible only to authorized devices on your Tailscale network.
+This Docker Compose configuration sets up [Metube](https://github.com/alexta69/metube) with Tailscale as a sidecar container to securely manage and access your self-hosted YouTube downloader over a private Tailscale network. By integrating Tailscale, you can ensure that your Metube instance remains private and accessible only to authorized devices on your Tailscale network.
 
 ## Metube
 
