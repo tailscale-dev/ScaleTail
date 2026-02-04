@@ -64,6 +64,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🖼️ **Immich**         | A self-hosted Google Photos alternative with face recognition and mobile sync.             | [Details](services/immich)         |
 | 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media. | [Details](services/jellyfin)       |
 | 📺 **Jellyseerr**     | A request management and media discovery tool for Jellyfin and Plex users.                 | [Details](services/jellyseerr)     |
+| 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.               | [Details](services/kavita)          |
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                               | [Details](services/navidrome)      |
 | 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.        | [Details](services/swingmx)        |
 | 🎬 **Overseerr**      | A request management and media discovery tool for Plex and Jellyfin users.                 | [Details](services/overseerr)      |
@@ -75,6 +76,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 📡 **Sonarr**         | A PVR for Usenet and BitTorrent users to manage TV series.                                 | [Details](services/sonarr)         |
 | 🔗 **Slink**          | A fast, self-hosted alternative to ShareDrop for secure local file sharing.                | [Details](services/slink)          |
 | 📊 **Tautulli**       | A monitoring and tracking tool for Plex Media Server.                                      | [Details](services/tautulli)       |
+| 📺 **Metube**         | A self-hosted YouTube downloader with playlist support.                                   | [Details](services/metube)          |
 | ⚙️ **Configarr**      | Manage and sync configuration for Radarr, Sonarr, and related services.                    | [Details](services/configarr)      |
 | 🖼️ **Posterizarr**    | Automatically generates and updates posters/artwork for media libraries.                   | [Details](services/posterizarr)    |
 | ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.              | [Details](services/recyclarr)      |
@@ -140,7 +142,8 @@ If you would like to add your own config, you can use the [service-template](tem
 
 | 📈 Service               | 📝 Description                                                                            | 🔗 Link                                |
 | ----------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
-| 📉 **Beszel**            | A lightweight server monitoring hub with historical data, Docker stats, and alerts.      | [Details](services/beszel)            |
+| 📉 **Beszel Hub**        | The Beszel Hub provides historical monitoring data, Docker stats, and alerts.            | [Details](services/beszel-hub)        |
+| 🛰️ **Beszel Agent**      | The Beszel Agent collects stats and reports them back to the Hub.                        | [Details](services/beszel-agent)      |
 | 🔎 **Portracker**        | A simple, self-hosted port monitoring and tracking tool for auditing open ports.         | [Details](services/portracker)        |
 | 🚀 **Speedtest Tracker** | A self-hosted tool to monitor and log internet speed tests with detailed visualizations. | [Details](services/speedtest-tracker) |
 | 📊 **Uptime Kuma**       | A self-hosted monitoring tool like "Uptime Robot".                                       | [Details](services/uptime-kuma)       |
@@ -161,6 +164,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                           | [Details](services/lube-logger) |
 | 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                    | [Details](services/miniqr)     |
 | 🔐 **Hemmelig**   | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig)    |
+| 📦 **Homebox**    | A self-hosted home inventory and asset management system.                               | [Details](services/homebox)     |
 
 ### 🍽️ Food & Wellness
 
