@@ -54,9 +54,10 @@ services:
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost/${POSTGRES_DB}?sslmode=disable
       - RUN_MIGRATIONS=1
+      - CREATE_ADMIN=1
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
-      - BASE_URL=https://${SERVICE}.your-tailnet-name.ts.net # Adjust if using MagicDNS
+      - BASE_URL=https://${SERVICE}.${TAILNET_NAME} # Change to your tailnet name
     depends_on:
       tailscale:
         condition: service_healthy
