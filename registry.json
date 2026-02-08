@@ -7,1185 +7,1185 @@
   "templates": [
     {
       "id": "adguardhome",
-      "name": "AdGuard Home",
-      "description": "This Docker Compose configuration sets up [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome) with Tailscale as a sidecar container to securely route DNS traffic over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your DNS queries, ensuring that they are only accessible within your Tailscale network.",
+      "name": "AdGuard Home with Tailscale",
+      "description": "ScaleTail configuration for AdGuard Home running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "adguardhome-sync",
-      "name": "AdGuardHome Sync",
-      "description": "This Docker Compose configuration sets up **[AdGuardHome Sync](https://github.com/bakito/adguardhome-sync)** with Tailscale as a sidecar container to securely synchronize your AdGuard Home instances over a private Tailscale network. By integrating Tailscale, you ensure that configuration data is transmitted securely between nodes and accessible only to authorized devices in your private network.",
+      "name": "AdGuardHome Sync with Tailscale",
+      "description": "ScaleTail configuration for AdGuardHome Sync running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome-sync/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome-sync/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome-sync/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "audiobookshelf",
-      "name": "Audiobookshelf",
-      "description": "This Docker Compose configuration sets up [Audiobookshelf](https://github.com/advplyr/audiobookshelf) with Tailscale as a sidecar container to securely access and manage your audiobook and podcast library over a private Tailscale network. By integrating Tailscale, you can ensure that your Audiobookshelf instance remains private and accessible only to devices within your Tailscale network.",
+      "name": "Audiobookshelf with Tailscale",
+      "description": "ScaleTail configuration for Audiobookshelf running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/audiobookshelf/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/audiobookshelf/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/audiobookshelf/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "bazarr",
-      "name": "Bazarr",
-      "description": "This Docker Compose configuration sets up [Bazarr](https://github.com/morpheus65535/bazarr) with Tailscale as a sidecar container to securely manage and access your subtitle management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Bazarr instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Bazarr with Tailscale",
+      "description": "ScaleTail configuration for Bazarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bazarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bazarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bazarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "bentopdf",
-      "name": "BentoPDF",
-      "description": "This Docker Compose configuration sets up **BentoPDF** with a Tailscale sidecar container, enabling secure access to your self-hosted PDF management interface over your private Tailscale network. With this setup, your BentoPDF instance remains **private and accessible only from authorized devices on your Tailnet**, keeping your documents protected from public exposure.",
+      "name": "BentoPDF with Tailscale",
+      "description": "ScaleTail configuration for BentoPDF running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bentopdf/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bentopdf/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bentopdf/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "beszel-agent",
-      "name": "Beszel Agent",
-      "description": "This Docker Compose configuration integrates [Beszel](https://github.com/henrygd/beszel) with Tailscale in a sidecar setup to enhance secure communication over a private Tailscale network. By utilizing Tailscale, this configuration ensures that all communication handled by Beszel remains secure and private within your Tailscale network. Thanks to @[henrygd](https://github.com/henrygd) for the tool development.",
+      "name": "Beszel Agent with Tailscale",
+      "description": "ScaleTail configuration for Beszel Agent running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/agent/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/agent/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/README.md",
       "tags": [
-        "monitoring-and-analytics"
+        "ScaleTail"
       ]
     },
     {
       "id": "beszel-hub",
-      "name": "Beszel Hub",
-      "description": "This Docker Compose configuration integrates [Beszel](https://github.com/henrygd/beszel) with Tailscale in a sidecar setup to enhance secure communication over a private Tailscale network. By utilizing Tailscale, this configuration ensures that all communication handled by Beszel remains secure and private within your Tailscale network. Thanks to @[henrygd](https://github.com/henrygd) for the tool development.",
+      "name": "Beszel Hub with Tailscale",
+      "description": "ScaleTail configuration for Beszel Hub running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/hub/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/hub/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/README.md",
       "tags": [
-        "monitoring-and-analytics"
+        "ScaleTail"
       ]
     },
     {
       "id": "booklore",
-      "name": "BookLore",
-      "description": "This Docker Compose configuration sets up [BookLore](https://github.com/booklore-app/booklore) with Tailscale as a sidecar container to securely access and manage your book library over a private Tailscale network. By integrating Tailscale, you can ensure that your BookLore instance remains private and accessible only to devices within your Tailscale network.",
+      "name": "BookLore with Tailscale",
+      "description": "ScaleTail configuration for BookLore running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/booklore/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/booklore/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/booklore/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "caddy",
-      "name": "Caddy",
-      "description": "This Docker Compose configuration sets up [Caddy](https://github.com/caddyserver/caddy-docker) with Tailscale as a sidecar container to securely manage and route your traffic over a private Tailscale network. By integrating Tailscale, you can enhance the security and privacy of your Caddy instance, ensuring that access is restricted to devices within your Tailscale network.",
+      "name": "Caddy with Tailscale",
+      "description": "ScaleTail configuration for Caddy running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/caddy/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/caddy/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/caddy/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "changedetection",
-      "name": "ChangeDetection.io",
-      "description": "This Docker Compose configuration sets up [ChangeDetection.io](https://github.com/dgtlmoon/changedetection.io) with Tailscale as a sidecar container to securely monitor and access website changes over a private Tailscale network. By using Tailscale in a sidecar configuration, you can ensure that your ChangeDetection.io instance is only accessible within your Tailscale network, providing enhanced security and privacy.",
+      "name": "ChangeDetection.io with Tailscale",
+      "description": "ScaleTail configuration for ChangeDetection.io running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/changedetection/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/changedetection/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/changedetection/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "clipcascade",
-      "name": "ClipCascade",
-      "description": "This Docker Compose configuration sets up [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) with Tailscale as a sidecar container to securely manage and access your clipboard history over a private Tailscale network. By integrating Tailscale, you can ensure that your ClipCascade instance remains private and accessible only to authorized devices on your Tailscale network.",
+      "name": "ClipCascade with Tailscale",
+      "description": "ScaleTail configuration for ClipCascade running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/clipcascade/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/clipcascade/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/clipcascade/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "coder",
-      "name": "Coder",
-      "description": "This Docker Compose configuration sets up [**Coder**](https://github.com/coder/coder) with Tailscale as a sidecar container, enabling secure access to your self-hosted cloud development environments from anywhere on your private Tailscale network. With this setup, your Coder instance remains fully private and accessible only from authorized devices.",
+      "name": "Coder with Tailscale",
+      "description": "ScaleTail configuration for Coder running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/coder/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/coder/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/coder/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "configarr",
-      "name": "Configarr",
-      "description": "This Docker Compose configuration sets up **Configarr** with a Tailscale sidecar container, enabling secure and private management of configuration files for your *Radarr*, *Sonarr*, and broader media automation stack. With this setup, Configarr is **only accessible from within your Tailscale network**, keeping your configuration workflows fully private and under your control.",
+      "name": "Configarr with Tailscale",
+      "description": "ScaleTail configuration for Configarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/configarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/configarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/configarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "convertx",
-      "name": "ConvertX",
-      "description": "This Docker Compose configuration sets up [ConvertX](https://github.com/C4illin/ConvertX) with Tailscale as a sidecar container to securely access your media conversion tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your ConvertX instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "ConvertX with Tailscale",
+      "description": "ScaleTail configuration for ConvertX running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/convertx/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/convertx/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/convertx/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "copyparty",
-      "name": "Copyparty",
-      "description": "This Docker Compose configuration sets up [Copyparty](https://github.com/9001/copyparty) with Tailscale as a sidecar container to securely access your lightweight file server and sharing platform over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and accessibility of your Copyparty instance, ensuring it is only available within your Tailscale network.",
+      "name": "Copyparty with Tailscale",
+      "description": "ScaleTail configuration for Copyparty running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/copyparty/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/copyparty/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/copyparty/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "cyberchef",
-      "name": "CyberChef",
-      "description": "This Docker Compose configuration sets up [CyberChef](https://github.com/gchq/CyberChef) with Tailscale as a sidecar container to securely access your data analysis and manipulation tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your CyberChef instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "CyberChef with Tailscale",
+      "description": "ScaleTail configuration for CyberChef running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/cyberchef/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/cyberchef/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/cyberchef/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "ddns-updater",
-      "name": "DDNS Updater",
-      "description": "This Docker Compose configuration sets up [DDNS Updater](https://github.com/qdm12/ddns-updater) with Tailscale as a sidecar container, enabling secure and private management of your dynamic DNS records over a Tailscale network. Integrating Tailscale ensures that your DDNS Updater instance is accessible only to authorized devices within your Tailnet, enhancing the security of your DNS management.",
+      "name": "DDNS Updater with Tailscale",
+      "description": "ScaleTail configuration for DDNS Updater running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ddns-updater/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ddns-updater/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ddns-updater/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "docmost",
-      "name": "Docmost",
-      "description": "This Docker Compose configuration sets up [**Docmost**](https://github.com/docmost/docmost) with Tailscale as a sidecar container, enabling secure access to your collaborative wiki and documentation platform from anywhere on your private Tailscale network. With this setup, your Docmost instance remains fully private and accessible only to authorized users.",
+      "name": "Docmost with Tailscale",
+      "description": "ScaleTail configuration for Docmost running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/docmost/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/docmost/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/docmost/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "donetick",
-      "name": "Donetick",
-      "description": "This Docker Compose configuration sets up **[Donetick](https://github.com/donetick/donetick)** with Tailscale as a sidecar container to securely manage and access your self-hosted task management system over a private Tailscale network. By integrating Tailscale, you can ensure that your Donetick instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Donetick with Tailscale",
+      "description": "ScaleTail configuration for Donetick running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/donetick/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/donetick/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/donetick/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "dozzle",
-      "name": "Dozzle",
-      "description": "This Docker Compose configuration sets up [Dozzle](https://github.com/amir20/dozzle) with Tailscale as a sidecar container to securely access your real-time Docker log viewer over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Dozzle instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Dozzle with Tailscale",
+      "description": "ScaleTail configuration for Dozzle running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dozzle/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dozzle/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dozzle/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "dumbdo",
-      "name": "DumbDo",
-      "description": "This Docker Compose configuration sets up [DumbDo](https://github.com/DumbWareio/DumbDo) with Tailscale as a sidecar container to securely manage and access your lightweight task manager over a private Tailscale network. By integrating Tailscale, you can ensure that your DumbDo instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "DumbDo with Tailscale",
+      "description": "ScaleTail configuration for DumbDo running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dumbdo/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dumbdo/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dumbdo/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "eigenfocus",
-      "name": "Eigenfocus",
-      "description": "This Docker Compose configuration sets up **[Eigenfocus](https://github.com/Eigenfocus/eigenfocus)** with Tailscale as a sidecar container to securely manage and access your self-hosted task and project management tool over a private Tailscale network. By integrating Tailscale, you can ensure that your Eigenfocus instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Eigenfocus with Tailscale",
+      "description": "ScaleTail configuration for Eigenfocus running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/eigenfocus/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/eigenfocus/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/eigenfocus/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "excalidraw",
-      "name": "Excalidraw",
-      "description": "This Docker Compose configuration sets up [Excalidraw](https://github.com/excalidraw/excalidraw) with Tailscale as a sidecar container to securely collaborate on whiteboard diagrams over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you can enhance the security and accessibility of your Excalidraw server, ensuring that it is only available within your Tailscale network.",
+      "name": "Excalidraw with Tailscale",
+      "description": "ScaleTail configuration for Excalidraw running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/excalidraw/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/excalidraw/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/excalidraw/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "flatnotes",
-      "name": "Flatnotes",
-      "description": "This Docker Compose configuration sets up **[Flatnotes](https://github.com/dullage/flatnotes)** with Tailscale as a sidecar container to securely manage and access your self-hosted note-taking application over a private Tailscale network. By integrating Tailscale, you can ensure that your Flatnotes instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Flatnotes with Tailscale",
+      "description": "ScaleTail configuration for Flatnotes running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/flatnotes/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/flatnotes/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/flatnotes/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "forgejo",
-      "name": "Forgejo",
-      "description": "This Docker Compose configuration sets up [**Forgejo**](https://forgejo.org/) with Tailscale as a sidecar container, enabling secure access to your self-hosted Git service from anywhere on your private Tailscale network. With this setup, your Forgejo instance remains fully private and accessible only from authorized devices.",
+      "name": "Forgejo with Tailscale",
+      "description": "ScaleTail configuration for Forgejo running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/forgejo/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/forgejo/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/forgejo/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "formbricks",
-      "name": "Formbricks",
-      "description": "This Docker Compose configuration sets up **Formbricks** with a Tailscale sidecar container, enabling secure access to your self-hosted user feedback and survey platform over your private Tailscale network. With this setup, your Formbricks instance remains **private and accessible only from authorized devices on your Tailnet**, keeping feedback data and analytics protected from public exposure.",
+      "name": "Formbricks with Tailscale",
+      "description": "ScaleTail configuration for Formbricks running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/formbricks/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/formbricks/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/formbricks/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "fossflow",
-      "name": "FossFLOW",
-      "description": "This Docker Compose configuration sets up [FossFLOW](https://github.com/stan-smith/FossFLOW) with Tailscale as a sidecar container, enabling secure access to your visual workflow designer over your private Tailscale network. With this setup, FossFLOW remains fully self-hosted and is only accessible from authorized devices within your Tailnet.",
+      "name": "FossFLOW with Tailscale",
+      "description": "ScaleTail configuration for FossFLOW running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/fossflow/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/fossflow/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/fossflow/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "ghost",
-      "name": "Ghost",
-      "description": "This Docker Compose configuration sets up **[Ghost](https://github.com/TryGhost/Ghost)** with Tailscale as a sidecar container to securely manage and access your self-hosted publishing platform over a private Tailscale network. By integrating Tailscale, you can ensure that your Ghost instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Ghost with Tailscale",
+      "description": "ScaleTail configuration for Ghost running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ghost/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ghost/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ghost/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "gitsave",
-      "name": "GitSave",
-      "description": "This Docker Compose configuration sets up [**GitSave**](https://github.com/TimWitzdam/GitSave) with Tailscale as a sidecar container, enabling secure access to your self-hosted GitHub repository backup solution from anywhere on your private Tailscale network. With this setup, your GitSave instance remains fully private and accessible only from authorized devices.",
+      "name": "GitSave with Tailscale",
+      "description": "ScaleTail configuration for GitSave running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gitsave/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gitsave/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gitsave/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "glance",
-      "name": "Glance",
-      "description": "This Docker Compose configuration sets up [Glance](https://github.com/glanceapp/glance) with Tailscale as a sidecar container to securely access your system monitoring dashboard over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Glance instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Glance with Tailscale",
+      "description": "ScaleTail configuration for Glance running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/glance/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/glance/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/glance/README.md",
       "tags": [
-        "dashboards-and-visualization"
+        "ScaleTail"
       ]
     },
     {
       "id": "gokapi",
-      "name": "Gokapi",
-      "description": "This Docker Compose configuration sets up [Gokapi](https://github.com/Forceu/Gokapi) with Tailscale as a sidecar container to securely manage and access your lightweight file-sharing service over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Gokapi instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Gokapi with Tailscale",
+      "description": "ScaleTail configuration for Gokapi running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gokapi/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gokapi/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gokapi/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "gotify",
-      "name": "Gotify",
-      "description": "This Docker Compose configuration sets up [Gotify](https://github.com/gotify/server) with Tailscale as a sidecar container, enabling secure access to your notification server from anywhere on your private Tailscale network. With this setup, your Gotify instance remains completely private and protected, accessible only to your authorized devices.",
+      "name": "Gotify with Tailscale",
+      "description": "ScaleTail configuration for Gotify running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gotify/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gotify/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gotify/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "grampsweb",
-      "name": "Gramps Web",
-      "description": "This Docker Compose configuration sets up [**Gramps Web**](https://github.com/gramps-project/gramps-web) with Tailscale as a sidecar container, enabling secure access to your self-hosted genealogy platform from anywhere on your private Tailscale network. With this setup, your Gramps Web instance remains fully private and accessible only from authorized devices.",
+      "name": "Gramps Web with Tailscale",
+      "description": "ScaleTail configuration for Gramps Web running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/grampsweb/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/grampsweb/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/grampsweb/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "haptic",
-      "name": "Haptic",
-      "description": "This Docker Compose configuration sets up **[Haptic](https://github.com/chroxify/haptic)** with Tailscale as a sidecar container to securely manage and access your self-hosted bookmark manager over a private Tailscale network. By integrating Tailscale, you can ensure that your Haptic instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Haptic with Tailscale",
+      "description": "ScaleTail configuration for Haptic running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/haptic/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/haptic/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/haptic/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "hemmelig",
-      "name": "Hemmelig.app",
-      "description": "This Docker Compose configuration sets up **Hemmelig.app** with a Tailscale sidecar container, enabling secure access to your private encrypted secret-sharing platform over your Tailscale network. With this setup, your instance will be **private and reachable only by your authorized Tailscale devices**, ensuring truly confidential communication and secret exchange.",
+      "name": "Hemmelig.app with Tailscale",
+      "description": "ScaleTail configuration for Hemmelig.app running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hemmelig/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hemmelig/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hemmelig/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "homarr",
-      "name": "Homarr",
-      "description": "This Docker Compose configuration sets up [Homarr](https://github.com/ajnart/homarr) with Tailscale as a sidecar container to securely manage and access your dashboard over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Homarr instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Homarr with Tailscale",
+      "description": "ScaleTail configuration for Homarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homarr/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "home-assistant",
-      "name": "Home Assistant",
-      "description": "This Docker Compose configuration sets up **[Home Assistant](https://github.com/home-assistant/)** with Tailscale as a sidecar container to securely manage and access your smart home automation platform over a private Tailscale network. By integrating Tailscale, you can ensure that your Home Assistant instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Home Assistant with Tailscale",
+      "description": "ScaleTail configuration for Home Assistant running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/home-assistant/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/home-assistant/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/home-assistant/README.md",
       "tags": [
-        "smart-home"
+        "ScaleTail"
       ]
     },
     {
       "id": "homebox",
-      "name": "Homebox",
-      "description": "This Docker Compose configuration sets up **Homebox** with a Tailscale sidecar container, enabling secure access to your self-hosted inventory and asset management system over your private Tailscale network. With this setup, your Homebox instance remains **private and accessible only from authorized devices on your Tailnet**, keeping inventory data and asset metadata protected from public exposure.",
+      "name": "Homebox with Tailscale",
+      "description": "ScaleTail configuration for Homebox running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homebox/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homebox/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homebox/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "homepage",
-      "name": "Homepage",
-      "description": "This Docker Compose configuration sets up [Homepage](https://github.com/gethomepage/homepage) with Tailscale as a sidecar container to securely access your personal dashboard over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Homepage instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Homepage with Tailscale",
+      "description": "ScaleTail configuration for Homepage running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homepage/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homepage/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homepage/README.md",
       "tags": [
-        "dashboards-and-visualization"
+        "ScaleTail"
       ]
     },
     {
       "id": "hytale",
-      "name": "Hytale Server",
-      "description": "This Docker Compose configuration sets up a Hytale game server with Tailscale as a sidecar container to place the server directly on your Tailnet. The Hytale container uses the Tailscale network stack via `network_mode: service:tailscale`, so players connect over Tailscale without exposing the UDP port publicly.",
+      "name": "Hytale Server with Tailscale",
+      "description": "ScaleTail configuration for Hytale Server running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hytale/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hytale/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hytale/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "immich",
-      "name": "Immich",
-      "description": "This Docker Compose configuration sets up Immich with Tailscale as a sidecar container, enabling secure access to your photo and video library from anywhere on your private Tailscale network. With this setup, your Immich instance remains completely private and protected, accessible only to your authorized devices.",
+      "name": "Immich with Tailscale",
+      "description": "ScaleTail configuration for Immich running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/immich/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/immich/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/immich/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "isley",
-      "name": "Isley",
-      "description": "This Docker Compose configuration sets up [Isley](https://github.com/dwot/isley) with Tailscale as a sidecar container, enabling secure and private access to your self-hosted cannabis grow journal over a Tailscale network. With Tailscale, you can ensure that your sensitive grow data and notes are only accessible by trusted devices within your Tailnet.",
+      "name": "Isley with Tailscale",
+      "description": "ScaleTail configuration for Isley running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/isley/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/isley/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/isley/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "it-tools",
-      "name": "IT-Tools",
-      "description": "This Docker Compose configuration sets up [IT-Tools](https://github.com/CorentinTh/it-tools) with Tailscale as a sidecar container to securely access your all-in-one developer utility over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your IT-Tools instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "IT-Tools with Tailscale",
+      "description": "ScaleTail configuration for IT-Tools running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/it-tools/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/it-tools/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/it-tools/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "jellyfin",
-      "name": "Jellyfin",
-      "description": "This Docker Compose configuration sets up [Jellyfin](https://github.com/jellyfin/jellyfin) with Tailscale as a sidecar container to securely manage and access your media server over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Jellyfin instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Jellyfin with Tailscale",
+      "description": "ScaleTail configuration for Jellyfin running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyfin/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyfin/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyfin/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "jellyseerr",
-      "name": "Jellyseerr",
-      "description": "This Docker Compose configuration sets up [Jellyseerr](https://docs.jellyseerr.dev/) with Tailscale as a sidecar container to securely manage and access your request management system over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your Jellyseerr instance, ensuring it is only accessible within your Tailscale network.",
+      "name": "Jellyseerr with Tailscale",
+      "description": "ScaleTail configuration for Jellyseerr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyseerr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyseerr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyseerr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "kaneo",
-      "name": "Kaneo",
-      "description": "This Docker Compose configuration sets up **[Kaneo](https://github.com/usekaneo/kaneo)** with Tailscale as a sidecar container to securely manage and access your self-hosted project management platform over a private Tailscale network. By integrating Tailscale, you ensure that your Kaneo instance is only accessible to authorized devices within your Tailscale network, keeping your tasks, projects, and team discussions private.",
+      "name": "Kaneo with Tailscale",
+      "description": "ScaleTail configuration for Kaneo running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kaneo/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kaneo/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kaneo/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "karakeep",
-      "name": "Karakeep",
-      "description": "This Docker Compose configuration sets up **[Karakeep](https://github.com/karakeep-app/karakeep)** with Tailscale as a sidecar container to securely manage and access your self-hosted notes and collaboration app over a private Tailscale network. By integrating Tailscale, you can ensure that your Karakeep instance is only accessible to authorized devices within your Tailscale network, protecting your ideas and information from the public web.",
+      "name": "Karakeep with Tailscale",
+      "description": "ScaleTail configuration for Karakeep running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/karakeep/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/karakeep/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/karakeep/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "kavita",
-      "name": "Kavita",
-      "description": "This Docker Compose configuration sets up [Kavita](https://github.com/Kareadita/Kavita) with Tailscale as a sidecar container to securely serve your comics, manga, and ebooks over a private Tailscale network. By running Tailscale as a sidecar, you restrict access to your Kavita instance to devices authenticated on your Tailnet, avoiding public exposure.",
+      "name": "Kavita with Tailscale",
+      "description": "ScaleTail configuration for Kavita running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kavita/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kavita/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kavita/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "languagetool",
-      "name": "LanguageTool",
-      "description": "This Docker Compose configuration sets up [LanguageTool](https://languagetool.org) with Tailscale as a sidecar container to enhance secure networking.",
+      "name": "LanguageTool with Tailscale",
+      "description": "ScaleTail configuration for LanguageTool running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/languagetool/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/languagetool/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/languagetool/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "linkding",
-      "name": "Linkding",
-      "description": "This Docker Compose configuration sets up [Linkding](https://github.com/sissbruecker/linkding) with Tailscale as a sidecar container to securely manage and access your self-hosted bookmark manager over a private Tailscale network. By integrating Tailscale, you can ensure that your Linkding instance remains private and accessible only to authorized devices on your Tailscale network.",
+      "name": "Linkding with Tailscale",
+      "description": "ScaleTail configuration for Linkding running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/linkding/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/linkding/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/linkding/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "lube-logger",
-      "name": "LubeLogger",
-      "description": "This Docker Compose configuration sets up **[LubeLogger](https://github.com/hargata/lubelog)** with Tailscale as a sidecar container, enabling secure access to your vehicle maintenance log from anywhere on your private Tailscale network. With this setup, your LubeLogger instance stays completely private and protected, accessible only to your authorized devices.",
+      "name": "LubeLogger with Tailscale",
+      "description": "ScaleTail configuration for LubeLogger running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/lube-logger/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/lube-logger/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/lube-logger/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "mattermost",
-      "name": "Mattermost",
-      "description": "This Docker Compose configuration sets up [Mattermost](https://mattermost.com/platform-overview/) with Tailscale as a sidecar container to securely manage and access your clipboard history over a private Tailscale network. By integrating Tailscale, you can ensure that your Mattermost instance remains private and accessible only to authorized devices on your Tailscale network.",
+      "name": "Mattermost with Tailscale",
+      "description": "ScaleTail configuration for Mattermost running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mattermost/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mattermost/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mattermost/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "mealie",
-      "name": "Mealie",
-      "description": "This Docker Compose configuration sets up [**Mealie**](https://github.com/mealie-recipes/mealie/) with Tailscale as a sidecar container, enabling secure access to your personal recipe collection and meal planning platform from anywhere on your private Tailscale network. With this setup, your Mealie instance stays fully private and accessible only to your authorized devices.",
+      "name": "Mealie with Tailscale",
+      "description": "ScaleTail configuration for Mealie running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mealie/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mealie/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mealie/README.md",
       "tags": [
-        "food-and-wellness"
+        "ScaleTail"
       ]
     },
     {
       "id": "metube",
-      "name": "Metube",
-      "description": "This Docker Compose configuration sets up [Metube](https://github.com/alexta69/metube) with Tailscale as a sidecar container to securely manage and access your self-hosted YouTube downloader over a private Tailscale network. By integrating Tailscale, you can ensure that your Metube instance remains private and accessible only to authorized devices on your Tailscale network.",
+      "name": "Metube with Tailscale",
+      "description": "ScaleTail configuration for Metube running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/metube/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/metube/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/metube/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "miniqr",
-      "name": "Mini-QR",
-      "description": "This Docker Compose configuration sets up **[Mini-QR](https://github.com/lyqht/mini-qr)** with Tailscale as a sidecar container to securely access your self-hosted QR code generation tool over a private Tailscale network. By integrating Tailscale, you can ensure that your Mini-QR instance is only accessible to authorized devices within your private network, adding an extra layer of privacy and security.",
+      "name": "Mini-QR with Tailscale",
+      "description": "ScaleTail configuration for Mini-QR running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/miniqr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/miniqr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/miniqr/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "nanote",
-      "name": "Nanote",
-      "description": "This Docker Compose configuration sets up **[Nanote](https://github.com/omarmir/nanote)** with Tailscale as a sidecar container to securely manage and access your self-hosted note-taking application over a private Tailscale network. By integrating Tailscale, you can ensure that your Nanote instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Nanote with Tailscale",
+      "description": "ScaleTail configuration for Nanote running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nanote/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nanote/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nanote/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "navidrome",
-      "name": "Navidrome",
-      "description": "This Docker Compose configuration sets up [Navidrome](https://github.com/navidrome/navidrome) with Tailscale as a sidecar container, enabling secure, private access to your music server over your Tailscale network. With this configuration, Navidrome is never exposed to the public internet, and access is limited to authorized devices on your Tailnet.",
+      "name": "Navidrome with Tailscale",
+      "description": "ScaleTail configuration for Navidrome running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/navidrome/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/navidrome/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/navidrome/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "nessus",
-      "name": "Nessus",
-      "description": "> \u26a0\ufe0f **Important:** This container has no ability for persistent storage - your configuration will be lost when restarting the instance.",
+      "name": "Nessus with Tailscale",
+      "description": "ScaleTail configuration for Nessus running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nessus/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nessus/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nessus/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "netbox",
-      "name": "Netbox",
-      "description": "This Docker Compose configuration sets up [Netbox](https://github.com/netbox-community/netbox) with Tailscale as a sidecar container to securely access your Network layout over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy, ensuring that they are only accessible within your Tailscale network.",
+      "name": "Netbox with Tailscale",
+      "description": "ScaleTail configuration for Netbox running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/netbox/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/netbox/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/netbox/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "nextcloud",
-      "name": "Nextcloud Server",
-      "description": "This Docker Compose configuration sets up [Nextcloud Server](https://github.com/nextcloud/server) with Tailscale as a sidecar container to securely manage and access your personal cloud storage over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Nextcloud instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Nextcloud Server with Tailscale",
+      "description": "ScaleTail configuration for Nextcloud Server running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nextcloud/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nextcloud/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nextcloud/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "nodered",
-      "name": "Node-RED",
-      "description": "This Docker Compose configuration sets up [Node-RED](https://github.com/node-red/node-red) with Tailscale as a sidecar container to securely access and manage your flow-based programming tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Node-RED instance, ensuring it is only accessible within your Tailscale network.",
+      "name": "Node-RED with Tailscale",
+      "description": "ScaleTail configuration for Node-RED running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nodered/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nodered/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nodered/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "ntfy",
-      "name": "ntfy",
-      "description": "This Docker Compose configuration sets up [ntfy](https://ntfy.sh/) with Tailscale as a sidecar container to securely deliver push notifications over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your ntfy instance, ensuring it is only accessible within your Tailscale network.",
+      "name": "ntfy with Tailscale",
+      "description": "ScaleTail configuration for ntfy running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ntfy/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ntfy/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ntfy/README.md",
       "tags": [
-        "utilities"
+        "ScaleTail"
       ]
     },
     {
       "id": "overseerr",
-      "name": "Overseerr",
-      "description": "This Docker Compose configuration sets up [Overseerr](https://github.com/sct/overseerr) with Tailscale as a sidecar container to securely manage and access your request management system over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your Overseerr instance, ensuring it is only accessible within your Tailscale network.",
+      "name": "Overseerr with Tailscale",
+      "description": "ScaleTail configuration for Overseerr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/overseerr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/overseerr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/overseerr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "picard",
-      "name": "MusicBrainz Picard",
-      "description": "This Docker Compose setup deploys **MusicBrainz Picard** alongside a **Tailscale sidecar container**, allowing secure access to your self-hosted music tagging and metadata management environment over your private **Tailscale network**. With this setup, Picard remains **private and reachable only from trusted devices within your Tailnet**, ensuring your media metadata library stays secure and isolated from the public internet.",
+      "name": "MusicBrainz Picard with Tailscale",
+      "description": "ScaleTail configuration for MusicBrainz Picard running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/picard/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/picard/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/picard/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "pihole",
-      "name": "Pi-hole",
-      "description": "This Docker Compose configuration sets up [Pi-hole](https://github.com/pi-hole/pi-hole) with Tailscale as a sidecar container to securely manage and access your network-wide ad blocker over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Pi-hole instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Pi-hole with Tailscale",
+      "description": "ScaleTail configuration for Pi-hole running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pihole/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pihole/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pihole/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "pingvin-share",
-      "name": "Pingvin Share",
-      "description": "**PLEASE NOTE** As per June 29, 2025 pingvin-share **has been archived** by the developer.",
+      "name": "Pingvin Share with Tailscale",
+      "description": "ScaleTail configuration for Pingvin Share running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pingvin-share/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pingvin-share/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pingvin-share/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "plex",
-      "name": "Plex",
-      "description": "This Docker Compose configuration sets up [Plex Media Server](https://hub.docker.com/r/linuxserver/plex) with Tailscale as a sidecar container to securely manage and stream your media over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your media server, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Plex with Tailscale",
+      "description": "ScaleTail configuration for Plex running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/plex/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/plex/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/plex/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "pocket-id",
-      "name": "Pocket ID",
-      "description": "This Docker Compose configuration sets up [Pocket ID](https://github.com/stonith404/pocket-id) with Tailscale as a sidecar container to securely manage and access your decentralized identity service over a private Tailscale network. By integrating Tailscale, you can ensure that your Pocket ID instance remains private and accessible only to authorized devices within your Tailscale network.",
+      "name": "Pocket ID with Tailscale",
+      "description": "ScaleTail configuration for Pocket ID running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pocket-id/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pocket-id/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pocket-id/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "portainer",
-      "name": "Portainer",
-      "description": "This Docker Compose configuration sets up [Portainer](https://github.com/portainer/portainer) with Tailscale as a sidecar container to securely manage and monitor your Docker environments over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Portainer instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Portainer with Tailscale",
+      "description": "ScaleTail configuration for Portainer running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portainer/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portainer/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portainer/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "portracker",
-      "name": "Portracker",
-      "description": "This Docker Compose configuration sets up [Portracker](https://github.com/mostafa-wahied/portracker) with Tailscale as a sidecar container to securely access your lightweight port monitoring and tracking tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and accessibility of your Portracker instance, ensuring it is only available within your Tailscale network.",
+      "name": "Portracker with Tailscale",
+      "description": "ScaleTail configuration for Portracker running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portracker/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portracker/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portracker/README.md",
       "tags": [
-        "monitoring-and-analytics"
+        "ScaleTail"
       ]
     },
     {
       "id": "posterizarr",
-      "name": "Posterizarr",
-      "description": "This Docker Compose configuration sets up **Posterizarr** with a Tailscale sidecar container, enabling secure and private access to your automated poster and artwork management service for *Radarr* and *Sonarr*. With this setup, Posterizarr is **only accessible from within your Tailscale network**, keeping your media automation environment clean, private, and secure.",
+      "name": "Posterizarr with Tailscale",
+      "description": "ScaleTail configuration for Posterizarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/posterizarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/posterizarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/posterizarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "prowlarr",
-      "name": "Prowlarr",
-      "description": "This Docker Compose configuration sets up [Prowlarr](https://github.com/Prowlarr/Prowlarr) with Tailscale as a sidecar container to securely manage and access your indexer management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Prowlarr instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Prowlarr with Tailscale",
+      "description": "ScaleTail configuration for Prowlarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/prowlarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/prowlarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/prowlarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "qbittorrent",
-      "name": "qBittorrent",
-      "description": "This Docker Compose configuration sets up [qBittorrent](https://www.qbittorrent.org/) with Tailscale as a sidecar container to securely manage and access your torrent client over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your qBittorrent instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "qBittorrent with Tailscale",
+      "description": "ScaleTail configuration for qBittorrent running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/qbittorrent/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/qbittorrent/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/qbittorrent/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "radarr",
-      "name": "Radarr",
-      "description": "This Docker Compose configuration sets up [Radarr](https://github.com/Radarr/Radarr) with Tailscale as a sidecar container to securely manage and access your media management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Radarr instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Radarr with Tailscale",
+      "description": "ScaleTail configuration for Radarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/radarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/radarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/radarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "recyclarr",
-      "name": "Recyclarr",
-      "description": "This Docker Compose configuration sets up **Recyclarr** with a Tailscale sidecar container, allowing secure and private synchronization of quality profiles, custom formats, and media settings across your *Radarr* and *Sonarr* instances. With this setup, Recyclarr is **only reachable from within your Tailscale network**, keeping your media automation infrastructure fully private and protected.",
+      "name": "Recyclarr with Tailscale",
+      "description": "ScaleTail configuration for Recyclarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/recyclarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/recyclarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/recyclarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "resilio-sync",
-      "name": "Resilio Sync",
-      "description": "This Docker Compose configuration sets up [Resilio Sync](https://github.com/linuxserver/docker-resilio-sync) with Tailscale as a sidecar container to securely synchronize and share your files over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your file synchronization, ensuring that Resilio Sync is only accessible within your Tailscale network.",
+      "name": "Resilio Sync with Tailscale",
+      "description": "ScaleTail configuration for Resilio Sync running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/resilio-sync/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/resilio-sync/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/resilio-sync/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "searxng",
-      "name": "searXNG",
-      "description": "This Docker Compose configuration sets up [searXNG](https://github.com/searxng/searxng) with Tailscale as a sidecar container, enabling secure access to your private metasearch engine over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you can ensure that your searXNG instance is accessible only within your Tailscale network, providing an additional layer of security and privacy for your searches.",
+      "name": "searXNG with Tailscale",
+      "description": "ScaleTail configuration for searXNG running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/searxng/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/searxng/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/searxng/README.md",
       "tags": [
-        "development-tools"
+        "ScaleTail"
       ]
     },
     {
       "id": "slink",
-      "name": "Slink",
-      "description": "This Docker Compose configuration sets up [Slink](https://github.com/andrii-kryvoviaz/slink) with Tailscale as a sidecar container to securely manage and access your local file-sharing system over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you can ensure that your Slink instance is both secure and private, accessible only within your Tailscale network.",
+      "name": "Slink with Tailscale",
+      "description": "ScaleTail configuration for Slink running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/slink/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/slink/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/slink/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "sonarr",
-      "name": "Sonarr",
-      "description": "This Docker Compose configuration sets up [Sonarr](https://github.com/Sonarr/Sonarr) with Tailscale as a sidecar container to securely manage and access your media management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Sonarr instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Sonarr with Tailscale",
+      "description": "ScaleTail configuration for Sonarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/sonarr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/sonarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/sonarr/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "speedtest-tracker",
-      "name": "Speedtest Tracker",
-      "description": "This Docker Compose configuration sets up [Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker) with Tailscale as a sidecar container to securely monitor and access your internet speed tracking tool over a private Tailscale network. By integrating Tailscale, you can ensure that your Speedtest Tracker instance remains private and accessible only to authorized devices on your Tailscale network.",
+      "name": "Speedtest Tracker with Tailscale",
+      "description": "ScaleTail configuration for Speedtest Tracker running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/speedtest-tracker/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/speedtest-tracker/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/speedtest-tracker/README.md",
       "tags": [
-        "monitoring-and-analytics"
+        "ScaleTail"
       ]
     },
     {
       "id": "stirlingpdf",
-      "name": "Stirling-PDF",
-      "description": "This Docker Compose configuration sets up [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) with Tailscale as a sidecar container to securely manage and manipulate PDF files over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your PDF processing, ensuring that the Stirling-PDF interface is only accessible within your Tailscale network.",
+      "name": "Stirling-PDF with Tailscale",
+      "description": "ScaleTail configuration for Stirling-PDF running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/stirlingpdf/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/stirlingpdf/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/stirlingpdf/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "subtrackr",
-      "name": "Subtrackr",
-      "description": "This Docker Compose configuration sets up [**Subtrackr**](https://github.com/bscott/subtrackr) with Tailscale as a sidecar container, enabling secure access to your self-hosted subscription tracking platform from anywhere on your private Tailscale network. With this setup, your Subtrackr instance remains fully private and accessible only from authorized devices.",
+      "name": "Subtrackr with Tailscale",
+      "description": "ScaleTail configuration for Subtrackr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/subtrackr/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/subtrackr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/subtrackr/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "swingmx",
-      "name": "Swing Music",
-      "description": "This Docker Compose configuration sets up **Swing Music** with a Tailscale sidecar container, enabling secure access to your self-hosted music streaming server over your private Tailscale network. With this setup, your Swing Music instance remains **private and accessible only from authorized devices on your Tailnet**.",
+      "name": "Swing Music with Tailscale",
+      "description": "ScaleTail configuration for Swing Music running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/swingmx/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/swingmx/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/swingmx/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "tailscale-exit-node",
       "name": "Tailscale Exit Node Configuration",
-      "description": "This Docker Compose configuration sets up a Tailscale Exit Node, allowing devices in your Tailscale network to route their internet traffic securely through this node. By configuring a Tailscale Exit Node, you can enhance the privacy and security of your internet browsing by routing traffic through a trusted network, such as your home or office, rather than relying on potentially less secure public networks.",
+      "description": "ScaleTail configuration for Tailscale Exit Node Configuration running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tailscale-exit-node/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tailscale-exit-node/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tailscale-exit-node/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "tandoor",
-      "name": "Tandoor Recipes",
-      "description": "This Docker Compose configuration sets up [**Tandoor Recipes**](https://github.com/TandoorRecipes/recipes) with Tailscale as a sidecar container, which enables a secure access to your personal recipe and meal planning platform from your Tailscale network. As with all other services inside this repository, your service stays fully private and accessible only to your authorized devices.",
+      "name": "Tandoor Recipes with Tailscale",
+      "description": "ScaleTail configuration for Tandoor Recipes running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tandoor/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tandoor/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tandoor/README.md",
       "tags": [
-        "food-and-wellness"
+        "ScaleTail"
       ]
     },
     {
       "id": "tautulli",
-      "name": "Tautulli",
-      "description": "This Docker Compose configuration sets up [Tautulli for Docker](https://hub.docker.com/r/linuxserver/tautulli) with Tailscale as a sidecar container to securely monitor and manage your Plex Media Server over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the security and privacy of your Tautulli installation, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Tautulli with Tailscale",
+      "description": "ScaleTail configuration for Tautulli running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tautulli/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tautulli/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tautulli/README.md",
       "tags": [
-        "media-and-entertainment"
+        "ScaleTail"
       ]
     },
     {
       "id": "technitium",
-      "name": "Technitium DNS server",
-      "description": "This Docker Compose configuration sets up a [Technitium DNS Server](https://github.com/TechnitiumSoftware/DnsServer) with Tailscale as a sidecar container ......",
+      "name": "Technitium DNS server with Tailscale",
+      "description": "ScaleTail configuration for Technitium DNS server running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/technitium/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/technitium/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/technitium/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "traefik",
-      "name": "Traefik",
-      "description": "This Docker Compose configuration sets up [Traefik](https://github.com/traefik/traefik) with Tailscale as a sidecar container to securely manage and route your traffic over a private Tailscale network. By integrating Tailscale, you can enhance the security and privacy of your Traefik instance, ensuring that access is restricted to devices within your Tailscale network.",
+      "name": "Traefik with Tailscale",
+      "description": "ScaleTail configuration for Traefik running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/traefik/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/traefik/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/traefik/README.md",
       "tags": [
-        "networking-and-security"
+        "ScaleTail"
       ]
     },
     {
       "id": "uptime-kuma",
-      "name": "Uptime Kuma",
-      "description": "This Docker Compose configuration sets up [Uptime Kuma](https://github.com/louislam/uptime-kuma) with Tailscale as a sidecar container to securely monitor your services and websites over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your monitoring dashboard, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Uptime Kuma with Tailscale",
+      "description": "ScaleTail configuration for Uptime Kuma running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/uptime-kuma/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/uptime-kuma/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/uptime-kuma/README.md",
       "tags": [
-        "monitoring-and-analytics"
+        "ScaleTail"
       ]
     },
     {
       "id": "vaultwarden",
-      "name": "Vaultwarden",
-      "description": "This Docker Compose configuration sets up [Vaultwarden](https://github.com/dani-garcia/vaultwarden) with Tailscale as a sidecar container to securely manage and access your password manager over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Vaultwarden instance, ensuring that it is only accessible within your Tailscale network.",
+      "name": "Vaultwarden with Tailscale",
+      "description": "ScaleTail configuration for Vaultwarden running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/vaultwarden/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/vaultwarden/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/vaultwarden/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     },
     {
       "id": "wallos",
-      "name": "Wallos",
-      "description": "This Docker Compose configuration sets up [Wallos](https://github.com/ellite/Wallos) with Tailscale as a sidecar container, enabling secure, private access to your self-hosted subscription tracker over your Tailscale network. With this setup, Wallos is never exposed to the public internet\u2014access is limited strictly to devices authenticated through your Tailscale Tailnet.",
+      "name": "Wallos with Tailscale",
+      "description": "ScaleTail configuration for Wallos running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
       "compose_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/wallos/compose.yaml",
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/wallos/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/wallos/README.md",
       "tags": [
-        "productivity-and-collaboration"
+        "ScaleTail"
       ]
     }
   ]
