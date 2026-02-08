@@ -102,6 +102,12 @@ def extract_frontmatter_tags(text: str) -> List[str]:
     return []
 
 
+def ensure_scaletail_tag(tags: List[str]) -> List[str]:
+    if any(tag.lower() == "scaletail" for tag in tags):
+        return tags
+    return ["ScaleTail", *tags]
+
+
 def read_text(path: Path) -> Optional[str]:
     if not path.exists():
         return None
@@ -200,6 +206,7 @@ def build_template(
             tags = extract_frontmatter_tags(readme_text)
             if tags:
                 tag_values = tags
+    tag_values = ensure_scaletail_tag(tag_values)
 
     name = normalize_service_name(name)
     description_name = strip_tailscale_suffix(name)
