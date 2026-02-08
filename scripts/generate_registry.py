@@ -55,23 +55,51 @@ def first_heading(text: str) -> Optional[str]:
     return None
 
 
-def extract_frontmatter_tag(text: str) -> Optional[str]:
+def _parse_tag_values(raw: str) -> List[str]:
+    value = raw.strip()
+    if value.startswith(("'", '"')) and value.endswith(("'", '"')) and len(value) > 1:
+        value = value[1:-1].strip()
+    if value.startswith("[") and value.endswith("]") and len(value) > 1:
+        value = value[1:-1].strip()
+    parts = [part.strip() for part in value.split(",")]
+    tags: List[str] = []
+    for part in parts:
+        if not part:
+            continue
+        if part.startswith(("'", '"')) and part.endswith(("'", '"')) and len(part) > 1:
+            part = part[1:-1].strip()
+        if part:
+            tags.append(part)
+    return tags
+
+
+def extract_frontmatter_tags(text: str) -> List[str]:
     lines = text.splitlines()
     idx = 0
     while idx < len(lines) and not lines[idx].strip():
         idx += 1
     if idx >= len(lines) or lines[idx].strip() != "---":
-        return None
+        return []
     idx += 1
+    tags_value: Optional[str] = None
+    tag_value: Optional[str] = None
     while idx < len(lines) and lines[idx].strip() != "---":
-        match = re.match(r"^tag\s*:\s*(.+)\s*$", lines[idx], flags=re.IGNORECASE)
-        if match:
-            value = match.group(1).strip()
-            if value.startswith(("'", '"')) and value.endswith(("'", '"')) and len(value) > 1:
-                value = value[1:-1].strip()
-            return value or None
+        if tags_value is None:
+            match_tags = re.match(
+                r"^tags\s*:\s*(.+)\s*$", lines[idx], flags=re.IGNORECASE
+            )
+            if match_tags:
+                tags_value = match_tags.group(1).strip()
+        if tag_value is None:
+            match_tag = re.match(r"^tag\s*:\s*(.+)\s*$", lines[idx], flags=re.IGNORECASE)
+            if match_tag:
+                tag_value = match_tag.group(1).strip()
         idx += 1
-    return None
+    if tags_value:
+        return _parse_tag_values(tags_value)
+    if tag_value:
+        return _parse_tag_values(tag_value)
+    return []
 
 
 def read_text(path: Path) -> Optional[str]:
@@ -162,16 +190,16 @@ def build_template(
     name = title_from_id(template_id)
 
     readme_path, parent_readme = pick_readme(compose_path.parent)
-    tag_value = "ScaleTail"
+    tag_values = ["ScaleTail"]
     if readme_path:
         readme_text = read_text(readme_path)
         if readme_text:
             heading = first_heading(readme_text)
             if heading and not (parent_readme and "/" in service_rel):
                 name = heading
-            tag = extract_frontmatter_tag(readme_text)
-            if tag:
-                tag_value = tag
+            tags = extract_frontmatter_tags(readme_text)
+            if tags:
+                tag_values = tags
 
     name = normalize_service_name(name)
     description_name = strip_tailscale_suffix(name)
@@ -198,7 +226,7 @@ def build_template(
         "env_url": build_raw_base(repo, ref) + "/" + rel_env,
         "documentation_url": documentation_url
         or build_raw_base(repo, ref) + "/" + rel_compose,
-        "tags": [tag_value],
+        "tags": tag_values,
     }
     return template
 
