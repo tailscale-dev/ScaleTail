@@ -12,6 +12,7 @@ from typing import Dict, List, Optional, Tuple
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SERVICES_DIR = REPO_ROOT / "services"
+REPO_SLUG_RE = re.compile(r"^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$")
 
 
 def title_from_id(value: str) -> str:
@@ -76,6 +77,12 @@ def read_text(path: Path) -> Optional[str]:
     if not path.exists():
         return None
     return path.read_text(encoding="utf-8")
+
+
+def validate_repo_slug(repo: str) -> str:
+    if not REPO_SLUG_RE.match(repo):
+        raise SystemExit(f"Invalid repo slug '{repo}'; expected owner/name")
+    return repo
 
 
 def infer_repo_slug(repo_arg: Optional[str]) -> Optional[str]:
