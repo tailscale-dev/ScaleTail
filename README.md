@@ -137,6 +137,7 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🖥️ **IT-Tools**           | A collection of handy online tools for developers and sysadmins.                                    | [Details](services/it-tools)        |
 | 🖥️ **Node-RED**           | A flow-based development tool for visual programming.                                               | [Details](services/nodered)         |
 | 🖥️ **Portainer**          | A lightweight management UI which allows you to easily manage your Docker environments.             | [Details](services/portainer)       |
+| 🧰 **Arcane**             | A self-hosted Docker management UI for Compose stacks; this repo includes a Tailscale sidecar example. | [Details](services/arcane)         |
 | 🔍 **searXNG**            | A free internet metasearch engine which aggregates results from various search services.            | [Details](services/searxng)         |
 
 ### 📈 Monitoring and Analytics
