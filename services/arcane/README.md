@@ -17,10 +17,6 @@ This Docker Compose configuration sets up **Arcane** with a Tailscale sidecar co
 * 🧰 **Templates & Guides** – Built-in support for templates and guides to streamline deployment patterns.
 * 🔐 **Extensible Configuration** – Support for environment variables, OIDC single sign-on, notifications, HTTP proxies, and analytics.
 
-## Why Self-Host?
-
-Docker hosts often contain critical applications and services. Self-hosting Arcane gives you **full control over your container management tooling** without relying on third-party services. Keeping your deployment internal minimizes your attack surface, simplifies compliance, and ensures that sensitive operational tooling remains within your infrastructure perimeter. Combined with a Tailscale sidecar, Arcane is only reachable over your private Tailnet, further protecting your environment from external threats.
-
 ## Configuration Overview
 
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-arcane`) runs the Tailscale client and joins your private Tailscale network. The main `arcane` service uses:
