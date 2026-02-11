@@ -4,18 +4,18 @@ This Docker Compose configuration sets up **Arcane** with a Tailscale sidecar co
 
 ## Arcane
 
-[**Arcane**](https://getarcane.app/docs) is an open-source, self-hosted platform for **Docker container and Compose stack management** with a modern web interface. It allows users to manage containers, images, networks, volumes, remote environments, and projects—all without needing to rely on the Docker CLI. Arcane makes container operations approachable while providing powerful features for both homelab and production use. 
+[**Arcane**](https://getarcane.app/docs) is an open-source, self-hosted platform for **Docker container and Compose stack management** with a modern web interface. It allows users to manage containers, images, networks, volumes, remote environments, and projects—all without needing to rely on the Docker CLI. Arcane makes container operations approachable while providing powerful features for both homelab and production use.
 
 ## Key Features
 
-* 🐳 **Containers** – Start, stop, inspect, and monitor containers from a unified web UI. 
-* 📦 **Images** – List, pull, and manage container images. 
-* 🌐 **Networks** – View and create Docker networks with driver and subnet information. 
-* 🗂 **Projects** – Manage Docker Compose stacks as first-class resources, with a Projects UI and Git syncing. 
+* 🐳 **Containers** – Start, stop, inspect, and monitor containers from a unified web UI.
+* 📦 **Images** – List, pull, and manage container images.
+* 🌐 **Networks** – View and create Docker networks with driver and subnet information.
+* 🗂 **Projects** – Manage Docker Compose stacks as first-class resources, with a Projects UI and Git syncing.
 * 🔄 **Remote Environments** – Control containers on other hosts using Arcane Agents.
-* 💾 **Volumes** – Browse and manage Docker volumes. 
-* 🧰 **Templates & Guides** – Built-in support for templates and guides to streamline deployment patterns. 
-* 🔐 **Extensible Configuration** – Support for environment variables, OIDC single sign-on, notifications, HTTP proxies, and analytics. 
+* 💾 **Volumes** – Browse and manage Docker volumes.
+* 🧰 **Templates & Guides** – Built-in support for templates and guides to streamline deployment patterns.
+* 🔐 **Extensible Configuration** – Support for environment variables, OIDC single sign-on, notifications, HTTP proxies, and analytics.
 
 ## Why Self-Host?
 
