@@ -4,7 +4,7 @@ This repository provides examples of using [Tailscale](https://tailscale.com/) i
 
 The provided configurations showcase how to set up Tailscale alongside Docker services, with a focus on ensuring connectivity, security, and ease of deployment. The examples include configurations for Tailscale authentication, state management, and service routing.
 
-If you would like to add your own config, you can use the [service-template](templates/service-template/) or open an [issue](https://github.com/tailscale-dev/ScaleTail/issues).
+If you would like to add a new config, you can use the [service-template](templates/service-template/) or open an [issue](https://github.com/tailscale-dev/ScaleTail/issues).
 
 ## Table of Contents
 
@@ -55,31 +55,32 @@ If you would like to add your own config, you can use the [service-template](tem
 
 ### 🎥 Media and Entertainment
 
-| 🎥 Service            | 📝 Description                                                                              | 🔗 Link                             |
-| -------------------- | ------------------------------------------------------------------------------------------ | ---------------------------------- |
-| 🎧 **Audiobookshelf** | A self-hosted audiobook and podcast server with multi-user support and playback syncing.   | [Details](services/audiobookshelf) |
-| 🎥 **Bazarr**         | A companion tool to Radarr and Sonarr for managing subtitles.                              | [Details](services/bazarr)         |
-| 📚 **BookLore**       | A self-hosted application for managing and reading books.                                  | [Details](services/booklore)       |
-| 🎮 **Hytale**         | A self-hosted Hytale game server.                                                          | [Details](services/hytale)         |
-| 🖼️ **Immich**         | A self-hosted Google Photos alternative with face recognition and mobile sync.             | [Details](services/immich)         |
-| 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media. | [Details](services/jellyfin)       |
-| 📺 **Jellyseerr**     | A request management and media discovery tool for Jellyfin and Plex users.                 | [Details](services/jellyseerr)     |
-| 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.               | [Details](services/kavita)          |
-| 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                               | [Details](services/navidrome)      |
-| 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.        | [Details](services/swingmx)        |
-| 🎬 **Overseerr**      | A request management and media discovery tool for Plex and Jellyfin users.                 | [Details](services/overseerr)      |
+| 🎥 Service            | 📝 Description                                                                              | 🔗 Link                            |
+| --------------------- | ------------------------------------------------------------------------------------------- | ---------------------------------- |
+| 🎧 **Audiobookshelf** | A self-hosted audiobook and podcast server with multi-user support and playback syncing.    | [Details](services/audiobookshelf) |
+| 🎥 **Bazarr**         | A companion tool to Radarr and Sonarr for managing subtitles.                               | [Details](services/bazarr)         |
+| 📚 **BookLore**       | A self-hosted application for managing and reading books.                                   | [Details](services/booklore)       |
+| 🎮 **Hytale**         | A self-hosted Hytale game server.                                                           | [Details](services/hytale)         |
+| 🖼️ **Immich**        | A self-hosted Google Photos alternative with face recognition and mobile sync.              | [Details](services/immich)         |
+| 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media.  | [Details](services/jellyfin)       |
+| 📺 **Jellyseerr**     | A request management and media discovery tool for Jellyfin and Plex users.                  | [Details](services/jellyseerr)     |
+| 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.                  | [Details](services/kavita)         |
+| 📻 **Miniflux**       | A minimalist and opinionated feed reader.                                                   | [Details](services/miniflux)       |
+| 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                                | [Details](services/navidrome)      |
+| 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.         | [Details](services/swingmx)        |
+| 🎬 **Overseerr**      | A request management and media discovery tool for Plex and Jellyfin users.                  | [Details](services/overseerr)      |
 | 🎵 **Picard**         | MusicBrainz Picard is a cross-platform music tagger for organizing and tagging music files. | [Details](services/picard)         |
-| 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.      | [Details](services/plex)           |
-| 📥 **qBittorrent**    | An open-source BitTorrent client.                                                          | [Details](services/qbittorrent)    |
-| 📡 **Prowlarr**       | An indexer manager and proxy for applications like Radarr, Sonarr, and Lidarr.             | [Details](services/prowlarr)       |
-| 🎞️ **Radarr**         | A movie collection manager for Usenet and BitTorrent users.                                | [Details](services/radarr)         |
-| 📡 **Sonarr**         | A PVR for Usenet and BitTorrent users to manage TV series.                                 | [Details](services/sonarr)         |
-| 🔗 **Slink**          | A fast, self-hosted alternative to ShareDrop for secure local file sharing.                | [Details](services/slink)          |
-| 📊 **Tautulli**       | A monitoring and tracking tool for Plex Media Server.                                      | [Details](services/tautulli)       |
-| 📺 **Metube**         | A self-hosted YouTube downloader with playlist support.                                   | [Details](services/metube)          |
-| ⚙️ **Configarr**      | Manage and sync configuration for Radarr, Sonarr, and related services.                    | [Details](services/configarr)      |
-| 🖼️ **Posterizarr**    | Automatically generates and updates posters/artwork for media libraries.                   | [Details](services/posterizarr)    |
-| ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.              | [Details](services/recyclarr)      |
+| 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.       | [Details](services/plex)           |
+| 📥 **qBittorrent**    | An open-source BitTorrent client.                                                           | [Details](services/qbittorrent)    |
+| 📡 **Prowlarr**       | An indexer manager and proxy for applications like Radarr, Sonarr, and Lidarr.              | [Details](services/prowlarr)       |
+| 🎞️ **Radarr**        | A movie collection manager for Usenet and BitTorrent users.                                 | [Details](services/radarr)         |
+| 📡 **Sonarr**         | A PVR for Usenet and BitTorrent users to manage TV series.                                  | [Details](services/sonarr)         |
+| 🔗 **Slink**          | A fast, self-hosted alternative to ShareDrop for secure local file sharing.                 | [Details](services/slink)          |
+| 📊 **Tautulli**       | A monitoring and tracking tool for Plex Media Server.                                       | [Details](services/tautulli)       |
+| 📺 **Metube**         | A self-hosted YouTube downloader with playlist support.                                     | [Details](services/metube)         |
+| ⚙️ **Configarr**      | Manage and sync configuration for Radarr, Sonarr, and related services.                     | [Details](services/configarr)      |
+| 🖼️ **Posterizarr**   | Automatically generates and updates posters/artwork for media libraries.                    | [Details](services/posterizarr)    |
+| ♻️ **Recyclarr**      | Tools for managing, migrating, and maintaining indexers and quality profiles.               | [Details](services/recyclarr)      |
 
 ### 💼 Productivity and Collaboration
 
@@ -136,13 +137,15 @@ If you would like to add your own config, you can use the [service-template](tem
 | 🖥️ **IT-Tools**           | A collection of handy online tools for developers and sysadmins.                                    | [Details](services/it-tools)        |
 | 🖥️ **Node-RED**           | A flow-based development tool for visual programming.                                               | [Details](services/nodered)         |
 | 🖥️ **Portainer**          | A lightweight management UI which allows you to easily manage your Docker environments.             | [Details](services/portainer)       |
+| 🧰 **Arcane**             | A self-hosted Docker management UI for Compose stacks; this repo includes a Tailscale sidecar example. | [Details](services/arcane)         |
 | 🔍 **searXNG**            | A free internet metasearch engine which aggregates results from various search services.            | [Details](services/searxng)         |
 
 ### 📈 Monitoring and Analytics
 
 | 📈 Service               | 📝 Description                                                                            | 🔗 Link                                |
 | ----------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
-| 📉 **Beszel**            | A lightweight server monitoring hub with historical data, Docker stats, and alerts.      | [Details](services/beszel)            |
+| 📉 **Beszel Hub**        | The Beszel Hub provides historical monitoring data, Docker stats, and alerts.            | [Details](services/beszel-hub)        |
+| 🛰️ **Beszel Agent**      | The Beszel Agent collects stats and reports them back to the Hub.                        | [Details](services/beszel-agent)      |
 | 🔎 **Portracker**        | A simple, self-hosted port monitoring and tracking tool for auditing open ports.         | [Details](services/portracker)        |
 | 🚀 **Speedtest Tracker** | A self-hosted tool to monitor and log internet speed tests with detailed visualizations. | [Details](services/speedtest-tracker) |
 | 📊 **Uptime Kuma**       | A self-hosted monitoring tool like "Uptime Robot".                                       | [Details](services/uptime-kuma)       |

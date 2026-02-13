@@ -4,7 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:1411"}}}},
+          {"Proxy":"http://127.0.0.1:3552"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -51,14 +51,24 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    env_file: .env
+    environment:
+      - APP_URL=https://arcane.${TAILNET_NAME}.ts.net
+      - PUID=1000
+      - PGID=1000
+      - ENCRYPTION_KEY=verysecretkeythatshouldbereplaced # ENCRYPTION_KEY must be 32 bytes (raw/base64/hex). Use 'openssl rand -base64 32' in your CLI to generate a secure random key.
+      - JWT_SECRET=verysecretkeythatshouldbereplaced # JWT_SECRET should be a secure random string. Use 'openssl rand -base64 32' in your CLI to generate another secure random key.
+      - LOG_LEVEL=info # Optional
+      - LOG_JSON=false # Optional
+      - OIDC_ENABLED=false # Optional
     volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
       - ./${SERVICE}-data:/app/data
+      - ./opt/dockerdata:/app/data/projects # Optional volume for an existing Docker Compose directory.
     depends_on:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl -f http://localhost/health"] # Check if process is running
+      test: ["CMD", "curl", "-f", "http://localhost:3552/", "-s", "-o", "/dev/null"]
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
