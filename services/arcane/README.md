@@ -26,3 +26,8 @@ network_mode: service:tailscale-arcane
 ```
 
 This configuration routes all traffic through the Tailscale interface, ensuring that the Arcane web UI and API are accessible **only via your Tailscale network**. This provides a simple and secure way to access your Docker management console from all trusted devices while preventing public access to container controls.
+
+## Default Credentials
+
+* Username: `arcane`
+* Password: `arcane-admin`
