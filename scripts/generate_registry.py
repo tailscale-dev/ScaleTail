@@ -46,9 +46,7 @@ def strip_tailscale_suffix(value: str) -> str:
 
 def normalize_service_name(value: str) -> str:
     base = strip_tailscale_suffix(value)
-    if re.search(r"tailscale", base, re.IGNORECASE):
-        return base
-    return f"{base} with Tailscale"
+    return base
 
 
 def first_heading(text: str) -> Optional[str]:
@@ -136,9 +134,12 @@ def dedupe_tags(tags: List[str]) -> List[str]:
 
 
 def ensure_scaletail_tag(tags: List[str]) -> List[str]:
-    if any(tag.lower() == "scaletail" for tag in tags):
-        return dedupe_tags(tags)
-    return dedupe_tags(["ScaleTail", *tags])
+    mandatory = ["ScaleTail", "Tailscale"]
+    existing_lower = {tag.lower() for tag in tags}
+    for tag in mandatory:
+        if tag.lower() not in existing_lower:
+            tags.append(tag)
+    return dedupe_tags(tags)
 
 
 def read_text(path: Path) -> Optional[str]:
