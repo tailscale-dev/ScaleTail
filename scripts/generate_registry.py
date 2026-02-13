@@ -18,6 +18,18 @@ TAG_MAX_LEN = 32
 NAME_MAX_LEN = 80
 TAG_SANITIZE_RE = re.compile(r"[^A-Za-z0-9 _.-]")
 NAME_SANITIZE_RE = re.compile(r"[\x00-\x1f\x7f<>]")
+STANDARD_TAGS = ("ScaleTail", "Tailscale")
+TAILSCALE_SUFFIX_RES = (
+    re.compile(r"\s+with\s+Tailscale\s+Sidecar\s+Configuration\s*$", re.IGNORECASE),
+    re.compile(r"\s+with\s+Tailscale\s+Sidecar\s*$", re.IGNORECASE),
+    re.compile(r"\s+with\s+Tailscale\s+Configuration\s*$", re.IGNORECASE),
+    re.compile(r"\s+with\s+Tailscale\s*$", re.IGNORECASE),
+    re.compile(r"\s+Tailscale\s+Sidecar\s+Configuration\s*$", re.IGNORECASE),
+    re.compile(r"\s+Tailscale\s+Sidecar\s*$", re.IGNORECASE),
+    re.compile(r"\s+Sidecar\s+Configuration\s*$", re.IGNORECASE),
+)
+FRONTMATTER_TAG_RE = re.compile(r"^(tags|tag)\s*:\s*(.*)$", re.IGNORECASE)
+FRONTMATTER_LIST_ITEM_RE = re.compile(r"^-\s+(.+)$")
 
 
 def title_from_id(value: str) -> str:
@@ -27,17 +39,8 @@ def title_from_id(value: str) -> str:
 
 def strip_tailscale_suffix(value: str) -> str:
     base = value.strip()
-    patterns = [
-        r"\s+with\s+Tailscale\s+Sidecar\s+Configuration\s*$",
-        r"\s+with\s+Tailscale\s+Sidecar\s*$",
-        r"\s+with\s+Tailscale\s+Configuration\s*$",
-        r"\s+with\s+Tailscale\s*$",
-        r"\s+Tailscale\s+Sidecar\s+Configuration\s*$",
-        r"\s+Tailscale\s+Sidecar\s*$",
-        r"\s+Sidecar\s+Configuration\s*$",
-    ]
-    for pattern in patterns:
-        base = re.sub(pattern, "", base, flags=re.IGNORECASE)
+    for pattern in TAILSCALE_SUFFIX_RES:
+        base = pattern.sub("", base)
     base = base.strip(" -")
     if not base:
         base = value.strip()
@@ -45,10 +48,7 @@ def strip_tailscale_suffix(value: str) -> str:
 
 
 def normalize_service_name(value: str) -> str:
-    base = strip_tailscale_suffix(value)
-    if re.search(r"tailscale", base, re.IGNORECASE):
-        return base
-    return f"{base} with Tailscale"
+    return strip_tailscale_suffix(value)
 
 
 def first_heading(text: str) -> Optional[str]:
@@ -75,10 +75,15 @@ def sanitize_tag(value: str) -> Optional[str]:
     return cleaned[:TAG_MAX_LEN]
 
 
+def strip_wrapping_quotes(value: str) -> str:
+    if len(value) > 1 and value[0] == value[-1] and value[0] in {"'", '"'}:
+        return value[1:-1].strip()
+    return value
+
+
 def _parse_tag_values(raw: str) -> List[str]:
     value = raw.strip()
-    if value.startswith(("'", '"')) and value.endswith(("'", '"')) and len(value) > 1:
-        value = value[1:-1].strip()
+    value = strip_wrapping_quotes(value)
     if value.startswith("[") and value.endswith("]") and len(value) > 1:
         value = value[1:-1].strip()
     parts = [part.strip() for part in value.split(",")]
@@ -86,40 +91,58 @@ def _parse_tag_values(raw: str) -> List[str]:
     for part in parts:
         if not part:
             continue
-        if part.startswith(("'", '"')) and part.endswith(("'", '"')) and len(part) > 1:
-            part = part[1:-1].strip()
+        part = strip_wrapping_quotes(part)
         cleaned = sanitize_tag(part)
         if cleaned:
             tags.append(cleaned)
     return tags
 
 
-def extract_frontmatter_tags(text: str) -> List[str]:
-    lines = text.splitlines()
+def extract_frontmatter(lines: List[str]) -> List[str]:
     idx = 0
     while idx < len(lines) and not lines[idx].strip():
         idx += 1
     if idx >= len(lines) or lines[idx].strip() != "---":
         return []
     idx += 1
-    tags_value: Optional[str] = None
-    tag_value: Optional[str] = None
+    frontmatter: List[str] = []
     while idx < len(lines) and lines[idx].strip() != "---":
-        if tags_value is None:
-            match_tags = re.match(
-                r"^tags\s*:\s*(.+)\s*$", lines[idx], flags=re.IGNORECASE
-            )
-            if match_tags:
-                tags_value = match_tags.group(1).strip()
-        if tag_value is None:
-            match_tag = re.match(r"^tag\s*:\s*(.+)\s*$", lines[idx], flags=re.IGNORECASE)
-            if match_tag:
-                tag_value = match_tag.group(1).strip()
+        frontmatter.append(lines[idx])
         idx += 1
-    if tags_value:
-        return _parse_tag_values(tags_value)
-    if tag_value:
-        return _parse_tag_values(tag_value)
+    if idx >= len(lines):
+        return []
+    return frontmatter
+
+
+def extract_frontmatter_tags(text: str) -> List[str]:
+    lines = text.splitlines()
+    frontmatter = extract_frontmatter(lines)
+    idx = 0
+    while idx < len(frontmatter):
+        line = frontmatter[idx].strip()
+        match = FRONTMATTER_TAG_RE.match(line)
+        if not match:
+            idx += 1
+            continue
+        raw_value = match.group(2).strip()
+        if raw_value:
+            return _parse_tag_values(raw_value)
+
+        idx += 1
+        tags: List[str] = []
+        while idx < len(frontmatter):
+            item = frontmatter[idx].strip()
+            if not item:
+                idx += 1
+                continue
+            list_match = FRONTMATTER_LIST_ITEM_RE.match(item)
+            if not list_match:
+                break
+            cleaned = sanitize_tag(strip_wrapping_quotes(list_match.group(1).strip()))
+            if cleaned:
+                tags.append(cleaned)
+            idx += 1
+        return tags
     return []
 
 
@@ -135,16 +158,20 @@ def dedupe_tags(tags: List[str]) -> List[str]:
     return result
 
 
-def ensure_scaletail_tag(tags: List[str]) -> List[str]:
-    if any(tag.lower() == "scaletail" for tag in tags):
-        return dedupe_tags(tags)
-    return dedupe_tags(["ScaleTail", *tags])
+def ensure_standard_tags(tags: List[str]) -> List[str]:
+    deduped = dedupe_tags(tags)
+    seen = {tag.lower() for tag in deduped}
+    required = [tag for tag in STANDARD_TAGS if tag.lower() not in seen]
+    return dedupe_tags([*required, *deduped])
 
 
 def read_text(path: Path) -> Optional[str]:
-    if not path.exists():
+    try:
+        return path.read_text(encoding="utf-8")
+    except FileNotFoundError:
         return None
-    return path.read_text(encoding="utf-8")
+    except (OSError, UnicodeDecodeError) as exc:
+        raise SystemExit(f"Failed to read '{path}': {exc}") from exc
 
 
 def validate_repo_slug(repo: str) -> str:
@@ -168,25 +195,23 @@ def infer_repo_slug(repo_arg: Optional[str]) -> Optional[str]:
     if env_repo:
         return validate_repo_slug(env_repo)
     try:
-        url = (
-            subprocess.check_output(
-                ["git", "remote", "get-url", "origin"],
-                cwd=REPO_ROOT,
-                text=True,
-            )
-            .strip()
-            .rstrip("/")
-        )
-    except Exception:
+        url = subprocess.check_output(
+            ["git", "remote", "get-url", "origin"],
+            cwd=REPO_ROOT,
+            text=True,
+        ).strip()
+    except (OSError, subprocess.SubprocessError):
         return None
-    if url.startswith("git@"):
-        # git@github.com:owner/repo.git
-        repo = url.split(":", 1)[-1]
-    else:
-        # https://github.com/owner/repo.git
-        repo = url.split("github.com/", 1)[-1]
-    if repo.endswith(".git"):
-        repo = repo[:-4]
+    remote = url.rstrip("/")
+    repo: Optional[str] = None
+    ssh_match = re.match(r"^git@github\.com:([^/]+/[^/]+?)(?:\.git)?$", remote)
+    https_match = re.match(r"^https://github\.com/([^/]+/[^/]+?)(?:\.git)?$", remote)
+    if ssh_match:
+        repo = ssh_match.group(1)
+    elif https_match:
+        repo = https_match.group(1)
+    if not repo:
+        return None
     return validate_repo_slug(repo)
 
 
@@ -227,9 +252,10 @@ def build_template(
     service_rel = compose_path.parent.relative_to(SERVICES_DIR).as_posix()
     template_id = service_rel.replace("/", "-")
     name = sanitize_name(title_from_id(template_id))
+    raw_base = build_raw_base(repo, ref)
 
     readme_path, parent_readme = pick_readme(compose_path.parent)
-    tag_values = ["ScaleTail"]
+    tag_values = list(STANDARD_TAGS)
     if readme_path:
         readme_text = read_text(readme_path)
         if readme_text:
@@ -239,7 +265,7 @@ def build_template(
             tags = extract_frontmatter_tags(readme_text)
             if tags:
                 tag_values = tags
-    tag_values = ensure_scaletail_tag(tag_values)
+    tag_values = ensure_standard_tags(tag_values)
 
     name = normalize_service_name(name)
     description_name = strip_tailscale_suffix(name)
@@ -252,9 +278,7 @@ def build_template(
 
     documentation_url = None
     if readme_path:
-        documentation_url = (
-            build_raw_base(repo, ref) + "/" + readme_path.relative_to(REPO_ROOT).as_posix()
-        )
+        documentation_url = raw_base + "/" + readme_path.relative_to(REPO_ROOT).as_posix()
 
     template = {
         "id": template_id,
@@ -262,10 +286,9 @@ def build_template(
         "description": description,
         "version": "1.0.0",
         "author": "ScaleTail",
-        "compose_url": build_raw_base(repo, ref) + "/" + rel_compose,
-        "env_url": build_raw_base(repo, ref) + "/" + rel_env,
-        "documentation_url": documentation_url
-        or build_raw_base(repo, ref) + "/" + rel_compose,
+        "compose_url": raw_base + "/" + rel_compose,
+        "env_url": raw_base + "/" + rel_env,
+        "documentation_url": documentation_url or raw_base + "/" + rel_compose,
         "tags": tag_values,
     }
     return template
@@ -292,7 +315,7 @@ def main() -> int:
         env_path = compose_path.parent / ".env"
         if not env_path.exists():
             raise SystemExit(f"Missing .env for {compose_path}")
-        templates.append(build_template(compose_path, repo, args.ref))
+        templates.append(build_template(compose_path, repo, ref))
 
     templates.sort(key=lambda t: str(t["id"]))
 

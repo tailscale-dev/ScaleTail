@@ -7,7 +7,7 @@
   "templates": [
     {
       "id": "adguardhome",
-      "name": "AdGuard Home with Tailscale",
+      "name": "AdGuard Home",
       "description": "ScaleTail configuration for AdGuard Home running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -15,12 +15,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "adguardhome-sync",
-      "name": "AdGuardHome Sync with Tailscale",
+      "name": "AdGuardHome Sync",
       "description": "ScaleTail configuration for AdGuardHome Sync running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -28,12 +29,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome-sync/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/adguardhome-sync/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "audiobookshelf",
-      "name": "Audiobookshelf with Tailscale",
+      "name": "Audiobookshelf",
       "description": "ScaleTail configuration for Audiobookshelf running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -41,12 +43,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/audiobookshelf/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/audiobookshelf/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "bazarr",
-      "name": "Bazarr with Tailscale",
+      "name": "Bazarr",
       "description": "ScaleTail configuration for Bazarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -54,12 +57,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bazarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bazarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "bentopdf",
-      "name": "BentoPDF with Tailscale",
+      "name": "BentoPDF",
       "description": "ScaleTail configuration for BentoPDF running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -67,12 +71,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bentopdf/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/bentopdf/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "beszel-agent",
-      "name": "Beszel Agent with Tailscale",
+      "name": "Beszel Agent",
       "description": "ScaleTail configuration for Beszel Agent running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -80,12 +85,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/agent/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "beszel-hub",
-      "name": "Beszel Hub with Tailscale",
+      "name": "Beszel Hub",
       "description": "ScaleTail configuration for Beszel Hub running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -93,12 +99,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/hub/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/beszel/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "booklore",
-      "name": "BookLore with Tailscale",
+      "name": "BookLore",
       "description": "ScaleTail configuration for BookLore running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -106,12 +113,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/booklore/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/booklore/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "caddy",
-      "name": "Caddy with Tailscale",
+      "name": "Caddy",
       "description": "ScaleTail configuration for Caddy running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -119,12 +127,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/caddy/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/caddy/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "changedetection",
-      "name": "ChangeDetection.io with Tailscale",
+      "name": "ChangeDetection.io",
       "description": "ScaleTail configuration for ChangeDetection.io running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -132,12 +141,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/changedetection/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/changedetection/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "clipcascade",
-      "name": "ClipCascade with Tailscale",
+      "name": "ClipCascade",
       "description": "ScaleTail configuration for ClipCascade running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -145,12 +155,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/clipcascade/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/clipcascade/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "coder",
-      "name": "Coder with Tailscale",
+      "name": "Coder",
       "description": "ScaleTail configuration for Coder running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -158,12 +169,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/coder/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/coder/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "configarr",
-      "name": "Configarr with Tailscale",
+      "name": "Configarr",
       "description": "ScaleTail configuration for Configarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -171,12 +183,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/configarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/configarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "convertx",
-      "name": "ConvertX with Tailscale",
+      "name": "ConvertX",
       "description": "ScaleTail configuration for ConvertX running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -184,12 +197,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/convertx/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/convertx/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "copyparty",
-      "name": "Copyparty with Tailscale",
+      "name": "Copyparty",
       "description": "ScaleTail configuration for Copyparty running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -197,12 +211,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/copyparty/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/copyparty/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "cyberchef",
-      "name": "CyberChef with Tailscale",
+      "name": "CyberChef",
       "description": "ScaleTail configuration for CyberChef running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -210,12 +225,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/cyberchef/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/cyberchef/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "ddns-updater",
-      "name": "DDNS Updater with Tailscale",
+      "name": "DDNS Updater",
       "description": "ScaleTail configuration for DDNS Updater running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -223,12 +239,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ddns-updater/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ddns-updater/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "docmost",
-      "name": "Docmost with Tailscale",
+      "name": "Docmost",
       "description": "ScaleTail configuration for Docmost running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -236,12 +253,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/docmost/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/docmost/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "donetick",
-      "name": "Donetick with Tailscale",
+      "name": "Donetick",
       "description": "ScaleTail configuration for Donetick running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -249,12 +267,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/donetick/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/donetick/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "dozzle",
-      "name": "Dozzle with Tailscale",
+      "name": "Dozzle",
       "description": "ScaleTail configuration for Dozzle running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -262,12 +281,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dozzle/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dozzle/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "dumbdo",
-      "name": "DumbDo with Tailscale",
+      "name": "DumbDo",
       "description": "ScaleTail configuration for DumbDo running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -275,12 +295,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dumbdo/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/dumbdo/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "eigenfocus",
-      "name": "Eigenfocus with Tailscale",
+      "name": "Eigenfocus",
       "description": "ScaleTail configuration for Eigenfocus running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -288,12 +309,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/eigenfocus/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/eigenfocus/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "excalidraw",
-      "name": "Excalidraw with Tailscale",
+      "name": "Excalidraw",
       "description": "ScaleTail configuration for Excalidraw running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -301,12 +323,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/excalidraw/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/excalidraw/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "flatnotes",
-      "name": "Flatnotes with Tailscale",
+      "name": "Flatnotes",
       "description": "ScaleTail configuration for Flatnotes running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -314,12 +337,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/flatnotes/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/flatnotes/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "forgejo",
-      "name": "Forgejo with Tailscale",
+      "name": "Forgejo",
       "description": "ScaleTail configuration for Forgejo running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -327,12 +351,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/forgejo/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/forgejo/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "formbricks",
-      "name": "Formbricks with Tailscale",
+      "name": "Formbricks",
       "description": "ScaleTail configuration for Formbricks running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -340,12 +365,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/formbricks/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/formbricks/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "fossflow",
-      "name": "FossFLOW with Tailscale",
+      "name": "FossFLOW",
       "description": "ScaleTail configuration for FossFLOW running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -353,12 +379,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/fossflow/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/fossflow/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "ghost",
-      "name": "Ghost with Tailscale",
+      "name": "Ghost",
       "description": "ScaleTail configuration for Ghost running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -366,12 +393,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ghost/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ghost/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "gitsave",
-      "name": "GitSave with Tailscale",
+      "name": "GitSave",
       "description": "ScaleTail configuration for GitSave running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -379,12 +407,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gitsave/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gitsave/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "glance",
-      "name": "Glance with Tailscale",
+      "name": "Glance",
       "description": "ScaleTail configuration for Glance running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -392,12 +421,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/glance/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/glance/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "gokapi",
-      "name": "Gokapi with Tailscale",
+      "name": "Gokapi",
       "description": "ScaleTail configuration for Gokapi running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -405,12 +435,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gokapi/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gokapi/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "gotify",
-      "name": "Gotify with Tailscale",
+      "name": "Gotify",
       "description": "ScaleTail configuration for Gotify running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -418,12 +449,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gotify/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/gotify/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "grampsweb",
-      "name": "Gramps Web with Tailscale",
+      "name": "Gramps Web",
       "description": "ScaleTail configuration for Gramps Web running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -431,12 +463,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/grampsweb/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/grampsweb/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "haptic",
-      "name": "Haptic with Tailscale",
+      "name": "Haptic",
       "description": "ScaleTail configuration for Haptic running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -444,12 +477,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/haptic/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/haptic/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "hemmelig",
-      "name": "Hemmelig.app with Tailscale",
+      "name": "Hemmelig.app",
       "description": "ScaleTail configuration for Hemmelig.app running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -457,12 +491,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hemmelig/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hemmelig/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "homarr",
-      "name": "Homarr with Tailscale",
+      "name": "Homarr",
       "description": "ScaleTail configuration for Homarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -470,12 +505,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "home-assistant",
-      "name": "Home Assistant with Tailscale",
+      "name": "Home Assistant",
       "description": "ScaleTail configuration for Home Assistant running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -483,12 +519,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/home-assistant/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/home-assistant/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "homebox",
-      "name": "Homebox with Tailscale",
+      "name": "Homebox",
       "description": "ScaleTail configuration for Homebox running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -496,12 +533,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homebox/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homebox/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "homepage",
-      "name": "Homepage with Tailscale",
+      "name": "Homepage",
       "description": "ScaleTail configuration for Homepage running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -509,12 +547,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homepage/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/homepage/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "hytale",
-      "name": "Hytale Server with Tailscale",
+      "name": "Hytale Server",
       "description": "ScaleTail configuration for Hytale Server running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -522,12 +561,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hytale/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/hytale/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "immich",
-      "name": "Immich with Tailscale",
+      "name": "Immich",
       "description": "ScaleTail configuration for Immich running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -535,12 +575,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/immich/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/immich/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "isley",
-      "name": "Isley with Tailscale",
+      "name": "Isley",
       "description": "ScaleTail configuration for Isley running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -548,12 +589,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/isley/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/isley/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "it-tools",
-      "name": "IT-Tools with Tailscale",
+      "name": "IT-Tools",
       "description": "ScaleTail configuration for IT-Tools running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -561,12 +603,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/it-tools/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/it-tools/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "jellyfin",
-      "name": "Jellyfin with Tailscale",
+      "name": "Jellyfin",
       "description": "ScaleTail configuration for Jellyfin running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -574,12 +617,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyfin/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyfin/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "jellyseerr",
-      "name": "Jellyseerr with Tailscale",
+      "name": "Jellyseerr",
       "description": "ScaleTail configuration for Jellyseerr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -587,12 +631,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyseerr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/jellyseerr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "kaneo",
-      "name": "Kaneo with Tailscale",
+      "name": "Kaneo",
       "description": "ScaleTail configuration for Kaneo running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -600,12 +645,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kaneo/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kaneo/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "karakeep",
-      "name": "Karakeep with Tailscale",
+      "name": "Karakeep",
       "description": "ScaleTail configuration for Karakeep running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -613,12 +659,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/karakeep/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/karakeep/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "kavita",
-      "name": "Kavita with Tailscale",
+      "name": "Kavita",
       "description": "ScaleTail configuration for Kavita running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -626,12 +673,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kavita/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/kavita/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "languagetool",
-      "name": "LanguageTool with Tailscale",
+      "name": "LanguageTool",
       "description": "ScaleTail configuration for LanguageTool running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -639,12 +687,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/languagetool/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/languagetool/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "linkding",
-      "name": "Linkding with Tailscale",
+      "name": "Linkding",
       "description": "ScaleTail configuration for Linkding running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -652,12 +701,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/linkding/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/linkding/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "lube-logger",
-      "name": "LubeLogger with Tailscale",
+      "name": "LubeLogger",
       "description": "ScaleTail configuration for LubeLogger running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -665,12 +715,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/lube-logger/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/lube-logger/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "mattermost",
-      "name": "Mattermost with Tailscale",
+      "name": "Mattermost",
       "description": "ScaleTail configuration for Mattermost running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -678,12 +729,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mattermost/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mattermost/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "mealie",
-      "name": "Mealie with Tailscale",
+      "name": "Mealie",
       "description": "ScaleTail configuration for Mealie running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -691,12 +743,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mealie/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/mealie/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "metube",
-      "name": "Metube with Tailscale",
+      "name": "Metube",
       "description": "ScaleTail configuration for Metube running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -704,12 +757,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/metube/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/metube/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "miniqr",
-      "name": "Mini-QR with Tailscale",
+      "name": "Mini-QR",
       "description": "ScaleTail configuration for Mini-QR running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -717,12 +771,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/miniqr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/miniqr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "nanote",
-      "name": "Nanote with Tailscale",
+      "name": "Nanote",
       "description": "ScaleTail configuration for Nanote running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -730,12 +785,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nanote/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nanote/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "navidrome",
-      "name": "Navidrome with Tailscale",
+      "name": "Navidrome",
       "description": "ScaleTail configuration for Navidrome running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -743,12 +799,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/navidrome/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/navidrome/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "nessus",
-      "name": "Nessus with Tailscale",
+      "name": "Nessus",
       "description": "ScaleTail configuration for Nessus running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -756,12 +813,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nessus/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nessus/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "netbox",
-      "name": "Netbox with Tailscale",
+      "name": "Netbox",
       "description": "ScaleTail configuration for Netbox running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -769,12 +827,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/netbox/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/netbox/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "nextcloud",
-      "name": "Nextcloud Server with Tailscale",
+      "name": "Nextcloud Server",
       "description": "ScaleTail configuration for Nextcloud Server running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -782,12 +841,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nextcloud/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nextcloud/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "nodered",
-      "name": "Node-RED with Tailscale",
+      "name": "Node-RED",
       "description": "ScaleTail configuration for Node-RED running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -795,12 +855,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nodered/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/nodered/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "ntfy",
-      "name": "ntfy with Tailscale",
+      "name": "ntfy",
       "description": "ScaleTail configuration for ntfy running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -808,12 +869,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ntfy/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/ntfy/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "overseerr",
-      "name": "Overseerr with Tailscale",
+      "name": "Overseerr",
       "description": "ScaleTail configuration for Overseerr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -821,12 +883,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/overseerr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/overseerr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "picard",
-      "name": "MusicBrainz Picard with Tailscale",
+      "name": "MusicBrainz Picard",
       "description": "ScaleTail configuration for MusicBrainz Picard running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -834,12 +897,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/picard/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/picard/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "pihole",
-      "name": "Pi-hole with Tailscale",
+      "name": "Pi-hole",
       "description": "ScaleTail configuration for Pi-hole running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -847,12 +911,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pihole/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pihole/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "pingvin-share",
-      "name": "Pingvin Share with Tailscale",
+      "name": "Pingvin Share",
       "description": "ScaleTail configuration for Pingvin Share running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -860,12 +925,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pingvin-share/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pingvin-share/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "plex",
-      "name": "Plex with Tailscale",
+      "name": "Plex",
       "description": "ScaleTail configuration for Plex running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -873,12 +939,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/plex/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/plex/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "pocket-id",
-      "name": "Pocket ID with Tailscale",
+      "name": "Pocket ID",
       "description": "ScaleTail configuration for Pocket ID running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -886,12 +953,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pocket-id/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/pocket-id/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "portainer",
-      "name": "Portainer with Tailscale",
+      "name": "Portainer",
       "description": "ScaleTail configuration for Portainer running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -899,12 +967,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portainer/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portainer/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "portracker",
-      "name": "Portracker with Tailscale",
+      "name": "Portracker",
       "description": "ScaleTail configuration for Portracker running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -912,12 +981,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portracker/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/portracker/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "posterizarr",
-      "name": "Posterizarr with Tailscale",
+      "name": "Posterizarr",
       "description": "ScaleTail configuration for Posterizarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -925,12 +995,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/posterizarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/posterizarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "prowlarr",
-      "name": "Prowlarr with Tailscale",
+      "name": "Prowlarr",
       "description": "ScaleTail configuration for Prowlarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -938,12 +1009,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/prowlarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/prowlarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "qbittorrent",
-      "name": "qBittorrent with Tailscale",
+      "name": "qBittorrent",
       "description": "ScaleTail configuration for qBittorrent running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -951,12 +1023,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/qbittorrent/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/qbittorrent/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "radarr",
-      "name": "Radarr with Tailscale",
+      "name": "Radarr",
       "description": "ScaleTail configuration for Radarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -964,12 +1037,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/radarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/radarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "recyclarr",
-      "name": "Recyclarr with Tailscale",
+      "name": "Recyclarr",
       "description": "ScaleTail configuration for Recyclarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -977,12 +1051,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/recyclarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/recyclarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "resilio-sync",
-      "name": "Resilio Sync with Tailscale",
+      "name": "Resilio Sync",
       "description": "ScaleTail configuration for Resilio Sync running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -990,12 +1065,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/resilio-sync/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/resilio-sync/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "searxng",
-      "name": "searXNG with Tailscale",
+      "name": "searXNG",
       "description": "ScaleTail configuration for searXNG running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1003,12 +1079,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/searxng/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/searxng/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "slink",
-      "name": "Slink with Tailscale",
+      "name": "Slink",
       "description": "ScaleTail configuration for Slink running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1016,12 +1093,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/slink/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/slink/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "sonarr",
-      "name": "Sonarr with Tailscale",
+      "name": "Sonarr",
       "description": "ScaleTail configuration for Sonarr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1029,12 +1107,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/sonarr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/sonarr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "speedtest-tracker",
-      "name": "Speedtest Tracker with Tailscale",
+      "name": "Speedtest Tracker",
       "description": "ScaleTail configuration for Speedtest Tracker running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1042,12 +1121,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/speedtest-tracker/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/speedtest-tracker/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "stirlingpdf",
-      "name": "Stirling-PDF with Tailscale",
+      "name": "Stirling-PDF",
       "description": "ScaleTail configuration for Stirling-PDF running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1055,12 +1135,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/stirlingpdf/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/stirlingpdf/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "subtrackr",
-      "name": "Subtrackr with Tailscale",
+      "name": "Subtrackr",
       "description": "ScaleTail configuration for Subtrackr running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1068,12 +1149,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/subtrackr/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/subtrackr/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "swingmx",
-      "name": "Swing Music with Tailscale",
+      "name": "Swing Music",
       "description": "ScaleTail configuration for Swing Music running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1081,7 +1163,8 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/swingmx/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/swingmx/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
@@ -1094,12 +1177,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tailscale-exit-node/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tailscale-exit-node/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "tandoor",
-      "name": "Tandoor Recipes with Tailscale",
+      "name": "Tandoor Recipes",
       "description": "ScaleTail configuration for Tandoor Recipes running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1107,12 +1191,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tandoor/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tandoor/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "tautulli",
-      "name": "Tautulli with Tailscale",
+      "name": "Tautulli",
       "description": "ScaleTail configuration for Tautulli running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1120,12 +1205,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tautulli/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/tautulli/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "technitium",
-      "name": "Technitium DNS server with Tailscale",
+      "name": "Technitium DNS server",
       "description": "ScaleTail configuration for Technitium DNS server running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1133,12 +1219,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/technitium/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/technitium/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "traefik",
-      "name": "Traefik with Tailscale",
+      "name": "Traefik",
       "description": "ScaleTail configuration for Traefik running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1146,12 +1233,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/traefik/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/traefik/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "uptime-kuma",
-      "name": "Uptime Kuma with Tailscale",
+      "name": "Uptime Kuma",
       "description": "ScaleTail configuration for Uptime Kuma running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1159,12 +1247,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/uptime-kuma/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/uptime-kuma/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "vaultwarden",
-      "name": "Vaultwarden with Tailscale",
+      "name": "Vaultwarden",
       "description": "ScaleTail configuration for Vaultwarden running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1172,12 +1261,13 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/vaultwarden/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/vaultwarden/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     },
     {
       "id": "wallos",
-      "name": "Wallos with Tailscale",
+      "name": "Wallos",
       "description": "ScaleTail configuration for Wallos running a Tailscale sidecar.",
       "version": "1.0.0",
       "author": "ScaleTail",
@@ -1185,7 +1275,8 @@
       "env_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/wallos/.env",
       "documentation_url": "https://raw.githubusercontent.com/jackspiering/ScaleTail-testing/main/services/wallos/README.md",
       "tags": [
-        "ScaleTail"
+        "ScaleTail",
+        "Tailscale"
       ]
     }
   ]
