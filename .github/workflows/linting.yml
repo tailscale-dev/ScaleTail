@@ -6,7 +6,6 @@ on:
       - main
     paths-ignore:
       - '.github/**'
-      # - 'README.md'
       - 'LICENSE'
       - '.gitignore'
       - '.gitattributes'
@@ -16,7 +15,6 @@ on:
       - main
     paths-ignore:
       - '.github/**'
-      # - 'README.md'
       - 'LICENSE'
       - '.gitignore'
       - '.gitattributes'
@@ -27,11 +25,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       
-      - name: Markdown Linting Action
-        id: lint
-        uses: avto-dev/markdown-lint@v1.5.0
+      - name: Markdown Linting
+        uses: DavidAnson/markdownlint-cli2-action@v22
         with:
           config: "./.markdownlint.yml"
-          args: "./services/**/*.md"
+          globs: "./services/**/*.md"
+          fix: true
