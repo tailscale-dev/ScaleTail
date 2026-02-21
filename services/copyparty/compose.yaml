@@ -37,6 +37,7 @@ services:
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
       #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
         target: /config/serve.json
