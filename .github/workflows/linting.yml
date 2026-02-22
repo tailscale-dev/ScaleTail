@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone this repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       
       - name: Markdown Linting Action
         id: lint
