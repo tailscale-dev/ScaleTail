@@ -118,7 +118,7 @@ If you would like to add a new config, you can use the [service-template](templa
 ### 📊 Dashboards and Visualization
 
 | 📊 Service      | 📝 Description                                                                        | 🔗 Link                       |
-| -------------- | ------------------------------------------------------------------------------------ | ---------------------------- |
+| --------------  | ------------------------------------------------------------------------------------ | ---------------------------- |
 | 🧭 **Glance**   | A concise, customizable dashboard for self-hosted services and personal metrics.     | [Details](services/glance)   |
 | 🏠 **Homepage** | A modern, highly customizable homepage for organizing links and monitoring services. | [Details](services/homepage) |
 
@@ -126,18 +126,19 @@ If you would like to add a new config, you can use the [service-template](templa
 
 | 🛠️ Service                | 📝 Description                                                                                          | 🔗 Link                              |
 | ------------------------ | ------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| 🧰 **Arcane**             | A self-hosted Docker management UI for Compose stacks; this repo includes a Tailscale sidecar example. | [Details](services/arcane)          |
 | 🖥️ **Changedetection.io** | A tool for monitoring website changes.                                                                 | [Details](services/changedetection) |
 | 🛠️ **Coder**              | Self-hosted cloud dev environments with browser IDEs, Terraform-managed workspaces.                    | [Details](services/coder)           |
 | 🔧 **Cyberchef**          | A web app for encryption, encoding, compression, and data analysis.                                    | [Details](services/cyberchef)       |
+| 🐳 **Dockhand**           | A modern, lightweight Docker management UI for containers and Compose stacks.                          | [Details](services/dockhand)        |
 | 🖥️ **Dozzle**             | A real-time log viewer for Docker containers.                                                          | [Details](services/dozzle)          |
-| 🖥️ **GitSave**            | A self-hosted service to back up your GitHub repositories via a simple REST API and scheduled runs.    | [Details](services/gitsave)         |
 | 🔁 **FossFLOW**           | A self-hosted tool to make beautiful isometric infrastructure diagrams.                                | [Details](services/fossflow)        |
+| 🖥️ **GitSave**            | A self-hosted service to back up your GitHub repositories via a simple REST API and scheduled runs.    | [Details](services/gitsave)         |
 | 🖥️ **Gokapi**             | A lightweight self-hosted file sharing platform.                                                       | [Details](services/gokapi)          |
 | 🖥️ **Homarr**             | A sleek dashboard for all your Homelab services.                                                       | [Details](services/homarr)          |
 | 🖥️ **IT-Tools**           | A collection of handy online tools for developers and sysadmins.                                       | [Details](services/it-tools)        |
 | 🖥️ **Node-RED**           | A flow-based development tool for visual programming.                                                  | [Details](services/nodered)         |
 | 🖥️ **Portainer**          | A lightweight management UI which allows you to easily manage your Docker environments.                | [Details](services/portainer)       |
-| 🧰 **Arcane**             | A self-hosted Docker management UI for Compose stacks; this repo includes a Tailscale sidecar example. | [Details](services/arcane)          |
 | 🔍 **searXNG**            | A free internet metasearch engine which aggregates results from various search services.               | [Details](services/searxng)         |
 
 ### 📈 Monitoring and Analytics
