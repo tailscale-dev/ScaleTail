@@ -208,7 +208,7 @@ See `CONTRIBUTING.md` for guidance on adding services with the template, documen
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=2tiny2scale/scaletail&type=Date)](https://www.star-history.com/#2tiny2scale/scaletail&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=tailscale-dev/scaletail&type=Date)](https://www.star-history.com/#tailscale-dev/scaletail&Date)
 
 ## License
 
