@@ -118,7 +118,7 @@ If you would like to add a new config, you can use the [service-template](templa
 ### 📊 Dashboards and Visualization
 
 | 📊 Service      | 📝 Description                                                                        | 🔗 Link                       |
-| --------------  | ------------------------------------------------------------------------------------ | ---------------------------- |
+| -------------- | ------------------------------------------------------------------------------------ | ---------------------------- |
 | 🧭 **Glance**   | A concise, customizable dashboard for self-hosted services and personal metrics.     | [Details](services/glance)   |
 | 🏠 **Homepage** | A modern, highly customizable homepage for organizing links and monitoring services. | [Details](services/homepage) |
 
@@ -165,6 +165,7 @@ If you would like to add a new config, you can use the [service-template](templa
 | 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                       | [Details](services/gotify)      |
 | 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.       | [Details](services/ntfy)        |
 | 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                           | [Details](services/lube-logger) |
+| 🚗 **Tracktor**   | Self-hosted vehicle maintenance tracker.                                               | [Details](services/tracktor)    |
 | 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                    | [Details](services/miniqr)      |
 | 🔐 **Hemmelig**   | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig)    |
 | 📦 **Homebox**    | A self-hosted home inventory and asset management system.                              | [Details](services/homebox)     |
