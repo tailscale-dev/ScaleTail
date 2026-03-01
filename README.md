@@ -68,7 +68,7 @@ If you would like to add a new config, you can use the [service-template](templa
 | 📻 **Miniflux**       | A minimalist and opinionated feed reader.                                                   | [Details](services/miniflux)       |
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                                | [Details](services/navidrome)      |
 | 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.         | [Details](services/swingmx)        |
-| 🎬 **Overseerr**      | A request management and media discovery tool for Plex and Jellyfin users.                  | [Details](services/overseerr)      |
+| 🎬 **Seerr**      | A request management and media discovery tool for Plex, Jellyfin and Emby.                  | [Details](services/seerr)      |
 | 🎵 **Picard**         | MusicBrainz Picard is a cross-platform music tagger for organizing and tagging music files. | [Details](services/picard)         |
 | 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.       | [Details](services/plex)           |
 | 📥 **qBittorrent**    | An open-source BitTorrent client.                                                           | [Details](services/qbittorrent)    |
