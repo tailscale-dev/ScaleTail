@@ -56,7 +56,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Amsterdam
-      - SEARXNG_BASE_URL=https://searxng.<YOUR-TAILNET-DOMAIN>.ts.net/
+      - SEARXNG_BASE_URL=https://searxng.${TAILNET_NAME}.ts.net/
     volumes:
       - ./searxng:/etc/searxng:rw
     cap_drop:
