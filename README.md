@@ -1,7 +1,10 @@
-# ScaleTail - Secure Self-Hosting Made Simple With Tailscale
+# ScaleTail - Secure Self-Hosting Made Simple
 
 [![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
 [![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
+[![Contributors](https://img.shields.io/github/contributors/tailscale-dev/ScaleTail?style=flat-square)](https://github.com/tailscale-dev/ScaleTail/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/tailscale-dev/ScaleTail?style=flat-square&logo=git)](https://github.com/tailscale-dev/ScaleTail/commits/main)
+
 Run any self-hosted service with **zero port forwarding, zero reverse-proxy hassle, and real zero-trust security**, all thanks to a tiny Tailscale sidecar.
 
 ScaleTail provides ready-to-run Docker Compose recipes that instantly connect your self-hosted applications to your Tailnet (private Tailscale network). By using a "sidecar" configuration, your apps get their own URL with automatic HTTPS.
@@ -42,7 +45,7 @@ Alex from the official Tailscale YouTube channel recently did a deep dive into S
 
 ## Table of Contents
 
-- [ScaleTail - Secure Self-Hosting Made Simple With Tailscale](#scaletail---secure-self-hosting-made-simple-with-tailscale)
+- [ScaleTail - Secure Self-Hosting Made Simple](#scaletail---secure-self-hosting-made-simple)
   - [Featured by Tailscale](#featured-by-tailscale)
   - [Quick Start](#quick-start)
   - [Table of Contents](#table-of-contents)
