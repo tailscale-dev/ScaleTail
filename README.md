@@ -1,11 +1,10 @@
 # ScaleTail - Secure Self-Hosting Made Simple With Tailscale
 
+[![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
+[![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
 Run any self-hosted service with **zero port forwarding, zero reverse-proxy hassle, and real zero-trust security**, all thanks to a tiny Tailscale sidecar.
 
 ScaleTail provides ready-to-run Docker Compose recipes that instantly connect your self-hosted applications to your Tailnet (private Tailscale network). By using a "sidecar" configuration, your apps get their own URL with automatic HTTPS.
-
-[![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
-[![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
 
 ## Featured by Tailscale
 
