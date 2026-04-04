@@ -63,7 +63,6 @@ If you would like to add a new config, you can use the [service-template](templa
 | 🎮 **Hytale**         | A self-hosted Hytale game server.                                                           | [Details](services/hytale)         |
 | 🖼️ **Immich**         | A self-hosted Google Photos alternative with face recognition and mobile sync.              | [Details](services/immich)         |
 | 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media.  | [Details](services/jellyfin)       |
-| 📺 **Jellyseerr**     | A request management and media discovery tool for Jellyfin and Plex users.                  | [Details](services/jellyseerr)     |
 | 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.                  | [Details](services/kavita)         |
 | 📻 **Miniflux**       | A minimalist and opinionated feed reader.                                                   | [Details](services/miniflux)       |
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                                | [Details](services/navidrome)      |
