@@ -15,7 +15,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 ## Quick Start
 
-**Requirement:** *Docker Compose and [Git](https://git-scm.com/) must be installed. Preferrably on a Linux Operating system.*
+**Requirement:** *Docker Compose and [Git](https://git-scm.com/) must be installed. Preferably on a Linux Operating system.*
 
 1. **Get an Auth Key**  
 
@@ -27,7 +27,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
    ``` bash
    git clone https://github.com/tailscale-dev/ScaleTail.git
-   cd ScaleTail/services/yourdesiredservice 
+   cd ScaleTail/services/YourDesiredService 
    ```
   
 3. **Configure and Launch**
@@ -97,7 +97,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 📻 **Miniflux**       | A minimalist and opinionated feed reader.                                                   | [Details](services/miniflux)       |
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                                | [Details](services/navidrome)      |
 | 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.         | [Details](services/swingmx)        |
-| 🎬 **Seerr**      | A request management and media discovery tool for Plex, Jellyfin and Emby.                  | [Details](services/seerr)      |
+| 🎬 **Seerr**          | A request management and media discovery tool for Plex, Jellyfin and Emby.                  | [Details](services/seerr)          |
 | 🎵 **Picard**         | MusicBrainz Picard is a cross-platform music tagger for organizing and tagging music files. | [Details](services/picard)         |
 | 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.       | [Details](services/plex)           |
 | 📥 **qBittorrent**    | An open-source BitTorrent client.                                                           | [Details](services/qbittorrent)    |
@@ -115,7 +115,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 | 💼 Service           | 📝 Description                                                                                                                                                              | 🔗 Link                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| 💰 **Actual Budget** | A self-hosted personal finance and budgeting app focused on privacy and full data ownership. | [Details](services/actual-budget) |
+| 💰 **Actual Budget** | A self-hosted personal finance and budgeting app focused on privacy and full data ownership.                                                                               | [Details](services/actual-budget) |
 | ✂️ **ClipCascade**   | A self-hosted clipboard manager for syncing and organizing clipboard history.                                                                                              | [Details](services/clipcascade)   |
 | 🗂️ **Copyparty**     | A self-hosted file server with accelerated resumable uploads.                                                                                                              | [Details](services/copyparty)     |
 | ✅ **Donetick**      | A self-hosted task and checklist manager for productivity.                                                                                                                 | [Details](services/donetick)      |
@@ -134,7 +134,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🧠 **LanguageTool**  | An open-source proofreading software for multiple languages.                                                                                                               | [Details](services/languagetool)  |
 | 🔖 **Linkding**      | A self-hosted bookmark manager to save and organize links.                                                                                                                 | [Details](services/linkding)      |
 | 📥 **Mattermost**    | A self-hosted collaborative workflow and communication tool.                                                                                                               | [Details](services/mattermost)    |
-| 📝 **Memos**         | A lightweight, self-hosted note-taking and knowledge management platform for capturing ideas, daily notes, and personal knowledge.                                          | [Details](services/memos)         |
+| 📝 **Memos**         | A lightweight, self-hosted note-taking and knowledge management platform for capturing ideas, daily notes, and personal knowledge.                                         | [Details](services/memos)         |
 | 📝 **Nanote**        | A lightweight, self-hosted note-taking app with Markdown support.                                                                                                          | [Details](services/nanote)        |
 | ☁️ **NextCloud**     | A suite of client-server software for creating and using file hosting services.                                                                                            | [Details](services/nextcloud)     |
 | 🔗 **Pingvin Share** | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                                                                                  | [Details](services/pingvin-share) |
