@@ -5,33 +5,32 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your Tailnet (private Tailscale network). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example `https://application.tail-net.ts.net`.
+ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your [Tailscale](https://grokipedia.com/page/Tailscale) Tailnet (private Tailscale network). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example `https://application.tail-net.ts.net`.
 
 ## Featured by Tailscale
 
-[Alex](https://github.com/ironicbadger) from the official Tailscale YouTube channel recently did a deep dive into ScaleTail! He walks through how to deploy a secure, private instance of LubeLogger in under 10 minutes.
+[Alex](https://github.com/ironicbadger) from the official Tailscale YouTube channel did a deep dive into ScaleTail! He walks through how to deploy a secure, private instance of LubeLogger in under 10 minutes.
 
 [![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
 
 ## Quick Start
 
-*Requirement: Docker Compose and [Git](https://git-scm.com/) must be installed on a Unix-based system.*
+**Requirement***: Docker Compose and [Git](https://git-scm.com/) must be installed. Preferrably on a Linux Operating system.*
 
 1. **Get an Auth Key**  
 
-   Go to the [Tailscale Admin Console → Keys](https://login.tailscale.com/admin/settings/keys) and generate a new auth key. Treat this key like a password; do not share it or commit it to public repositories.
+   Go to the [Tailscale Admin Console → Keys](https://login.tailscale.com/admin/settings/keys) and generate a new auth key.
 
 2. **Clone and Choose a Service**
+  
    Clone the repository and change directory to your desired service with the following command:
 
    ``` bash
    git clone https://github.com/tailscale-dev/ScaleTail.git
-   cd ScaleTail/services/dozzle 
+   cd ScaleTail/services/yourdesiredservice 
    ```
-
-  (Replace `dozzle` with any service folder from the library).
   
-1. **Configure and Launch**
+3. **Configure and Launch**
 
    1. Open the `.env` file in your chosen service directory.
    2. Add your auth key after the line `TS_AUTHKEY=`.
@@ -40,8 +39,6 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
    ``` bash
    docker compose up -d
    ```
-
-   PS If you want to check the logs and detach the container later remove the '-d' option in the command.
 
 ## Table of Contents
 
