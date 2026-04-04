@@ -5,14 +5,15 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-Run any self-hosted service with **zero port forwarding, zero reverse-proxy hassle, and real zero-trust security**, all thanks to a tiny Tailscale sidecar.
+Run any self-hosted service with **zero port forwarding, zero reverse-proxy hassle, and real zero-trust security**.
 
-ScaleTail provides ready-to-run Docker Compose recipes that instantly connect your self-hosted applications to your Tailnet (private Tailscale network). By using a "sidecar" configuration, your apps get their own URL with automatic HTTPS.
+ScaleTail provides ready-to-run Docker Compose stacks that instantly connect your self-hosted applications to your Tailnet (private Tailscale network). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example `https://application.tail-net.ts.net`.
 
 ## Featured by Tailscale
 
 Alex from the official Tailscale YouTube channel recently did a deep dive into ScaleTail! He walks through how to deploy a secure, private instance of LubeLogger in under 10 minutes.
-[Warch: We got self-hosted apps for days with ScaleTail](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
+
+[![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
 
 ## Quick Start
 
