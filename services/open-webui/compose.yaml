@@ -1,0 +1,42 @@
+services:
+  tailscale-open-webui:
+    image: tailscale/tailscale:latest
+    container_name: tailscale-open-webui
+    hostname: ${TS_HOSTNAME}
+    restart: unless-stopped
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_USERSPACE=true
+      - TS_EXTRA_ARGS=--advertise-tags=tag:container
+    volumes:
+      - ./ts/state:/var/lib/tailscale
+      - ./ts/config:/config
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    healthcheck:
+      test: ["CMD", "tailscale", "status"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  app-open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: app-open-webui
+    restart: unless-stopped
+    depends_on:
+      tailscale-open-webui:
+        condition: service_healthy
+    network_mode: service:tailscale-open-webui
+    environment:
+      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - TZ=${TZ}
+    volumes:
+      - ./data:/app/backend/data
+    # ports:
+    #   - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Uncomment to expose on LAN in addition to Tailnet
