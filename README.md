@@ -5,11 +5,8 @@
 [![Contributors](https://img.shields.io/github/contributors/tailscale-dev/ScaleTail?style=flat-square)](https://github.com/tailscale-dev/ScaleTail/graphs/contributors)
 [![Last Commit](https://img.shields.io/github/last-commit/tailscale-dev/ScaleTail?style=flat-square&logo=git)](https://github.com/tailscale-dev/ScaleTail/commits/main)
 
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)](https://www.docker.com/)
-[![Docker Compose](https://img.shields.io/badge/Docker%20Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docs.docker.com/compose/)
-[![Tailscale](https://img.shields.io/badge/Tailscale-00A4FF?style=flat-square&logo=tailscale&logoColor=white)](https://tailscale.com/)
-[![Self-Hosted](https://img.shields.io/badge/Self--Hosted-FF9900?style=flat-square)](https://github.com/tailscale-dev/ScaleTail)
-[![Zero Trust](https://img.shields.io/badge/Zero%20Trust-00C300?style=flat-square)](https://tailscale.com/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
+[![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
 Run any self-hosted service with **zero port forwarding, zero reverse-proxy hassle, and real zero-trust security**, all thanks to a tiny Tailscale sidecar.
 
