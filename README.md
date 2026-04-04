@@ -2,8 +2,8 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
 [![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
-[![Contributors](https://img.shields.io/github/contributors/tailscale-dev/ScaleTail?style=flat-square)](https://github.com/tailscale-dev/ScaleTail/graphs/contributors)
-[![Last Commit](https://img.shields.io/github/last-commit/tailscale-dev/ScaleTail?style=flat-square&logo=git)](https://github.com/tailscale-dev/ScaleTail/commits/main)
+[![Contributors](https://img.shields.io/github/contributors/tailscale-dev/ScaleTail?)](https://github.com/tailscale-dev/ScaleTail/graphs/contributors)
+[![Last Commit](https://img.shields.io/github/last-commit/tailscale-dev/ScaleTail?logo=git)](https://github.com/tailscale-dev/ScaleTail/commits/main)
 
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
