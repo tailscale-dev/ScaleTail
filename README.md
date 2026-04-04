@@ -1,16 +1,52 @@
-# ScaleTail - Tailscale Docker Sidecar Configuration Examples
+# ScaleTail - Secure Self-Hosting Made Simple With Tailscale
 
-This repository provides examples of using [Tailscale](https://tailscale.com/) in a sidecar configuration within Docker, specifically for integrating Tailscale with various services. By leveraging Tailscale's secure networking capabilities, these examples demonstrate how to seamlessly route traffic through Tailscale while maintaining service functionality and security.
+Run any self-hosted service with **zero port forwarding, zero reverse-proxy hassle, and real zero-trust security**, all thanks to a tiny Tailscale sidecar.
 
-The provided configurations showcase how to set up Tailscale alongside Docker services, with a focus on ensuring connectivity, security, and ease of deployment. The examples include configurations for Tailscale authentication, state management, and service routing.
+ScaleTail provides ready-to-run Docker Compose recipes that instantly connect your self-hosted applications to your Tailnet (private Tailscale network). By using a "sidecar" configuration, your apps get their own URL with automatic HTTPS.
 
-If you would like to add a new config, you can use the [service-template](templates/service-template/) or open an [issue](https://github.com/tailscale-dev/ScaleTail/issues).
+[![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
+[![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
+
+## Featured by Tailscale
+
+Alex from the official Tailscale YouTube channel recently did a deep dive into ScaleTail! He walks through how to deploy a secure, private instance of LubeLogger in under 10 minutes.
+[Warch: We got self-hosted apps for days with ScaleTail](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
+
+## Quick Start
+
+*Requirement: Docker Compose must be installed on a Unix-based system.*
+
+1. **Get an Auth Key**  
+
+   Go to the [Tailscale Admin Console → Keys](https://login.tailscale.com/admin/settings/keys) and generate a new auth key. Treat this key like a password; do not share it or commit it to public repositories.
+
+2. **Clone and Choose a Service**
+
+   ``` bash
+   git clone https://github.com/tailscale-dev/ScaleTail.git
+   cd ScaleTail/services/dozzle 
+   ```
+
+  (Replace `dozzle` with any service folder from the library).
+  
+3. **Configure and Launch**
+
+   1. Open the `.env` file in your chosen service directory.
+   2. Add your auth key after the line `TS_AUTHKEY=`.
+   3. Start the Docker compose stack:
+  
+   ``` bash
+   docker compose up -d
+   ```
+
+   PS If you want to check the logs and detach the container later remove the '-d' option in the command.
 
 ## Table of Contents
 
-- [ScaleTail - Tailscale Docker Sidecar Configuration Examples](#scaletail---tailscale-docker-sidecar-configuration-examples)
+- [ScaleTail - Secure Self-Hosting Made Simple With Tailscale](#scaletail---secure-self-hosting-made-simple-with-tailscale)
+  - [Featured by Tailscale](#featured-by-tailscale)
+  - [Quick Start](#quick-start)
   - [Table of Contents](#table-of-contents)
-    - [Helpful videos and docs](#helpful-videos-and-docs)
   - [Available Configurations](#available-configurations)
     - [🌐 Networking and Security](#-networking-and-security)
     - [🎥 Media and Entertainment](#-media-and-entertainment)
@@ -29,11 +65,6 @@ If you would like to add a new config, you can use the [service-template](templa
   - [Contributing](#contributing)
   - [Star History](#star-history)
   - [License](#license)
-
-### Helpful videos and docs
-
-- Tailscale Docker sidecar guide and Serve/Funnel walkthroughs on the official [Tailscale YouTube channel](https://www.youtube.com/@Tailscale) pair well with these examples.
-- The Tailscale [Docker guide](https://tailscale.com/blog/docker-tailscale-guide), [Serve docs](https://tailscale.com/kb/1242/tailscale-serve), and [Funnel docs](https://tailscale.com/kb/1223/funnel) cover the underlying features without duplicating content here.
 
 ## Available Configurations
 
@@ -206,7 +237,7 @@ Tailscale Funnel securely exposes services to the public internet. Tailscale Ser
 
 ## Contributing
 
-See `CONTRIBUTING.md` for guidance on adding services with the template, documenting gotchas, and keeping Tailscale-sidecar setups consistent.
+See [CONTRIBUTING.md](/CONTRIBUTING.md) for guidance on adding services with the [template](/templates/service-template/) and keeping Tailscale-sidecar setups consistent.
 
 ## Star History
 
