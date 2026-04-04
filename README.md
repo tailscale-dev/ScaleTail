@@ -32,9 +32,9 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
   
 3. **Configure and Launch**
 
-   - Open the `.env` file in your chosen service directory.
-   - Add your auth key after the line `TS_AUTHKEY=`.
-   - Start the Docker compose stack:
+- Open the `.env` file in your chosen service directory.
+- Add your auth key after the line `TS_AUTHKEY=`.
+- Start the Docker compose stack:
   
    ``` bash
    docker compose up -d
