@@ -5,7 +5,7 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your [Tailscale](https://grokipedia.com/page/Tailscale) Tailnet (private Tailscale network). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example `https://application.tail-net.ts.net`.
+ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your [Tailscale](https://grokipedia.com/page/Tailscale) [Tailnet](https://tailscale.com/docs/concepts/tailnet). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example: `https://application.tail-net.ts.net`.
 
 ## Featured by Tailscale
 
