@@ -9,13 +9,13 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 ## Featured by Tailscale
 
-[Alex](https://github.com/ironicbadger) from the official Tailscale YouTube channel did a deep dive into ScaleTail! He walks through how to deploy a secure, private instance of LubeLogger in under 10 minutes.
+[Alex](https://github.com/ironicbadger) from the official Tailscale YouTube channel did a deep dive into ScaleTail! He walks through how to deploy a secure, private service of ScaleTail in under 10 minutes.
 
 [![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
 
 ## Quick Start
 
-**Requirement***: Docker Compose and [Git](https://git-scm.com/) must be installed. Preferrably on a Linux Operating system.*
+**Requirement:** *Docker Compose and [Git](https://git-scm.com/) must be installed. Preferrably on a Linux Operating system.*
 
 1. **Get an Auth Key**  
 
@@ -32,9 +32,9 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
   
 3. **Configure and Launch**
 
-   1. Open the `.env` file in your chosen service directory.
-   2. Add your auth key after the line `TS_AUTHKEY=`.
-   3. Start the Docker compose stack:
+   - Open the `.env` file in your chosen service directory.
+   - Add your auth key after the line `TS_AUTHKEY=`.
+   - Start the Docker compose stack:
   
    ``` bash
    docker compose up -d
