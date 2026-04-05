@@ -2,7 +2,7 @@
 
 This Docker Compose configuration sets up [Paperless-ngx](https://docs.paperless-ngx.com/) with Tailscale as a sidecar container to securely deliver push notifications over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your ntfy instance, ensuring it is only accessible within your Tailscale network.
 
-## ntfy
+## Paperless-ngx
 
 [Paperless-ngx](https://docs.paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper.
 ## Configuration Overview
