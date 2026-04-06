@@ -71,15 +71,18 @@ services:
       - ./${SERVICE}-export/export:/usr/src/paperless/export
       - ./${SERVICE}-consume/consume:/usr/src/paperless/consume
     environment:
-      PAPERLESS_TIME_ZONE: ${PAPERLESS_TIME_ZONE}
-      PAPERLESS_OCR_LANGUAGE: ${PAPERLESS_OCR_LANGUAGE}
-      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
-      PAPERLESS_PORT: 80
-      PAPERLESS_PROXY_SSL_HEADER: '["HTTP_X_FORWARDED_PROTO", "https"]'
-      PAPERLESS_ADMIN_USER: ${PAPERLESS_ADMIN_USER}
-      PAPERLESS_ADMIN_PASSWORD: ${PAPERLESS_ADMIN_PASSWORD}
-      PAPERLESS_REDIS: redis://broker:6379
-      PAPERLESS_DBHOST: db
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - PAPERLESS_TIME_ZONE=${PAPERLESS_TIME_ZONE}
+      - PAPERLESS_OCR_LANGUAGE=${PAPERLESS_OCR_LANGUAGE}
+      - PAPERLESS_SECRET_KEY=${PAPERLESS_SECRET_KEY}
+      - PAPERLESS_PORT=80
+      - PAPERLESS_PROXY_SSL_HEADER=["HTTP_X_FORWARDED_PROTO", "https"]
+      - PAPERLESS_ADMIN_USER=${PAPERLESS_ADMIN_USER}
+      - PAPERLESS_ADMIN_PASSWORD=${PAPERLESS_ADMIN_PASSWORD}
+      - PAPERLESS_REDIS=redis://broker:6379
+      - PAPERLESS_DBHOST=db
   db:
     image: docker.io/library/postgres:18
     container_name: app-${SERVICE}-db # Name for local container management
@@ -87,15 +90,22 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql
     environment:
-      POSTGRES_DB: paperless
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - POSTGRES_DB=paperless
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
   broker:
     image: docker.io/library/redis:8
     container_name: app-${SERVICE}-broker # Name for local container management
     restart: always
     volumes:
       - redisdata:/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
 volumes:
   data:
   media:
