@@ -40,11 +40,18 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
    docker compose up -d
    ```
 
+## Contributors
+
+We are very thankfull for everyone that helped building the repository of ScaleTail. A big shoutout to the following:
+
+[![Contributors](https://contrib.rocks/image?repo=tailscale-dev/scaletail)](https://github.com/tailscale-dev/scaletai/graphs/contributors)
+
 ## Table of Contents
 
 - [ScaleTail - Secure Self-Hosting Made Simple](#scaletail---secure-self-hosting-made-simple)
   - [Featured by Tailscale](#featured-by-tailscale)
   - [Quick Start](#quick-start)
+  - [Contributors](#contributors)
   - [Table of Contents](#table-of-contents)
   - [Available Configurations](#available-configurations)
     - [🌐 Networking and Security](#-networking-and-security)
