@@ -44,7 +44,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 A huge thank you to all our contributors! ScaleTail wouldn’t be what it is today without your time, effort, and ideas!
 
-[![Contributors](https://contrib.rocks/image?repo=tailscale-dev/scaletail)](https://github.com/tailscale-dev/scaletai/graphs/contributors)
+[![Contributors](https://contrib.rocks/image?repo=tailscale-dev/scaletail)](https://github.com/tailscale-dev/scaletail/graphs/contributors)
 
 ## Table of Contents
 
