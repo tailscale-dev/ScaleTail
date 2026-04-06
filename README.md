@@ -1,16 +1,51 @@
-# ScaleTail - Tailscale Docker Sidecar Configuration Examples
+# ScaleTail - Secure Self-Hosting Made Simple
 
-This repository provides examples of using [Tailscale](https://tailscale.com/) in a sidecar configuration within Docker, specifically for integrating Tailscale with various services. By leveraging Tailscale's secure networking capabilities, these examples demonstrate how to seamlessly route traffic through Tailscale while maintaining service functionality and security.
+[![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
+[![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
+[![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-The provided configurations showcase how to set up Tailscale alongside Docker services, with a focus on ensuring connectivity, security, and ease of deployment. The examples include configurations for Tailscale authentication, state management, and service routing.
+ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your [Tailnet](https://tailscale.com/docs/concepts/tailnet). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example: `https://application.tail-net.ts.net`.
 
-If you would like to add a new config, you can use the [service-template](templates/service-template/) or open an [issue](https://github.com/tailscale-dev/ScaleTail/issues).
+## Featured by Tailscale
+
+[Alex](https://github.com/ironicbadger) from the official Tailscale YouTube channel did a deep dive into ScaleTail! He walks through how to deploy a secure, private service of ScaleTail in under 10 minutes.
+
+[![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
+
+## Quick Start
+
+**Requirement:** *Docker Compose and [Git](https://git-scm.com/) must be installed. Preferably on a Linux Operating system.*
+
+1. **Get an Auth Key**  
+
+   Go to the [Tailscale Admin Console → Keys](https://login.tailscale.com/admin/settings/keys) and generate a new auth key.
+
+2. **Clone and Choose a Service**
+  
+   Clone the repository and change directory to your desired service with the following command:
+
+   ``` bash
+   git clone https://github.com/tailscale-dev/ScaleTail.git
+   cd ScaleTail/services/YourDesiredService 
+   ```
+  
+3. **Configure and Launch**
+
+   - Open the `.env` file in your chosen service directory.
+   - Add your auth key after the line `TS_AUTHKEY=`.
+   - Start the Docker compose stack:
+  
+   ``` bash
+   docker compose up -d
+   ```
 
 ## Table of Contents
 
-- [ScaleTail - Tailscale Docker Sidecar Configuration Examples](#scaletail---tailscale-docker-sidecar-configuration-examples)
+- [ScaleTail - Secure Self-Hosting Made Simple](#scaletail---secure-self-hosting-made-simple)
+  - [Featured by Tailscale](#featured-by-tailscale)
+  - [Quick Start](#quick-start)
   - [Table of Contents](#table-of-contents)
-    - [Helpful videos and docs](#helpful-videos-and-docs)
   - [Available Configurations](#available-configurations)
     - [🌐 Networking and Security](#-networking-and-security)
     - [🎥 Media and Entertainment](#-media-and-entertainment)
@@ -29,11 +64,6 @@ If you would like to add a new config, you can use the [service-template](templa
   - [Contributing](#contributing)
   - [Star History](#star-history)
   - [License](#license)
-
-### Helpful videos and docs
-
-- Tailscale Docker sidecar guide and Serve/Funnel walkthroughs on the official [Tailscale YouTube channel](https://www.youtube.com/@Tailscale) pair well with these examples.
-- The Tailscale [Docker guide](https://tailscale.com/blog/docker-tailscale-guide), [Serve docs](https://tailscale.com/kb/1242/tailscale-serve), and [Funnel docs](https://tailscale.com/kb/1223/funnel) cover the underlying features without duplicating content here.
 
 ## Available Configurations
 
@@ -60,15 +90,15 @@ If you would like to add a new config, you can use the [service-template](templa
 | 🎧 **Audiobookshelf** | A self-hosted audiobook and podcast server with multi-user support and playback syncing.    | [Details](services/audiobookshelf) |
 | 🎥 **Bazarr**         | A companion tool to Radarr and Sonarr for managing subtitles.                               | [Details](services/bazarr)         |
 | 📚 **BookLore**       | A self-hosted application for managing and reading books.                                   | [Details](services/booklore)       |
+| 🎥 **Frigate**        | A self-hosted NVR with real-time AI object detection for IP cameras and local video monitoring. | [Details](services/frigate)        |
 | 🎮 **Hytale**         | A self-hosted Hytale game server.                                                           | [Details](services/hytale)         |
 | 🖼️ **Immich**         | A self-hosted Google Photos alternative with face recognition and mobile sync.              | [Details](services/immich)         |
 | 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media.  | [Details](services/jellyfin)       |
-| 📺 **Jellyseerr**     | A request management and media discovery tool for Jellyfin and Plex users.                  | [Details](services/jellyseerr)     |
 | 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.                  | [Details](services/kavita)         |
 | 📻 **Miniflux**       | A minimalist and opinionated feed reader.                                                   | [Details](services/miniflux)       |
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                                | [Details](services/navidrome)      |
 | 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.         | [Details](services/swingmx)        |
-| 🎬 **Seerr**      | A request management and media discovery tool for Plex, Jellyfin and Emby.                  | [Details](services/seerr)      |
+| 🎬 **Seerr**          | A request management and media discovery tool for Plex, Jellyfin and Emby.                  | [Details](services/seerr)          |
 | 🎵 **Picard**         | MusicBrainz Picard is a cross-platform music tagger for organizing and tagging music files. | [Details](services/picard)         |
 | 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.       | [Details](services/plex)           |
 | 📥 **qBittorrent**    | An open-source BitTorrent client.                                                           | [Details](services/qbittorrent)    |
@@ -86,6 +116,8 @@ If you would like to add a new config, you can use the [service-template](templa
 
 | 💼 Service           | 📝 Description                                                                                                                                                              | 🔗 Link                            |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| 💰 **Actual Budget** | A self-hosted personal finance and budgeting app focused on privacy and full data ownership.                                                                               | [Details](services/actual-budget) |
+| ⚓ **Anchor**        | An offline-first, self-hosted note-taking app with sync, attachments, sharing, and optional OIDC authentication.                                                          | [Details](services/anchor)        |
 | ✂️ **ClipCascade**   | A self-hosted clipboard manager for syncing and organizing clipboard history.                                                                                              | [Details](services/clipcascade)   |
 | 🗂️ **Copyparty**     | A self-hosted file server with accelerated resumable uploads.                                                                                                              | [Details](services/copyparty)     |
 | ✅ **Donetick**      | A self-hosted task and checklist manager for productivity.                                                                                                                 | [Details](services/donetick)      |
@@ -104,6 +136,7 @@ If you would like to add a new config, you can use the [service-template](templa
 | 🧠 **LanguageTool**  | An open-source proofreading software for multiple languages.                                                                                                               | [Details](services/languagetool)  |
 | 🔖 **Linkding**      | A self-hosted bookmark manager to save and organize links.                                                                                                                 | [Details](services/linkding)      |
 | 📥 **Mattermost**    | A self-hosted collaborative workflow and communication tool.                                                                                                               | [Details](services/mattermost)    |
+| 📝 **Memos**         | A lightweight, self-hosted note-taking and knowledge management platform for capturing ideas, daily notes, and personal knowledge.                                         | [Details](services/memos)         |
 | 📝 **Nanote**        | A lightweight, self-hosted note-taking app with Markdown support.                                                                                                          | [Details](services/nanote)        |
 | ☁️ **NextCloud**     | A suite of client-server software for creating and using file hosting services.                                                                                            | [Details](services/nextcloud)     |
 | 🔗 **Pingvin Share** | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                                                                                  | [Details](services/pingvin-share) |
@@ -205,7 +238,7 @@ Tailscale Funnel securely exposes services to the public internet. Tailscale Ser
 
 ## Contributing
 
-See `CONTRIBUTING.md` for guidance on adding services with the template, documenting gotchas, and keeping Tailscale-sidecar setups consistent.
+See [CONTRIBUTING.md](/CONTRIBUTING.md) for guidance on adding services with the [template](/templates/service-template/) and keeping Tailscale-sidecar setups consistent.
 
 ## Star History
 

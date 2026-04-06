@@ -4,12 +4,12 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:5055"}}}},
+          {"Proxy":"https+insecure://127.0.0.1:8971"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-  # Make sure you have updated/checked the .env file with the correct variables. 
-  # All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables. 
+# All the ${ xx } need to be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -20,8 +20,8 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
-      - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
-      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
+      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
       #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
       - TS_AUTH_ONCE=true
     configs:
@@ -34,8 +34,11 @@ services:
       - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
     cap_add:
       - net_admin # Tailscale requirement
-    #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    ports:
+      # - "5000:5000" # Internal unauthenticated access. Expose carefully.
+      - "8554:8554" # RTSP feeds
+      - "8555:8555/tcp" # WebRTC over tcp
+      - "8555:8555/udp" # WebRTC over udp
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns: 
     #  - ${DNS_SERVER}
@@ -46,22 +49,39 @@ services:
       retries: 3 # Number of retries before marking as unhealthy
       start_period: 10s # Time to wait before starting health checks
     restart: always
+
   # ${SERVICE}
   application:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
+    privileged: true # this may not be necessary for all setups, but Frigate needs access to the host's hardware for video processing. Adjust as needed for your specific setup and security requirements.
+    stop_grace_period: 30s # allow enough time to shut down the various services
+    shm_size: "512mb" # update for your cameras based on calculation above
+    # devices:
+    #   - /dev/bus/usb:/dev/bus/usb # Passes the USB Coral, needs to be modified for other versions
+    #   - /dev/apex_0:/dev/apex_0 # Passes a PCIe Coral, follow driver instructions here https://github.com/jnicolson/gasket-builder
+    #   - /dev/video11:/dev/video11 # For Raspberry Pi 4B
+    #   - /dev/dri/renderD128:/dev/dri/renderD128 # AMD / Intel GPU, needs to be updated for your hardware
+    #   - /dev/accel:/dev/accel # Intel NPU
     environment:
-      - LOG_LEVEL=debug
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Amsterdam
-      - PORT=5055
+      - FRIGATE_RTSP_PASSWORD=password
     volumes:
-      - ./${SERVICE}-data/config:/app/config
+      - /etc/localtime:/etc/localtime:ro
+      - ./${SERVICE}-data/config:/config
+      - ./${SERVICE}-data/storage:/media/frigate
+      - type: tmpfs # 1GB In-memory filesystem for recording segment storage
+        target: /tmp/cache
+        tmpfs:
+          size: 1000000000
     depends_on:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "yarn"] # Check if ${SERVICE} process is running
+      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
