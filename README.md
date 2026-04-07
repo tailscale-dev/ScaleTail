@@ -82,6 +82,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 🔄 **AdGuardHome Sync**    | A tool for syncing configuration across multiple AdGuard Home instances.        | [Details](services/adguardhome-sync)    |
 | 🌐 **Caddy**               | Caddy is an extensible server platform that uses TLS by default.                | [Details](services/caddy)               |
 | 🌐 **DDNS Updater**        | A self-hosted solution to keep DNS A/AAAA records updated automatically.        | [Details](services/ddns-updater)        |
+| 🌐 **Flaresolverr**        | A proxy server to bypass Cloudflare and DDoS-GUARD protection.                  | [Details](services/flaresolverr)        |
 | 🔍 **Nessus**              | A powerful vulnerability scanner with a free Essentials model for home use.     | [Details](services/nessus)              |
 | 🗃️ **Netbox**              | NetBox is the leading solution for modeling and documenting modern networks.    | [Details](services/netbox)              |
 | 🧩 **Pi-hole**             | A network-level ad blocker that acts as a DNS sinkhole.                         | [Details](services/pihole)              |
@@ -134,6 +135,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 📝 **Excalidraw**    | A virtual collaborative whiteboard tool.                                                                                                                                   | [Details](services/excalidraw)    |
 | 📝 **Flatnotes**     | A simple, self-hosted note-taking app using Markdown files.                                                                                                                | [Details](services/flatnotes)     |
 | 👨🏼‍💻 **Forgejo**       | A community-driven, self-hosted Git service.                                                                                                                               | [Details](services/forgejo)       |
+| 👨🏼‍💻 **Gitea**         | A lightweight, self-hosted Git service with repository hosting, pull requests, and issue tracking.                                                                        | [Details](services/gitea)         |
 | ✍️ **Ghost**         | A modern, open-source publishing platform for blogs and newsletters.                                                                                                       | [Details](services/ghost)         |
 | 🧑‍🧑‍🧒‍🧒 **Gramps Web** | A web-based genealogy platform for collaborative family tree browsing, editing, AI-powered chat, media tagging, mapping, charts, search, and reporting.                    | [Details](services/grampsweb)     |
 | 🔖 **Haptic**        | Haptic is a new local-first & privacy-focused, open-source home for your markdown notes.                                                                                   | [Details](services/haptic)        |
