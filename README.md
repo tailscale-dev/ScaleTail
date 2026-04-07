@@ -106,6 +106,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 🎶 **Navidrome**      | Your Personal Streaming Service self-hosted.                                                | [Details](services/navidrome)      |
 | 🎶 **Swing Music**    | A fast, beautiful, self-hosted music streaming server for your local audio library.         | [Details](services/swingmx)        |
 | 🎬 **Seerr**          | A request management and media discovery tool for Plex, Jellyfin and Emby.                  | [Details](services/seerr)          |
+| 📚 **Paperless-ngx** | An open-source document management system that transforms physical documents into a searchable archive. | [Details](services/paperless) |
 | 🎵 **Picard**         | MusicBrainz Picard is a cross-platform music tagger for organizing and tagging music files. | [Details](services/picard)         |
 | 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.       | [Details](services/plex)           |
 | 📥 **qBittorrent**    | An open-source BitTorrent client.                                                           | [Details](services/qbittorrent)    |
