@@ -5,6 +5,7 @@ This Docker Compose configuration sets up [Paperless-ngx](https://docs.paperless
 ## Paperless-ngx
 
 [Paperless-ngx](https://docs.paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper.
+
 ## Configuration Overview
 
 In this setup, the `tailscale-paperless` service runs the Tailscale daemon to provide secure, private networking. The `paperless` service is configured to use Tailscale’s network stack via Docker’s `network_mode: service:` syntax. This binds Paperless network interface to the Tailscale container, making the service available only through your Tailscale network (or locally, if needed).
