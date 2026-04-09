@@ -57,7 +57,7 @@ services:
     #   service: cpu # set to one of [nvenc, quicksync, rkmpp, vaapi, vaapi-wsl] for accelerated transcoding
     volumes:
       # Do not edit the next line. If you want to change the media storage location on your system, edit the value of UPLOAD_LOCATION in the .env file
-      - ./${SERVICE}-data/upload:/usr/src/app/upload
+      - ./${SERVICE}-data/upload:/data
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
@@ -92,7 +92,7 @@ services:
 
   redis:
     container_name: app-${SERVICE}-redis
-    image: docker.io/valkey/valkey:9@sha256:3eeb09785cd61ec8e3be35f8804c8892080f3ca21934d628abc24ee4ed1698f6
+    image: docker.io/valkey/valkey:9@sha256:3b55fbaa0cd93cf0d9d961f405e4dfcc70efe325e2d84da207a0a8e6d8fde4f9
     healthcheck:
       test: redis-cli ping || exit 1
     restart: always
