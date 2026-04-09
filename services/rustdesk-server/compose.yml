@@ -78,5 +78,4 @@ services:
       - PGID=1000
       - TZ=${TZ}
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-  #  network_mode: "host"
     restart: always
