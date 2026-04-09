@@ -29,7 +29,7 @@ This Docker Compose configuration sets up **[Karakeep](https://github.com/karake
 - 🌙 Dark mode support.
 - 💾 Self-hosting first. Own your data, free from third-party cloud services.
 - ⬇️ Bookmark importers from Chrome, Pocket, Linkwarden, Omnivore, Tab Session Manager.
-- 🔄 Automatic sync with browser bookmarks via floccus. 
+- 🔄 Automatic sync with browser bookmarks via floccus.
 - **Secure Access with Tailscale** – Restrict access to your data using your private Tailscale network.
 
 ## Configuration Overview
