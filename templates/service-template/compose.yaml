@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=${TZ}
+      - TZ=Europe/Amsterdam
     volumes:
       - ./${SERVICE}-data/app/config:/config
     depends_on:
