@@ -53,13 +53,13 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
-      PUID: 1000
-      PGID: 1000
-      TZ: Europe/Amsterdam
-      FLATNOTES_AUTH_TYPE: "password"
-      FLATNOTES_USERNAME: "user"
-      FLATNOTES_PASSWORD: "changeMe!"
-      FLATNOTES_SECRET_KEY: "aLongRandomSeriesOfCharacters"
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+      - FLATNOTES_AUTH_TYPE=${FLATNOTES_AUTH_TYPE}
+      - FLATNOTES_USERNAME=${FLATNOTES_USERNAME}
+      - FLATNOTES_PASSWORD=${FLATNOTES_PASSWORD}
+      - FLATNOTES_SECRET_KEY=${FLATNOTES_SECRET_KEY}
     volumes:
       - ./${SERVICE}-data:/data
     depends_on:
