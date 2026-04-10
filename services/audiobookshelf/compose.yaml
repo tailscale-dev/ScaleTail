@@ -58,6 +58,9 @@ services:
       - TZ=Europe/Amsterdam
     volumes:
       - ./${SERVICE}-data/app/config:/config
+      - ./${SERVICE}-data/app/audiobooks:/audiobooks
+      - ./${SERVICE}-data/app/podcasts:/podcasts
+      - ./${SERVICE}-data/app/metadata:/metadata
     depends_on:
       tailscale:
         condition: service_healthy
