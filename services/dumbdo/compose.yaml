@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       #- DUMBDO_PIN= # Protect your notes with PIN https://github.com/DumbWareio/DumbDo?tab=readme-ov-file#environment-variables
     volumes:
       - ./${SERVICE}-data:/app/data

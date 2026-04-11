@@ -41,7 +41,7 @@ services:
     volumes:
       - ./${SERVICE}-data/config:/config
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       - RECYCLARR_CREATE_CONFIG=true
     user: 1000:1000
     depends_on:
