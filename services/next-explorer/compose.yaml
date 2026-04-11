@@ -4,7 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:80"}}}},
+          {"Proxy":"http://127.0.0.1:3000"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -49,49 +49,27 @@ services:
 
   # ${SERVICE}
   application:
-    image: ${IMAGE_URL} # Image to be used
+    image: ${IMAGE_URL}
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-    container_name: app-${SERVICE} # Name for local container management
+    container_name: app-${SERVICE}
+    restart: unless-stopped
+    #ports:
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
+    #dns: 
+     # - ${DNS_SERVER}
     environment:
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db # Please note, this variable should reflect the service name of the database itself, in this case db
-      - TZ=${TZ}
+      - NODE_ENV=production
+      - PUBLIC_URL=${PUBLIC_URL} # Optional: Set this to the public URL of your service if needed for correct URL generation in the app. For example, if you are exposing the service at https://example.com, set PUBLIC_URL=https://example.com.
+      
+      # Optional: lock sessions to a known secret
+      - SESSION_SECRET=${SESSION_SECRET}
+      
+      # Optional host UID/GID mapping
+      - PUID=${PUID} # Change according to your customization if needed
+      - PGID=${PGID} # Change according to your customization if needed
     volumes:
-      - ./${SERVICE}-data/nextcloud_data/:/var/www/html
-    depends_on:
-      tailscale:
-        condition: service_healthy
-      db:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "apache2"] # Check if ${SERVICE} process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
-    restart: always
-
-  # MariaDB used by NextCloud
-  db:
-    image: mariadb:latest # Image to be used
-    container_name: nextcloud_db # Name for local container management
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-    volumes:
-      - db_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "pgrep", "mariadbd"] # Check if MariaDB is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
-    restart: always
-
-volumes:
-  nextcloud_data:
-  db_data:
+      - ./config:/config
+      - ./cache:/cache
+      # Each /mnt/<Label> mount becomes a top-level volume in the UI
+      - ${ACCESS_PATH}:/mnt/Files # This needs to be changed by user

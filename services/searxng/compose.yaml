@@ -55,9 +55,9 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
       - SEARXNG_BASE_URL=https://${SERVICE}.${TAILNET_NAME}.ts.net/
       - SEARXNG_VALKEY_URL=${SEARXNG_VALKEY_URL}
+      - TZ=${TZ}
     volumes:
       - ./searxng:/etc/searxng:rw
     cap_drop:
