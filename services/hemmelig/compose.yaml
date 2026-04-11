@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       - DATABASE_URL=file:/app/database/hemmelig.db
       - BETTER_AUTH_SECRET=change-this-to-a-secure-secret-min-32-chars
       - BETTER_AUTH_URL=https://secrets.example.com
