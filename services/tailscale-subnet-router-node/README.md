@@ -15,4 +15,3 @@ In this setup, the `tailscale` service runs a Tailscale container configures it 
 - **TS_EXTRA_ARGS**: The `--advertise-routes` flag is used to designate this container as a Subnet Router Node within your Tailscale network.
 - **Sysctls**: The system controls `net.ipv4.ip_forward` and `net.ipv6.conf.all.forwarding` are enabled to allow IP forwarding, which is necessary for routing traffic through the Exit Node.
 - **Network Mode**: The `bridge` network mode is used to create a virtual network interface for the container, enabling it to handle traffic routing.
-
