@@ -54,7 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - TRUST_PROXY=false # Set to true if a reverse proxy is in front of the container
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/data:/opt/app/backend/data
       - ./${SERVICE}-data/images:/opt/app/frontend/public/img

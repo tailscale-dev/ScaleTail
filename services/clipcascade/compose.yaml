@@ -58,7 +58,7 @@ services:
       # - CC_ALLOWED_ORIGINS=https://clipcascade.example.com
       # - CC_SERVER_DB_PASSWORD=QjuGlhE3uwylBBANMkX1 o2MdEoFgbU5XkFvTftky
       # - CC_SERVER_LOGGING_LEVEL=DEBUG
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/cc_users:/database
     depends_on:

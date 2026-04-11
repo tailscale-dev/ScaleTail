@@ -54,7 +54,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/workdir:/opt/adguardhome/work # Work directory for Adguard Home - you may need to change the path
       - ./${SERVICE}-data/configdir:/opt/adguardhome/conf # Config directory for Adguard Home - you may need to change the path
