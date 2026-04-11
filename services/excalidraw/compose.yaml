@@ -54,7 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - NODE_ENV=production
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     stdin_open: true
     volumes:
       - ./${SERVICE}-data/app/config:/config
