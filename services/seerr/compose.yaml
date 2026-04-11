@@ -55,7 +55,7 @@ services:
     init: true # Use an init system to properly handle signals and process reaping
     environment:
       - LOG_LEVEL=debug
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       - PORT=5055
     volumes:
       - ./${SERVICE}-data/config:/app/config

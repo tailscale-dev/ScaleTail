@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/etc-pihole:/etc/pihole
       - ./${SERVICE}-data/etc-dnsmasq.d:/etc/dnsmasq.d

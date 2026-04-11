@@ -49,7 +49,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: ${SERVICE} # Name for local container management
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./config:/etc/netbox/config:z,ro
       - ./${SERVICE}/media:/opt/netbox/netbox/media

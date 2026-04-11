@@ -57,7 +57,7 @@ services:
       # ND_LOGLEVEL: debug
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/data:/data
       - /path/to/your/music/folder:/music:ro # Adjust to your liking
