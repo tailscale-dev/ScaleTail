@@ -56,7 +56,7 @@ services:
       - langtool_languageModel=/ngrams # OPTIONAL: Using ngrams data
       - Java_Xms=512m # OPTIONAL: Setting a minimal Java heap size of 512 mib
       - Java_Xmx=1g # OPTIONAL: Setting a maximum Java heap size of 1 Gib
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/ngrams:/ngrams
     depends_on:

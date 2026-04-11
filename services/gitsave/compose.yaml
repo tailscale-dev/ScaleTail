@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       - JWT_SECRET=${JWT_SECRET:?error}
       - DISABLE_AUTH=${DISABLE_AUTH:?error}
       - ENCRYPTION_SECRET=${ENCRYPTION_SECRET:?error}
