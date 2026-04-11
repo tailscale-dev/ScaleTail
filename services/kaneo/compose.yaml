@@ -96,7 +96,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-      kaneo-backend:
+      backend:
         condition: service_started
     restart: unless-stopped
 
