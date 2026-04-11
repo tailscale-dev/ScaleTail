@@ -18,7 +18,7 @@ This Docker Compose configuration sets up a [Minecraft Java Edition](https://www
 
 Unlike web-based services in this repository, Minecraft uses **raw TCP on port 25565**. Tailscale Serve and Funnel only proxy HTTP/HTTPS traffic, so they are **not used here**. Instead, the Minecraft server listens directly on the Tailscale interface and players connect at:
 
-```
+```text
 minecraft.<tailnet-name>.ts.net:25565
 ```
 
