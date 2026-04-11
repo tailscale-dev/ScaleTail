@@ -60,9 +60,11 @@ services:
      # - ${DNS_SERVER}
     environment:
       - NODE_ENV=production
-      - PUBLIC_URL=https://${SERVICE}.${TAILNET_NAME}.ts.net
+      - PUBLIC_URL=${PUBLIC_URL} # Optional: Set this to the public URL of your service if needed for correct URL generation in the app. For example, if you are exposing the service at https://example.com, set PUBLIC_URL=https://example.com.
+      
       # Optional: lock sessions to a known secret
-      - SESSION_SECRET=your-super-secret # Use 'openssl rand -base64 32' in your CLI to generate a secure random key.
+      - SESSION_SECRET=${SESSION_SECRET}
+      
       # Optional host UID/GID mapping
       - PUID=${PUID} # Change according to your customization if needed
       - PGID=${PGID} # Change according to your customization if needed
