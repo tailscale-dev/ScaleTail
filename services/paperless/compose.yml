@@ -4,11 +4,11 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:8080"}}}},
+          {"Proxy":"http://127.0.0.1:80"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
+# Make sure you have updated/checked the .env file with the correct variables.
 # All the ${ xx } need to be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
@@ -37,8 +37,8 @@ services:
     #ports:
     #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
-    #  - ${DNS_SERVER}
+    # dns:
+    #   - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,28 +47,62 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
   application:
-    image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-    container_name: app-${SERVICE} # Name for local container management
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ}
-      - FLATNOTES_AUTH_TYPE=${FLATNOTES_AUTH_TYPE}
-      - FLATNOTES_USERNAME=${FLATNOTES_USERNAME}
-      - FLATNOTES_PASSWORD=${FLATNOTES_PASSWORD}
-      - FLATNOTES_SECRET_KEY=${FLATNOTES_SECRET_KEY}
-    volumes:
-      - ./${SERVICE}-data:/data
+    image: ${IMAGE_URL}
+    network_mode: service:tailscale
+    container_name: app-${SERVICE}
     depends_on:
       tailscale:
         condition: service_healthy
-    # healthcheck:
-    #   test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
-    #   interval: 1m # How often to perform the check
-    #   timeout: 10s # Time to wait for the check to succeed
-    #   retries: 3 # Number of retries before marking as unhealthy
-    #   start_period: 30s # Time to wait before starting health checks
+      db:
+        condition: service_started
+      broker:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
+    volumes:
+      - ./${SERVICE}-data/data:/usr/src/paperless/data
+      - ./${SERVICE}-data/media:/usr/src/paperless/media
+      - ./${SERVICE}-data/export:/usr/src/paperless/export
+      - ./${SERVICE}-data/consume:/usr/src/paperless/consume
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - PAPERLESS_TIME_ZONE=${PAPERLESS_TIME_ZONE}
+      - PAPERLESS_OCR_LANGUAGE=${PAPERLESS_OCR_LANGUAGE}
+      - PAPERLESS_SECRET_KEY=${PAPERLESS_SECRET_KEY}
+      - PAPERLESS_PORT=80
+      - PAPERLESS_PROXY_SSL_HEADER=["HTTP_X_FORWARDED_PROTO", "https"]
+      - PAPERLESS_ADMIN_USER=${PAPERLESS_ADMIN_USER}
+      - PAPERLESS_ADMIN_PASSWORD=${PAPERLESS_ADMIN_PASSWORD}
+      - PAPERLESS_REDIS=redis://broker:6379
+      - PAPERLESS_DBHOST=db
+  db:
+    image: docker.io/library/postgres:18
+    container_name: app-${SERVICE}-db # Name for local container management
+    restart: always
+    volumes:
+      - ./${SERVICE}-data/pgdata:/var/lib/postgresql
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - POSTGRES_DB=paperless
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+  broker:
+    image: docker.io/library/redis:8
+    container_name: app-${SERVICE}-broker # Name for local container management
+    restart: always
+    volumes:
+      - ./${SERVICE}-data/redisdata:/data
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam

@@ -4,7 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:8080"}}}},
+          {"Proxy":"http://127.0.0.1:3000"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -53,22 +53,20 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ}
-      - FLATNOTES_AUTH_TYPE=${FLATNOTES_AUTH_TYPE}
-      - FLATNOTES_USERNAME=${FLATNOTES_USERNAME}
-      - FLATNOTES_PASSWORD=${FLATNOTES_PASSWORD}
-      - FLATNOTES_SECRET_KEY=${FLATNOTES_SECRET_KEY}
+      - USER_UID=1000
+      - USER_GID=1000
+      - TZ=Europe/Amsterdam
     volumes:
-      - ./${SERVICE}-data:/data
+      - ./gitea-data/data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
     depends_on:
       tailscale:
         condition: service_healthy
-    # healthcheck:
-    #   test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
-    #   interval: 1m # How often to perform the check
-    #   timeout: 10s # Time to wait for the check to succeed
-    #   retries: 3 # Number of retries before marking as unhealthy
-    #   start_period: 30s # Time to wait before starting health checks
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "gitea"] # Check if ${SERVICE} process is running
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
