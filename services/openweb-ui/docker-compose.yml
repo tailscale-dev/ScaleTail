@@ -1,0 +1,89 @@
+configs:
+  ts-serve:
+    content: |
+      {
+        "TCP": {
+          "443": {
+            "HTTPS": true
+          }
+        },
+        "Web": {
+          "$${TS_CERT_DOMAIN}:443": {
+            "Handlers": {
+              "/": {
+                "Proxy": "http://127.0.0.1:8080"
+              }
+            }
+          }
+        },
+        "AllowFunnel": {
+          "$${TS_CERT_DOMAIN}:443": false
+        }
+      }
+
+services:
+  tailscale:
+    image: tailscale/tailscale:latest
+    container_name: tailscale-${SERVICE}
+    hostname: ${SERVICE}
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_USERSPACE=false
+      - TS_ENABLE_HEALTH_CHECK=true
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
+      - TS_AUTH_ONCE=true
+      - TS_ACCEPT_DNS=true
+    configs:
+      - source: ts-serve
+        target: /config/serve.json
+    volumes:
+      - /mnt/appdata/tailscale/${SERVICE}/state:/var/lib/tailscale
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    cap_add:
+      - net_admin
+    ports:
+      - "3000:8080"
+      - "11434:11434"
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: always
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama-${SERVICE}
+    network_mode: service:tailscale
+    depends_on:
+      tailscale:
+        condition: service_healthy
+    env_file:
+      - stack.env
+    environment:
+      - TZ=${TZ}
+      - OLLAMA_HOST=0.0.0.0:11434
+    volumes:
+      - /mnt/ai_models/ollama:/root/.ollama
+    gpus: all
+    restart: unless-stopped
+
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui-${SERVICE}
+    network_mode: service:tailscale
+    depends_on:
+      - ollama
+    env_file:
+      - stack.env
+    environment:
+      - TZ=${TZ}
+      - OLLAMA_BASE_URL=http://127.0.0.1:11434
+      - WEBUI_AUTH=${WEBUI_AUTH}
+    volumes:
+      - /mnt/appdata/open-webui:/app/backend/data
+    restart: unless-stopped
