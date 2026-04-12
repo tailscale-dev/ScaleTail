@@ -40,18 +40,11 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
    docker compose up -d
    ```
 
-## Contributors
-
-A huge thank you to all our contributors! ScaleTail wouldn’t be what it is today without your time, effort, and ideas!
-
-[![Contributors](https://contrib.rocks/image?repo=tailscale-dev/scaletail)](https://github.com/tailscale-dev/scaletail/graphs/contributors)
-
 ## Table of Contents
 
 - [ScaleTail - Secure Self-Hosting Made Simple](#scaletail---secure-self-hosting-made-simple)
   - [Featured by Tailscale](#featured-by-tailscale)
   - [Quick Start](#quick-start)
-  - [Contributors](#contributors)
   - [Table of Contents](#table-of-contents)
   - [Available Configurations](#available-configurations)
     - [🌐 Networking and Security](#-networking-and-security)
@@ -68,6 +61,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
     - [Tailscale Funnel](#tailscale-funnel)
     - [Tailscale Serve](#tailscale-serve)
   - [Tailscale Documentation](#tailscale-documentation)
+  - [Contributors](#contributors)
   - [Contributing](#contributing)
   - [Star History](#star-history)
   - [License](#license)
@@ -250,6 +244,13 @@ Tailscale Funnel securely exposes services to the public internet. Tailscale Ser
 - [Tailscale.com - Serve](https://tailscale.com/kb/1242/tailscale-serve)
 - [Tailscale.com - Docker Tailscale Guide](https://tailscale.com/blog/docker-tailscale-guide)
 - [Tailscale - for ARM / OpenPli Setupbox](documentation/tailscale-on-arm.md)
+
+## Contributors
+
+A huge thank you to all our contributors! ScaleTail wouldn’t be what it is today without your time, effort, and ideas!
+
+<!-- readme: contributors -start -->
+<!-- readme: contributors -end -->
 
 ## Contributing
 
