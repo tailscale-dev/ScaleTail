@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+  # Make sure you have updated/checked the .env file with the correct variables.
+  # All the ${ xx } need to be defined there.
 
   # Tailscale Sidecar Configuration
   tailscale:
@@ -21,10 +21,10 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
-      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
-      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
       - TS_AUTH_ONCE=true
+      # - TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
     configs:
       - source: ts-serve
         target: /config/serve.json
@@ -44,9 +44,9 @@ services:
 
     # networks:
     #   - yourNetwork # Optional: connect to an existing proxy network so other containers can reach Ollama via its Tailscale IP
-    
+
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      test: [ "CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz" ] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -60,15 +60,15 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - OLLAMA_HOST=0.0.0.0:11434
-      - OLLAMA_API_KEY=${OLLAMA_API_KEY} # Optional: set an API key to restrict access
       - OLLAMA_KEEP_ALIVE=24h # Optional: keeps models loaded in memory (default is 5 min)
+      # - OLLAMA_API_KEY=${OLLAMA_API_KEY} # Optional: set an API key to restrict access
     volumes:
       - ./${SERVICE}-data:/root/.ollama # Stores downloaded models
     depends_on:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if Ollama process is running
+      test: [ "CMD", "pgrep", "-f", "${SERVICE}" ] # Check if Ollama process is running
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
