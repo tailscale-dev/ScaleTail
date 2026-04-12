@@ -32,10 +32,10 @@ If you don't use a shared proxy network, remove the `networks:` sections from `c
 
 ## Volumes
 
-| Path | Purpose |
-|------|---------|
-| `./config` | Tailscale serve config (`serve.json`) |
-| `./ts/state` | Tailscale persistent state |
+| Path            | Purpose                                                            |
+| --------------- | ------------------------------------------------------------------ |
+| `./config`      | Tailscale serve config (`serve.json`)                              |
+| `./ts/state`    | Tailscale persistent state                                         |
 | `./ollama-data` | Downloaded Ollama models (can be large — ensure enough disk space) |
 
 ## MagicDNS and HTTPS
