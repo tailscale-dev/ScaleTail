@@ -41,8 +41,10 @@ services:
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns:
     #  - ${DNS_SERVER}
-    networks:
-      - yourNetwork # Optional: connect to an existing proxy network so other containers can reach Ollama via its Tailscale IP
+
+    # networks:
+    #   - yourNetwork # Optional: connect to an existing proxy network so other containers can reach Ollama via its Tailscale IP
+    
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -73,6 +75,6 @@ services:
       start_period: 30s # Time to wait before starting health checks
     restart: always
 
-networks:
-  yourNetwork:
-    external: true # Assumes an existing external Docker network named "yourNetwork"
+# networks:
+#   yourNetwork:
+#     external: true # Assumes an existing external Docker network named "yourNetwork"
