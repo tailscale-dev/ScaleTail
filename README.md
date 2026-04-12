@@ -187,6 +187,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 🖥️ **Node-RED**           | A flow-based development tool for visual programming.                                                  | [Details](services/nodered)         |
 | 🖥️ **Portainer**          | A lightweight management UI which allows you to easily manage your Docker environments.                | [Details](services/portainer)       |
 | 🔍 **searXNG**            | A free internet metasearch engine which aggregates results from various search services.               | [Details](services/searxng)         |
+| 🧠 **Ollama**             | A self-hosted solution for running open large language models (LLMs) locally with an OpenAI-compatible API. | [Details](services/ollama)          |
 
 ### 📈 Monitoring and Analytics
 
