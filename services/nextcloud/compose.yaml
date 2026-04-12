@@ -57,7 +57,7 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=db # Please note, this variable should reflect the service name of the database itself, in this case db
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/nextcloud_data/:/var/www/html
     depends_on:

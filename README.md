@@ -87,9 +87,12 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 🗃️ **Netbox**              | NetBox is the leading solution for modeling and documenting modern networks.    | [Details](services/netbox)              |
 | 🧩 **Pi-hole**             | A network-level ad blocker that acts as a DNS sinkhole.                         | [Details](services/pihole)              |
 | 🆔 **Pocket ID**           | A self-hosted decentralized identity (OIDC) solution for secure authentication. | [Details](services/pocket-id)           |
+| 🌐 **Rustdesk Server**     | RustDesk is an open source remote control alternative for self-hosting and security. | [Details](services/rustdesk-server)|
 | 🔒 **Technitium DNS**      | An open-source DNS server that can be used for self-hosted DNS services.        | [Details](services/technitium)          |
 | 🌐 **Traefik**             | A modern reverse proxy and load balancer for microservices.                     | [Details](services/traefik)             |
 | 🚀 **Tailscale Exit Node** | Configure a device to act as an exit node for your Tailscale network.           | [Details](services/tailscale-exit-node) |
+| 🌐 **Tailscale Subnet Router Node** | Configure a device to act as a subnet router node for your Tailscale network.   | [Details](services/tailscale-subnet-router-node) |
+
 
 ### 🎥 Media and Entertainment
 
@@ -149,6 +152,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 📝 **Memos**         | A lightweight, self-hosted note-taking and knowledge management platform for capturing ideas, daily notes, and personal knowledge.                                         | [Details](services/memos)         |
 | 📝 **Nanote**        | A lightweight, self-hosted note-taking app with Markdown support.                                                                                                          | [Details](services/nanote)        |
 | ☁️ **NextCloud**     | A suite of client-server software for creating and using file hosting services.                                                                                            | [Details](services/nextcloud)     |
+| 🤖 **Open WebUI**    | A self-hosted AI platform with a ChatGPT-style interface for local and cloud-based models.                                                                                | [Details](services/open-webui)    |
 | 🔗 **Pingvin Share** | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                                                                                  | [Details](services/pingvin-share) |
 | 🔄 **Resilio Sync**  | A fast, reliable, and simple file sync and share solution.                                                                                                                 | [Details](services/resilio-sync)  |
 | 🗂️ **Stirling-PDF**  | A web application for managing and editing PDF files.                                                                                                                      | [Details](services/stirlingpdf)   |
@@ -183,6 +187,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 🖥️ **Node-RED**           | A flow-based development tool for visual programming.                                                  | [Details](services/nodered)         |
 | 🖥️ **Portainer**          | A lightweight management UI which allows you to easily manage your Docker environments.                | [Details](services/portainer)       |
 | 🔍 **searXNG**            | A free internet metasearch engine which aggregates results from various search services.               | [Details](services/searxng)         |
+| 🧠 **Ollama**             | A self-hosted solution for running open large language models (LLMs) locally with an OpenAI-compatible API. | [Details](services/ollama)          |
 
 ### 📈 Monitoring and Analytics
 
