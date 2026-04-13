@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       # Uncomment any of the lines below to set configuration options.
       # - ACTUAL_HTTPS_KEY=/data/selfhost.key
       # - ACTUAL_HTTPS_CERT=/data/selfhost.crt

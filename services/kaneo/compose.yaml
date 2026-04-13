@@ -3,8 +3,10 @@ configs:
     content: |
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
-          {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:80"}}}},
+          {"Handlers":{
+            "/api/":{"Proxy":"http://localhost:${SERVICEPORT_BACKEND}/api/"},
+            "/":{"Proxy":"http://localhost:${SERVICEPORT_FRONTEND}"}
+          }}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -47,41 +49,56 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE} - Backend
+  # ${SERVICE} - DB
+  postgres:
+    image: ${IMAGE_URL_DATABASE} # Image to be used
+    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    container_name: app-${SERVICE}-postgres # Name for local container management
+    env_file:
+      - .env
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_DB: ${DB_DATABASE_NAME}
+    volumes:
+      - ./${SERVICE}-data/postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE_NAME}"]
+      interval: 10s # How often to perform the check
+      timeout: 5s # Time to wait for the check to succeed
+      retries: 5 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: unless-stopped
+
+  # ${SERVICE} - Backend (API)
   backend:
     image: ${IMAGE_URL_BACKEND} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE}-backend # Name for local container management
+    env_file:
+      - .env
     environment:
-      JWT_ACCESS: "change_me"
-      DB_PATH: "/app/apps/api/data/kaneo.db"
-    volumes:
-      - ./${SERVICE}-data/sqlite_data:/app/apps/api/data
+      DATABASE_URL: "postgresql://${DB_USERNAME}:${DB_PASSWORD}@localhost:${SERVICEPORT_DATABASE}/${DB_DATABASE_NAME}"
     depends_on:
       tailscale:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
-    restart: always
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
 
-  # ${SERVICE} - Frontend
+  # ${SERVICE} - Frontend (Web)
   frontend:
     image: ${IMAGE_URL_FRONTEND} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE}-frontend # Name for local container management
-    environment:
-      KANEO_API_URL: "https://kaneo.<your-tailnet>/api"
+    env_file:
+      - .env
     depends_on:
       tailscale:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
-    restart: always
+      backend:
+        condition: service_started
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

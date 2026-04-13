@@ -42,7 +42,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     command: run
     environment:
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       # Origin AdGuardHome
       - ORIGIN_URL=http://192.168.1.1:3000 #Your origin Adguard Home instance -> change as necessary
       - ORIGIN_USERNAME=username #change as necessary

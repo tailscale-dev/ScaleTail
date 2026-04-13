@@ -67,7 +67,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       - FRIGATE_RTSP_PASSWORD=password
     volumes:
       - /etc/localtime:/etc/localtime:ro

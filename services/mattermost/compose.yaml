@@ -71,7 +71,7 @@ services:
     pids_limit: 200
     environment:
       # timezone inside container
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       # necessary Mattermost options/variables (see .env file)
       - MM_SQLSETTINGS_DRIVERNAME
       - MM_SQLSETTINGS_DATASOURCE
@@ -99,7 +99,7 @@ services:
       - ${POSTGRES_DATA_PATH}:/var/lib/postgresql/data
     environment:
       # timezone inside container
-      - TZ=Europe/Amsterdam
+      - TZ=${TZ}
       # necessary Postgres options/variables defined in the .env file
       - POSTGRES_USER
       - POSTGRES_PASSWORD
