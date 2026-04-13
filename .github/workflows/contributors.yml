@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - 20260412-contrib-testing
   workflow_dispatch:
   schedule:
     - cron: "17 3 * * *"
