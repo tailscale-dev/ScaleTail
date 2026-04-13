@@ -312,13 +312,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/Jacob-JA-Shanks">
-                    <img src="https://avatars.githubusercontent.com/u/44290899?v=4" width="100;" alt="Jacob-JA-Shanks"/>
-                    <br />
-                    <sub><b>Jacob-JA-Shanks</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/jpmurray">
                     <img src="https://avatars.githubusercontent.com/u/1550428?v=4" width="100;" alt="jpmurray"/>
                     <br />
@@ -339,13 +332,20 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>mikkotor</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/NI-R0">
                     <img src="https://avatars.githubusercontent.com/u/98448863?v=4" width="100;" alt="NI-R0"/>
                     <br />
                     <sub><b>NI-R0</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/RychidM">
+                    <img src="https://avatars.githubusercontent.com/u/106770998?v=4" width="100;" alt="RychidM"/>
+                    <br />
+                    <sub><b>RychidM</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -377,14 +377,28 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/wedge22">
+                    <img src="https://avatars.githubusercontent.com/u/34723349?v=4" width="100;" alt="wedge22"/>
+                    <br />
+                    <sub><b>wedge22</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/Jacob-JA-Shanks">
+                    <img src="https://avatars.githubusercontent.com/u/44290899?v=4" width="100;" alt="Jacob-JA-Shanks"/>
+                    <br />
+                    <sub><b>Jacob-JA-Shanks</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/gnr8shn">
                     <img src="https://avatars.githubusercontent.com/u/10820553?v=4" width="100;" alt="gnr8shn"/>
                     <br />
                     <sub><b>gnr8shn</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/gaetan-petit">
                     <img src="https://avatars.githubusercontent.com/u/851486?v=4" width="100;" alt="gaetan-petit"/>
@@ -413,6 +427,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>Aurorainic</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/ironicbadger">
                     <img src="https://avatars.githubusercontent.com/u/2773080?v=4" width="100;" alt="ironicbadger"/>
@@ -427,8 +443,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>adivardhan1000</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/orchard0">
                     <img src="https://avatars.githubusercontent.com/u/55663276?v=4" width="100;" alt="orchard0"/>
