@@ -79,7 +79,7 @@ services:
     volumes:
       - ./${SERVICE}-storage:/home/node/.n8n
     environment:
-      - N8N_HOST=${TAILNET_NAME}
+      - N8N_HOST=n8n.${TAILNET_NAME}
       - N8N_PORT=5678
       - N8N_PROTOCOL=https
       - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
