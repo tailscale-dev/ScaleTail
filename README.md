@@ -84,6 +84,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🌐 **Rustdesk Server**     | RustDesk is an open source remote control alternative for self-hosting and security. | [Details](services/rustdesk-server)|
 | 🔒 **Technitium DNS**      | An open-source DNS server that can be used for self-hosted DNS services.        | [Details](services/technitium)          |
 | 🌐 **Traefik**             | A modern reverse proxy and load balancer for microservices.                     | [Details](services/traefik)             |
+| 🌐 **Tailscale App Connector Node** | Configure a device to act as a App connector node for your Tailscale network.   | [Details](services/tailscale-app-connector-node) |
 | 🚀 **Tailscale Exit Node** | Configure a device to act as an exit node for your Tailscale network.           | [Details](services/tailscale-exit-node) |
 | 🌐 **Tailscale Subnet Router Node** | Configure a device to act as a subnet router node for your Tailscale network.   | [Details](services/tailscale-subnet-router-node) |
 
