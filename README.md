@@ -285,17 +285,17 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/adamsthws">
-                    <img src="https://avatars.githubusercontent.com/u/52178922?v=4" width="100;" alt="adamsthws"/>
-                    <br />
-                    <sub><b>adamsthws</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/lcs-crr">
                     <img src="https://avatars.githubusercontent.com/u/98816628?v=4" width="100;" alt="lcs-crr"/>
                     <br />
                     <sub><b>lcs-crr</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/adamsthws">
+                    <img src="https://avatars.githubusercontent.com/u/52178922?v=4" width="100;" alt="adamsthws"/>
+                    <br />
+                    <sub><b>adamsthws</b></sub>
                 </a>
             </td>
 		</tr>
