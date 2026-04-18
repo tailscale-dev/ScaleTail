@@ -67,4 +67,4 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-    restart: unless-stopped
+    restart: always
