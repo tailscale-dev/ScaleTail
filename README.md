@@ -103,7 +103,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 | 📚 **BookLore**       | A self-hosted application for managing and reading books.                                   | [Details](services/booklore)       |
 | 🎥 **Frigate**        | A self-hosted NVR with real-time AI object detection for IP cameras and local video monitoring. | [Details](services/frigate)        |
 | 🎮 **Hytale**         | A self-hosted Hytale game server.                                                           | [Details](services/hytale)         |
-| 🎮 **Minecraft**      | A self-hosted Minecraft Java Edition server accessible privately over your Tailnet — no port forwarding required. | [Details](services/minecraft)      |
+| 🎮 **Minecraft**      | A self-hosted Minecraft Java Edition server. | [Details](services/minecraft)      |
 | 🖼️ **Immich**         | A self-hosted Google Photos alternative with face recognition and mobile sync.              | [Details](services/immich)         |
 | 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media.  | [Details](services/jellyfin)       |
 | 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.                  | [Details](services/kavita)         |
