@@ -63,16 +63,9 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test:
-        - "CMD"
-        - "wget"
-        - "-q"
-        - "-O"
-        - "/dev/null"
-        - "--tries=1"
-        - "http://localhost:3313/api/health/ready"
-      interval: 30s
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--tries=1", "http://localhost:3313/api/health/ready"]
+      interval: 1m
       timeout: 10s
       retries: 3
-      start_period: 40s
+      start_period: 30s
     restart: always
