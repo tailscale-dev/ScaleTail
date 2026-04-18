@@ -5,7 +5,7 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your [Tailnet](https://tailscale.com/docs/concepts/tailnet). By using a sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example: `https://application.tail-net.ts.net`.
+ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that instantly connect your self-hosted applications to your [Tailnet](https://tailscale.com/docs/concepts/tailnet). By using a Docker sidecar configuration, your applications get an [URL](https://grokipedia.com/page/URL) with automatic [HTTPS](https://grokipedia.com/page/HTTPS), for example: `https://application.tail-net.ts.net`.
 
 ## Featured by Tailscale
 
@@ -228,7 +228,7 @@ Tailscale Funnel securely exposes services to the public internet. Tailscale Ser
 
 ### Tailscale Funnel
 
-[Tailscale Funnel](https://tailscale.com/kb/1223/funnel) is a feature that lets you route traffic from the wider internet to a local service running on a machine in your Tailscale network (known as a Tailnet). You can think of this as publicly sharing a local service, like a web app, for anyone to access—even if they don’t have Tailscale themselves.
+[Tailscale Funnel](https://tailscale.com/kb/1223/funnel) is a feature that lets you route traffic from the internet to a local service running on a machine in your Tailscale network (known as a Tailnet). You can think of this as publicly sharing a local service, like a web app, for anyone to access—even if they don’t have Tailscale themselves.
 
 ![Tailscale Funnel](images/tailscale-funnel.png)
 
