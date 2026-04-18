@@ -252,8 +252,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 
 <!-- readme: contributors -start -->
 <table>
- <tbody>
-  <tr>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/crypt0rr">
                     <img src="https://avatars.githubusercontent.com/u/57799908?v=4" width="100;" alt="crypt0rr"/>
@@ -305,8 +305,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>theryukverse</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
             <td align="center">
                 <a href="https://github.com/KhaaL">
                     <img src="https://avatars.githubusercontent.com/u/692524?v=4" width="100;" alt="KhaaL"/>
@@ -319,13 +317,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <img src="https://avatars.githubusercontent.com/u/91982544?v=4" width="100;" alt="SamPlaysKeys"/>
                     <br />
                     <sub><b>SamPlaysKeys</b></sub>
-                </a>
-            </td>
-            <td align="center">
-                <a href="https://github.com/jpmurray">
-                    <img src="https://avatars.githubusercontent.com/u/1550428?v=4" width="100;" alt="jpmurray"/>
-                    <br />
-                    <sub><b>jpmurray</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -342,8 +333,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>mikkotor</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/NI-R0">
                     <img src="https://avatars.githubusercontent.com/u/98448863?v=4" width="100;" alt="NI-R0"/>
@@ -351,8 +340,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>NI-R0</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/RychidM">
                     <img src="https://avatars.githubusercontent.com/u/106770998?v=4" width="100;" alt="RychidM"/>
@@ -388,8 +377,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>pjv</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/wedge22">
                     <img src="https://avatars.githubusercontent.com/u/34723349?v=4" width="100;" alt="wedge22"/>
@@ -397,8 +384,15 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>wedge22</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
+            <td align="center">
+                <a href="https://github.com/jpmurray">
+                    <img src="https://avatars.githubusercontent.com/u/1550428?v=4" width="100;" alt="jpmurray"/>
+                    <br />
+                    <sub><b>jpmurray</b></sub>
+                </a>
+            </td>
             <td align="center">
                 <a href="https://github.com/Jacob-JA-Shanks">
                     <img src="https://avatars.githubusercontent.com/u/44290899?v=4" width="100;" alt="Jacob-JA-Shanks"/>
@@ -443,8 +437,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>Aurorainic</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
             <td align="center">
                 <a href="https://github.com/ironicbadger">
                     <img src="https://avatars.githubusercontent.com/u/2773080?v=4" width="100;" alt="ironicbadger"/>
@@ -466,8 +458,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>orchard0</b></sub>
                 </a>
             </td>
-  </tr>
- <tbody>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: contributors -end -->
 
