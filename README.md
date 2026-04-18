@@ -252,8 +252,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 
 <!-- readme: contributors -start -->
 <table>
- <tbody>
-  <tr>
+	<tbody>
+		<tr>
             <td align="center">
                 <a href="https://github.com/crypt0rr">
                     <img src="https://avatars.githubusercontent.com/u/57799908?v=4" width="100;" alt="crypt0rr"/>
@@ -296,8 +296,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>theryukverse</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/KhaaL">
                     <img src="https://avatars.githubusercontent.com/u/692524?v=4" width="100;" alt="KhaaL"/>
@@ -340,8 +340,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>NI-R0</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/RychidM">
                     <img src="https://avatars.githubusercontent.com/u/106770998?v=4" width="100;" alt="RychidM"/>
@@ -384,8 +384,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>wedge22</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/Jacob-JA-Shanks">
                     <img src="https://avatars.githubusercontent.com/u/44290899?v=4" width="100;" alt="Jacob-JA-Shanks"/>
@@ -428,8 +428,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>Aurorainic</b></sub>
                 </a>
             </td>
-  </tr>
-  <tr>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/ironicbadger">
                     <img src="https://avatars.githubusercontent.com/u/2773080?v=4" width="100;" alt="ironicbadger"/>
@@ -451,8 +451,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>orchard0</b></sub>
                 </a>
             </td>
-  </tr>
- <tbody>
+		</tr>
+	<tbody>
 </table>
 <!-- readme: contributors -end -->
 
