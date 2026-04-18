@@ -148,6 +148,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | ☁️ **NextCloud**     | A suite of client-server software for creating and using file hosting services.                                                                                            | [Details](services/nextcloud)     |
 | 🤖 **Open WebUI**    | A self-hosted AI platform with a ChatGPT-style interface for local and cloud-based models.                                                                                 | [Details](services/open-webui)    |
 | 🔗 **Pingvin Share** | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                                                                                  | [Details](services/pingvin-share) |
+| 📅 **Radicale**      | A lightweight CalDAV and CardDAV server for self-hosted calendar, to-do, and contact sync.                                                                                | [Details](services/radicale)      |
 | 🔄 **Resilio Sync**  | A fast, reliable, and simple file sync and share solution.                                                                                                                 | [Details](services/resilio-sync)  |
 | 🗂️ **Stirling-PDF**  | A web application for managing and editing PDF files.                                                                                                                      | [Details](services/stirlingpdf)   |
 | 📄 **BentoPDF**      | A lightweight, self-hosted web app for viewing and managing PDF documents.                                                                                                 | [Details](services/bentopdf)      |
@@ -283,10 +284,10 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/LaijieJi">
-                    <img src="https://avatars.githubusercontent.com/u/108839952?v=4" width="100;" alt="LaijieJi"/>
+                <a href="https://github.com/lcs-crr">
+                    <img src="https://avatars.githubusercontent.com/u/98816628?v=4" width="100;" alt="lcs-crr"/>
                     <br />
-                    <sub><b>LaijieJi</b></sub>
+                    <sub><b>lcs-crr</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -320,10 +321,17 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/jpmurray">
-                    <img src="https://avatars.githubusercontent.com/u/1550428?v=4" width="100;" alt="jpmurray"/>
+                <a href="https://github.com/onlykshitij">
+                    <img src="https://avatars.githubusercontent.com/u/30444410?v=4" width="100;" alt="onlykshitij"/>
                     <br />
-                    <sub><b>jpmurray</b></sub>
+                    <sub><b>onlykshitij</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/LaijieJi">
+                    <img src="https://avatars.githubusercontent.com/u/108839952?v=4" width="100;" alt="LaijieJi"/>
+                    <br />
+                    <sub><b>LaijieJi</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -333,6 +341,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>MajnuRangeela</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/mikkotor">
                     <img src="https://avatars.githubusercontent.com/u/1879886?v=4" width="100;" alt="mikkotor"/>
@@ -340,8 +350,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>mikkotor</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/NI-R0">
                     <img src="https://avatars.githubusercontent.com/u/98448863?v=4" width="100;" alt="NI-R0"/>
@@ -377,6 +385,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>guybrush115</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/pjv">
                     <img src="https://avatars.githubusercontent.com/u/327716?v=4" width="100;" alt="pjv"/>
@@ -384,13 +394,18 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>pjv</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/wedge22">
                     <img src="https://avatars.githubusercontent.com/u/34723349?v=4" width="100;" alt="wedge22"/>
                     <br />
                     <sub><b>wedge22</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/jpmurray">
+                    <img src="https://avatars.githubusercontent.com/u/1550428?v=4" width="100;" alt="jpmurray"/>
+                    <br />
+                    <sub><b>jpmurray</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -414,6 +429,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>gaetan-petit</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/dfilvtov">
                     <img src="https://avatars.githubusercontent.com/u/93210861?v=4" width="100;" alt="dfilvtov"/>
@@ -428,8 +445,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>cdkooistra</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/Aurorainic">
                     <img src="https://avatars.githubusercontent.com/u/88829187?v=4" width="100;" alt="Aurorainic"/>

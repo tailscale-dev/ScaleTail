@@ -1,0 +1,82 @@
+name: dockge
+services:
+  application:
+    container_name: app-dockge
+    depends_on:
+      tailscale:
+        condition: service_healthy
+        required: true
+    environment:
+      DOCKGE_STACKS_DIR: '...'
+    image: louislam/dockge:1
+    network_mode: service:tailscale
+    restart: always
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
+        bind: {}
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/dockge/data
+        target: /app/data
+        bind: {}
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/dockge/...
+        target: '...'
+        bind: {}
+  tailscale:
+    cap_add:
+      - net_admin
+    configs:
+      - source: ts-serve
+        target: /config/serve.json
+    container_name: tailscale-dockge
+    devices:
+      - source: /dev/net/tun
+        target: /dev/net/tun
+        permissions: rwm
+    environment:
+      TS_AUTH_ONCE: "true"
+      TS_AUTHKEY: '# Auth key from https://tailscale.com/admin/authkeys. See: https://tailscale.com/kb/1085/auth-keys#generate-an-auth-key for instructions.'
+      TS_ENABLE_HEALTH_CHECK: "true"
+      TS_LOCAL_ADDR_PORT: 127.0.0.1:41234
+      TS_SERVE_CONFIG: /config/serve.json
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_USERSPACE: "false"
+    hostname: dockge
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --spider
+        - -q
+        - http://127.0.0.1:41234/healthz
+      timeout: 10s
+      interval: 1m0s
+      retries: 3
+      start_period: 10s
+    image: tailscale/tailscale:latest
+    networks:
+      default: null
+    restart: always
+    volumes:
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/dockge/config
+        target: /config
+        bind: {}
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/dockge/ts/state
+        target: /var/lib/tailscale
+        bind: {}
+networks:
+  default:
+    name: dockge_default
+configs:
+  ts-serve:
+    name: dockge_ts-serve
+    content: |
+      {"TCP":{"443":{"HTTPS":true}},
+      "Web":{"$${TS_CERT_DOMAIN}:443":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:5001"}}}},
+      "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}

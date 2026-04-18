@@ -1,0 +1,98 @@
+name: radicale
+services:
+  application:
+    cap_add:
+      - SETUID
+      - SETGID
+      - CHOWN
+      - KILL
+    cap_drop:
+      - ALL
+    container_name: app-radicale
+    depends_on:
+      tailscale:
+        condition: service_healthy
+        required: true
+    deploy:
+      resources:
+        limits:
+          memory: "268435456"
+          pids: 50
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - -f
+        - http://127.0.0.1:5232
+      timeout: 10s
+      interval: 30s
+      retries: 3
+      start_period: 10s
+    image: tomsquest/docker-radicale
+    init: true
+    network_mode: service:tailscale
+    read_only: true
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/radicale/radicale-data/data
+        target: /data
+        bind: {}
+  tailscale:
+    cap_add:
+      - net_admin
+    configs:
+      - source: ts-serve
+        target: /config/serve.json
+    container_name: tailscale-radicale
+    devices:
+      - source: /dev/net/tun
+        target: /dev/net/tun
+        permissions: rwm
+    environment:
+      TS_AUTH_ONCE: "true"
+      TS_AUTHKEY: '# Auth key from https://tailscale.com/admin/authkeys. See: https://tailscale.com/kb/1085/auth-keys#generate-an-auth-key for instructions.'
+      TS_ENABLE_HEALTH_CHECK: "true"
+      TS_LOCAL_ADDR_PORT: 127.0.0.1:41234
+      TS_SERVE_CONFIG: /config/serve.json
+      TS_STATE_DIR: /var/lib/tailscale
+      TS_USERSPACE: "false"
+    hostname: radicale
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --spider
+        - -q
+        - http://127.0.0.1:41234/healthz
+      timeout: 10s
+      interval: 1m0s
+      retries: 3
+      start_period: 10s
+    image: tailscale/tailscale:latest
+    networks:
+      default: null
+    restart: always
+    volumes:
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/radicale/config
+        target: /config
+        bind: {}
+      - type: bind
+        source: /home/lcs_crr/Projects/ScaleTail/services/radicale/ts/state
+        target: /var/lib/tailscale
+        bind: {}
+networks:
+  default:
+    name: radicale_default
+configs:
+  ts-serve:
+    name: radicale_ts-serve
+    content: |
+      {"TCP":{"443":{"HTTPS":true}},
+      "Web":{"$${TS_CERT_DOMAIN}:443":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:5232"}}}},
+      "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
