@@ -52,10 +52,11 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    environment:
+    environment: # Varibles are delared in .env file.
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}
+     #- EXAMPLE_VAR=${EXAMPLE_VAR}
     volumes:
       - ./${SERVICE}-data/app/config:/config
     depends_on:
