@@ -1,0 +1,42 @@
+name: Update contributors
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "17 3 * * *"
+
+jobs:
+  update-readme-contributors:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Update contributors in README
+        uses: akhilmhdh/contributors-readme-action@v2.3.11
+        with:
+          readme_path: README.md
+          columns_per_row: 6
+          image_size: 100
+          use_username: true
+          push: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "docs(contributors): update README contributors"
+          branch: bot/update-contributors
+          delete-branch: true
+          title: "docs: update contributors"
+          body: |
+            Automated update of the contributors section in README.
+          base: main
