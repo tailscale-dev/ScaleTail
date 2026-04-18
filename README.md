@@ -202,16 +202,17 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 ### 📱 Utilities
 
-| 📱 Service        | 📝 Description                                                                          | 🔗 Link                          |
-| ---------------- | -------------------------------------------------------------------------------------- | ------------------------------- |
-| 🔁 **ConvertX**   | A fast, full-featured self-hosted conversion API for images, docs, videos, and more.   | [Details](services/convertx)    |
-| 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                       | [Details](services/gotify)      |
-| 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.       | [Details](services/ntfy)        |
-| 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                           | [Details](services/lube-logger) |
-| 🚗 **Tracktor**   | Self-hosted vehicle maintenance tracker.                                               | [Details](services/tracktor)    |
-| 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                    | [Details](services/miniqr)      |
-| 🔐 **Hemmelig**   | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig)    |
-| 📦 **Homebox**    | A self-hosted home inventory and asset management system.                              | [Details](services/homebox)     |
+| 📱 Service        | 📝 Description                                                                                                     | 🔗 Link                          |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| 🔁 **ConvertX**   | A fast, full-featured self-hosted conversion API for images, docs, videos, and more.                              | [Details](services/convertx)    |
+| 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                                                  | [Details](services/gotify)      |
+| 🔐 **Hemmelig**   | A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets.                            | [Details](services/hemmelig)    |
+| 📦 **Homebox**    | A self-hosted home inventory and asset management system.                                                         | [Details](services/homebox)     |
+| 🚗 **LubeLogger** | Self-hosted vehicle maintenance tracker with private access.                                                      | [Details](services/lube-logger) |
+| 📱 **Mini-QR**    | A minimal, self-hosted QR code generator with a mobile-friendly UI.                                               | [Details](services/miniqr)      |
+| 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.                                  | [Details](services/ntfy)        |
+| 🚗 **Tracktor**   | Self-hosted vehicle maintenance tracker.                                                                          | [Details](services/tracktor)    |
+| 🔁 **Transmute**  | A self-hosted file conversion and transformation service for handling documents, media, and other format changes. | [Details](services/transmute)   |
 
 ### 🍽️ Food & Wellness
 
@@ -252,8 +253,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 
 <!-- readme: contributors -start -->
 <table>
-	<tbody>
-		<tr>
+ <tbody>
+  <tr>
             <td align="center">
                 <a href="https://github.com/crypt0rr">
                     <img src="https://avatars.githubusercontent.com/u/57799908?v=4" width="100;" alt="crypt0rr"/>
@@ -296,8 +297,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>adamsthws</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/theryukverse">
                     <img src="https://avatars.githubusercontent.com/u/22323518?v=4" width="100;" alt="theryukverse"/>
@@ -340,8 +341,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>mikkotor</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/NI-R0">
                     <img src="https://avatars.githubusercontent.com/u/98448863?v=4" width="100;" alt="NI-R0"/>
@@ -384,8 +385,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>pjv</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/wedge22">
                     <img src="https://avatars.githubusercontent.com/u/34723349?v=4" width="100;" alt="wedge22"/>
@@ -428,8 +429,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>cdkooistra</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
+  </tr>
+  <tr>
             <td align="center">
                 <a href="https://github.com/Aurorainic">
                     <img src="https://avatars.githubusercontent.com/u/88829187?v=4" width="100;" alt="Aurorainic"/>
@@ -458,8 +459,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>orchard0</b></sub>
                 </a>
             </td>
-		</tr>
-	<tbody>
+  </tr>
+ <tbody>
 </table>
 <!-- readme: contributors -end -->
 
