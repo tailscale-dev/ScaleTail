@@ -9,15 +9,10 @@ Wallos is a self-hosted subscription tracking application that helps you manage 
 ## Key Features
 
 * **Track Subscriptions Easily** – Add services with cost, billing frequency, and renewal dates.
-
 * **Clean, Responsive UI** – Simple and modern interface that works on both desktop and mobile.
-
 * **Visual Budgeting Tools** – View monthly and yearly overviews of your subscription spending.
-
 * **Self-Hosted and Private** – Your data is stored and managed locally.
-
 * **Lightweight Deployment** – Built to run efficiently in Docker with minimal configuration.
-
 * **Private by Default with Tailscale** – Access your Wallos dashboard only from your Tailnet devices.
 
 ## Configuration Overview
