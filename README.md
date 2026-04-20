@@ -313,6 +313,13 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/onlykshitij">
+                    <img src="https://avatars.githubusercontent.com/u/30444410?v=4" width="100;" alt="onlykshitij"/>
+                    <br />
+                    <sub><b>onlykshitij</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/LaijieJi">
                     <img src="https://avatars.githubusercontent.com/u/108839952?v=4" width="100;" alt="LaijieJi"/>
                     <br />
@@ -333,6 +340,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>mikkotor</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/NI-R0">
                     <img src="https://avatars.githubusercontent.com/u/98448863?v=4" width="100;" alt="NI-R0"/>
@@ -340,8 +349,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>NI-R0</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/RychidM">
                     <img src="https://avatars.githubusercontent.com/u/106770998?v=4" width="100;" alt="RychidM"/>
@@ -377,20 +384,13 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>pjv</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/wedge22">
                     <img src="https://avatars.githubusercontent.com/u/34723349?v=4" width="100;" alt="wedge22"/>
                     <br />
                     <sub><b>wedge22</b></sub>
-                </a>
-            </td>
-		</tr>
-		<tr>
-            <td align="center">
-                <a href="https://github.com/onlykshitij">
-                    <img src="https://avatars.githubusercontent.com/u/30444410?v=4" width="100;" alt="onlykshitij"/>
-                    <br />
-                    <sub><b>onlykshitij</b></sub>
                 </a>
             </td>
             <td align="center">
