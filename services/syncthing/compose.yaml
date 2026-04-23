@@ -61,7 +61,7 @@ services:
       - STNOUPGRADE=true
       - STHOMEDIR=/var/syncthing/.syncthinghome
     volumes:
-      - ${SYNCDIR}:/var/syncthing
+      - ./${SERVICE}-data:/var/syncthing
     depends_on:
       tailscale:
         condition: service_healthy
