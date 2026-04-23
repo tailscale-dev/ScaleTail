@@ -72,3 +72,4 @@ services:
       start_interval: 2s
       start_period: 15s
       timeout: 5s
+    restart: always
