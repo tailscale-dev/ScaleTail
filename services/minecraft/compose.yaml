@@ -4,11 +4,11 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:80"}}}},
+          {"Proxy":"http://127.0.0.1:25565"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
+# Make sure you have updated/checked the .env file with the correct variables.
 # All the ${ xx } need to be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
@@ -20,8 +20,8 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
-      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
-      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
+      - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
       #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
       - TS_AUTH_ONCE=true
     configs:
@@ -35,10 +35,10 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICEPORT} to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -53,45 +53,18 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db # Please note, this variable should reflect the service name of the database itself, in this case db
+      - EULA=TRUE # Required — accepted by the user
+      - TYPE=${SERVER_TYPE} # VANILLA, PAPER, FABRIC, FORGE, etc.
+      - VERSION=${MINECRAFT_VERSION} # e.g. LATEST or 1.21.4
+      - DIFFICULTY=${DIFFICULTY}
+      - MAX_PLAYERS=${MAX_PLAYERS}
+      - MOTD=${MOTD}
+      - MEMORY=${MEMORY}
+      - ONLINE_MODE=${ONLINE_MODE} # Set false for cracked/offline servers
       - TZ=${TZ}
     volumes:
-      - ./${SERVICE}-data/nextcloud_data/:/var/www/html
+      - ./${SERVICE}-data:/data # Persistent world and server data
     depends_on:
       tailscale:
         condition: service_healthy
-      db:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "apache2"] # Check if ${SERVICE} process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
     restart: always
-
-  # MariaDB used by NextCloud
-  db:
-    image: mariadb:latest # Image to be used
-    container_name: nextcloud_db # Name for local container management
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-    volumes:
-      - db_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "pgrep", "mariadbd"] # Check if MariaDB is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
-    restart: always
-
-volumes:
-  nextcloud_data:
-  db_data:

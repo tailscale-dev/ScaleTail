@@ -1,41 +1,23 @@
-# Pull Request Title: [Short Description of Changes]
+# [Service Name]: [Summary of changes]
+<!-- Examples: Dockhand: new service | Changedetection: fix port mapping -->
 
 ## Description
-
-Provide a brief description of the changes made in this pull request. Include the following:
-
-- The purpose of the changes
-- Any background context or additional details
+<!-- Briefly describe what changed. -->
 
 ## Related Issues
+<!-- Link any related issues (e.g. Fixes #123). Use "None" if not applicable. -->
+- None.
 
-- Issue #[issue number] (e.g., Fixes #[issue number])
-
-## Type of Change
-
-- [ ] Bug fix
-- [ ] New feature
-- [ ] Documentation update
-- [ ] Refactoring
-
-## How Has This Been Tested?
-
-Describe the tests you ran to verify your changes. Provide instructions for reproducing the testing process:
-
-1. [Test case 1]
-2. [Test case 2]
+## Verification
+<!-- Describe how you tested this change and include relevant proof such as logs, command output, or screenshots if useful. -->
 
 ## Checklist
 
-- [ ] I have performed a self-review of my code
-- [ ] I have added tests that prove my fix or feature works
-- [ ] I have updated necessary documentation (e.g. frontpage `README.md`)
-- [ ] Any dependent changes have been merged and published in downstream modules
+- [ ] I have performed a self-review of my code and followed the [templates](https://github.com/tailscale-dev/ScaleTail/tree/main/templates/service-template) structure.
+- [ ] I have added verification that the stack works as expected.
+- [ ] I have updated necessary documentation (e.g. frontpage [README.md](https://github.com/tailscale-dev/ScaleTail/blob/main/README.md) ).
+- [ ] I have selected the correct label(s) for this PR.
 
-## Screenshots (if applicable)
-
-If visual changes are made, include screenshots to demonstrate them.
-
-## Additional Notes
-
-Add any additional comments or information that may be relevant.
+## Additional Context
+<!-- Any extra info for reviewers, such as gotchas, special requirements, devices, or dependencies. Use "None" if not applicable. -->
+- None.
