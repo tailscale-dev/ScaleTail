@@ -12,7 +12,7 @@ In this setup, the `tailscale-rustdesk-server` service runs Tailscale, which man
 
 ## Client setup
 
-- Service Configuration: The Rustdesk client public Key credentials are generated at first run and stored in the **id_ed25519.pub** file. This is found in the compose directory **./rustdesk-server-data/hbbs/**  Clients can be setup using the --config switch. e.g. **rustdesk.exe --config "host=rustdesk.your-tailnet.ts,key=thetextfromkey"** or in the client Setting -> Network -> ID/Relay Server.  There is no need to configure the relay or API server.
+- Service Configuration: The Rustdesk client public Key credentials are generated at first run and stored in the **id_ed25519.pub** file. This is found in the compose directory **./rustdesk-server-data/hbbs/** Clients can be setup using the --config switch. e.g. **rustdesk.exe --config "host=rustdesk.your-tailnet.ts,key=thetextfromkey"** or in the client Setting -> Network -> ID/Relay Server. There is no need to configure the relay or API server.
 
 Links:
 
