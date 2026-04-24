@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v6
           
       - name: Markdown Linting
-        uses: rvben/rumdl@v0.1.74
+        uses: rvben/rumdl@v0.1.80
         with:
           path: "services/"
           config: ".markdownlint.yml"
