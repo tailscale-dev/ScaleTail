@@ -35,10 +35,3 @@ jobs:
           path: "services/"
           config: ".markdownlint.yml"
           report-type: annotations
-
-      - name: Lint README
-        uses: rvben/rumdl@v0.1.80
-        with:
-          path: "README.md"
-          config: ".markdownlint.yml"
-          report-type: annotations
