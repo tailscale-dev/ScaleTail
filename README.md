@@ -22,20 +22,20 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
    Go to the [Tailscale Admin Console → Keys](https://login.tailscale.com/admin/settings/keys) and generate a new auth key.
 
 2. **Clone and Choose a Service**
-  
+
    Clone the repository and change directory to your desired service with the following command:
 
    ``` bash
    git clone https://github.com/tailscale-dev/ScaleTail.git
    cd ScaleTail/services/YourDesiredService 
    ```
-  
+
 3. **Configure and Launch**
 
    - Open the `.env` file in your chosen service directory.
    - Add your auth key after the line `TS_AUTHKEY=`.
    - Start the Docker compose stack:
-  
+
    ``` bash
    docker compose up -d
    ```
