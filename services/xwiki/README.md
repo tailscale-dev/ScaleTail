@@ -1,12 +1,21 @@
-
 # XWiki with Tailscale Sidecar Configuration
 
-This Docker Compose configuration sets up [XWiki](https://www.xwiki.org) with Tailscale as a sidecar container to securely deliver push notifications over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your ntfy instance, ensuring it is only accessible within your Tailscale network.
+This Docker Compose configuration sets up **XWiki** with a Tailscale sidecar container, enabling secure, private access to your self-hosted wiki over your Tailnet. With this setup, your XWiki instance is **not exposed to the public internet** and is only accessible from authorized devices connected via Tailscale.
 
 ## XWiki
 
-[XWiki](https://www.xwiki.org) offers a generic platform for developing projects and collaborative applications using the wiki paradigm.
+[**XWiki**](https://www.xwiki.org) is a powerful open-source wiki platform designed for collaboration, knowledge management, and building custom web applications. It combines the flexibility of a wiki with the structure of a CMS, making it suitable for teams, documentation hubs, and internal tools.
 
-## Configuration Overview
+## Key Features
 
-In this setup, the `tailscale-xwiki` service runs the Tailscale daemon to provide secure, private networking. The `xwiki` service is configured to use Tailscale’s network stack via Docker’s `network_mode: service:` syntax. This binds Paperless network interface to the Tailscale container, making the service available only through your Tailscale network (or locally, if needed).
+- 📝 Rich content editing with WYSIWYG and Markdown support
+- 👥 Advanced user permissions and access control
+- 🔌 Highly extensible with plugins and macros
+- 📊 Structured data and application-building capabilities
+- 🔍 Full-text search and content organization tools
+- 🏢 Ideal for internal documentation and knowledge bases
+
+## Resources
+
+- XWiki Docker Repo: <https://github.com/xwiki/xwiki-docker>
+- XWiki Documentation: <https://www.xwiki.org/xwiki/bin/view/Documentation/>
