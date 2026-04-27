@@ -25,7 +25,7 @@ If you need the runners for N8N uncomment the following within the docker-compos
 
 The configs section also needs to be updated to match the below. Specifically the Proxy port needs changing from 8080 to 5678
 
-```
+```plain
 configs:
   ts-serve:
     content: |
