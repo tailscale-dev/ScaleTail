@@ -147,6 +147,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 📝 **Nanote**        | A lightweight, self-hosted note-taking app with Markdown support.                                                                                                          | [Details](services/nanote)        |
 | 🤖 **Open WebUI**    | A self-hosted AI platform with a ChatGPT-style interface for local and cloud-based models.                                                                                 | [Details](services/open-webui)    |
 | 🔗 **Pingvin Share** | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                                                                                  | [Details](services/pingvin-share) |
+| 📅 **Radicale**      | A lightweight CalDAV and CardDAV server for self-hosted calendar, to-do, and contact sync.                                                                                | [Details](services/radicale)      |
 | 🔄 **Resilio Sync**  | A fast, reliable, and simple file sync and share solution.                                                                                                                 | [Details](services/resilio-sync)  |
 | 🗂️ **Stirling-PDF**  | A web application for managing and editing PDF files.                                                                                                                      | [Details](services/stirlingpdf)   |
 | 📄 **BentoPDF**      | A lightweight, self-hosted web app for viewing and managing PDF documents.                                                                                                 | [Details](services/bentopdf)      |
@@ -173,6 +174,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🛠️ **Coder**              | Self-hosted cloud dev environments with browser IDEs, Terraform-managed workspaces.                         | [Details](services/coder)           |
 | 🔧 **Cyberchef**          | A web app for encryption, encoding, compression, and data analysis.                                         | [Details](services/cyberchef)       |
 | 🐳 **Dockhand**           | A modern, lightweight Docker management UI for containers and Compose stacks.                               | [Details](services/dockhand)        |
+| 🐳 **Dockge**             | A lightweight, self-hosted Docker Compose stack manager with a clean web UI.                               | [Details](services/dockge)          |
 | 🖥️ **Dozzle**             | A real-time log viewer for Docker containers.                                                               | [Details](services/dozzle)          |
 | 🔁 **FossFLOW**           | A self-hosted tool to make beautiful isometric infrastructure diagrams.                                     | [Details](services/fossflow)        |
 | 🖥️ **GitSave**            | A self-hosted service to back up your GitHub repositories via a simple REST API and scheduled runs.         | [Details](services/gitsave)         |
@@ -270,6 +272,13 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/michaelhodges">
+                    <img src="https://avatars.githubusercontent.com/u/3329567?v=4" width="100;" alt="michaelhodges"/>
+                    <br />
+                    <sub><b>michaelhodges</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/ChillBill77">
                     <img src="https://avatars.githubusercontent.com/u/129118422?v=4" width="100;" alt="ChillBill77"/>
                     <br />
@@ -277,10 +286,10 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/michaelhodges">
-                    <img src="https://avatars.githubusercontent.com/u/3329567?v=4" width="100;" alt="michaelhodges"/>
+                <a href="https://github.com/lcs-crr">
+                    <img src="https://avatars.githubusercontent.com/u/98816628?v=4" width="100;" alt="lcs-crr"/>
                     <br />
-                    <sub><b>michaelhodges</b></sub>
+                    <sub><b>lcs-crr</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -290,6 +299,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>adamsthws</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/theryukverse">
                     <img src="https://avatars.githubusercontent.com/u/22323518?v=4" width="100;" alt="theryukverse"/>
@@ -297,8 +308,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>theryukverse</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/KhaaL">
                     <img src="https://avatars.githubusercontent.com/u/692524?v=4" width="100;" alt="KhaaL"/>
@@ -334,6 +343,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>MajnuRangeela</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/mikkotor">
                     <img src="https://avatars.githubusercontent.com/u/1879886?v=4" width="100;" alt="mikkotor"/>
@@ -341,8 +352,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>mikkotor</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/NI-R0">
                     <img src="https://avatars.githubusercontent.com/u/98448863?v=4" width="100;" alt="NI-R0"/>
@@ -378,6 +387,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>guybrush115</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/pjv">
                     <img src="https://avatars.githubusercontent.com/u/327716?v=4" width="100;" alt="pjv"/>
@@ -385,8 +396,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>pjv</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/wedge22">
                     <img src="https://avatars.githubusercontent.com/u/34723349?v=4" width="100;" alt="wedge22"/>
@@ -422,6 +431,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>gaetan-petit</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/dfilvtov">
                     <img src="https://avatars.githubusercontent.com/u/93210861?v=4" width="100;" alt="dfilvtov"/>
@@ -429,8 +440,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>dfilvtov</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/cdkooistra">
                     <img src="https://avatars.githubusercontent.com/u/70811244?v=4" width="100;" alt="cdkooistra"/>
