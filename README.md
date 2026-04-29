@@ -155,6 +155,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🗃️ **Vaultwarden**   | An unofficial Bitwarden server implementation written in Rust.                                                                                                             | [Details](services/vaultwarden)   |
 | ✅ **Vikunja**       | A self-hosted task and project management platform with projects, reminders, labels, recurring tasks, and collaboration features.                                          | [Details](services/vikunja)       |
 | 💸 **Wallos**        | An open-source, self-hostable web app to track and manage your recurring subscriptions and expenses, with multi-currency support, customizable categories, and statistics. | [Details](services/wallos)        |
+| 📚 **XWiki**         |XWiki offers a generic platform for developing projects and collaborative applications using the wiki paradigm.|[Details](services/xwiki)|
 
 ### 📊 Dashboards and Visualization
 

@@ -18,7 +18,7 @@ services:
     environment:
       - TS_AUTHKEY=${TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet
+      - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
@@ -35,10 +35,10 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICEPORT} to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns:
-    #  - ${DNS_SERVER}
+    # dns:
+    #   - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,24 +47,40 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # Open WebUI
+# ${SERVICE}
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route Open WebUI through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    environment:
-      - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
-      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
-      - TZ=${TZ}
-    volumes:
-      - ./${SERVICE}-data:/app/backend/data
     depends_on:
       tailscale:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "open-webui"] # Check if open-webui process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
+      db:
+        condition: service_started
+    environment: # Varibles are delared in .env file.
+      - XWIKI_VERSION=${XWIKI_VERSION}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_HOST=db-${SERVICE}
+    volumes:
+      - ./${SERVICE}-data/xwiki:/usr/local/xwiki
+    restart: always
+  db:
+    image: "mariadb:12"
+    container_name: db-${SERVICE}
+    volumes:
+      - ./${SERVICE}-data/mariadb:/var/lib/mysql
+      - type: bind
+        source: ./init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE}
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_bin"
+      - "--explicit-defaults-for-timestamp=1"
     restart: always
