@@ -57,7 +57,7 @@ services:
       - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
       - TZ=${TZ}
     volumes:
-      - ./$(SERVICE)-data:/app/backend/data
+      - ./${SERVICE}-data:/app/backend/data
     depends_on:
       tailscale:
         condition: service_healthy
