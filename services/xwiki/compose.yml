@@ -4,11 +4,11 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:80"}}}},
+          {"Proxy":"http://127.0.0.1:8080"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
+# Make sure you have updated/checked the .env file with the correct variables.
 # All the ${ xx } need to be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
@@ -37,7 +37,7 @@ services:
     #ports:
     #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
+    # dns:
     #   - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
@@ -47,51 +47,40 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+# ${SERVICE}
   application:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    environment:
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db # Please note, this variable should reflect the service name of the database itself, in this case db
-      - TZ=${TZ}
-    volumes:
-      - ./${SERVICE}-data/nextcloud_data/:/var/www/html
     depends_on:
       tailscale:
         condition: service_healthy
       db:
-        condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "apache2"] # Check if ${SERVICE} process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
-    restart: always
-
-  # MariaDB used by NextCloud
-  db:
-    image: mariadb:latest # Image to be used
-    container_name: nextcloud_db # Name for local container management
-    environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+        condition: service_started
+    environment: # Varibles are delared in .env file.
+      - XWIKI_VERSION=${XWIKI_VERSION}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_HOST=db-${SERVICE}
     volumes:
-      - db_data:/var/lib/mysql
-    healthcheck:
-      test: ["CMD", "pgrep", "mariadbd"] # Check if MariaDB is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
+      - ./${SERVICE}-data/xwiki:/usr/local/xwiki
     restart: always
-
-volumes:
-  nextcloud_data:
-  db_data:
+  db:
+    image: "mariadb:12"
+    container_name: db-${SERVICE}
+    volumes:
+      - ./${SERVICE}-data/mariadb:/var/lib/mysql
+      - type: bind
+        source: ./init.sql
+        target: /docker-entrypoint-initdb.d/init.sql
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_USER=${DB_USER}
+      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_DATABASE=${DB_DATABASE}
+    command:
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_bin"
+      - "--explicit-defaults-for-timestamp=1"
+    restart: always
