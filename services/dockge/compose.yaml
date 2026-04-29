@@ -54,24 +54,14 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       # Varibles are delared in .env file.
-      - DOCKGE_STACKS_DIR=${STACKS_DIR}
-      # - EXAMPLE_VAR=${EXAMPLE_VAR}
+      - DOCKGE_STACKS_DIR=${STACKS_DIR} # Tell Dockge where your stacks directory is
+      - PUID=${PUID} # Set the stack file/dir ownership to this user
+      - PGID=${PGID} # Set the stack file/dir ownership to this group
     volumes:
-      - ./${SERVICE}-data/app/config:/config
+      - ./${SERVICE}-data/app/config:/app/data
       - /var/run/docker.sock:/var/run/docker.sock
       - ${STACKS_DIR}:${STACKS_DIR}
     depends_on:
       tailscale:
         condition: service_healthy
-    healthcheck:
-      test:
-        - CMD
-        - wget
-        - --spider
-        - -q
-        - http://127.0.0.1:41234/healthz
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
     restart: always

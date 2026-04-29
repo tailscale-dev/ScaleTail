@@ -1,24 +1,23 @@
 # Dockge with Tailscale Sidecar Configuration
 
-This Docker Compose configuration sets up [Dockge](https://github.com/louislam/dockge) with Tailscale as a sidecar container to keep the app reachable over your Tailnet.
+This Docker Compose configuration sets up Dockge with a Tailscale sidecar container, enabling secure, private access to your Docker Compose management UI over your Tailnet. With this setup, your Dockge instance is not exposed to the public internet and is only accessible from authorized devices connected via Tailscale.
 
 ## Dockge
 
-[Dockge](https://github.com/louislam/dockge) is fancy, easy-to-use and reactive self-hosted docker compose.yaml stack-oriented manager.
+[Dockge](https://github.com/louislam/dockge) is a lightweight, self-hosted Docker Compose stack manager built for simplicity and control. Created by the developer behind Uptime Kuma, Dockge provides an intuitive web interface for managing, editing, and deploying docker-compose.yml stacks without relying solely on the CLI.
+
+It is especially well-suited for homelabs, self-hosted environments, and DevOps workflows where multiple services are managed via Docker Compose.
 
 ## Key Features
 
-- Manage your compose.yaml files
-- Create/Edit/Start/Stop/Restart/Delete
-- Update Docker Images
-- Interactive Editor for compose.yaml
-- Interactive Web Terminal
-- Convert docker run ... commands into compose.yaml
-- File based structure - Dockge won't kidnap your compose files, they are stored on your drive as usual. You can interact with them using normal docker compose commands
-- Reactive - Everything is just responsive. Progress (Pull/Up/Down) and terminal output are in real-time
-- Easy-to-use & fancy UI - If you love Uptime Kuma's UI/UX, you will love this one too
+* 🐳 Web-based Docker Compose stack management
+* ✏️ Live editing of docker-compose.yml files
+* ▶️ One-click start, stop, and restart of stacks
+* 📜 Real-time container logs viewer
+* 📦 Multi-stack organization via directories
+* ⚡ Lightweight and fast interface
+* 🔍 Clear visibility into container status
 
-## Configuration Overview
+## Important Notice
 
-In this setup, the `tailscale-dockge` service runs Tailscale, which manages secure networking for Dockge. The `dockge` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
-
+Make sure to populate the `STACKS_DIR=` variable in the `.env` before first startup.
