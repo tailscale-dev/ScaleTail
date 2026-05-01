@@ -22,20 +22,20 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
    Go to the [Tailscale Admin Console → Keys](https://login.tailscale.com/admin/settings/keys) and generate a new auth key.
 
 2. **Clone and Choose a Service**
-  
+
    Clone the repository and change directory to your desired service with the following command:
 
    ``` bash
    git clone https://github.com/tailscale-dev/ScaleTail.git
    cd ScaleTail/services/YourDesiredService 
    ```
-  
+
 3. **Configure and Launch**
 
    - Open the `.env` file in your chosen service directory.
    - Add your auth key after the line `TS_AUTHKEY=`.
    - Start the Docker compose stack:
-  
+
    ``` bash
    docker compose up -d
    ```
@@ -155,6 +155,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🗃️ **Vaultwarden**   | An unofficial Bitwarden server implementation written in Rust.                                                                                                             | [Details](services/vaultwarden)   |
 | ✅ **Vikunja**       | A self-hosted task and project management platform with projects, reminders, labels, recurring tasks, and collaboration features.                                          | [Details](services/vikunja)       |
 | 💸 **Wallos**        | An open-source, self-hostable web app to track and manage your recurring subscriptions and expenses, with multi-currency support, customizable categories, and statistics. | [Details](services/wallos)        |
+| 📚 **XWiki**         |XWiki offers a generic platform for developing projects and collaborative applications using the wiki paradigm.|[Details](services/xwiki)|
 
 ### 📊 Dashboards and Visualization
 
@@ -269,13 +270,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/ChillBill77">
-                    <img src="https://avatars.githubusercontent.com/u/129118422?v=4" width="100;" alt="ChillBill77"/>
-                    <br />
-                    <sub><b>ChillBill77</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/michaelhodges">
                     <img src="https://avatars.githubusercontent.com/u/3329567?v=4" width="100;" alt="michaelhodges"/>
                     <br />
@@ -283,6 +277,16 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
+<<<<<<< HEAD
+=======
+                <a href="https://github.com/ChillBill77">
+                    <img src="https://avatars.githubusercontent.com/u/129118422?v=4" width="100;" alt="ChillBill77"/>
+                    <br />
+                    <sub><b>ChillBill77</b></sub>
+                </a>
+            </td>
+            <td align="center">
+>>>>>>> b29e62489c77f5a116e616a456296a72de3c92d6
                 <a href="https://github.com/adamsthws">
                     <img src="https://avatars.githubusercontent.com/u/52178922?v=4" width="100;" alt="adamsthws"/>
                     <br />

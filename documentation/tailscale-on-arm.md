@@ -13,7 +13,7 @@ First, attempt to install Tailscale using the official script:
 curl -fsSL https://tailscale.com/install.sh | sh
 ```
 
-- If this works, skip ahead to [Step 4](#4-run-tailscale).  
+- If this works, skip ahead to [Step 4](#4-create-an-initd-service-for-tailscale).  
 - If it fails (common on OpenPLi), continue with the manual installation below.
 
 ---
@@ -135,7 +135,7 @@ tailscale up
 
 You will receive an authentication URL, for example:
 
-```
+```text
 To authenticate, visit:
 
      https://login.tailscale.com/c/129a3b4e01e114a

@@ -28,10 +28,10 @@ jobs:
     steps:
       - name: Clone this repo
         uses: actions/checkout@v6
-      
-      - name: Markdown Linting Action
-        id: lint
-        uses: avto-dev/markdown-lint@v1.5.0
+          
+      - name: Lint services
+        uses: rvben/rumdl@v0.1.80
         with:
-          config: "./.markdownlint.yml"
-          args: "./services/**/*.md"
+          path: "services/"
+          config: ".markdownlint.yml"
+          report-type: annotations

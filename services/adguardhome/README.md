@@ -19,7 +19,7 @@ In Debian (e.g. Ubuntu Server 22.04.x / 24.04.x) systems, particularly when usin
 `DNSStubListener` is a configuration option in the `/etc/systemd/resolved.conf` file that controls whether the `systemd-resolved` service will listen for DNS queries on the loopback address (127.0.0.53) over port 53.
 
 - **DNSStubListener=yes**: When this option is enabled, `systemd-resolved` binds to `127.0.0.53:53`. This allows the system to use `systemd-resolved` as a local DNS resolver for local DNS queries.
-  
+
 - **DNSStubListener=no**: Disabling the stub listener prevents `systemd-resolved` from binding to port 53 on the local interface, freeing up this port for other DNS services or applications that require direct control over port 53.
 
 ### Why Change `DNSStubListener` to `no`?
