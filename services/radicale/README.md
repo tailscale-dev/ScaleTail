@@ -26,8 +26,48 @@ The container runs with hardened security settings: read-only filesystem, no new
 - This image uses [tomsquest/docker-radicale](https://github.com/tomsquest/docker-radicale). Refer to their documentation for advanced configuration options.
 - To configure users and authentication, mount a custom config file or refer to the [Radicale documentation](https://radicale.org/v3.html#configuration).
 
+## Creating Users
+
+Radicale uses `htpasswd` for authentication. To set up users:
+
+1. **Create the required directories:**
+
+   ```bash
+   mkdir -p ./${SERVICE}-data ./config
+   ```
+
+2. **Create an `htpasswd` file** with your first user (requires `apache2-utils` on Debian/Ubuntu or `httpd-tools` on Fedora):
+
+   ```bash
+   htpasswd -B -c ./${SERVICE}-data/users <username>
+   ```
+
+   To add more users without overwriting the file, omit `-c`:
+
+   ```bash
+   htpasswd -B ./${SERVICE}-data/users <username>
+   ```
+
+3. **Fill out config file** at `./config/${SERVICE}.conf`:
+
+   ```ini
+   [auth]
+   type = htpasswd
+   htpasswd_filename = /config/users
+   htpasswd_encryption = bcrypt
+
+   [storage]
+   filesystem_folder = /data/collections
+   ```
+
+4. **Restart the stack:**
+
+   ```bash
+   docker compose down && docker compose up -d
+   ```
+
 ## Files to check
 
 Please check the following contents for validity as some variables need to be defined upfront.
 
-- `.env` // Main variable: `TS_AUTHKEY`
+- `.env` — Main variable: `TS_AUTHKEY`
