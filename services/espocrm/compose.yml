@@ -49,7 +49,7 @@ services:
 
   # ${SERVICE}
   database:
-    image: mariadb:latest
+    image: mariadb:12.2
     container_name: db-${SERVICE}
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
