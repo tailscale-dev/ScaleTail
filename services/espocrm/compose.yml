@@ -48,7 +48,7 @@ services:
     restart: always
 
   # ${SERVICE}
-  espocrm-db:
+  database:
     image: mariadb:latest
     container_name: db-${SERVICE}
     environment:
