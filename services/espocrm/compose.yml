@@ -84,5 +84,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-      espocrm-db:
+      database:
         condition: service_started
