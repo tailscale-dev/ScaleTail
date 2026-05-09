@@ -50,7 +50,7 @@ services:
   # ${SERVICE}
   espocrm-db:
     image: mariadb:latest
-    container_name: app-${SERVICE}-db
+    container_name: db-${SERVICE}
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
