@@ -21,7 +21,7 @@ The `tailscale-pulse` service runs the Tailscale client to join your Tailnet. Th
 
 2. Edit `.env` and paste your Tailscale auth key into `TS_AUTHKEY=`.
 
-3. Pre-create the data directories so Docker does not create them as `root`:
+3. (OPTIONAL) Pre-create the data directories so Docker does not create them as `root`:
 
    ```bash
    mkdir -p pulse-data ts/state
@@ -44,5 +44,6 @@ The `tailscale-pulse` service runs the Tailscale client to join your Tailnet. Th
 ## Useful Links
 
 - [rcourtman/pulse on Docker Hub](https://hub.docker.com/r/rcourtman/pulse)
+- [rcourtman/pulse on GitHub](https://github.com/rcourtman/Pulse)
 - [Tailscale Serve docs](https://tailscale.com/kb/1242/tailscale-serve)
 - [Tailscale Docker guide](https://tailscale.com/blog/docker-tailscale-guide)
