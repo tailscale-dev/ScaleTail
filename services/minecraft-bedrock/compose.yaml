@@ -1,0 +1,61 @@
+services:
+# Make sure you have updated/checked the .env file with the correct variables.
+# All the ${ xx } need to be defined there.
+  # Tailscale Sidecar Configuration
+  tailscale:
+    image: tailscale/tailscale:latest # Image to be used
+    container_name: tailscale-${SERVICE} # Name for local container management
+    hostname: ${SERVICE} # Name used within your Tailscale environment
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
+      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      - TS_AUTH_ONCE=true
+    volumes:
+      - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
+      - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
+    devices:
+      - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
+    cap_add:
+      - net_admin # Tailscale requirement
+    #ports:
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT}/udp # Bedrock is UDP. Uncomment ONLY if LAN exposure is wanted.
+    # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
+    #dns:
+    #  - ${DNS_SERVER}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
+    restart: always
+
+  # ${SERVICE}
+  application:
+    image: ${IMAGE_URL} # Image to be used
+    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    container_name: app-${SERVICE} # Name for local container management
+    environment: # Variables are declared in .env file.
+      - EULA=${EULA}                  # Must be TRUE before first boot — see README.
+      - VERSION=${VERSION}             # LATEST or pinned (e.g. 1.21.50)
+      - SERVER_NAME=${SERVER_NAME}
+      - GAMEMODE=${GAMEMODE}           # survival, creative, adventure
+      - DIFFICULTY=${DIFFICULTY}       # peaceful, easy, normal, hard
+      - LEVEL_NAME=${LEVEL_NAME}
+      - MAX_PLAYERS=${MAX_PLAYERS}
+      - ONLINE_MODE=${ONLINE_MODE}     # true requires Xbox Live accounts; false allows offline clients
+      - TZ=${TZ}
+    volumes:
+      - ./${SERVICE}-data:/data # itzg/minecraft-bedrock-server stores world + config under /data
+    tty: true            # Required for the Bedrock server console
+    stdin_open: true     # Allows `docker attach app-${SERVICE}` for /op, /stop, etc.
+    depends_on:
+      tailscale:
+        condition: service_healthy
+    # Healthcheck is provided by the upstream itzg/minecraft-bedrock-server image,
+    # so no compose-level healthcheck is declared here.
+    restart: always
