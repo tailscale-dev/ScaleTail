@@ -28,7 +28,7 @@ The `tailscale-minecraft-bedrock` service runs the Tailscale client to join your
    - Set `EULA=TRUE` to accept the [Mojang EULA](https://www.minecraft.net/en-us/eula). The server will not start until you do.
    - (Optional) Adjust `SERVER_NAME`, `GAMEMODE`, `DIFFICULTY`, `MAX_PLAYERS`, etc.
 
-3. Pre-create the data directories so Docker does not create them as `root`:
+3. (OPTIONAL) Pre-create the data directories so Docker does not create them as `root`:
 
    ```bash
    mkdir -p minecraft-bedrock-data ts/state
@@ -80,6 +80,7 @@ Detach without stopping the server: `Ctrl-p Ctrl-q`.
 
 ## Useful Links
 
+- [MUST READ - Bedrock DNS redirect for XBOX](https://github.com/Pugmatt/BedrockConnect)
 - [itzg/minecraft-bedrock-server on Docker Hub](https://hub.docker.com/r/itzg/minecraft-bedrock-server)
 - [itzg/minecraft-bedrock-server on GitHub](https://github.com/itzg/docker-minecraft-bedrock-server)
 - [Mojang EULA](https://www.minecraft.net/en-us/eula)
