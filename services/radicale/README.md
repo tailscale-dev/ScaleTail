@@ -54,6 +54,7 @@ Radicale uses `htpasswd` for authentication. To set up users:
    ```bash
    nano ./${SERVICE}-data/config/radicale.conf
    ```
+
    With:
 
    ```ini
