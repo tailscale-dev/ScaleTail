@@ -48,10 +48,10 @@ services:
     restart: always
 
   # NewWallpaperWhoDis
-  nwwd-web:
+  application:
     image: ghcr.io/upioneer/newwallpaperwhodis:latest
     network_mode: service:tailscale # Sidecar configuration to route through Tailscale
-    container_name: new-wallpaper-who-dis
+    container_name: app-${SERVICE}
     environment:
       - NODE_ENV=production
     volumes:
@@ -62,4 +62,11 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:3000/favicon.svg"]
+      interval: 1m
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: always
+

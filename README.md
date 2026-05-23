@@ -163,6 +163,8 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | -------------- | ------------------------------------------------------------------------------------ | ---------------------------- |
 | 🧭 **Glance**   | A concise, customizable dashboard for self-hosted services and personal metrics.     | [Details](services/glance)   |
 | 🏠 **Homepage** | A modern, highly customizable homepage for organizing links and monitoring services. | [Details](services/homepage) |
+| 🖼️ **NewWallpaperWhoDis** | A lightweight, self-hosted wallpaper management server and dynamic rotation engine built on flat-file architecture. | [Details](services/newwallpaperwhodis) |
+
 
 ### 🛠️ Development Tools
 

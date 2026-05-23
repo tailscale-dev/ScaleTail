@@ -16,8 +16,9 @@ In this setup, the `tailscale-NewWallpaperWhoDis` service runs Tailscale, which 
 
 - Prerequisites: A standard Docker/Docker Compose environment. No special hardware passthrough or GPU/video/render groups are required. 
 - Volumes: Make sure you update `compose.yaml` to include bind mounts for `./data:/app/data` and `./wallpapers:/app/wallpapers` to persist the database cache and your image files respectively.
-- MagicDNS/Serve: By default, NewWallpaperWhoDis listens on port `6767`. Make sure the Tailscale reverse proxy configuration in `compose.yaml` is pointing to `"Proxy":"http://127.0.0.1:6767"` instead of the template's default `80`.
-- Ports: If you want to access the Web UI from legacy devices on your local LAN that do not have Tailscale installed, uncomment the `ports` mapping in `compose.yaml` and ensure `SERVICEPORT=6767` is set in your `.env` file. Otherwise, leave it disabled for Tailnet-only access.
+- MagicDNS/Serve: By default, NewWallpaperWhoDis runs on internal port `3000` inside the container. Make sure the Tailscale reverse proxy configuration (`ts-serve` config block) in `compose.yaml` is pointing to `"Proxy":"http://127.0.0.1:3000"` (which maps the application inside the shared network namespace).
+- Ports: If you want to access the Web UI from legacy devices on your local LAN that do not have Tailscale installed, uncomment the `ports` mapping in the `tailscale` service of `compose.yaml` and ensure `SERVICEPORT=6767` is set in your `.env` file. This maps port `6767` on the host to the shared port `3000` inside the Tailscale container. Otherwise, leave it disabled for Tailnet-only access.
+
 - Service-specific gotchas: 
   - **Flat-File Sync:** You don't have to upload images in the web UI. You can drag and drop files directly into the `./wallpapers` folder via Windows Explorer, SMB, or FTP and the background Auto Sync crawler will automatically discover and ingest them.
   - **Proxmox LXC Crash:** If deploying in an unprivileged Proxmox LXC container, you may experience a `net.ipv4.ip_unprivileged_port_start` permission denied error on boot due to a containerd.io AppArmor compatibility bug. You may need to downgrade containerd.io or adjust your LXC container profiles.
