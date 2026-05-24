@@ -272,17 +272,17 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/michaelhodges">
-                    <img src="https://avatars.githubusercontent.com/u/3329567?v=4" width="100;" alt="michaelhodges"/>
-                    <br />
-                    <sub><b>michaelhodges</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/lcs-crr">
                     <img src="https://avatars.githubusercontent.com/u/98816628?v=4" width="100;" alt="lcs-crr"/>
                     <br />
                     <sub><b>lcs-crr</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/michaelhodges">
+                    <img src="https://avatars.githubusercontent.com/u/3329567?v=4" width="100;" alt="michaelhodges"/>
+                    <br />
+                    <sub><b>michaelhodges</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -323,17 +323,17 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/onlykshitij">
-                    <img src="https://avatars.githubusercontent.com/u/30444410?v=4" width="100;" alt="onlykshitij"/>
-                    <br />
-                    <sub><b>onlykshitij</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/LaijieJi">
                     <img src="https://avatars.githubusercontent.com/u/108839952?v=4" width="100;" alt="LaijieJi"/>
                     <br />
                     <sub><b>LaijieJi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/MeheheCedy22">
+                    <img src="https://avatars.githubusercontent.com/u/96355171?v=4" width="100;" alt="MeheheCedy22"/>
+                    <br />
+                    <sub><b>MeheheCedy22</b></sub>
                 </a>
             </td>
             <td align="center">
@@ -404,6 +404,13 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/onlykshitij">
+                    <img src="https://avatars.githubusercontent.com/u/30444410?v=4" width="100;" alt="onlykshitij"/>
+                    <br />
+                    <sub><b>onlykshitij</b></sub>
+                </a>
+            </td>
+            <td align="center">
                 <a href="https://github.com/jpmurray">
                     <img src="https://avatars.githubusercontent.com/u/1550428?v=4" width="100;" alt="jpmurray"/>
                     <br />
@@ -424,6 +431,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>gnr8shn</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/gaetan-petit">
                     <img src="https://avatars.githubusercontent.com/u/851486?v=4" width="100;" alt="gaetan-petit"/>
@@ -431,8 +440,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>gaetan-petit</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/dfilvtov">
                     <img src="https://avatars.githubusercontent.com/u/93210861?v=4" width="100;" alt="dfilvtov"/>
@@ -468,6 +475,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>adivardhan1000</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/orchard0">
                     <img src="https://avatars.githubusercontent.com/u/55663276?v=4" width="100;" alt="orchard0"/>
