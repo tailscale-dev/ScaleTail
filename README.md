@@ -477,7 +477,7 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
 
 ## Contributing
 
-See [CONTRIBUTING.md](/CONTRIBUTING.md) for guidance on adding services with the [template](/templates/service-template/) and keeping Tailscale-sidecar setups consistent.
+Have a look at [CONTRIBUTING.md](/CONTRIBUTING.md) for guidance on adding services with the [template](/templates/service-template/) and keeping Tailscale-sidecar setups consistent.
 
 ## Star History
 
