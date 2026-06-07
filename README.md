@@ -174,7 +174,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🛠️ **Coder**              | Self-hosted cloud dev environments with browser IDEs, Terraform-managed workspaces.                         | [Details](services/coder)           |
 | 🔧 **Cyberchef**          | A web app for encryption, encoding, compression, and data analysis.                                         | [Details](services/cyberchef)       |
 | 🐳 **Dockhand**           | A modern, lightweight Docker management UI for containers and Compose stacks.                               | [Details](services/dockhand)        |
-| 🐳 **Dockge**             | A lightweight, self-hosted Docker Compose stack manager with a clean web UI.                               | [Details](services/dockge)          |
+| 🐳 **Dockge**             | A lightweight, self-hosted Docker Compose stack manager with a web UI.                               | [Details](services/dockge)          |
 | 🖥️ **Dozzle**             | A real-time log viewer for Docker containers.                                                               | [Details](services/dozzle)          |
 | 🔁 **FossFLOW**           | A self-hosted tool to make beautiful isometric infrastructure diagrams.                                     | [Details](services/fossflow)        |
 | 🖥️ **GitSave**            | A self-hosted service to back up your GitHub repositories via a simple REST API and scheduled runs.         | [Details](services/gitsave)         |
