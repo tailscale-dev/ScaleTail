@@ -272,13 +272,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                 </a>
             </td>
             <td align="center">
-                <a href="https://github.com/lcs-crr">
-                    <img src="https://avatars.githubusercontent.com/u/98816628?v=4" width="100;" alt="lcs-crr"/>
-                    <br />
-                    <sub><b>lcs-crr</b></sub>
-                </a>
-            </td>
-            <td align="center">
                 <a href="https://github.com/michaelhodges">
                     <img src="https://avatars.githubusercontent.com/u/3329567?v=4" width="100;" alt="michaelhodges"/>
                     <br />
@@ -299,8 +292,6 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>adamsthws</b></sub>
                 </a>
             </td>
-		</tr>
-		<tr>
             <td align="center">
                 <a href="https://github.com/theryukverse">
                     <img src="https://avatars.githubusercontent.com/u/22323518?v=4" width="100;" alt="theryukverse"/>
@@ -308,6 +299,8 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <sub><b>theryukverse</b></sub>
                 </a>
             </td>
+		</tr>
+		<tr>
             <td align="center">
                 <a href="https://github.com/KhaaL">
                     <img src="https://avatars.githubusercontent.com/u/692524?v=4" width="100;" alt="KhaaL"/>
@@ -327,6 +320,13 @@ A huge thank you to all our contributors! ScaleTail wouldn’t be what it is tod
                     <img src="https://avatars.githubusercontent.com/u/108839952?v=4" width="100;" alt="LaijieJi"/>
                     <br />
                     <sub><b>LaijieJi</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/lcs-crr">
+                    <img src="https://avatars.githubusercontent.com/u/98816628?v=4" width="100;" alt="lcs-crr"/>
+                    <br />
+                    <sub><b>lcs-crr</b></sub>
                 </a>
             </td>
             <td align="center">
