@@ -4,11 +4,11 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:9000"}}}},
+          {"Proxy":"http://127.0.0.1:80"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
+# Make sure you have updated/checked the .env file with the correct variables.
 # All the ${ xx } need to be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
@@ -37,8 +37,8 @@ services:
     #ports:
     #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -48,18 +48,41 @@ services:
     restart: always
 
   # ${SERVICE}
-  application:
-    image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-    container_name: app-${SERVICE} # Name for local container management
+  database:
+    image: mariadb:12.2
+    container_name: db-${SERVICE}
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./${SERVICE}-data/portainer_data:/data
+      - ./${SERVICE}-db:/var/lib/mysql
+    restart: always
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 1m
+      start_period: 30s
+      timeout: 10s
+      retries: 3
+  application:
+    image: ${IMAGE_URL}
+    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    container_name: app-${SERVICE}
+    environment:
+      - ESPOCRM_DATABASE_PLATFORM=${ESPOCRM_DATABASE_PLATFORM}
+      - ESPOCRM_DATABASE_HOST=${ESPOCRM_DATABASE_HOST}
+      - ESPOCRM_DATABASE_USER=${ESPOCRM_DATABASE_USER}
+      - ESPOCRM_DATABASE_PASSWORD=${ESPOCRM_DATABASE_PASSWORD}
+      - ESPOCRM_ADMIN_USERNAME=${ESPOCRM_ADMIN_USERNAME}
+      - ESPOCRM_ADMIN_PASSWORD=${ESPOCRM_ADMIN_PASSWORD}
+      - ESPOCRM_SITE_URL=${ESPOCRM_SITE_URL}
+      - ESPOCRM_DEFAULT_CURRENCY=${ESPOCRM_DEFAULT_CURRENCY}
+    volumes:
+      - ./${SERVICE}-data:/var/www/html
+    restart: always
     depends_on:
       tailscale:
         condition: service_healthy
-    restart: always
+      database:
+        condition: service_started
