@@ -221,6 +221,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 | 🥘 Service             | 📝 Description                                                                                                                                  | 🔗 Link                      |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| 🥘 **Kitchenowl** | A self-hosted smart grocery list and recipe manager with features like expense tracking, weekly meal planner, rich recipe import options and OIDC support.  | [Details](services/kitchenowl) |
 | 🥘 **Mealie**          | A self-hosted recipe manager and meal planner with features like shopping lists, scaling, and importing.                                       | [Details](services/mealie)  |
 | 🥘 **Tandoor Recipes** | A self-hosted recipe manager that also serves as a meal planner that has features such as nutrient tracking, shopping lists, importing and AI. | [Details](services/tandoor) |
 
