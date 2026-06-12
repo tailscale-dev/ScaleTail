@@ -51,6 +51,14 @@ services:
     image: ${IMAGE_URL}
     network_mode: service:tailscale
     container_name: app-${SERVICE}
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=${TZ}
+    volumes:
+      - ./${SERVICE}-data:/srv
+      - ./${SERVICE}-database:/database
+      - ./${SERVICE}-config:/config
     depends_on:
       tailscale:
         condition: service_healthy
@@ -61,11 +69,3 @@ services:
       retries: 3 # Number of retries before marking as unhealthy
       start_period: 30s # Time to wait before starting health checks
     restart: always
-    volumes:
-      - ./${SERVICE}-data:/srv
-      - ./${SERVICE}-database:/database
-      - ./${SERVICE}-config:/config
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ}
