@@ -34,4 +34,8 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+# rumdl cache directories
+.rumdl_cache/
+**/.rumdl_cache/
+
 # End of https://www.toptal.com/developers/gitignore/api/macos
