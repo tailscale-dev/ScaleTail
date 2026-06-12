@@ -1,4 +1,4 @@
-# [Service Name]: [Summary of changes]
+# Servicename: context
 <!-- Examples: Dockhand: new service | Changedetection: fix port mapping -->
 
 ## Description
