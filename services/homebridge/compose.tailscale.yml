@@ -30,8 +30,8 @@ services:
       - sys_module
     restart: always
     ports:
-      - "5353:5353"
-      - "443:443"
+      # - "5353:5353" #Receive mDNS but does not do anything for Apple HomeBridge
+      # - "443:443" #Uncomment for local acces
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
