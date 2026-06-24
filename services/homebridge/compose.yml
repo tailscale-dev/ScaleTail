@@ -1,0 +1,39 @@
+# =============================================================================
+# Homebridge + Tailscale Sidecar Compose
+# WARNING: This config breaks HomeKit discovery. See README for details.
+# Always validate with: docker compose config
+# =============================================================================
+configs:
+  ts-serve:
+    content: |
+      {"TCP":{"443":{"HTTPS":true}},
+      "Web":{"$${TS_CERT_DOMAIN}:443":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:8581"}}}},
+      "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
+
+include:
+  - ./compose.tailscale.yml
+
+services:
+  homebridge:
+    image: ${IMAGE_URL}
+    network_mode: service:tailscale
+    container_name: app-${SERVICE}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - ENABLE_AVAHI=0
+    volumes:
+      - ./${SERVICE}-data/config:/homebridge
+    depends_on:
+      tailscale:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://127.0.0.1:8581"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: always
