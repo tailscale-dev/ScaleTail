@@ -41,10 +41,6 @@ This stack uses a hybrid networking approach so that Tailscale and Sure's suppor
 
 Because **MagicDNS is enabled** (`TS_ACCEPT_DNS=true`), Tailscale overrides Docker's embedded DNS inside the `web`/`worker` namespace. This means `web` and `worker` **cannot resolve container names** like `db` or `redis`, so they connect to the database and Redis using their static IPs (`DB_HOST=172.28.0.10`, `REDIS_URL=redis://172.28.0.11:6379/1`) defined in the `.env` file. The `backup` container sits directly on `sure_net`, so it can still use Docker DNS (`POSTGRES_HOST=db`).
 
-## Tailscale Serve
-
-The included serve config makes the Sure web UI available over HTTPS on your Tailnet. No host ports are published, so Sure remains reachable only through your Tailnet via the Tailscale hostname or Tailnet IP assigned to the sidecar.
-
 ## Before You Start
 
 Review and edit the `.env` file before launching the stack. Several values must be set correctly for the app to run and to remain secure:
