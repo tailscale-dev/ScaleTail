@@ -46,7 +46,7 @@ services:
         ipv4_address: 172.28.0.2
 
   web:
-    image: ghcr.io/we-promise/sure:stable
+    image: ${IMAGE_URL} # Image to be used
     container_name: app-${SERVICE}-web
     network_mode: service:tailscale
     volumes:
@@ -78,7 +78,7 @@ services:
         condition: service_healthy
 
   worker:
-    image: ghcr.io/we-promise/sure:stable
+    image: ${IMAGE_URL} # Image to be used
     container_name: app-${SERVICE}-worker
     network_mode: service:tailscale
     command: bundle exec sidekiq
