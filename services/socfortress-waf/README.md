@@ -2,7 +2,7 @@
 
 This adds a Tailscale sidecar to the [SOCFortress WAF Management Platform](https://github.com/socfortress/waf-platform-public) so the **admin UI is reachable only over your Tailnet** at `https://<host>.<your-tailnet>.ts.net`, with a valid HTTPS certificate. The **WAF data plane is left exactly as upstream ships it** — `caddy-waf` still listens on host ports **80/443** so it can front your protected sites with automatic per-site Let's Encrypt certs and see real client IPs.
 
-Funnel (public internet exposure) is **intentionally disabled**. See [Why no Funnel](#why-no-funnel).
+Funnel (public internet exposure) is **intentionally disabled**.
 
 ## About this setup
 
@@ -15,18 +15,6 @@ The WAF platform is a six-service stack (Caddy+Coraza engine, FastAPI admin API,
 - `caddy-waf` and the rest of the stack: unchanged. Data plane stays on host `80/443`.
 
 Access the admin UI at: `https://<TS_HOSTNAME>.<your-tailnet>.ts.net` (after first auth + HTTPS enabled in your tailnet).
-
-## Prerequisites
-
-- The upstream repo cloned (this is where `docker-compose.yml` lives):
-  ```bash
-  git clone https://github.com/socfortress/waf-platform-public.git waf-platform
-  cd waf-platform
-  ```
-- Docker ≥ 24 and **Docker Compose ≥ 2.24** (needed for inline `configs` content).
-- Ports **80**, **443** (data plane) available on the host. Port 8443 is no longer needed once the admin UI is Tailnet-only (see step 4).
-- A Tailscale account and an auth key, with **HTTPS enabled** in your tailnet (Admin console → DNS → enable MagicDNS and HTTPS Certificates).
-- A free MaxMind **GeoLite2-City.mmdb** (optional but recommended; the stack starts without it but GeoIP log enrichment is disabled).
 
 ## Quick-ish Start
 
