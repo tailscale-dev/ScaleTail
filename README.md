@@ -82,6 +82,7 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 | 🧩 **Pi-hole**                      | A network-level ad blocker that acts as a DNS sinkhole.                              | [Details](services/pihole)                       |
 | 🆔 **Pocket ID**                    | A self-hosted decentralized identity (OIDC) solution for secure authentication.      | [Details](services/pocket-id)                    |
 | 🌐 **Rustdesk Server**              | RustDesk is an open source remote control alternative for self-hosting and security. | [Details](services/rustdesk-server)              |
+| 🏰 **SOCFortress WAF**              | Self-hosted Web Application Firewall with a modern admin UI (using Caddy + Coraza).  | [Details](services/socfortress-waf)              |
 | 🔒 **Technitium DNS**               | An open-source DNS server that can be used for self-hosted DNS services.             | [Details](services/technitium)                   |
 | 🌐 **Traefik**                      | A modern reverse proxy and load balancer for microservices.                          | [Details](services/traefik)                      |
 | 🌐 **Tailscale App Connector Node** | Configure a device to act as a App connector node for your Tailscale network.        | [Details](services/tailscale-app-connector-node) |
