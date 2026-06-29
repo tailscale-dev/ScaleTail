@@ -28,7 +28,7 @@ Access the admin UI at: `https://<TS_HOSTNAME>.<your-tailnet>.ts.net` (after fir
 - A Tailscale account and an auth key, with **HTTPS enabled** in your tailnet (Admin console → DNS → enable MagicDNS and HTTPS Certificates).
 - A free MaxMind **GeoLite2-City.mmdb** (optional but recommended; the stack starts without it but GeoIP log enrichment is disabled).
 
-## Quick Start
+## Quick-ish Start
 
 1. Drop these four files into the cloned `waf-platform` directory (next to the upstream `docker-compose.yml`):
    - `.env`, `compose.yml`, `compose.tailscale.yml`, `README.md`
@@ -71,32 +71,12 @@ Access the admin UI at: `https://<TS_HOSTNAME>.<your-tailnet>.ts.net` (after fir
 - **The data plane is still public.** `caddy-waf` keeps listening on host `80/443`. Point DNS for the sites you protect at this host as you normally would; Caddy's automatic per-site TLS and GeoIP/client-IP features are unaffected. Tailscale is only in front of the admin UI.
 - **Updating:** `docker compose pull && docker compose up -d`. Data lives in named volumes and survives updates. The Tailscale node identity persists in the `tailscale-state` volume.
 
-### Why no Funnel
-
-You asked about Funnel originally; here is why this setup leaves it off. Tailscale Funnel can only serve the single `*.ts.net` hostname on ports 443/8443/10000 and terminates TLS at Tailscale's edge. Putting the WAF data plane behind Funnel would (a) collapse all your protected sites to one hostname and break per-site Let's Encrypt, and (b) hide the real client IP, degrading the GeoIP enrichment and IP-based rules the platform is built around. Funneling the admin console would publish your firewall's control panel to the internet. If you ever do want a single site exposed publicly through Tailscale, flip `AllowFunnel` to `true` in `compose.tailscale.yml` for the relevant port — but understand the tradeoffs first.
-
 ## Files
 
 - `.env` — all WAF variables + the Tailscale section (`TS_AUTHKEY` is critical; keep private).
 - `compose.yml` — orchestrator; `include`s the upstream stack and the sidecar. Auto-selected by `docker compose`.
 - `compose.tailscale.yml` — the Tailscale sidecar service + inline serve config.
 - `docker-compose.yml` — upstream, unchanged (provided by the cloned repo; not in this bundle).
-
-## Linting & Validation
-
-Run these from the `waf-platform` directory after editing (requires a filled `.env`):
-
-```bash
-# Schema + interpolation + merge of the included files
-docker compose config --quiet
-# Silent + exit 0 means good.
-
-# Optional strict YAML lint
-yamllint compose.yml compose.tailscale.yml
-
-# Full merged config dump (for debugging the include/override)
-docker compose config
-```
 
 ## Upstream Documentation
 
@@ -113,5 +93,3 @@ docker compose config
 - **No Tailnet IP** — auth key expired/invalid, or ACL/tag restrictions; check `docker compose logs tailscale`.
 
 ---
-
-*Generated for the SOCFortress WAF using the Tailscale sidecar templates. Option A: private admin UI, public data plane, no Funnel.*
