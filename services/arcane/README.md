@@ -22,7 +22,7 @@ This Docker Compose configuration sets up **Arcane** with a Tailscale sidecar co
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-arcane`) runs the Tailscale client and joins your private Tailscale network. The main `arcane` service uses:
 
 ```plain
-network_mode: service:tailscale-arcane
+network_mode: service:tailscale
 ```
 
 This configuration routes all traffic through the Tailscale interface, ensuring that the Arcane web UI and API are accessible **only via your Tailscale network**. This provides a simple and secure way to access your Docker management console from all trusted devices while preventing public access to container controls.

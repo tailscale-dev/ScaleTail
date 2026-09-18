@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [CyberChef](https://github.com/gchq/Cy
 
 ## Configuration Overview
 
-In this setup, the `tailscale-cyberchef` service runs Tailscale, which manages secure networking for the CyberChef service. The `cyberchef` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that CyberChef’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted data analysis tool.
+In this setup, the `tailscale-cyberchef` service runs Tailscale, which manages secure networking for the CyberChef service. The `cyberchef` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that CyberChef’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted data analysis tool.

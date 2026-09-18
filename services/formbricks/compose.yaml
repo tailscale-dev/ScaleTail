@@ -9,7 +9,7 @@ configs:
 
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,7 +35,7 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns:
     #  - ${DNS_SERVER}
@@ -48,6 +48,13 @@ services:
     restart: always
 
   postgres:
+    container_name: app-${SERVICE}-postgres # Name for local container management
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres"] # Check if PostgreSQL accepts connections
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     image: pgvector/pgvector:pg17
     volumes:
@@ -55,6 +62,13 @@ services:
     environment:
       - POSTGRES_PASSWORD=postgres
   redis:
+    container_name: app-${SERVICE}-redis # Name for local container management
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"] # Check if Valkey responds
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     image: valkey/valkey@sha256:12ba4f45a7c3e1d0f076acd616cb230834e75a77e8516dde382720af32832d6d
     command: valkey-server --appendonly yes
@@ -146,7 +160,13 @@ services:
       tailscale:
         condition: service_healthy
       postgres:
-        condition: service_started
+        condition: service_healthy
       redis:
-        condition: service_started
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/health"] # Check if the service is responding; the first start runs many database migrations
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 300s # Time to wait before starting health checks
     restart: always

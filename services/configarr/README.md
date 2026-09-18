@@ -31,9 +31,11 @@ This is especially useful for homelabs, shared servers, and environments where c
 In this deployment, a **Tailscale sidecar container** (for example, `tailscale-configarr`) runs the Tailscale client and joins your private Tailscale network. The Configarr service uses:
 
 ```plain
-network_mode: service:tailscale-configarr
+network_mode: service:tailscale
 ```
 
 This setup ensures that **all Configarr network traffic flows exclusively through the Tailscale interface**, allowing it to securely communicate with Radarr and Sonarr instances that are also connected via Tailscale. No ports need to be exposed, and the service remains completely inaccessible from the public Internet.
+
+The Configarr container runs one sync and then exits, so the Compose file uses `restart: "no"`. To run it on a schedule, trigger `docker compose up application` from cron or another scheduler.
 
 With this configuration, Configarr can safely enforce and maintain your desired media configuration state — privately, securely, and reproducibly.

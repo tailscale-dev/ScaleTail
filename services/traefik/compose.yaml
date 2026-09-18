@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,10 +35,10 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     ports:
-      - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+      - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,10 +47,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   traefik_proxy:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - PUID=1000
@@ -60,24 +60,21 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
+      test: ["CMD", "traefik", "healthcheck", "--ping"] # Check if the service is responding; needs --ping=true below
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
       start_period: 30s # Time to wait before starting health checks
     restart: always
     volumes:
-      - type: bind
-        source: ./${SERVICE}-data/app/traefik.yml
-        target: /etc/traefik.yml
       - ./${SERVICE}-data/log/:/var/log/
       - /var/run/docker.sock:/var/run/docker.sock #Required for the Service Connections
-    command:
+    command: # Static configuration. Traefik ignores these flags if it finds a traefik.yml file.
       - "--api.insecure=true"
+      - "--ping=true" # Required by the health check
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.ssl.address=:443"
+      - "--entrypoints.web.address=:80" # Tailscale Serve already listens on port 443 and forwards to this entrypoint - do not add an entrypoint on port 443
       - --log.level=INFO
       - --log.filepath=/var/log/traefik.log
       - --accesslog=true
@@ -88,10 +85,17 @@ services:
       - traefik.enable=true
       - traefik.http.routers.mydashboard.rule=Host(`traefik.domain.local`)
       - traefik.http.routers.mydashboard.service=api@internal
+      - traefik.http.services.mydashboard.loadbalancer.server.port=8080 # Traefik drops the labels of a container without a port - this container exposes none, because it uses the Tailscale network
 
   simpleweb:
     image: yeasy/simple-web:latest
     labels:
-      - traefik.enable=true # To 
+      - traefik.enable=true # Let Traefik route this sample container
       - traefik.http.routers.simpleweb.rule=Host(`simpleweb.domain.local`)
       - traefik.http.routers.simpleweb.entrypoints=web
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:80/"] # Check if the sample web server is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks

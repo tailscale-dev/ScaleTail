@@ -1,6 +1,6 @@
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -12,7 +12,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     volumes:
       - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
@@ -21,8 +21,8 @@ services:
       - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
     cap_add:
       - net_admin # Tailscale requirement
-    ports:
-      - "${SERVICEPORT}:${SERVICEPORT}/udp"
+    #ports:
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT}/udp # Binding the game port to the local network - only required for players outside your Tailnet
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns:
     #  - ${DNS_SERVER}
@@ -34,10 +34,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - SERVER_IP=${SERVER_IP}
@@ -53,4 +53,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-    restart: unless-stopped
+    # Healthcheck: defined by the image (ss checks the game UDP port), so this file does not override it.
+    restart: always

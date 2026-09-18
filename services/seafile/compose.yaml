@@ -9,7 +9,7 @@ configs:
 
 services:
   # Make sure you have updated/checked the .env file with the correct variables.
-  # All the ${xx} need to be defined there.
+  # Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -20,11 +20,11 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
-      # Uncomment this line and comment out TS_AUTH_ONCE if you want to the service to receive advertised routes, or add other arguements.
+      # Uncomment this line and comment out TS_AUTH_ONCE if you want to the service to receive advertised routes, or add other arguments.
       #- TS_EXTRA_ARGS=--accept-routes=true
       - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -37,7 +37,7 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:80 # Binding the host port to Seafile's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns:
     #  - ${DNS_SERVER}
@@ -52,7 +52,7 @@ services:
   db:
     image: ${SEAFILE_DB_IMAGE:-mariadb:10.11}
     container_name: app-${SERVICE}-db
-    restart: unless-stopped
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${INIT_SEAFILE_MYSQL_ROOT_PASSWORD:-}
       - MYSQL_LOG_CONSOLE=true
@@ -77,14 +77,19 @@ services:
     image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.29}
     container_name: app-${SERVICE}-memcached
     entrypoint: memcached -m 256
+    healthcheck:
+      test: ["CMD", "perl", "-MIO::Socket::INET", "-e", "my $$s = IO::Socket::INET->new('127.0.0.1:11211') or exit 1; print $$s \"version\\r\\n\"; exit((<$$s> // '') =~ /^VERSION/ ? 0 : 1)"] # Check if memcached answers; the image has no nc or HTTP client, and Alpine memcached tags have no perl
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always
 
   seafile:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:13.0-latest}
     container_name: app-${SERVICE}
     network_mode: service:tailscale
-    restart: unless-stopped
-    #ports:
-    #- "80:80"
+    restart: always
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
     environment:
@@ -123,13 +128,15 @@ services:
       - SEAFILE_AI_SECRET_KEY=${JWT_PRIVATE_KEY:?Variable is not set or empty}
       - MD_FILE_COUNT_LIMIT=${MD_FILE_COUNT_LIMIT:-100000}
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:80 || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:80 || exit 1"] # Check if the service is responding
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 10s
     depends_on:
+      tailscale:
+        condition: service_healthy
       db:
         condition: service_healthy
       memcached:
-        condition: service_started
+        condition: service_healthy

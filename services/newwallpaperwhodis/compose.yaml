@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-  # Make sure you have updated/checked the .env file with the correct variables. 
-  # All the ${ xx } need to be defined there.
+  # Make sure you have updated/checked the .env file with the correct variables.
+  # Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -37,7 +37,7 @@ services:
     #ports:
     #  - "0.0.0.0:${SERVICEPORT:-6767}:3000" # Binding port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
+    #dns:
     #  - ${DNS_SERVER}
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz" ] # Check Tailscale has a Tailnet IP and is operational
@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE}
     environment:
       - NODE_ENV=production
+      - TZ=${TZ}
     volumes:
       # Map the data folder where the SQLite DB or structured metadata will live
       - ./data:/app/data
@@ -63,7 +64,7 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:3000/favicon.svg"]
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:3000/favicon.svg"] # Check if the service is responding
       interval: 1m
       timeout: 10s
       retries: 3

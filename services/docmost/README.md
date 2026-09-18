@@ -19,4 +19,15 @@ This Docker Compose configuration sets up [**Docmost**](https://github.com/docmo
 
 ## Configuration Overview
 
-In this configuration, the `tailscale-docmost` service runs the Tailscale client to secure network traffic. The `docmost` service uses `network_mode: service:tailscale-docmost`, ensuring all requests are routed through the Tailscale interface. This safeguards your documentation from public exposure, making it accessible only within your private mesh.
+In this configuration, the `tailscale-docmost` service runs the Tailscale client to secure network traffic. The `docmost` service uses `network_mode: service:tailscale`, ensuring all requests are routed through the Tailscale interface. This safeguards your documentation from public exposure, making it accessible only within your private mesh.
+
+## Files to check
+
+Please check the following contents for validity as some variables need to be defined upfront.
+
+* `.env`
+  * Required: `TS_AUTHKEY`
+  * Required: `APP_SECRET`, at least 32 characters. Generate it with `openssl rand -hex 32`.
+  * Required: `DB_PASSWORD`. Use letters and digits only, because the value is part of `DATABASE_URL`.
+
+Compose stops with an error if `APP_SECRET` or `DB_PASSWORD` is empty. PostgreSQL applies `DB_PASSWORD` only when it first creates the database. If you are upgrading, set `APP_SECRET` and `DB_PASSWORD` in `.env` to the values that your `compose.yaml` used before.

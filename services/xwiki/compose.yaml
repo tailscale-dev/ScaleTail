@@ -9,7 +9,7 @@ configs:
 
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,10 +35,10 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:8080 # Binding the host port to XWiki's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns:
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,24 +47,31 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-# ${SERVICE}
+# Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     depends_on:
       tailscale:
         condition: service_healthy
       db:
-        condition: service_started
-    environment: # Varibles are delared in .env file.
+        condition: service_healthy
+    environment: # Variables are declared in .env file.
       - XWIKI_VERSION=${XWIKI_VERSION}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_DATABASE=${DB_DATABASE}
       - DB_HOST=db-${SERVICE}
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/xwiki:/usr/local/xwiki
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:8080/rest/"] # Check if the service is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 120s # Time to wait before starting health checks
     restart: always
   db:
     image: "mariadb:12"
@@ -83,4 +90,10 @@ services:
       - "--character-set-server=utf8mb4"
       - "--collation-server=utf8mb4_bin"
       - "--explicit-defaults-for-timestamp=1"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"] # Check if MariaDB accepts TCP connections and InnoDB is initialized
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always

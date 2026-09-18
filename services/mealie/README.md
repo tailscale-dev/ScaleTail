@@ -18,4 +18,4 @@ This Docker Compose configuration sets up [**Mealie**](https://github.com/mealie
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-mealie` service runs the Tailscale client to establish a secure private network. The `mealie` container uses `network_mode: service:tailscale-mealie` to route its network traffic through the Tailscale network interface. This configuration ensures that the web UI is only accessible over Tailscale, protecting your recipes and personal data from public exposure.
+In this deployment, the `tailscale-mealie` service runs the Tailscale client to establish a secure private network. The `mealie` container uses `network_mode: service:tailscale` to route its network traffic through the Tailscale network interface. This configuration ensures that the web UI is only accessible over Tailscale, protecting your recipes and personal data from public exposure.

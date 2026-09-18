@@ -31,9 +31,18 @@ This approach is ideal for homelabs, media servers, and multi-location setups wh
 In this deployment, a **Tailscale sidecar container** (for example, `tailscale-posterizarr`) runs the Tailscale client and connects to your private Tailscale network. The Posterizarr service uses:
 
 ```plain
-network_mode: service:tailscale-posterizarr
+network_mode: service:tailscale
 ```
 
 This configuration ensures that **all Posterizarr traffic is routed exclusively through the Tailscale interface**, allowing it to securely communicate with Radarr and Sonarr instances over your private network. No ports are exposed to the public Internet, and the service remains fully isolated.
 
 With this setup, Posterizarr can reliably enforce consistent artwork standards across your media library — securely, privately, and automatically.
+
+## Volume Permissions
+
+The Compose file runs Posterizarr as UID/GID `1000`. Docker creates missing bind-mount directories as `root:root`, and Posterizarr then fails with `Permission denied: '/config/database'`. Create the data directories before the first start:
+
+```sh
+mkdir -p posterizarr-data/config posterizarr-data/assets posterizarr-data/assetsbackup posterizarr-data/manualassets
+sudo chown -R 1000:1000 posterizarr-data
+```

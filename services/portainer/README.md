@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Portainer](https://github.com/portain
 
 ## Configuration Overview
 
-In this setup, the `tailscale-portainer` service runs Tailscale, which manages secure networking for the Portainer service. The `portainer` service uses the Tailscale network stack via Docker’s `network_mode: service:` configuration. This setup ensures that Portainer’s management interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for managing your Docker environments.
+In this setup, the `tailscale-portainer` service runs Tailscale, which manages secure networking for the Portainer service. The `portainer` service uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that Portainer’s management interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for managing your Docker environments.

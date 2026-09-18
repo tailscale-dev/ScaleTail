@@ -15,4 +15,13 @@ By combining DDNS Updater with Tailscale, you can securely manage your dynamic D
 
 ## Configuration Overview
 
-In this setup, the `tailscale-ddns-updater` service runs Tailscale, providing a secure networking layer for the DDNS Updater service. The `ddns-updater` service utilizes Docker's `network_mode: service:` configuration to route all traffic through the Tailscale network. This setup ensures that the DDNS Updater's web interface and API are only accessible within your private Tailnet, adding an extra layer of security to your DNS management.
+In this setup, the `tailscale-ddns-updater` service runs Tailscale, providing a secure networking layer for the DDNS Updater service. The `ddns-updater` service utilizes Docker's `network_mode: service:tailscale` configuration to route all traffic through the Tailscale network. This setup ensures that the DDNS Updater's web interface and API are only accessible within your private Tailnet, adding an extra layer of security to your DNS management.
+
+## Volume Permissions
+
+The DDNS Updater image runs as UID `1000`. Docker creates missing bind-mount directories as `root:root`, and DDNS Updater then exits with `permission denied` when it writes `config.json`. Create the data directory before the first start:
+
+```sh
+mkdir -p ddns-updater-data/data
+sudo chown -R 1000:1000 ddns-updater-data
+```

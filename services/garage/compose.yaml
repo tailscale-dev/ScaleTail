@@ -1,10 +1,16 @@
 configs:
   ts-serve:
     content: |
-      {"TCP":{"443":{"HTTPS":true}},
+      {"TCP":{"443":{"HTTPS":true},"3902":{"HTTPS":true},"3903":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:80"}}}},
+          {"Proxy":"http://127.0.0.1:3900"}}},
+        "$${TS_CERT_DOMAIN}:3902":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:3902"}}},
+        "$${TS_CERT_DOMAIN}:3903":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:3903"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -49,33 +55,26 @@ services:
 
   # ${SERVICE}
   application:
-    image: ${IMAGE_URL}
-    container_name: app-${SERVICE}-hbbs # Name for local container management
+    image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-    command: hbbs
-    volumes:
-      -  ./${SERVICE}-data/hbbs:/root
-    environment:
-      - PUID=1000
-      - PGID=1000
+    container_name: app-${SERVICE} # Name for local container management
+    environment: # Variables are delared in .env file.
       - TZ=${TZ}
-      - ALWAYS_USE_RELAY=${ALWAYS_USE_RELAY}
+      - GARAGE_RPC_SECRET=${GARAGE_RPC_SECRET}
+      - GARAGE_ADMIN_TOKEN=${GARAGE_ADMIN_TOKEN}
+      - GARAGE_METRICS_TOKEN=${GARAGE_METRICS_TOKEN}
+     #- EXAMPLE_VAR=${EXAMPLE_VAR}
+    volumes:
+      - ./garage.toml:/etc/garage.toml
+      - ./${SERVICE}-data/data:/var/lib/garage/data
+      - ./${SERVICE}-data/meta:/var/lib/garage/meta
     depends_on:
       tailscale:
         condition: service_healthy
-      hbbr: 
-        condition: service_started
-    restart: always
-
-  hbbr:
-    image: ${IMAGE_URL}
-    container_name: app-${SERVICE}-hbbr # Name for local container management
-    command: hbbr
-    volumes:
-      -  ./${SERVICE}-data/hbbr:/root
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=${TZ}
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    healthcheck:
+      test: ["CMD", "/garage", "status"] # Check that the Garage node responds over RPC
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always

@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -18,11 +18,12 @@ services:
     environment:
       - TS_AUTHKEY=${TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_SERVE_CONFIG=/config/serve.json # Tailsacale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
+      - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      - TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
+      - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
         target: /config/serve.json
@@ -34,8 +35,8 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -43,12 +44,13 @@ services:
       retries: 3 # Number of retries before marking as unhealthy
       start_period: 10s # Time to wait before starting health checks
     restart: always
-  # ${SERVICE}
+  # Application
   netbox: &netbox
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: ${SERVICE} # Name for local container management
     environment:
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}
       - TZ=${TZ}
     volumes:
       - ./config:/etc/netbox/config:z,ro
@@ -56,19 +58,21 @@ services:
       - ./${SERVICE}/reports:/opt/netbox/netbox/reports
       - ./${SERVICE}/scripts:/opt/netbox/netbox/scripts
     depends_on:
-        postgres:
-          condition: service_healthy
-        redis:
-          condition: service_healthy
-        redis-cache:
-          condition: service_healthy
+      tailscale:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      redis-cache:
+        condition: service_healthy
     healthcheck:
-      test: curl -f http://localhost:8080/login/ || exit 1
-      start_period: 90s
+      test: curl -f http://localhost:8080/login/ || exit 1 # Check if the service is responding
+      start_period: 600s # The first start runs database migrations that can take several minutes, longer on slow hosts
       timeout: 3s
       interval: 15s
     restart: always
-    env_file: /.env
+    env_file: ./.env
   netbox-worker:
     <<: *netbox
     container_name: worker-${SERVICE} # Name for local container management
@@ -88,15 +92,16 @@ services:
   postgres:
     image: docker.io/postgres:17-alpine
     container_name: ${SERVICE}-postgres
-    env_file: /.env
+    env_file: ./.env
     healthcheck:
-      test: pg_isready -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER
+      test: pg_isready -h 127.0.0.1 -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER # Check if PostgreSQL accepts connections
       start_period: 20s
       timeout: 30s
       interval: 10s
       retries: 5
     volumes:
       - ./${SERVICE}/postgres/data:/var/lib/postgresql/data
+    restart: always
 
   # redis
   redis:
@@ -115,6 +120,7 @@ services:
       retries: 5
     volumes:
       - ./${SERVICE}/redis/data:/data
+    restart: always
   redis-cache:
     container_name: ${SERVICE}-rediscache
     image: docker.io/valkey/valkey:8.1-alpine
@@ -126,3 +132,4 @@ services:
     healthcheck: *redis-healthcheck
     volumes:
       - ./${SERVICE}/redis/cache:/data
+    restart: always

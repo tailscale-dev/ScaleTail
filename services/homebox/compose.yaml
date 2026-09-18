@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,9 +35,9 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
+    #dns:
     #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
@@ -47,25 +47,20 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     user: "65532:65532"
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=${TZ}
+      - HBOX_AUTH_API_KEY_PEPPER=${HBOX_AUTH_API_KEY_PEPPER:?Set HBOX_AUTH_API_KEY_PEPPER in .env}
     volumes:
       - ./${SERVICE}-data:/data
     depends_on:
       tailscale:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "pgrep", "-f", "api"] # Check if ${SERVICE} process is running
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
+    # Healthcheck: defined by the image (wget against /api/v1/status), so this file does not override it.
     restart: always

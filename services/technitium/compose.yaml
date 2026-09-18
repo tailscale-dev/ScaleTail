@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -54,10 +54,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - DNS_SERVER_DOMAIN=${SERVICE}.local #The primary domain name used by this DNS Server to identify itself.
@@ -80,13 +80,14 @@ services:
       - DNS_SERVER_FORWARDERS=${DNS_SERVER1},${DNS_SERVER2} #Comma separated list of forwarder addresses.
       # - DNS_SERVER_FORWARDER_PROTOCOL=Tcp #Forwarder protocol options: Udp, Tcp, Tls, Https, HttpsJson.
       # - DNS_SERVER_LOG_USING_LOCAL_TIME=true #Enable this option to use local time instead of UTC for logging.
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/app/config:/config
     depends_on:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:5380/"] # Check if the service is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

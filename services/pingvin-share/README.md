@@ -10,4 +10,4 @@ This Docker Compose configuration sets up [Pingvin Share](https://github.com/sto
 
 ## Configuration Overview
 
-In this setup, the `tailscale-pingvin` service runs Tailscale, which manages secure networking for the Pingvin Share service. The `pingvin-share` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Pingvin Share’s web interface and file-sharing capabilities are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted file-sharing needs.
+In this setup, the `tailscale-pingvin` service runs Tailscale, which manages secure networking for the Pingvin Share service. The `pingvin-share` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Pingvin Share’s web interface and file-sharing capabilities are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted file-sharing needs.

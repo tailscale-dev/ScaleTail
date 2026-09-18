@@ -16,4 +16,4 @@ This Docker Compose configuration sets up [Gotify](https://github.com/gotify/ser
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-gotify` service runs the Tailscale client to establish a secure private network. The `gotify` container uses `network_mode: service:tailscale-gotify` to route its traffic through the Tailscale interface. This ensures that the Gotify web UI and backend services are only reachable via your Tailscale network, keeping your notifications safe from public exposure.
+In this deployment, the `tailscale-gotify` service runs the Tailscale client to establish a secure private network. The `gotify` container uses `network_mode: service:tailscale` to route its traffic through the Tailscale interface. This ensures that the Gotify web UI and backend services are only reachable via your Tailscale network, keeping your notifications safe from public exposure.

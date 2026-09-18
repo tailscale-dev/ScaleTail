@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Vaultwarden](https://github.com/dani-
 
 ## Configuration Overview
 
-In this setup, the `tailscale-vaultwarden` service runs Tailscale, which manages secure networking for the Vaultwarden service. The `vaultwarden` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that Vaultwarden’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted password manager.
+In this setup, the `tailscale-vaultwarden` service runs Tailscale, which manages secure networking for the Vaultwarden service. The `vaultwarden` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Vaultwarden’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted password manager.

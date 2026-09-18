@@ -8,4 +8,16 @@ This Docker Compose configuration sets up [Traefik](https://github.com/traefik/t
 
 ## Configuration Overview
 
-In this setup, the `tailscale-traefik` service runs Tailscale, which manages secure networking for the Traefik service. The `traefik` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Traefik’s dashboard and routing functionalities are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of privacy and security to your network architecture.
+In this setup, the `tailscale-traefik` service runs Tailscale, which manages secure networking for Traefik. The `traefik_proxy` service uses Docker's `network_mode: service:tailscale` configuration. Traefik reads its static configuration from the `command:` flags in `compose.yaml`. Traefik ignores these flags when it finds a static configuration file, so edit the flags instead of adding a `traefik.yml` file.
+
+The Traefik health check calls the ping endpoint, so keep the `--ping=true` flag. Traefik routes only to containers that Docker reports as healthy. The `simpleweb` sample therefore becomes reachable only after its first health check passes.
+
+## Tailnet Access
+
+Tailscale Serve listens on port 443 of the Tailnet address, terminates HTTPS, and forwards requests to Traefik's `web` entrypoint on port 80. Do not add a Traefik entrypoint on port 443. Traefik shares the network of the Tailscale container, so the port is already in use. Traefik then exits, and the container restarts in a loop.
+
+Requests through the Tailnet arrive with the host name `<SERVICE>.<tailnet>.ts.net`. The sample routers match `traefik.domain.local` and `simpleweb.domain.local`, so Traefik answers `404` over the Tailnet. Change a `Host()` rule to the Tailnet name to reach that router through Tailscale Serve.
+
+## Troubleshooting
+
+Traefik writes its log to `./${SERVICE}-data/log/traefik.log`, so `docker logs app-traefik` stays empty. Read that file when the container restarts or a router does not work.

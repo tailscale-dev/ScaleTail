@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-  # Make sure you have updated/checked the .env file with the correct variables. 
-  # All the ${ xx } need to be defined there.
+  # Make sure you have updated/checked the .env file with the correct variables.
+  # Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,10 +35,10 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz" ] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,12 +47,14 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable} # Image to be used
     container_name: app-${SERVICE} # Name for local container management
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     depends_on:
+      tailscale:
+        condition: service_healthy
       redis:
         condition: service_healthy
       postgres:
@@ -66,27 +68,34 @@ services:
     env_file:
       - .env
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
-      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${postgres:-affine}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3010/info').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"] # Check if the service is responding; the image has no wget or curl
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
 
   affine_migration:
     image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable} # Image to be used
-    container_name: affine_migration_job # Name for local container management
+    container_name: app-${SERVICE}-migration # Name for local container management
     volumes:
       # custom configurations
       - ./${SERVICE}-storage:/root/.affine/storage
       - ./${SERVICE}-config:/root/.affine/config
     command: [ 'sh', '-c', 'node ./scripts/self-host-predeploy.js' ]
+    # Healthcheck: none needed. The migration job runs once and exits before AFFiNE starts.
     env_file:
       - .env
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
-      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${postgres:-affine}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     depends_on:
@@ -97,9 +106,9 @@ services:
 
   redis:
     image: redis # Image to be used
-    container_name: affine_redis # Name for local container management
+    container_name: app-${SERVICE}-redis # Name for local container management
     healthcheck:
-      test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if redis process is running
+      test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if Redis responds
       interval: 10s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy
@@ -107,22 +116,23 @@ services:
 
   postgres:
     image: pgvector/pgvector:pg16 # Image to be used
-    container_name: affine_postgres # Name for local container management
+    container_name: app-${SERVICE}-postgres # Name for local container management
     volumes:
       - ./postgres:/var/lib/postgresql/data
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${postgres:-affine}
+      POSTGRES_DB: ${DB_DATABASE:-affine}
       POSTGRES_INITDB_ARGS: '--data-checksums'
       # you better set a password for you database
       # or you may add 'POSTGRES_HOST_AUTH_METHOD=trust' to ignore postgres security policy
       POSTGRES_HOST_AUTH_METHOD: trust
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     healthcheck:
-      test: [ 'CMD', 'pg_isready', '-U', "${DB_USERNAME}", '-d', "${postgres:-affine}" ] # Check if postgres process is running
+      test: [ 'CMD', 'pg_isready', '-h', '127.0.0.1', '-U', "${DB_USERNAME}", '-d', "${DB_DATABASE:-affine}" ] # Check if PostgreSQL accepts connections
       interval: 15s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always

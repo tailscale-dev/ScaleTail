@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[Haptic](https://github.com/chroxify
 
 ## Configuration Overview  
 
-In this setup, the `tailscale-haptic` service runs Tailscale, which manages secure networking for the Haptic service. The `haptic` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Haptic’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing your bookmarks.
+In this setup, the `tailscale-haptic` service runs Tailscale, which manages secure networking for the Haptic service. The `haptic` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Haptic’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing your bookmarks.

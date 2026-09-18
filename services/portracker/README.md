@@ -19,4 +19,4 @@ With Tailscale in place, all of these features are securely tunneled through you
 
 ## Configuration Overview
 
-In this setup, the `tailscale-portracker` service runs Tailscale, which handles the secure networking layer. The `portracker` service uses Docker’s `network_mode: service:` setting to share the network stack of the Tailscale container. This means the Portracker web interface and all monitoring functionality are only accessible via the Tailscale network (or locally if preferred), adding a strong privacy layer to your self-hosted port tracker.
+In this setup, the `tailscale-portracker` service runs Tailscale, which handles the secure networking layer. The `portracker` service uses Docker’s `network_mode: service:tailscale` setting to share the network stack of the Tailscale container. This means the Portracker web interface and all monitoring functionality are only accessible via the Tailscale network (or locally if preferred), adding a strong privacy layer to your self-hosted port tracker.

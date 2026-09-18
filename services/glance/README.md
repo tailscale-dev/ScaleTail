@@ -10,4 +10,4 @@ To install Glance properly, make sure to add the files glance.yml and home.yml t
 
 ## Configuration Overview
 
-In this setup, the `tailscale-glance` service runs Tailscale, which provides secure networking for the Glance service. The `glance` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that the Glance dashboard is only accessible through the Tailscale network (or locally, if desired), adding a robust layer of privacy and security to your self-hosted monitoring setup.
+In this setup, the `tailscale-glance` service runs Tailscale, which provides secure networking for the Glance service. The `glance` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that the Glance dashboard is only accessible through the Tailscale network (or locally, if desired), adding a robust layer of privacy and security to your self-hosted monitoring setup.

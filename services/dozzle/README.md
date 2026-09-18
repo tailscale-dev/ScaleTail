@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Dozzle](https://github.com/amir20/doz
 
 ## Configuration Overview
 
-In this setup, the `tailscale-dozzle` service runs Tailscale, which manages secure networking for the Dozzle service. The `dozzle` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that Dozzle’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted log viewer.
+In this setup, the `tailscale-dozzle` service runs Tailscale, which manages secure networking for the Dozzle service. The `dozzle` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Dozzle’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted log viewer.

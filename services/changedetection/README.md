@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [ChangeDetection.io](https://github.co
 
 ## Configuration Overview
 
-In this setup, the `tailscale-changedetection` service runs Tailscale, which manages secure networking for the ChangeDetection.io service. The `changedetection` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that ChangeDetection.io’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your website monitoring setup.
+In this setup, the `tailscale-changedetection` service runs Tailscale, which manages secure networking for the ChangeDetection.io service. The `changedetection` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that ChangeDetection.io’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your website monitoring setup.

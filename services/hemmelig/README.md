@@ -25,7 +25,7 @@ While a public SaaS instance of Hemmelig (e.g., hemmelig.app) exists, **self-hos
 In this deployment, a **Tailscale sidecar container** (e.g., `tailscale-hemmelig`) runs the Tailscale client and joins your private Tailscale network. The main `hemmelig` service uses:
 
 ```plain
-network_mode: service:tailscale-hemmelig
+network_mode: service:tailscale
 ```
 
 This effectively **routes all traffic through the Tailscale network interface**, making the app private and unreachable from the public Internet while still accessible to any device on your Tailscale network. Remote team members can securely access the Hemmelig web UI, API, and encryption features over Tailscale without exposing the app publicly.

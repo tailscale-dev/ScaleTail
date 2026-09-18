@@ -8,4 +8,14 @@ This Docker Compose configuration sets up [Homarr](https://github.com/ajnart/hom
 
 ## Configuration Overview
 
-In this setup, the tailscale-homarr service runs Tailscale, which manages secure networking for the Homarr service. The homarr service uses the Tailscale network stack via Docker's network_mode: service: configuration. This setup ensures that Homarr’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted dashboard.
+In this setup, the tailscale-homarr service runs Tailscale, which manages secure networking for the Homarr service. The homarr service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Homarr’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted dashboard.
+
+## Files to check
+
+Please check the following contents for validity as some variables need to be defined upfront.
+
+- `.env`
+  - Required: `TS_AUTHKEY`
+  - Required: `SECRET_ENCRYPTION_KEY`, a 64-character hex key. Generate it with `openssl rand -hex 32`. Compose stops with an error if it is empty.
+
+If you previously set `SECRET_ENCRYPTION_KEY` in `compose.yaml`, move that value to `.env`. A new key cannot decrypt the integration secrets that Homarr already stored.

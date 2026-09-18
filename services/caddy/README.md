@@ -8,14 +8,16 @@ This Docker Compose configuration sets up [Caddy](https://github.com/caddyserver
 
 ## Configuration Overview
 
-In this setup, the `tailscale-caddy` service runs Tailscale, which manages secure networking for the Caddy service. The `caddy_proxy` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Caddy’s dashboard and routing functionalities are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of privacy and security to your network architecture.
+In this setup, the `tailscale-caddy` service runs Tailscale, which manages secure networking for Caddy. The `application` service uses Docker's `network_mode: service:tailscale` configuration. This keeps Caddy's dashboard and routes on your Tailnet unless you publish a host port.
 
 To get this working:
 
 - Update the FQDN in `Caddyfile` to match your `${SERVICE}.MagicDNSname.ts.net`.
 - Update the TS_AUTHKEY in the .env file to your Tailscale key.
 
-If you change the `SERVICE=caddy` line in the .env file, the hostname of the FQDN in the Caddyfile must be updated as well. Additionally please replace $SERVICE in compose.yaml services:caddy_proxy:healthcheck with the string caddy.
+If you change `SERVICE` in `.env`, update the hostname in `Caddyfile` as well. The healthcheck calls Caddy's admin API on `127.0.0.1:2019`, so it does not depend on the hostname.
+
+Both containers mount the Tailscale socket directory. Caddy only uses the socket to get HTTPS certificates, which the sample `http://` site address does not request (see below). Sharing the directory instead of the socket file lets Caddy use the new socket after Tailscale restarts.
 
 The example `compose.yaml` uses a simple webserver for testing purposes.
 

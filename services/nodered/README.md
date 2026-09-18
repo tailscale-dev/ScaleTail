@@ -8,4 +8,13 @@ This Docker Compose configuration sets up [Node-RED](https://github.com/node-red
 
 ## Configuration Overview
 
-In this setup, the `tailscale-node-red` service runs Tailscale, which manages secure networking for the Node-RED service. The `node-red` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Node-RED’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your flow-based programming environment.
+In this setup, the `tailscale-node-red` service runs Tailscale, which manages secure networking for the Node-RED service. The `node-red` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Node-RED’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your flow-based programming environment.
+
+## Volume Permissions
+
+The Node-RED image runs as UID/GID `1000`. Docker creates missing bind-mount directories as `root:root`, and Node-RED then exits with `EACCES` when it copies `settings.js` into `/data`. Create the data directory before the first start:
+
+```sh
+mkdir -p nodered-data/app/config
+sudo chown -R 1000:1000 nodered-data
+```

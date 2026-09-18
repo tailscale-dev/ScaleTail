@@ -8,13 +8,13 @@ This Docker Compose configuration sets up [Open WebUI](https://openwebui.com/) w
 
 ## Configuration Overview
 
-In this setup, the `tailscale-open-webui` service runs Tailscale, which manages secure networking for Open WebUI. The `open-webui` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+In this setup, the `tailscale-open-webui` service runs Tailscale, which manages secure networking for Open WebUI. The `open-webui` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
 
 ## What to document for users
 
 - **Prerequisites**: Docker and Docker Compose installed. No special group membership, GPU, or devices required for CPU-only inference. A Tailscale account with an auth key from <https://tailscale.com/admin/authkeys>.
 - **Volumes**: Pre-create `./open-webui-data` before deploying to avoid Docker creating a root-owned directory: `mkdir -p ./open-webui-data ./config ./ts/state`
-- **MagicDNS/Serve**: Enable MagicDNS and HTTPS in your Tailscale admin console before deploying. The serve config proxies to port `8080` — this is hardcoded in the `configs` block and does not consume `.env` values. Uncomment `TS_ACCEPT_DNS=true` in `compose.yaml` if DNS resolution issues arise.
+- **MagicDNS/Serve**: Enable MagicDNS and HTTPS in your Tailscale admin console before deploying. The serve config proxies to port `8080` — this is hardcoded in the `configs` block and does not consume `.env` values. Uncomment `TS_ACCEPT_DNS=true` in `compose.yaml` only if Open WebUI itself must resolve MagicDNS names, such as an Ollama instance addressed by its Tailnet name.
 - **Ollama**: Set `OLLAMA_BASE_URL` in `.env` to point at your Ollama instance. Options:
   - Same Docker host: `http://host.docker.internal:11434`
   - LAN machine: `http://<local-ip>:11434` (use the private IP of the machine running Ollama)

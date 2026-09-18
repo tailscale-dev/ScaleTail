@@ -35,11 +35,40 @@ Thanks for helping improve these Tailscale sidecar examples.
    port you expose. Remove the Serve configuration when the service does not use
    Tailscale Serve.
 
-5. Add a health check that the application image can run.
+5. Configure the application's health check.
 
-   Prefer an application endpoint or an upstream health command. Remove the
-   application health check when no reliable check exists. Keep the Tailscale
-   health check.
+   Use the first option that the image supports. The template lists the same
+   options in the same order.
+
+   1. When the image defines its own `HEALTHCHECK`, omit the block and add a
+      `# Healthcheck: defined by the image (...)` comment that names the
+      command or what it checks. Override the image's check only when it does
+      not work with the stack, and say why in a comment.
+   2. Call an application endpoint with a client that ships with the image.
+   3. Run a health command that ships with the image.
+   4. Check a fixed process name with `pidof` or `pgrep -x`, when the
+      container has no endpoint or the image has no HTTP client. `pgrep -x`
+      matches at most 15 characters of the process name. When the process
+      name is generic, such as `python`, use `pgrep -f` with a fixed pattern.
+   5. When the image has no shell, HTTP client, or health command, no check
+      is possible. Omit the block and add a `# Healthcheck: none possible ...`
+      comment that names the reason.
+
+   Run the command inside the running container before you commit it. Avoid
+   `pgrep -f ${SERVICE}`, which breaks when `SERVICE` is renamed.
+
+   A container that runs once and exits needs no check. Omit the block and
+   add a `# Healthcheck: none needed ...` comment that names the reason.
+
+   For a database, connect over TCP, for example with
+   `pg_isready -h 127.0.0.1` or `mariadb-admin ping -h 127.0.0.1`. During the
+   first start, the image runs a temporary server that accepts only socket
+   connections, so a socket check reports ready too early. When another
+   service depends on the database, wait with `condition: service_healthy`.
+   A database image's own `HEALTHCHECK` still comes first. When that check
+   connects over the socket, say so in the comment.
+
+   Keep the Tailscale health check.
 
 6. Complete the service README.
 

@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Resilio Sync](https://github.com/linu
 
 ## Configuration Overview
 
-In this setup, the `tailscale-resilio-sync` service runs Tailscale, which manages secure networking for the Resilio Sync service. The `resilio-sync` service uses the Tailscale network stack via Docker’s `network_mode: service:` configuration. This setup ensures that Resilio Sync is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your file synchronization and sharing tasks.
+In this setup, the `tailscale-resilio-sync` service runs Tailscale, which manages secure networking for the Resilio Sync service. The `resilio-sync` service uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that Resilio Sync is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your file synchronization and sharing tasks.

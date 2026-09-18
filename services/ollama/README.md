@@ -42,9 +42,10 @@ If you don't use a shared proxy network, remove the `networks:` sections from `c
 
 Tailscale Serve is pre-configured to proxy HTTPS on port 443 to Ollama's internal port 11434. To enable it:
 
-1. Uncomment `TS_ACCEPT_DNS=true` in the `tailscale` service environment.
-2. Ensure your Tailnet has MagicDNS and HTTPS certificates enabled in the [Tailscale admin console](https://login.tailscale.com/admin/dns).
-3. The `serve.json` config in `compose.yaml` uses `$TS_CERT_DOMAIN` automatically — no manual editing needed.
+1. Ensure your Tailnet has MagicDNS and HTTPS certificates enabled in the [Tailscale admin console](https://login.tailscale.com/admin/dns).
+2. The `serve.json` config in `compose.yaml` uses `$TS_CERT_DOMAIN` automatically — no manual editing needed.
+
+Serve does not need `TS_ACCEPT_DNS=true`. Uncomment it only if the Ollama container itself must resolve MagicDNS names.
 
 You can then reach Ollama at `https://ollama.<your-tailnet-name>.ts.net`.
 

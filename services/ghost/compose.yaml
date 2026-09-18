@@ -4,12 +4,12 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:80"}}}},
+          {"Proxy":"http://127.0.0.1:2368"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,9 +35,9 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:2368 # Binding the host port to Ghost's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
+    #dns:
     #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
@@ -47,10 +47,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
       # see https://ghost.org/docs/config/#configuration-options
@@ -59,10 +59,10 @@ services:
       database__connection__user: root
       database__connection__password: example
       database__connection__database: ghost
-      
+
       # this url value is just an example, and is likely wrong for your environment!
-      url: http://localhost:8080
-      
+      url: ${GHOST_URL}
+
       # contrary to the default mentioned in the linked documentation, this image defaults to NODE_ENV=production (so development mode needs to be explicitly specified if desired)
       #NODE_ENV: development
     volumes:
@@ -71,8 +71,10 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+      db:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "node"] # Check if ${SERVICE} process is running
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--header", "X-Forwarded-Proto: https", "http://127.0.0.1:2368/ghost/api/admin/site/"] # Check if the service is responding; the header avoids the redirect to the https url
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -86,4 +88,10 @@ services:
       MYSQL_ROOT_PASSWORD: example
     volumes:
       - ./${SERVICE}-data/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"] # Check if MySQL accepts connections
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always

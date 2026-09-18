@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[Nanote](https://github.com/omarmir/
 
 ## Configuration Overview  
 
-In this setup, the `tailscale-nanote` service runs Tailscale, which manages secure networking for the Nanote service. The `nanote` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Nanote’s web interface and note storage are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your note-taking workflow.
+In this setup, the `tailscale-nanote` service runs Tailscale, which manages secure networking for the Nanote service. The `nanote` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Nanote’s web interface and note storage are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your note-taking workflow.

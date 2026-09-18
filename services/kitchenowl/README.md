@@ -21,7 +21,7 @@ Kitchenowl is useful for families, housemates, and home labs that want a private
 
 ## Tailscale Integration
 
-This setup uses a **Tailscale sidecar container** to provide secure private networking for Kitchenowl. The Kitchenowl container shares the Tailscale container's network stack using Docker's `network_mode: service:<tailscale-service-name>` pattern.
+This setup uses a **Tailscale sidecar container** to provide secure private networking for Kitchenowl. The Kitchenowl container shares the Tailscale container's network stack using Docker's `network_mode: service:tailscale` pattern.
 
 Because of this, Kitchenowl does not need to publish ports directly to the host. Instead, you access the web interface through the Tailscale hostname or Tailnet IP assigned to the sidecar. This keeps the service private, reduces exposure, and avoids the need for public DNS, inbound firewall rules, or a public reverse proxy.
 

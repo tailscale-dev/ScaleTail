@@ -9,7 +9,7 @@ configs:
 
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,7 +35,7 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns:
     #  - ${DNS_SERVER}
@@ -47,7 +47,7 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   database:
     image: mariadb:12.2
     container_name: db-${SERVICE}
@@ -60,14 +60,14 @@ services:
       - ./${SERVICE}-db:/var/lib/mysql
     restart: always
     healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"] # Check if MariaDB accepts TCP connections and InnoDB is initialized
       interval: 1m
       start_period: 30s
       timeout: 10s
       retries: 3
   application:
     image: ${IMAGE_URL}
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}
     environment:
       - ESPOCRM_DATABASE_PLATFORM=${ESPOCRM_DATABASE_PLATFORM}
@@ -78,11 +78,20 @@ services:
       - ESPOCRM_ADMIN_PASSWORD=${ESPOCRM_ADMIN_PASSWORD}
       - ESPOCRM_SITE_URL=${ESPOCRM_SITE_URL}
       - ESPOCRM_DEFAULT_CURRENCY=${ESPOCRM_DEFAULT_CURRENCY}
-    volumes:
-      - ./${SERVICE}-data:/var/www/html
+      - TZ=${TZ}
+    volumes: # EspoCRM 10 and later only need these directories mounted, not all of /var/www/html.
+      - ./${SERVICE}-data/data:/var/www/html/data
+      - ./${SERVICE}-data/custom:/var/www/html/custom
+      - ./${SERVICE}-data/client/custom:/var/www/html/client/custom
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:80/"] # Check if the service is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     depends_on:
       tailscale:
         condition: service_healthy
       database:
-        condition: service_started
+        condition: service_healthy

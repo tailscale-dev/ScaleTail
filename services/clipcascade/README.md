@@ -15,4 +15,4 @@ This Docker Compose configuration sets up [ClipCascade](https://github.com/Sathv
 
 ## Configuration Overview
 
-In this setup, the `tailscale-clipcascade` service runs Tailscale, which manages secure networking for the ClipCascade service. The `clipcascade` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that ClipCascade’s web interface and functionality are only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for managing your clipboard history.
+In this setup, the `tailscale-clipcascade` service runs Tailscale, which manages secure networking for the ClipCascade service. The `clipcascade` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that ClipCascade’s web interface and functionality are only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for managing your clipboard history.

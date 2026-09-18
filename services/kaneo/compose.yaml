@@ -10,8 +10,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -24,7 +24,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -37,9 +37,9 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
+    #dns:
     #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
@@ -49,10 +49,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE} - DB
+  # Database
   postgres:
     image: ${IMAGE_URL_DATABASE} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-postgres # Name for local container management
     env_file:
       - .env
@@ -63,17 +63,17 @@ services:
     volumes:
       - ./${SERVICE}-data/postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME} -d ${DB_DATABASE_NAME}"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U ${DB_USERNAME} -d ${DB_DATABASE_NAME}"] # Check if PostgreSQL accepts connections
       interval: 10s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy
       start_period: 30s # Time to wait before starting health checks
-    restart: unless-stopped
+    restart: always
 
-  # ${SERVICE} - Backend (API)
+  # Backend (API)
   backend:
     image: ${IMAGE_URL_BACKEND} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-backend # Name for local container management
     env_file:
       - .env
@@ -84,12 +84,13 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    restart: unless-stopped
+    # Healthcheck: defined by the image (wget against /api/health), so this file does not override it.
+    restart: always
 
-  # ${SERVICE} - Frontend (Web)
+  # Frontend (Web)
   frontend:
     image: ${IMAGE_URL_FRONTEND} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-frontend # Name for local container management
     env_file:
       - .env
@@ -98,7 +99,13 @@ services:
         condition: service_healthy
       backend:
         condition: service_started
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:5173/"] # Check if the service is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always
 
 volumes:
   postgres_data:

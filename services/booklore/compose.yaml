@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -35,10 +35,10 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:6060 # Binding the host port to BookLore's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,32 +47,37 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - PUID=1000
       - PGID=1000
       - DATABASE_URL=jdbc:mariadb://mariadb:3306/booklore   # Only modify this if you're familiar with JDBC and your database setup
       - DATABASE_USERNAME=${MYSQL_USER}                          # Must match MYSQL_USER defined in the mariadb container
-      - DATABASE_PASSWORD=${MYSQL_PASSWORD}               #  Use a strong password; must match MYSQL_PASSWORD defined in the mariadb container 
+      - DATABASE_PASSWORD=${MYSQL_PASSWORD}               #  Use a strong password; must match MYSQL_PASSWORD defined in the mariadb container
       - SWAGGER_ENABLED=false                               # Swagger UI (API docs).
-#    ports:
-#      - "6060:6060"
+      - TZ=${TZ}
     volumes:
       - ./data:/app/data
       - ./books:/books1       # Book library folder — point to one of your collections
     depends_on:
       mariadb:
-        condition: service_healthy    
+        condition: service_healthy
       tailscale:
         condition: service_healthy
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:6060/api/v1/healthcheck"] # Check if the service is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 60s # Time to wait before starting health checks
+    restart: always
   mariadb:
     image: lscr.io/linuxserver/mariadb:11.4.5
-    container_name: mariadb
+    container_name: app-${SERVICE}-mariadb
     environment:
       - PUID=1000
       - PGID=1000
@@ -82,9 +87,10 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}        # Use a strong password; must match DATABASE_PASSWORD defined in the booklore container
     volumes:
       - ./mariadb_config:/config
-    restart: unless-stopped
+    restart: always
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1"] # Check if MariaDB accepts TCP connections; localhost would use the Unix socket
       interval: 5s
       timeout: 5s
       retries: 10
+      start_period: 30s

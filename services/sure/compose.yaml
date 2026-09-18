@@ -9,7 +9,7 @@ configs:
 
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -51,7 +51,13 @@ services:
     network_mode: service:tailscale
     volumes:
       - ./app-storage:/rails/storage
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:3000/up"] # Check if the service is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-sure_user}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-sure_password}
@@ -68,6 +74,7 @@ services:
       - OIDC_CLIENT_ID=${OIDC_CLIENT_ID} # Optional: OIDC client ID for authentication. Required if OIDC_ISSUER is set.
       - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET} # Optional: OIDC client secret for authentication. Required if OIDC_ISSUER is set.
       - OIDC_REDIRECT_URI=${OIDC_REDIRECT_URI} # Optional: OIDC redirect URI for authentication. Required if OIDC_ISSUER is set.
+      - TZ=${TZ}
       # BINDING: "::"  # Uncomment for IPv6 dual-stack inside the container
     depends_on:
       tailscale:
@@ -84,7 +91,13 @@ services:
     command: bundle exec sidekiq
     volumes:
       - ./app-storage:/rails/storage
-    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "sidekiq"] # Check if the Sidekiq worker process is running
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always
     depends_on:
       tailscale:
         condition: service_healthy
@@ -104,11 +117,12 @@ services:
       - DB_PORT=${DB_PORT:-5432}
       - REDIS_URL=${REDIS_URL:-redis://172.28.0.11:6379/1}
       - OPENAI_ACCESS_TOKEN=${OPENAI_ACCESS_TOKEN} # NOTE: enabling OpenAI will incur costs when you use AI-related features in the app (chat, rules).  Make sure you have set appropriate spend limits on your account before adding this.
+      - TZ=${TZ}
 
   db:
     image: postgres:16
     container_name: app-${SERVICE}-db
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     environment:
@@ -116,10 +130,11 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-sure_password}
       - POSTGRES_DB=${POSTGRES_DB:-sure_production}
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      test: [ "CMD-SHELL", "pg_isready -h 127.0.0.1 -U $$POSTGRES_USER -d $$POSTGRES_DB" ] # Check if PostgreSQL accepts connections
       interval: 5s
       timeout: 5s
       retries: 5
+      start_period: 30s
     networks:
       sure_net:
         ipv4_address: 172.28.0.10
@@ -129,7 +144,8 @@ services:
       - backup
     image: prodrigestivill/postgres-backup-local
     container_name: app-${SERVICE}-backup
-    restart: unless-stopped
+    # Healthcheck: defined by the image (curl against the backup HTTP port), so this file does not override it.
+    restart: always
     volumes:
       - ./backups:/backups # Change this path to your desired backup location on the host machine
     environment:
@@ -142,18 +158,19 @@ services:
       - BACKUP_KEEP_WEEKS=${BACKUP_KEEP_WEEKS:-4}
       - BACKUP_KEEP_MONTHS=${BACKUP_KEEP_MONTHS:-6}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - sure_net
 
   redis:
     image: redis:latest
     container_name: app-${SERVICE}-redis
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./redis-data:/data
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: [ "CMD", "redis-cli", "ping" ] # Check if Redis responds
       interval: 5s
       timeout: 5s
       retries: 5

@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [ConvertX](https://github.com/C4illin/
 
 ## Configuration Overview
 
-In this setup, the `tailscale-convertx` service runs Tailscale, which manages secure networking for the ConvertX service. The `convertx` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that ConvertX’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your self-hosted media conversion workflow.
+In this setup, the `tailscale-convertx` service runs Tailscale, which manages secure networking for the ConvertX service. The `convertx` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that ConvertX’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your self-hosted media conversion workflow.

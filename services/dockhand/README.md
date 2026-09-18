@@ -30,7 +30,7 @@ Self-hosting Dockhand ensures that you maintain full ownership and operational c
 In this deployment, a Tailscale sidecar container (for example `tailscale-dockhand`) runs the Tailscale client and joins your private Tailscale network. The main `dockhand` service uses:
 
 ```plain
-network_mode: service:tailscale-dockhand
+network_mode: service:tailscale
 ```
 
 This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Dockhand web interface and Docker API interactions are accessible only via your Tailscale network.

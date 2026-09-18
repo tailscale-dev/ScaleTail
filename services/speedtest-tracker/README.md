@@ -15,4 +15,14 @@ This Docker Compose configuration sets up [Speedtest Tracker](https://github.com
 
 ## Configuration Overview
 
-In this setup, the `tailscale-speedtest` service runs Tailscale, which manages secure networking for the Speedtest Tracker service. The `speedtest-tracker` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Speedtest Tracker’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for your internet speed monitoring.
+In this setup, the `tailscale-speedtest` service runs Tailscale, which manages secure networking for the Speedtest Tracker service. The `speedtest-tracker` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Speedtest Tracker’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for your internet speed monitoring.
+
+## Files to check
+
+Please check the following contents for validity as some variables need to be defined upfront.
+
+- `.env`
+  - Required: `TS_AUTHKEY`
+  - Required: `APP_KEY`. Generate it with `echo "base64:$(openssl rand -base64 32)"`. Compose stops with an error if it is empty.
+
+If you previously set `APP_KEY` in `compose.yaml`, move that value to `.env`. A new key cannot decrypt data that Speedtest Tracker already encrypted.

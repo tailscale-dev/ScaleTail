@@ -10,7 +10,7 @@ Pairing ArtistTrackarr with Tailscale provides private access to its web interfa
 
 ## Configuration Overview
 
-In this setup, the `tailscale-artist-trackarr` service runs Tailscale and manages secure networking for ArtistTrackarr. The `artist-trackarr` service uses the Tailscale container's network stack through Docker's `network_mode: service:tailscale-artist-trackarr` configuration.
+In this setup, the `tailscale-artist-trackarr` service runs Tailscale and manages secure networking for ArtistTrackarr. The `artist-trackarr` service uses the Tailscale container's network stack through Docker's `network_mode: service:tailscale` configuration.
 
 ArtistTrackarr listens on port `8080`. Because both containers share the same network namespace, Tailscale Serve can forward traffic directly to `http://127.0.0.1:8080`.
 
