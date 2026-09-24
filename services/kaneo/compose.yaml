@@ -4,8 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{
-            "/api/":{"Proxy":"http://localhost:${SERVICEPORT_BACKEND}/api/"},
-            "/":{"Proxy":"http://localhost:${SERVICEPORT_FRONTEND}"}
+            "/":{"Proxy":"http://localhost:${SERVICEPORT}"}
           }}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
@@ -70,8 +69,8 @@ services:
       start_period: 30s # Time to wait before starting health checks
     restart: always
 
-  # Backend (API)
-  backend:
+  # Application
+  application:
     image: ${IMAGE_URL_BACKEND} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-backend # Name for local container management
@@ -84,21 +83,6 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    # Healthcheck: defined by the image (wget against /api/health), so this file does not override it.
-    restart: always
-
-  # Frontend (Web)
-  frontend:
-    image: ${IMAGE_URL_FRONTEND} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
-    container_name: app-${SERVICE}-frontend # Name for local container management
-    env_file:
-      - .env
-    depends_on:
-      tailscale:
-        condition: service_healthy
-      backend:
-        condition: service_started
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:5173/"] # Check if the service is responding
       interval: 1m # How often to perform the check
