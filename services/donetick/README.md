@@ -17,3 +17,10 @@ This Docker Compose configuration sets up **[Donetick](https://github.com/doneti
 ## Configuration Overview
 
 In this setup, the `tailscale-donetick` service runs Tailscale, which manages secure networking for the Donetick service. The `donetick` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Donetick’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing tasks and checklists.
+
+## Files to check
+
+Please check the following contents for validity as some variables need to be defined upfront.
+
+- `.env` // Main variable `TS_AUTHKEY`
+- `donetick-data/config/selfhosted.yaml` // Generate jwt secret with e.g. openssl rand -base64 32
