@@ -53,6 +53,8 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     depends_on:
+      tailscale:
+        condition: service_healthy
       redis:
         condition: service_healthy
       postgres:
@@ -75,7 +77,7 @@ services:
 
   affine_migration:
     image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable} # Image to be used
-    container_name: affine_migration_job # Name for local container management
+    container_name: app-${SERVICE}-migration # Name for local container management
     volumes:
       # custom configurations
       - ./${SERVICE}-storage:/root/.affine/storage
@@ -97,7 +99,7 @@ services:
 
   redis:
     image: redis # Image to be used
-    container_name: affine_redis # Name for local container management
+    container_name: app-${SERVICE}-redis # Name for local container management
     healthcheck:
       test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if redis process is running
       interval: 10s # How often to perform the check
@@ -107,7 +109,7 @@ services:
 
   postgres:
     image: pgvector/pgvector:pg16 # Image to be used
-    container_name: affine_postgres # Name for local container management
+    container_name: app-${SERVICE}-postgres # Name for local container management
     volumes:
       - ./postgres:/var/lib/postgresql/data
     environment:

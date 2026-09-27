@@ -53,4 +53,4 @@ services:
     #   timeout: 10s # Time to wait for the check to succeed
     #   retries: 3 # Number of retries before marking as unhealthy
     #   start_period: 30s # Time to wait before starting health checks
-    # restart: unless-stopped
+    restart: always # The default entrypoint keeps running and syncs on CRON_SCHEDULE.

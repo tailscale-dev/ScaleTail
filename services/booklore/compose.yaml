@@ -67,10 +67,10 @@ services:
         condition: service_healthy    
       tailscale:
         condition: service_healthy
-    restart: unless-stopped
+    restart: always
   mariadb:
     image: lscr.io/linuxserver/mariadb:11.4.5
-    container_name: mariadb
+    container_name: app-${SERVICE}-mariadb
     environment:
       - PUID=1000
       - PGID=1000
@@ -80,7 +80,7 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}        # Use a strong password; must match DATABASE_PASSWORD defined in the booklore container
     volumes:
       - ./mariadb_config:/config
-    restart: unless-stopped
+    restart: always
     healthcheck:
       test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
       interval: 5s

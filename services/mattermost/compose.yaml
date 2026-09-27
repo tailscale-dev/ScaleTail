@@ -81,8 +81,10 @@ services:
       - MM_SERVICESETTINGS_SITEURL
     restart: always
     depends_on:
-      - database
-      - tailscale
+      tailscale:
+        condition: service_healthy
+      database:
+        condition: service_started
 
   database:
     image: postgres:latest

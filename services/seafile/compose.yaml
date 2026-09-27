@@ -52,7 +52,7 @@ services:
   db:
     image: ${SEAFILE_DB_IMAGE:-mariadb:10.11}
     container_name: app-${SERVICE}-db
-    restart: unless-stopped
+    restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=${INIT_SEAFILE_MYSQL_ROOT_PASSWORD:-}
       - MYSQL_LOG_CONSOLE=true
@@ -77,14 +77,13 @@ services:
     image: ${SEAFILE_MEMCACHED_IMAGE:-memcached:1.6.29}
     container_name: app-${SERVICE}-memcached
     entrypoint: memcached -m 256
+    restart: always
 
   seafile:
     image: ${SEAFILE_IMAGE:-seafileltd/seafile-mc:13.0-latest}
     container_name: app-${SERVICE}
     network_mode: service:tailscale
-    restart: unless-stopped
-    #ports:
-    #- "80:80"
+    restart: always
     volumes:
       - ${SEAFILE_VOLUME:-/opt/seafile-data}:/shared
     environment:
@@ -129,6 +128,8 @@ services:
       retries: 3
       start_period: 10s
     depends_on:
+      tailscale:
+        condition: service_healthy
       db:
         condition: service_healthy
       memcached:
