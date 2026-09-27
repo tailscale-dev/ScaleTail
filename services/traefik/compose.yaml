@@ -60,7 +60,7 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/api/overview"] # Check if ${SERVICE} is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -95,3 +95,9 @@ services:
       - traefik.enable=true # Let Traefik route this sample container
       - traefik.http.routers.simpleweb.rule=Host(`simpleweb.domain.local`)
       - traefik.http.routers.simpleweb.entrypoints=web
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:80/"] # Check if the sample web server is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks

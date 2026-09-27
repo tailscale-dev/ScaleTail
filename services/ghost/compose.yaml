@@ -71,8 +71,10 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+      db:
+        condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "node"] # Check if ${SERVICE} process is running
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "--header", "X-Forwarded-Proto: https", "http://127.0.0.1:2368/ghost/api/admin/site/"] # Check if ${SERVICE} is responding; the header avoids the redirect to the https url
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -86,4 +88,10 @@ services:
       MYSQL_ROOT_PASSWORD: example
     volumes:
       - ./${SERVICE}-data/db:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"] # Check if MySQL accepts connections
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always

@@ -56,7 +56,7 @@ services:
       tailscale:
         condition: service_healthy
       db:
-        condition: service_started
+        condition: service_healthy
     environment: # Variables are declared in .env file.
       - XWIKI_VERSION=${XWIKI_VERSION}
       - DB_USER=${DB_USER}
@@ -65,6 +65,12 @@ services:
       - DB_HOST=db-${SERVICE}
     volumes:
       - ./${SERVICE}-data/xwiki:/usr/local/xwiki
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:8080/xwiki/rest/"] # Check if ${SERVICE} is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 120s # Time to wait before starting health checks
     restart: always
   db:
     image: "mariadb:12"
@@ -83,4 +89,10 @@ services:
       - "--character-set-server=utf8mb4"
       - "--collation-server=utf8mb4_bin"
       - "--explicit-defaults-for-timestamp=1"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"] # Check if MariaDB accepts connections
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always

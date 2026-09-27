@@ -84,11 +84,17 @@ services:
       tailscale:
         condition: service_healthy
       database:
-        condition: service_started
+        condition: service_healthy
 
   database:
     image: postgres:${POSTGRES_IMAGE_TAG} # PostgreSQL 18 images use a different data directory layout; keep a 17 or older tag for this mount
     container_name: db-${SERVICE}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"] # Check if PostgreSQL accepts connections
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     security_opt:
       - no-new-privileges:true
