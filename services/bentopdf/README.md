@@ -25,7 +25,9 @@ PDF files often contain sensitive personal or business information. Self-hosting
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-bentopdf`) runs the Tailscale client and joins your private Tailscale network. The main `bentopdf` service uses:
 
 ```plain
-network_mode: service:tailscale-bentopdf
+network_mode: service:tailscale
 ```
 
 This configuration routes all traffic through the Tailscale interface, ensuring that the BentoPDF web UI is accessible **only via your Tailscale network**. This provides a simple and secure way to access your PDF library from all trusted devices.
+
+BentoPDF listens on port `8080` inside the container. If you enable the optional host mapping, `SERVICEPORT` is the host port and maps to container port `8080`.

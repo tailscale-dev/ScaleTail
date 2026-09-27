@@ -16,4 +16,6 @@ This Docker Compose configuration sets up **[Ghost](https://github.com/TryGhost/
 
 ## Configuration Overview  
 
-In this setup, the `tailscale-ghost` service runs Tailscale, which manages secure networking for the Ghost service. The `ghost` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Ghost’s web interface and publishing tools are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your publishing workflow.
+In this setup, the `tailscale-ghost` service runs Tailscale, which manages secure networking for the Ghost service. The `ghost` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Ghost’s web interface and publishing tools are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your publishing workflow.
+
+Set `GHOST_URL` in `.env` to the HTTPS hostname that you use on your Tailnet. Ghost listens on port `2368`, and Tailscale Serve forwards HTTPS traffic to that port.

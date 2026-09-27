@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Traefik](https://github.com/traefik/t
 
 ## Configuration Overview
 
-In this setup, the `tailscale-traefik` service runs Tailscale, which manages secure networking for the Traefik service. The `traefik` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Traefik’s dashboard and routing functionalities are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of privacy and security to your network architecture.
+In this setup, the `tailscale-traefik` service runs Tailscale, which manages secure networking for Traefik. The `traefik_proxy` service uses Docker's `network_mode: service:tailscale` configuration. The stack reads its tracked configuration from `traefik/app/traefik.yml`.

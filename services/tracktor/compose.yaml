@@ -55,7 +55,7 @@ services:
     environment:
       - TRACKTOR_DEMO_MODE=false
       - FORCE_DATA_SEED=false
-      - CORS_ORIGINS="https://${SERVICE}.${TS_TAILNET}.ts.net" # Adjust as needed for your setup
+      - CORS_ORIGINS=https://${SERVICE}.${TS_TAILNET}.ts.net # Adjust as needed for your setup
     volumes:
       - ./${SERVICE}-data:/data
     depends_on:

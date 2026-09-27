@@ -20,4 +20,4 @@ It is especially well-suited for homelabs, self-hosted environments, and DevOps 
 
 ## Important Notice
 
-Make sure to populate the `STACKS_DIR=` variable in the `.env` before first startup.
+Set `STACKS_DIR` in `.env` to an absolute host path. The Compose file mounts that path at the same path inside the container. The sample uses `/opt/stacks`.

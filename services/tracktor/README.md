@@ -30,7 +30,11 @@ When combined with Tailscale, Tracktor becomes a private portal accessible only 
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-tracktor`) runs the Tailscale client and joins your private Tailscale network. The main `tracktor` service uses:
 
 ```plain
-network_mode: service:tailscale-tracktor
+network_mode: service:tailscale
 ```
 
 This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Tracktor web UI is accessible **only via your Tailscale network**.
+
+Set `TS_TAILNET` in `.env` to your Tailnet DNS name without `.ts.net`, for example `tail123abc`. Compose appends `.ts.net` to build the allowed browser origin, such as `https://tracktor.tail123abc.ts.net`.
+
+If you enable the optional host port mapping, it maps `SERVICEPORT` to Tracktor's container port `3000`.

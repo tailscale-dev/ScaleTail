@@ -68,7 +68,7 @@ services:
     restart: always
     volumes:
       - type: bind
-        source: ./${SERVICE}-data/app/traefik.yml
+        source: ./traefik/app/traefik.yml
         target: /etc/traefik.yml
       - ./${SERVICE}-data/log/:/var/log/
       - /var/run/docker.sock:/var/run/docker.sock #Required for the Service Connections

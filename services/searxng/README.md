@@ -8,10 +8,11 @@ This Docker Compose configuration sets up [searXNG](https://github.com/searxng/s
 
 ## Configuration Overview
 
-In this setup, the `tailscale-searxng` service runs Tailscale, which manages secure networking for the searXNG service. The `searxng` service utilizes the Tailscale network stack via Docker’s `network_mode: service:` configuration. This setup ensures that searXNG is only accessible through your Tailscale network (or locally, if preferred). With this configuration, you can enjoy a private, secure, and customizable search engine experience, free from user tracking or external access.
+In this setup, the `tailscale-searxng` service runs Tailscale, which manages secure networking for the searXNG service. The `searxng` service utilizes the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that searXNG is only accessible through your Tailscale network (or locally, if preferred). With this configuration, you can enjoy a private, secure, and customizable search engine experience, free from user tracking or external access.
 
 We use `/searxng/settings.yml` copied from <https://github.com/searxng/searxng/blob/master/searx/settings.yml> as the default settings file. This dir is mounted as a volume, on docker and required for the first run.
 The default `settings.yml` does not use valkey ([valkey](https://github.com/searxng/searxng/blob/master/searx/settings.yml#L121) URL is set to `false`). We enable this by setting the `SEARXNG_VALKEY_URL` in `.env` file and using that in the `compose.yaml` file.
+Set `SEARXNG_SECRET` in `.env` to a random value. The Compose file passes it to the mounted settings file as the instance secret.
 
 ## References
 

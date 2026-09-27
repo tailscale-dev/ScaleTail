@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Netbox](https://github.com/netbox-com
 
 ## Configuration Overview
 
-In this setup, the `tailscale-netbox` service runs Tailscale, which manages secure networking for the Netbox application. The `netbox` application uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that your Netbox application is only accessible through the Tailscale network (or local as well, if preferred).
+In this setup, the `tailscale-netbox` service runs Tailscale, which manages secure networking for the Netbox application. The `netbox` application uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that your Netbox application is only accessible through the Tailscale network (or local as well, if preferred).

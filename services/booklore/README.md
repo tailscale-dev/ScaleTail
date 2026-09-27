@@ -8,4 +8,6 @@ This Docker Compose configuration sets up [BookLore](https://github.com/booklore
 
 ## Configuration Overview
 
-In this setup, the `tailscale-booklore` service runs Tailscale, which manages secure networking for the BookLore service. The `booklore` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that BookLore’s web interface are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy.
+In this setup, the `tailscale-booklore` service runs Tailscale, which manages secure networking for the BookLore service. The `booklore` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that BookLore’s web interface are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy.
+
+BookLore listens on port `6060`. Set `SERVICEPORT` to `6060` if you enable the optional host port mapping.

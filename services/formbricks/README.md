@@ -29,7 +29,11 @@ Feedback data can include sensitive product insights, internal metrics, and pers
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-formbricks`) runs the Tailscale client and joins your private Tailscale network. The main `formbricks` service uses:
 
 ```plain
-network_mode: service:tailscale-formbricks
+network_mode: service:tailscale
 ```
 
 This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Formbricks admin UI, APIs, and feedback endpoints are accessible **only via your Tailscale network**. This keeps sensitive feedback data protected while still allowing secure access for authorized team members.
+
+## Image Version
+
+This configuration pins Formbricks to `4.9.7`. Formbricks 5.0 and later also require Cube, Hub, and SpiceDB services, which this stack does not include. See the [upstream Docker Compose file](https://github.com/formbricks/formbricks/blob/main/docker/docker-compose.yml) before you upgrade.
