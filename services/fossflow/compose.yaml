@@ -4,7 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:3000"}}}},
+          {"Proxy":"http://127.0.0.1:80"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -52,11 +52,8 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    build:
-      context: https://github.com/stan-smith/FossFLOW.git
-      dockerfile: Dockerfile
     environment:
-      - PUBLIC_URL="https://fossflow.<YOUR-TS-DOMAIN>.ts.net"
+      - PUBLIC_URL=https://fossflow.<YOUR-TS-DOMAIN>.ts.net
     depends_on:
       tailscale:
         condition: service_healthy

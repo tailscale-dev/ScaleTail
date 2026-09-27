@@ -79,16 +79,16 @@ services:
     restart: always
 
   chrome:
-    image: gcr.io/zenika-hub/alpine-chrome:123
+    image: ghcr.io/karakeep-app/karakeep-chrome:release # Replaces the unmaintained alpine-chrome image; see Karakeep's Chrome image migration guide
     restart: always
     container_name: app-${SERVICE}-chrome # Name for local container management
-    command:
-      - --no-sandbox
+    init: true
+    command: # The image entrypoint adds --no-sandbox and exposes the debugging port on 9222
       - --disable-gpu
       - --disable-dev-shm-usage
-      - --remote-debugging-address=0.0.0.0
-      - --remote-debugging-port=9222
       - --hide-scrollbars
+      - --disable-blink-features=AutomationControlled
+      - --window-size=1440,900
   
   meilisearch:
     image: getmeili/meilisearch:v1.11.1

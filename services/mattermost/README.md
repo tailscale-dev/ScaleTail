@@ -23,16 +23,17 @@ The stack stores Mattermost and PostgreSQL data under the local mattermost-data 
 
 ## Troubleshooting
 
-After initial start-up you may experience an error.
+The Mattermost image runs as UID/GID `2000`. Docker creates missing bind-mount directories as `root:root`, and Mattermost then fails with:
 
 ```plain
 app-mattermost        | Error: failed to load configuration: could not create config file: open /mattermost/config/config.json: permission denied
 ```
 
-Please adjust the permissions of the newly created folder `mattermost-data/` with the following command and restart the service.
+Create the Mattermost directories and set their owner before the first start. Do not change the owner of `mattermost-data/postgres`, which PostgreSQL manages itself.
 
 ```bash
-chown -R 2000:2000 mattermost-data/
+mkdir -p mattermost-data/{config,data,logs,plugins,client/plugins,bleve-indexes}
+sudo chown -R 2000:2000 mattermost-data/config mattermost-data/data mattermost-data/logs mattermost-data/plugins mattermost-data/client mattermost-data/bleve-indexes
 ```
 
 Reference - [Starting/Stopping Docker](https://github.com/mattermost/mattermost-docker/commit/37331ba3d7122aeb30272308dddf51ef70e2134c#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5L146)

@@ -37,3 +37,12 @@ network_mode: service:tailscale
 This setup ensures that **all Recyclarr traffic flows exclusively through the Tailscale interface**, allowing it to securely reach Radarr and Sonarr instances that are also on your Tailscale network. No ports need to be exposed, and the container remains completely inaccessible from the public Internet.
 
 With this configuration, Recyclarr can safely automate and enforce your media quality standards across your entire media stack — privately, securely, and reproducibly.
+
+## Volume Permissions
+
+The Compose file runs Recyclarr as UID/GID `1000`. Docker creates missing bind-mount directories as `root:root`, and Recyclarr then exits with `Access to the path '/config/state' is denied`. Create the config directory before the first start:
+
+```sh
+mkdir -p recyclarr-data/config
+sudo chown -R 1000:1000 recyclarr-data
+```

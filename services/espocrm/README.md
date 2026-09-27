@@ -20,3 +20,7 @@ Please check the following contents for validity as some variables need to be de
 
 - `.env` // Main variable `TS_AUTHKEY`
 - `.env` // Required for normal operation. `TS_DOMAIN`
+
+## Upgrading from an older ScaleTail configuration
+
+EspoCRM 10 and later refuse to start when the whole `/var/www/html` directory is mounted. This configuration mounts `data`, `custom`, and `client/custom` from `./espocrm-data` instead, so existing data stays in place. Back up `./espocrm-data` before you upgrade. See the [EspoCRM 10 migration guide](https://docs.espocrm.com/administration/docker/installation/#migration-to-espocrm-10).
