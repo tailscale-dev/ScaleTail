@@ -64,3 +64,4 @@ services:
 # This is a sample internal website on port 80
   whoami:
     image: traefik/whoami:latest
+    # Healthcheck: none possible. The image contains only the /whoami binary, with no shell, HTTP client, or health command.

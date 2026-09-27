@@ -141,6 +141,7 @@ services:
       - backup
     image: prodrigestivill/postgres-backup-local
     container_name: app-${SERVICE}-backup
+    # Healthcheck: defined by the image (curl against the backup HTTP port), so this file does not override it.
     restart: always
     volumes:
       - ./backups:/backups # Change this path to your desired backup location on the host machine

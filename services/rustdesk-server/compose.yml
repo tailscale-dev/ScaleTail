@@ -65,6 +65,7 @@ services:
         condition: service_healthy
       hbbr: 
         condition: service_started
+    # Healthcheck: none possible. The image contains only the hbbs and hbbr binaries, with no shell, HTTP client, or health command.
     restart: always
 
   hbbr:
@@ -78,4 +79,5 @@ services:
       - PGID=1000
       - TZ=${TZ}
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    # Healthcheck: none possible. The image contains only the hbbs and hbbr binaries, with no shell, HTTP client, or health command.
     restart: always

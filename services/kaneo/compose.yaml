@@ -84,6 +84,7 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
+    # Healthcheck: defined by the image (wget against /api/health), so this file does not override it.
     restart: always
 
   # ${SERVICE} - Frontend (Web)

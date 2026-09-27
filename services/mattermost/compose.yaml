@@ -79,6 +79,7 @@ services:
       - MM_BLEVESETTINGS_INDEXDIR
       # additional settings
       - MM_SERVICESETTINGS_SITEURL
+    # Healthcheck: defined by the image (mmctl system status --local), so this file does not override it.
     restart: always
     depends_on:
       tailscale:

@@ -62,8 +62,17 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+    # Healthcheck: use the first option the image supports, and test it inside the running container.
+    # 1. An application endpoint, called with a client the image ships (wget, curl, python3, or node).
+    # 2. A health command that ships with the image, such as `/app/binary healthcheck`.
+    # 3. The image defines its own HEALTHCHECK: remove this block and replace it with
+    #    "# Healthcheck: defined by the image (<command>), so this file does not override it."
+    # 4. The image has no shell, HTTP client, or health command (for example Portainer and RustDesk):
+    #    no check is possible. Remove this block and replace it with
+    #    "# Healthcheck: none possible. The image contains only <binary>, with no shell, HTTP client, or health command."
+    # Avoid `pgrep -f ${SERVICE}`: it breaks when SERVICE is renamed, and many images do not include pgrep.
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "${SERVICE}"] # Check if ${SERVICE} process is running
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:80/"] # Check if ${SERVICE} is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
