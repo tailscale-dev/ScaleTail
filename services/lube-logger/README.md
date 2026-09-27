@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[LubeLogger](https://github.com/harg
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-lubelogger` service runs the Tailscale client to establish a secure private network. The `lubelogger` container uses `network_mode: service:tailscale-lubelogger` to tunnel its network traffic through the Tailscale network interface. This ensures that the web UI is accessible only through Tailscale, keeping your vehicle data safe from public exposure.
+In this deployment, the `tailscale-lubelogger` service runs the Tailscale client to establish a secure private network. The `lubelogger` container uses `network_mode: service:tailscale` to tunnel its network traffic through the Tailscale network interface. This ensures that the web UI is accessible only through Tailscale, keeping your vehicle data safe from public exposure.

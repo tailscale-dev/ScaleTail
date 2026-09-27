@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Excalidraw](https://github.com/excali
 
 ## Configuration Overview
 
-In this setup, the `tailscale-excalidraw` service runs Tailscale, which manages secure networking for the Excalidraw service. The `excalidraw` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This design ensures that Excalidraw's collaboration and editing features are only accessible through the Tailscale network (or locally, if preferred), providing enhanced security and privacy for your self-hosted Excalidraw instance.
+In this setup, the `tailscale-excalidraw` service runs Tailscale, which manages secure networking for the Excalidraw service. The `excalidraw` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This design ensures that Excalidraw's collaboration and editing features are only accessible through the Tailscale network (or locally, if preferred), providing enhanced security and privacy for your self-hosted Excalidraw instance.

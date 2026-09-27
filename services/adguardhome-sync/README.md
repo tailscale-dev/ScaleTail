@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[AdGuardHome Sync](https://github.co
 
 ## Configuration Overview
 
-In this setup, the `tailscale-adguardhome-sync` service runs Tailscale, which manages secure networking for the AdGuardHome Sync service. The `adguardhome-sync` container uses the Tailscale network stack via Docker’s `network_mode: service:` configuration. This ensures that all sync communication is confined to your private Tailscale network, preventing exposure to the public internet.
+In this setup, the `tailscale-adguardhome-sync` service runs Tailscale, which manages secure networking for the AdGuardHome Sync service. The `adguardhome-sync` container uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This ensures that all sync communication is confined to your private Tailscale network, preventing exposure to the public internet.

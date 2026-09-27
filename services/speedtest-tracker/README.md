@@ -15,4 +15,4 @@ This Docker Compose configuration sets up [Speedtest Tracker](https://github.com
 
 ## Configuration Overview
 
-In this setup, the `tailscale-speedtest` service runs Tailscale, which manages secure networking for the Speedtest Tracker service. The `speedtest-tracker` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Speedtest Tracker’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for your internet speed monitoring.
+In this setup, the `tailscale-speedtest` service runs Tailscale, which manages secure networking for the Speedtest Tracker service. The `speedtest-tracker` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Speedtest Tracker’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for your internet speed monitoring.

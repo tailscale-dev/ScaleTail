@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[Kaneo](https://github.com/usekaneo/
 
 ## Configuration Overview  
 
-In this setup, the `tailscale-kaneo` service runs Tailscale, which manages secure networking for the Kaneo service. The `kaneo` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Kaneo’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding a strong layer of privacy and security to your self-hosted project management platform.
+In this setup, the `tailscale-kaneo` service runs Tailscale, which manages secure networking for the Kaneo service. The `kaneo` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Kaneo’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding a strong layer of privacy and security to your self-hosted project management platform.

@@ -22,6 +22,6 @@ Nessus Essentials offers a free version of the tool for personal and home use, [
 
 ## Configuration Overview
 
-In this setup, the `tailscale-nessus` service runs Tailscale, which manages secure networking for the Nessus service. The `nessus` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Nessus’ web interface and scanning functionalities are only accessible through the Tailscale network (or locally, if preferred), adding an additional layer of security to your vulnerability management infrastructure.
+In this setup, the `tailscale-nessus` service runs Tailscale, which manages secure networking for the Nessus service. The `nessus` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Nessus’ web interface and scanning functionalities are only accessible through the Tailscale network (or locally, if preferred), adding an additional layer of security to your vulnerability management infrastructure.
 
 For additional configuration (environment variables) - please refer to the [Tenable documentation](https://docs.tenable.com/nessus/Content/DeployNessusDocker.htm).

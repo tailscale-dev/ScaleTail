@@ -16,4 +16,4 @@ This Docker Compose configuration sets up [Pocket ID](https://github.com/stonith
 
 ## Configuration Overview
 
-In this setup, the `tailscale-pocket-id` service runs Tailscale, which manages secure networking for the Pocket ID service. The `pocket-id` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Pocket ID’s web interface and APIs are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your identity management system.
+In this setup, the `tailscale-pocket-id` service runs Tailscale, which manages secure networking for the Pocket ID service. The `pocket-id` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Pocket ID’s web interface and APIs are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your identity management system.

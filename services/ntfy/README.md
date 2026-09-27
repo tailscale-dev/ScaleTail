@@ -8,6 +8,6 @@ This Docker Compose configuration sets up [ntfy](https://ntfy.sh/) with Tailscal
 
 ## Configuration Overview
 
-In this setup, the `tailscale-ntfy` service runs the Tailscale daemon to provide secure, private networking. The `ntfy` service is configured to use Tailscale’s network stack via Docker’s `network_mode: service:` syntax. This binds ntfy’s network interface to the Tailscale container, making the HTTP API available only through your Tailscale network (or locally, if needed).
+In this setup, the `tailscale-ntfy` service runs the Tailscale daemon to provide secure, private networking. The `ntfy` service is configured to use Tailscale’s network stack via Docker’s `network_mode: service:tailscale` syntax. This binds ntfy’s network interface to the Tailscale container, making the HTTP API available only through your Tailscale network (or locally, if needed).
 
 This architecture is ideal for self-hosters who want to send and receive notifications from anywhere without exposing the ntfy broker to the internet, maintaining both ease of access and strict privacy controls.

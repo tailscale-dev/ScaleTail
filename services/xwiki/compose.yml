@@ -57,7 +57,7 @@ services:
         condition: service_healthy
       db:
         condition: service_started
-    environment: # Varibles are delared in .env file.
+    environment: # Variables are declared in .env file.
       - XWIKI_VERSION=${XWIKI_VERSION}
       - DB_USER=${DB_USER}
       - DB_PASSWORD=${DB_PASSWORD}

@@ -20,7 +20,7 @@ services:
       - TS_STATE_DIR=/var/lib/tailscale
       - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
-      # Uncomment this line and comment out TS_AUTH_ONCE if you want to the service to receive advertised routes, or add other arguements.
+      # Uncomment this line and comment out TS_AUTH_ONCE if you want to the service to receive advertised routes, or add other arguments.
       #- TS_EXTRA_ARGS=--accept-routes=true
       - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint

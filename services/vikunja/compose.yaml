@@ -53,7 +53,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     user: "0:0"
-    environment: # Varibles are delared in .env file.
+    environment: # Variables are declared in .env file.
       - TZ=${TZ}
       - VIKUNJA_SERVICE_PUBLICURL=${VIKUNJA_SERVICE_PUBLICURL}
       - VIKUNJA_DATABASE_PATH=${VIKUNJA_DATABASE_PATH}

@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [SERVICE](LINK TO PAGE OF MAINTAINER) 
 
 ## Configuration Overview
 
-In this setup, the `tailscale-SERVICE` service runs Tailscale, which manages secure networking for SERVICE. The `SERVICE` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+In this setup, the `tailscale-SERVICE` container runs Tailscale, which manages secure networking for SERVICE. The `SERVICE` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
 
 ## What to document for users
 

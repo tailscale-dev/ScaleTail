@@ -10,7 +10,7 @@ When paired with Tailscale, Actual Budget becomes accessible across your devices
 
 ## Configuration Overview
 
-In this setup, the `tailscale-actual` service runs Tailscale, which manages secure networking for Actual Budget. The `actual` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures the application is only reachable over your Tailnet unless you explicitly expose ports.
+In this setup, the `tailscale-actual` service runs Tailscale, which manages secure networking for Actual Budget. The `actual` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures the application is only reachable over your Tailnet unless you explicitly expose ports.
 
 ## Key Features
 

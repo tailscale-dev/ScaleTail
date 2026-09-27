@@ -17,6 +17,6 @@ Wallos is a self-hosted subscription tracking application that helps you manage 
 
 ## Configuration Overview
 
-In this configuration, the `tailscale-wallos` container runs the Tailscale client and joins your private mesh network. The `wallos` container is set to use `network_mode: service:tailscale-wallos`, meaning all of Wallos’s network traffic is routed through the Tailscale container. This ensures that the Wallos interface is not publicly exposed and is only reachable from devices connected to your Tailscale network.
+In this configuration, the `tailscale-wallos` container runs the Tailscale client and joins your private mesh network. The `wallos` container is set to use `network_mode: service:tailscale`, meaning all of Wallos’s network traffic is routed through the Tailscale container. This ensures that the Wallos interface is not publicly exposed and is only reachable from devices connected to your Tailscale network.
 
 This approach combines self-hosted financial tracking with robust, zero-config VPN security—allowing you to safely manage your subscriptions from anywhere.

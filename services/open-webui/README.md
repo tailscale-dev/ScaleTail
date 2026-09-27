@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [Open WebUI](https://openwebui.com/) w
 
 ## Configuration Overview
 
-In this setup, the `tailscale-open-webui` service runs Tailscale, which manages secure networking for Open WebUI. The `open-webui` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+In this setup, the `tailscale-open-webui` service runs Tailscale, which manages secure networking for Open WebUI. The `open-webui` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
 
 ## What to document for users
 

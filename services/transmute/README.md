@@ -18,7 +18,7 @@ Running Transmute behind Tailscale ensures that your file processing pipelines a
 
 ## Configuration Overview
 
-In this setup, the `tailscale-transmute` service runs Tailscale and manages secure connectivity to your Tailnet. The `transmute` container shares the same network stack using Docker’s `network_mode: service:tailscale-transmute`.
+In this setup, the `tailscale-transmute` service runs Tailscale and manages secure connectivity to your Tailnet. The `transmute` container shares the same network stack using Docker’s `network_mode: service:tailscale`.
 
 ## Service Notes / Gotchas
 

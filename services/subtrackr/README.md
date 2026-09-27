@@ -18,4 +18,4 @@ This Docker Compose configuration sets up [**Subtrackr**](https://github.com/bsc
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-subtrackr` service runs the Tailscale client to establish a secure private network. The `subtrackr` container uses `network_mode: service:tailscale-subtrackr` to route all traffic through the Tailscale interface. This ensures that your subscription data, dashboards, and administration interface are only accessible via Tailscale, preventing public exposure.
+In this deployment, the `tailscale-subtrackr` service runs the Tailscale client to establish a secure private network. The `subtrackr` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures that your subscription data, dashboards, and administration interface are only accessible via Tailscale, preventing public exposure.

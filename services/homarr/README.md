@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Homarr](https://github.com/ajnart/hom
 
 ## Configuration Overview
 
-In this setup, the tailscale-homarr service runs Tailscale, which manages secure networking for the Homarr service. The homarr service uses the Tailscale network stack via Docker's network_mode: service: configuration. This setup ensures that Homarr’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted dashboard.
+In this setup, the tailscale-homarr service runs Tailscale, which manages secure networking for the Homarr service. The homarr service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Homarr’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted dashboard.

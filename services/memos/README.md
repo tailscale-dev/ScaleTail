@@ -10,7 +10,7 @@ By pairing Memos with Tailscale, you ensure that your notes remain private and a
 
 ## Configuration Overview
 
-In this setup, the `tailscale-memos` service runs Tailscale and manages secure networking. The `memos` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale-memos` configuration. This ensures that Memos is only accessible through your Tailnet unless you explicitly expose ports.
+In this setup, the `tailscale-memos` service runs Tailscale and manages secure networking. The `memos` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Memos is only accessible through your Tailnet unless you explicitly expose ports.
 
 ## Files to check
 

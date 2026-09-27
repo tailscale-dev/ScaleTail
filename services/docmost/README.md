@@ -19,4 +19,4 @@ This Docker Compose configuration sets up [**Docmost**](https://github.com/docmo
 
 ## Configuration Overview
 
-In this configuration, the `tailscale-docmost` service runs the Tailscale client to secure network traffic. The `docmost` service uses `network_mode: service:tailscale-docmost`, ensuring all requests are routed through the Tailscale interface. This safeguards your documentation from public exposure, making it accessible only within your private mesh.
+In this configuration, the `tailscale-docmost` service runs the Tailscale client to secure network traffic. The `docmost` service uses `network_mode: service:tailscale`, ensuring all requests are routed through the Tailscale interface. This safeguards your documentation from public exposure, making it accessible only within your private mesh.

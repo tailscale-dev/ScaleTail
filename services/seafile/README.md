@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [Seafile Community Edition](https://ww
 
 ## Configuration Overview
 
-In this setup, the `tailscale-seafile` service runs Tailscale, which manages secure networking for Seafile. The Seafile service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+In this setup, the `tailscale-seafile` service runs Tailscale, which manages secure networking for Seafile. The Seafile service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
 
 ## Notes
 
@@ -21,7 +21,7 @@ Please check the following contents for validity as some variables need to be de
 
 - `TS_AUTHKEY`: Paste in an Auth Key for your Tailnet.
 - Volumes: Update the locations for the `SEAFILE_VOLUME` and `SEAFILE_MYSQL_VOLUME` in .ENV.
-- Passwords: There are three passwords (for MySQL/MariaDB and intial Seafile administrator) which need to be set in .ENV.
+- Passwords: There are three passwords (for MySQL/MariaDB and initial Seafile administrator) which need to be set in .ENV.
 - Admin Email: Update `INIT_SEAFILE_ADMIN_EMAIL`. This doesn't have to be a valid email address, although you can configure SMTP notifications in Seafile, which will require a valid email address.
 - `JWT_PRIVATE_KEY`: Generate this by running `pwgen -s 40 1` or `openssl rand -base64 40`
 - `SEAFILE_SERVER_HOSTNAME`: Update the FQDN to match your Tailnet MagicDNS suffix.

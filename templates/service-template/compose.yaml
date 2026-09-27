@@ -52,7 +52,7 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    environment: # Varibles are delared in .env file.
+    environment: # Variables are declared in .env file.
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}

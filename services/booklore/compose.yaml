@@ -59,8 +59,6 @@ services:
       - DATABASE_USERNAME=${MYSQL_USER}                          # Must match MYSQL_USER defined in the mariadb container
       - DATABASE_PASSWORD=${MYSQL_PASSWORD}               #  Use a strong password; must match MYSQL_PASSWORD defined in the mariadb container 
       - SWAGGER_ENABLED=false                               # Swagger UI (API docs).
-#    ports:
-#      - "6060:6060"
     volumes:
       - ./data:/app/data
       - ./books:/books1       # Book library folder — point to one of your collections

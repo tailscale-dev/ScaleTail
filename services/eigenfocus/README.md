@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[Eigenfocus](https://github.com/Eige
 
 ## Configuration Overview  
 
-In this setup, the `tailscale-eigenfocus` service runs Tailscale, which manages secure networking for the Eigenfocus service. The `eigenfocus` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Eigenfocus’ web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing tasks and projects.
+In this setup, the `tailscale-eigenfocus` service runs Tailscale, which manages secure networking for the Eigenfocus service. The `eigenfocus` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Eigenfocus’ web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing tasks and projects.

@@ -29,9 +29,9 @@ jobs:
       - name: Clone this repo
         uses: actions/checkout@v7
           
-      - name: Lint services
+      - name: Lint Markdown
         uses: rvben/rumdl@v0.2.73
         with:
-          path: "services/"
+          path: "."
           config: ".markdownlint.yml"
           report-type: annotations

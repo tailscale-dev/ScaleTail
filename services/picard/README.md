@@ -34,7 +34,7 @@ With this setup, your tagging process is secured and contained — perfect for p
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-picard`) connects your Picard instance to your private Tailnet. The main `picard` container uses:
 
 ```plain
-network_mode: service:tailscale-picard
+network_mode: service:tailscale
 ```
 
 This means all Picard traffic — web interface, plugin updates, and library calls — travels securely through Tailscale.

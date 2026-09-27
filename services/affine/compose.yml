@@ -66,7 +66,7 @@ services:
     env_file:
       - .env
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${postgres:-affine}
       - AFFINE_INDEXER_ENABLED=false
@@ -84,7 +84,7 @@ services:
     env_file:
       - .env
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${postgres:-affine}
       - AFFINE_INDEXER_ENABLED=false
@@ -111,7 +111,7 @@ services:
     volumes:
       - ./postgres:/var/lib/postgresql/data
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: ${postgres:-affine}

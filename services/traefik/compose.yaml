@@ -92,6 +92,6 @@ services:
   simpleweb:
     image: yeasy/simple-web:latest
     labels:
-      - traefik.enable=true # To 
+      - traefik.enable=true # Let Traefik route this sample container
       - traefik.http.routers.simpleweb.rule=Host(`simpleweb.domain.local`)
       - traefik.http.routers.simpleweb.entrypoints=web

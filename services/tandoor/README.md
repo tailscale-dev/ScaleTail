@@ -15,4 +15,4 @@ This Docker Compose configuration sets up [**Tandoor Recipes**](https://github.c
 
 ## Configuration Overview
 
-In this setup, the `tailscale-tandoor` service runs Tailscale, which manages secure networking for the service. The `tandoor` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale-tandoor` configuration. This setup ensures that tandoor's service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your service.
+In this setup, the `tailscale-tandoor` service runs Tailscale, which manages secure networking for the service. The `tandoor` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that tandoor's service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your service.

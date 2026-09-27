@@ -24,4 +24,4 @@ With integration options for popular grow equipment, Isley simplifies and elevat
 
 ## Configuration Overview
 
-In this setup, the `tailscale-isley` service runs Tailscale, which manages secure networking for the Isley service. The `isley` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Isley's interface is not exposed to the public internet, protecting your grow journal and data with an additional layer of privacy.
+In this setup, the `tailscale-isley` service runs Tailscale, which manages secure networking for the Isley service. The `isley` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Isley's interface is not exposed to the public internet, protecting your grow journal and data with an additional layer of privacy.

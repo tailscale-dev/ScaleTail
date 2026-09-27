@@ -17,4 +17,4 @@ This Docker Compose configuration sets up [**GitSave**](https://github.com/TimWi
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-gitsave` service runs the Tailscale client to establish a secure private network. The `gitsave` container uses `network_mode: service:tailscale-gitsave` to route all traffic through the Tailscale interface. This ensures that your GitHub backup service and its API endpoints are only accessible via Tailscale, preventing public exposure.
+In this deployment, the `tailscale-gitsave` service runs the Tailscale client to establish a secure private network. The `gitsave` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures that your GitHub backup service and its API endpoints are only accessible via Tailscale, preventing public exposure.

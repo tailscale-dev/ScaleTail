@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [LanguageTool](https://languagetool.or
 
 ## Configuration Overview
 
-In this setup, the `tailscale-adguardhome` service runs Tailscale, which manages secure networking for LanguageTool. The `languagetool` service utilizes the Tailscale network stack via Docker's `network_mode: service:`. This setup ensures that LanguageTool's service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your LanguageTool deployment.
+In this setup, the `tailscale-adguardhome` service runs Tailscale, which manages secure networking for LanguageTool. The `languagetool` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale`. This setup ensures that LanguageTool's service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your LanguageTool deployment.
 
 ## Using n-gram datasets
 

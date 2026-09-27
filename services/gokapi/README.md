@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Gokapi](https://github.com/Forceu/Gok
 
 ## Configuration Overview
 
-In this setup, the `tailscale-gokapi` service runs Tailscale, which manages secure networking for the Gokapi service. The `gokapi` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that Gokapi's web interface and file-sharing services are only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your file-sharing solution.
+In this setup, the `tailscale-gokapi` service runs Tailscale, which manages secure networking for the Gokapi service. The `gokapi` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Gokapi's web interface and file-sharing services are only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your file-sharing solution.
