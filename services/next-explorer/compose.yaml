@@ -52,12 +52,10 @@ services:
     image: ${IMAGE_URL}
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE}
-    restart: unless-stopped
-    #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
-    # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
-     # - ${DNS_SERVER}
+    depends_on:
+      tailscale:
+        condition: service_healthy
+    restart: always
     environment:
       - NODE_ENV=production
       - PUBLIC_URL=${PUBLIC_URL} # Optional: Set this to the public URL of your service if needed for correct URL generation in the app. For example, if you are exposing the service at https://example.com, set PUBLIC_URL=https://example.com.

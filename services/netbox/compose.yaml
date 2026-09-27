@@ -22,7 +22,8 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      - TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      - TS_ACCEPT_DNS=true # MagicDNS is enabled for this service. Remove this line to use Docker DNS only.
+      - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
         target: /config/serve.json
@@ -56,12 +57,14 @@ services:
       - ./${SERVICE}/reports:/opt/netbox/netbox/reports
       - ./${SERVICE}/scripts:/opt/netbox/netbox/scripts
     depends_on:
-        postgres:
-          condition: service_healthy
-        redis:
-          condition: service_healthy
-        redis-cache:
-          condition: service_healthy
+      tailscale:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      redis-cache:
+        condition: service_healthy
     healthcheck:
       test: curl -f http://localhost:8080/login/ || exit 1
       start_period: 90s
@@ -97,6 +100,7 @@ services:
       retries: 5
     volumes:
       - ./${SERVICE}/postgres/data:/var/lib/postgresql/data
+    restart: always
 
   # redis
   redis:
@@ -115,6 +119,7 @@ services:
       retries: 5
     volumes:
       - ./${SERVICE}/redis/data:/data
+    restart: always
   redis-cache:
     container_name: ${SERVICE}-rediscache
     image: docker.io/valkey/valkey:8.1-alpine
@@ -126,3 +131,4 @@ services:
     healthcheck: *redis-healthcheck
     volumes:
       - ./${SERVICE}/redis/cache:/data
+    restart: always
