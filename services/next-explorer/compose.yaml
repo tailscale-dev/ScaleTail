@@ -55,6 +55,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+    # Healthcheck: defined by the image (node healthcheck.js), so this file does not override it.
     restart: always
     environment:
       - NODE_ENV=production

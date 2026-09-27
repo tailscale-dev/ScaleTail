@@ -54,4 +54,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+    # Healthcheck: defined by the image (mc-health), so this file does not override it.
     restart: always

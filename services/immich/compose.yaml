@@ -69,7 +69,7 @@ services:
       tailscale:
         condition: service_healthy
     restart: always
-    healthcheck:
+    healthcheck: # Use the healthcheck defined by the image (immich-healthcheck)
       disable: false
 
   immich-machine-learning:
@@ -85,7 +85,7 @@ services:
     env_file:
       - .env
     restart: always
-    healthcheck:
+    healthcheck: # Use the healthcheck defined by the image
       disable: false
 
   redis:
@@ -108,4 +108,5 @@ services:
     volumes:
       # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
       - ./${SERVICE}-data/database:/var/lib/postgresql/data
+    # Healthcheck: defined by the image (/usr/local/bin/healthcheck.sh), so this file does not override it.
     restart: always

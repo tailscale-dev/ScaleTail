@@ -49,6 +49,12 @@ services:
 
   postgres:
     container_name: app-${SERVICE}-postgres # Name for local container management
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"] # Check if PostgreSQL accepts connections
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     image: pgvector/pgvector:pg17
     volumes:
@@ -57,6 +63,12 @@ services:
       - POSTGRES_PASSWORD=postgres
   redis:
     container_name: app-${SERVICE}-redis # Name for local container management
+    healthcheck:
+      test: ["CMD", "valkey-cli", "ping"] # Check if Valkey responds
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     image: valkey/valkey@sha256:12ba4f45a7c3e1d0f076acd616cb230834e75a77e8516dde382720af32832d6d
     command: valkey-server --appendonly yes
@@ -148,7 +160,13 @@ services:
       tailscale:
         condition: service_healthy
       postgres:
-        condition: service_started
+        condition: service_healthy
       redis:
-        condition: service_started
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/health"] # Check if ${SERVICE} is responding; the first start runs many database migrations
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 300s # Time to wait before starting health checks
     restart: always

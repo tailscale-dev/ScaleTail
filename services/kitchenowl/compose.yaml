@@ -65,4 +65,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+    # Healthcheck: defined by the image (uwsgi_curl against /api/health), so this file does not override it.
     restart: always

@@ -62,4 +62,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+    # Healthcheck: none possible. The image contains only the /portainer binary, with no shell, HTTP client, or health command.
     restart: always

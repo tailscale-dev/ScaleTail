@@ -84,6 +84,7 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
+    # Healthcheck: defined by the image (wget against /api/health), so this file does not override it.
     restart: always
 
   # ${SERVICE} - Frontend (Web)
@@ -98,6 +99,12 @@ services:
         condition: service_healthy
       backend:
         condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:5173/"] # Check if ${SERVICE} is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
 
 volumes:

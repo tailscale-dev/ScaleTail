@@ -53,4 +53,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+    # Healthcheck: defined by the image (ss checks the game UDP port), so this file does not override it.
     restart: always

@@ -51,6 +51,12 @@ services:
     network_mode: service:tailscale
     volumes:
       - ./app-storage:/rails/storage
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:3000/up"] # Check if ${SERVICE} is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-sure_user}
@@ -84,6 +90,12 @@ services:
     command: bundle exec sidekiq
     volumes:
       - ./app-storage:/rails/storage
+    healthcheck:
+      test: ["CMD", "pgrep", "-f", "sidekiq"] # Check if the Sidekiq worker process is running
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     depends_on:
       tailscale:
@@ -129,6 +141,7 @@ services:
       - backup
     image: prodrigestivill/postgres-backup-local
     container_name: app-${SERVICE}-backup
+    # Healthcheck: defined by the image (curl against the backup HTTP port), so this file does not override it.
     restart: always
     volumes:
       - ./backups:/backups # Change this path to your desired backup location on the host machine
@@ -142,7 +155,8 @@ services:
       - BACKUP_KEEP_WEEKS=${BACKUP_KEEP_WEEKS:-4}
       - BACKUP_KEEP_MONTHS=${BACKUP_KEEP_MONTHS:-6}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     networks:
       - sure_net
 

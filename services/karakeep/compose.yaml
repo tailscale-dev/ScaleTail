@@ -71,7 +71,7 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "pgrep", "-f", "next-server"] # Check if ${SERVICE} process is running
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:3000/api/health"] # Check if ${SERVICE} is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -80,6 +80,12 @@ services:
 
   chrome:
     image: ghcr.io/karakeep-app/karakeep-chrome:release # Replaces the unmaintained alpine-chrome image; see Karakeep's Chrome image migration guide
+    healthcheck:
+      test: ["CMD", "pidof", "headless-shell"] # Check if the browser process is running; the image has no HTTP client
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     container_name: app-${SERVICE}-chrome # Name for local container management
     init: true
@@ -92,6 +98,12 @@ services:
   
   meilisearch:
     image: getmeili/meilisearch:v1.11.1
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:7700/health"] # Check if Meilisearch is responding
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
     container_name: app-${SERVICE}-meilisearch # Name for local container management
     env_file:
