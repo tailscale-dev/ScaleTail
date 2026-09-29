@@ -37,15 +37,17 @@ Thanks for helping improve these Tailscale sidecar examples.
 
 5. Add a health check that the application image can run.
 
-   Prefer an application endpoint or a health command that ships with the
-   image. Run the command inside the running container before you commit it.
-   Avoid `pgrep -f ${SERVICE}`, which breaks when `SERVICE` is renamed.
-
    When the image defines its own `HEALTHCHECK`, omit the block and add a
-   `# Healthcheck: defined by the image (...)` comment. When the image has no
-   shell, HTTP client, or health command, no check is possible. Omit the
-   block and add a `# Healthcheck: none possible ...` comment that names the
-   reason. Keep the Tailscale health check.
+   `# Healthcheck: defined by the image (...)` comment. Override the image's
+   check only when it does not work with the stack, and say why in a comment.
+
+   Otherwise, use an application endpoint or a health command that ships with
+   the image. Run the command inside the running container before you commit
+   it. Avoid `pgrep -f ${SERVICE}`, which breaks when `SERVICE` is renamed.
+
+   When the image has no shell, HTTP client, or health command, no check is
+   possible. Omit the block and add a `# Healthcheck: none possible ...`
+   comment that names the reason. Keep the Tailscale health check.
 
 6. Complete the service README.
 

@@ -91,7 +91,7 @@ services:
     image: postgres:${POSTGRES_IMAGE_TAG} # PostgreSQL 18 images use a different data directory layout; keep a 17 or older tag for this mount
     container_name: db-${SERVICE}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"] # Check if PostgreSQL accepts connections
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U $$POSTGRES_USER -d $$POSTGRES_DB"] # Check if PostgreSQL accepts connections
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

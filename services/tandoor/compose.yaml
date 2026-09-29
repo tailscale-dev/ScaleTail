@@ -66,7 +66,7 @@ services:
       database:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget -q -O /dev/null --header \"Host: $${ALLOWED_HOSTS%%,*}\" http://127.0.0.1:9001/"] # Check if ${SERVICE} is responding; Django only answers for ALLOWED_HOSTS
+      test: ["CMD-SHELL", "h=$${ALLOWED_HOSTS%%,*}; [ \"$$h\" = \"*\" ] && h=localhost; wget -q -O /dev/null --header \"Host: $$h\" http://127.0.0.1:9001/"] # Check if ${SERVICE} is responding; Django only answers for ALLOWED_HOSTS, and rejects a literal * host
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

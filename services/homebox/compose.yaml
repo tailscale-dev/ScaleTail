@@ -63,10 +63,5 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:7745/api/v1/status"] # Check if ${SERVICE} is responding
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
+    # Healthcheck: defined by the image (wget against /api/v1/status), so this file does not override it.
     restart: always

@@ -78,7 +78,7 @@ services:
     container_name: app-${SERVICE}-memcached
     entrypoint: memcached -m 256
     healthcheck:
-      test: ["CMD", "perl", "-MIO::Socket::INET", "-e", "my $$s = IO::Socket::INET->new('127.0.0.1:11211') or exit 1; print $$s \"version\\r\\n\"; exit((<$$s> // '') =~ /^VERSION/ ? 0 : 1)"] # Check if memcached answers; the image has no nc or HTTP client
+      test: ["CMD", "perl", "-MIO::Socket::INET", "-e", "my $$s = IO::Socket::INET->new('127.0.0.1:11211') or exit 1; print $$s \"version\\r\\n\"; exit((<$$s> // '') =~ /^VERSION/ ? 0 : 1)"] # Check if memcached answers; the image has no nc or HTTP client, and Alpine memcached tags have no perl
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
