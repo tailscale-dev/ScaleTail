@@ -50,6 +50,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: ${SERVICE} # Name for local container management
     environment:
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}
       - TZ=${TZ}
     volumes:
       - ./config:/etc/netbox/config:z,ro

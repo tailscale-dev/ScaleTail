@@ -78,8 +78,10 @@ services:
       - ESPOCRM_ADMIN_PASSWORD=${ESPOCRM_ADMIN_PASSWORD}
       - ESPOCRM_SITE_URL=${ESPOCRM_SITE_URL}
       - ESPOCRM_DEFAULT_CURRENCY=${ESPOCRM_DEFAULT_CURRENCY}
-    volumes:
-      - ./${SERVICE}-data:/var/www/html
+    volumes: # EspoCRM 10 and later only need these directories mounted, not all of /var/www/html.
+      - ./${SERVICE}-data/data:/var/www/html/data
+      - ./${SERVICE}-data/custom:/var/www/html/custom
+      - ./${SERVICE}-data/client/custom:/var/www/html/client/custom
     restart: always
     depends_on:
       tailscale:
