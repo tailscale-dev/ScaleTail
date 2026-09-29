@@ -52,3 +52,11 @@ This is especially important when using the rootless or hardened Homebox images 
 ```plain
 user: 65532:65532
 ```
+
+## Files to check
+
+Please check the following contents for validity as some variables need to be defined upfront.
+
+- `.env`
+  - Required: `TS_AUTHKEY`
+  - Required: `HBOX_AUTH_API_KEY_PEPPER`, at least 32 bytes. Generate it with `openssl rand -base64 48`. Compose stops with an error if it is empty. Changing it later invalidates all issued API keys.

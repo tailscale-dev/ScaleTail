@@ -17,7 +17,7 @@ To get this working:
 
 If you change `SERVICE` in `.env`, update the hostname in `Caddyfile` as well.
 
-Both containers mount the socket directory, so Caddy can use the replacement socket after Tailscale restarts.
+Both containers mount the Tailscale socket directory. Caddy only uses the socket to get HTTPS certificates, which the sample `http://` site address does not request (see below). Sharing the directory instead of the socket file lets Caddy use the new socket after Tailscale restarts.
 
 The example `compose.yaml` uses a simple webserver for testing purposes.
 

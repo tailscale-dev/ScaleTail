@@ -23,4 +23,8 @@ Please check the following contents for validity as some variables need to be de
 
 ## Upgrading from an older ScaleTail configuration
 
-EspoCRM 10 and later refuse to start when the whole `/var/www/html` directory is mounted. This configuration mounts `data`, `custom`, and `client/custom` from `./espocrm-data` instead, so existing data stays in place. Back up `./espocrm-data` before you upgrade. See the [EspoCRM 10 migration guide](https://docs.espocrm.com/administration/docker/installation/#migration-to-espocrm-10).
+From EspoCRM 10, the upstream Docker setup no longer mounts the whole `/var/www/html` directory. This configuration follows it and mounts only `data`, `custom`, and `client/custom` from `./espocrm-data`, so existing data and customizations stay in place.
+
+1. Back up `./espocrm-data`.
+2. Run `docker compose down`, then `docker compose pull` and `docker compose up -d`.
+3. Optionally, remove the files that older images copied into `./espocrm-data`, such as `application`, `vendor`, and `bootstrap.php`. The [EspoCRM 10 migration guide](https://docs.espocrm.com/administration/docker/installation/#migration-to-espocrm-10) lists them all.

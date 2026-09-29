@@ -12,7 +12,7 @@ In this setup, the `tailscale-searxng` service runs Tailscale, which manages sec
 
 We use `/searxng/settings.yml` copied from <https://github.com/searxng/searxng/blob/master/searx/settings.yml> as the default settings file. This dir is mounted as a volume, on docker and required for the first run.
 The default `settings.yml` does not use valkey ([valkey](https://github.com/searxng/searxng/blob/master/searx/settings.yml#L121) URL is set to `false`). We enable this by setting the `SEARXNG_VALKEY_URL` in `.env` file and using that in the `compose.yaml` file.
-Set `SEARXNG_SECRET` in `.env` to a random value. The Compose file passes it to the mounted settings file as the instance secret.
+Set `SEARXNG_SECRET` in `.env` to a random value, for example with `openssl rand -hex 32`. The Compose file passes it to the mounted settings file as the instance secret, and Compose stops with an error if it is empty.
 
 ## References
 
