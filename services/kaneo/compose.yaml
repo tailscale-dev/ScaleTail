@@ -4,8 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{
-            "/api/":{"Proxy":"http://localhost:${SERVICEPORT_BACKEND}/api/"},
-            "/":{"Proxy":"http://localhost:${SERVICEPORT_FRONTEND}"}
+            "/":{"Proxy":"http://localhost:${SERVICEPORT}"}
           }}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
@@ -70,11 +69,11 @@ services:
       start_period: 30s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE} - Backend (API)
-  backend:
-    image: ${IMAGE_URL_BACKEND} # Image to be used
+  # ${SERVICE}
+  kaneo:
+    image: ${IMAGE_URL_SERVICE} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-    container_name: app-${SERVICE}-backend # Name for local container management
+    container_name: app-${SERVICE} # Name for local container management
     env_file:
       - .env
     environment:
@@ -84,20 +83,6 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    restart: always
-
-  # ${SERVICE} - Frontend (Web)
-  frontend:
-    image: ${IMAGE_URL_FRONTEND} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
-    container_name: app-${SERVICE}-frontend # Name for local container management
-    env_file:
-      - .env
-    depends_on:
-      tailscale:
-        condition: service_healthy
-      backend:
-        condition: service_started
     restart: always
 
 volumes:
