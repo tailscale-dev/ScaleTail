@@ -88,7 +88,7 @@ services:
       - ./mariadb_config:/config
     restart: always
     healthcheck:
-      test: ["CMD", "mariadb-admin", "ping", "-h", "localhost"]
+      test: ["CMD", "mariadb-admin", "ping", "-h", "127.0.0.1"] # Check if MariaDB accepts TCP connections; localhost would use the Unix socket
       interval: 5s
       timeout: 5s
       retries: 10

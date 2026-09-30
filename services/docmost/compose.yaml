@@ -83,7 +83,7 @@ services:
       POSTGRES_USER: docmost
       POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U docmost -d docmost"] # Check if PostgreSQL accepts connections
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U docmost -d docmost"] # Check if PostgreSQL accepts connections
       interval: 10s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy

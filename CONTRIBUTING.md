@@ -45,6 +45,12 @@ Thanks for helping improve these Tailscale sidecar examples.
    the image. Run the command inside the running container before you commit
    it. Avoid `pgrep -f ${SERVICE}`, which breaks when `SERVICE` is renamed.
 
+   For a database, connect over TCP, for example with
+   `pg_isready -h 127.0.0.1` or `mariadb-admin ping -h 127.0.0.1`. During the
+   first start, the image runs a temporary server that accepts only socket
+   connections, so a socket check reports ready too early. When another
+   service depends on the database, wait with `condition: service_healthy`.
+
    When the image has no shell, HTTP client, or health command, no check is
    possible. Omit the block and add a `# Healthcheck: none possible ...`
    comment that names the reason. Keep the Tailscale health check.

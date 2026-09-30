@@ -60,7 +60,7 @@ services:
       - ./${SERVICE}-db:/var/lib/mysql
     restart: always
     healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"] # Check if MariaDB accepts TCP connections and InnoDB is initialized
       interval: 1m
       start_period: 30s
       timeout: 10s

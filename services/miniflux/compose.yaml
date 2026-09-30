@@ -65,7 +65,7 @@ services:
       db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"]
+      test: ["CMD", "/usr/bin/miniflux", "-healthcheck", "auto"] # Check if ${SERVICE} is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -84,7 +84,7 @@ services:
     volumes:
       - ./${SERVICE}-data/db:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U ${POSTGRES_USER} -d ${POSTGRES_DB}"] # Check if PostgreSQL accepts connections
       interval: 10s
       timeout: 5s
       retries: 5

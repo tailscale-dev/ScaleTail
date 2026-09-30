@@ -55,7 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - SEARXNG_BASE_URL=https://${SERVICE}.${TAILNET_NAME}.ts.net/
+      - SEARXNG_BASE_URL=https://${SERVICE}.${TAILNET_NAME:?Set TAILNET_NAME in .env}.ts.net/
       - SEARXNG_SECRET=${SEARXNG_SECRET:?Set SEARXNG_SECRET in .env}
       - SEARXNG_VALKEY_URL=${SEARXNG_VALKEY_URL}
       - TZ=${TZ}

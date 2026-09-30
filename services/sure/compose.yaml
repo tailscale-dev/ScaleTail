@@ -128,7 +128,7 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-sure_password}
       - POSTGRES_DB=${POSTGRES_DB:-sure_production}
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      test: [ "CMD-SHELL", "pg_isready -h 127.0.0.1 -U $$POSTGRES_USER -d $$POSTGRES_DB" ] # Check if PostgreSQL accepts connections
       interval: 5s
       timeout: 5s
       retries: 5
@@ -167,7 +167,7 @@ services:
     volumes:
       - ./redis-data:/data
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: [ "CMD", "redis-cli", "ping" ] # Check if Redis responds
       interval: 5s
       timeout: 5s
       retries: 5

@@ -69,7 +69,7 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3552/", "-s", "-o", "/dev/null"]
+      test: ["CMD", "curl", "-f", "http://localhost:3552/", "-s", "-o", "/dev/null"] # Check if ${SERVICE} is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

@@ -89,6 +89,7 @@ services:
       - ./${SERVICE}-storage:/root/.affine/storage
       - ./${SERVICE}-config:/root/.affine/config
     command: [ 'sh', '-c', 'node ./scripts/self-host-predeploy.js' ]
+    # Healthcheck: none needed. The migration job runs once and exits before AFFiNE starts.
     env_file:
       - .env
     environment:
@@ -107,7 +108,7 @@ services:
     image: redis # Image to be used
     container_name: app-${SERVICE}-redis # Name for local container management
     healthcheck:
-      test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if redis process is running
+      test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if Redis responds
       interval: 10s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy
@@ -129,7 +130,7 @@ services:
       POSTGRES_HOST_AUTH_METHOD: trust
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     healthcheck:
-      test: [ 'CMD', 'pg_isready', '-U', "${DB_USERNAME}", '-d', "${DB_DATABASE:-affine}" ] # Check if postgres process is running
+      test: [ 'CMD', 'pg_isready', '-h', '127.0.0.1', '-U', "${DB_USERNAME}", '-d', "${DB_DATABASE:-affine}" ] # Check if PostgreSQL accepts connections
       interval: 15s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy

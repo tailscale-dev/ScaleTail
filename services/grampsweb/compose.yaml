@@ -87,8 +87,8 @@ services:
     ports: []
     container_name: app-${SERVICE}-celery
     depends_on:
-      grampsweb_redis:
-        condition: service_healthy
+      application:
+        condition: service_healthy # Wait until the web app has run the database migrations; both containers run them at startup
     command: celery -A gramps_webapi.celery worker --loglevel=INFO --concurrency=2
     healthcheck:
       test: ["CMD", "pgrep", "-f", "celery -A gramps_webapi.celery worker"] # Check if the Celery worker process is running
@@ -101,7 +101,7 @@ services:
     image: docker.io/library/redis:7.2.4-alpine
     container_name: app-${SERVICE}-redis
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"] # Check if ${SERVICE} process is running
+      test: ["CMD", "redis-cli", "ping"] # Check if Redis responds
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

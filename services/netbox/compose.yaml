@@ -67,8 +67,8 @@ services:
       redis-cache:
         condition: service_healthy
     healthcheck:
-      test: curl -f http://localhost:8080/login/ || exit 1
-      start_period: 300s # The first start runs database migrations that can take several minutes
+      test: curl -f http://localhost:8080/login/ || exit 1 # Check if ${SERVICE} is responding
+      start_period: 600s # The first start runs database migrations that can take several minutes, longer on slow hosts
       timeout: 3s
       interval: 15s
     restart: always
@@ -94,7 +94,7 @@ services:
     container_name: ${SERVICE}-postgres
     env_file: ./.env
     healthcheck:
-      test: pg_isready -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER
+      test: pg_isready -h 127.0.0.1 -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER # Check if PostgreSQL accepts connections
       start_period: 20s
       timeout: 30s
       interval: 10s
