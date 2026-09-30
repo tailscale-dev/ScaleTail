@@ -74,7 +74,7 @@ services:
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     healthcheck:
-      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3010/info').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"] # Check if ${SERVICE} is responding; the image has no wget or curl
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3010/info').then(r => process.exit(r.ok ? 0 : 1)).catch(() => process.exit(1))"] # Check if the service is responding; the image has no wget or curl
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

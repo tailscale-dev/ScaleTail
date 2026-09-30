@@ -83,7 +83,7 @@ services:
     stop_grace_period: 15s  # thumbnailer is allowed to continue finishing up for 10s after the shutdown signal
     healthcheck:
       # hide it from logs with "/._" so it matches the default --lf-url filter 
-      test: ["CMD-SHELL", "wget --spider -q 127.0.0.1:3923/?reset=/._"] # Check if ${SERVICE} is responding
+      test: ["CMD-SHELL", "wget --spider -q 127.0.0.1:3923/?reset=/._"] # Check if the service is responding
       interval: 1m
       timeout: 2s
       retries: 5

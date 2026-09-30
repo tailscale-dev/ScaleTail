@@ -83,7 +83,7 @@ services:
       - ./${SERVICE}-data/custom:/var/www/html/custom
       - ./${SERVICE}-data/client/custom:/var/www/html/client/custom
     healthcheck:
-      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:80/"] # Check if ${SERVICE} is responding
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:80/"] # Check if the service is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
