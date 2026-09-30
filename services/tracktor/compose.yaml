@@ -35,7 +35,7 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:3000 # Binding the host port to Tracktor's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns: 
     #  - ${DNS_SERVER}
@@ -55,7 +55,7 @@ services:
     environment:
       - TRACKTOR_DEMO_MODE=false
       - FORCE_DATA_SEED=false
-      - CORS_ORIGINS="https://${SERVICE}.${TS_TAILNET}.ts.net" # Adjust as needed for your setup
+      - CORS_ORIGINS=https://${SERVICE}.${TS_TAILNET}.ts.net # Adjust as needed for your setup
     volumes:
       - ./${SERVICE}-data:/data
     depends_on:

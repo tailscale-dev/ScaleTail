@@ -22,4 +22,6 @@ With Tailscale in place, all of these features are securely tunneled through you
 
 ## Configuration Overview
 
-In this setup, the `tailscale-copyparty` service runs Tailscale, which handles the secure networking layer. The `copyparty` service uses Docker’s `network_mode: service:` setting to share the network stack of the Tailscale container. This means the Copyparty web interface and all file sharing functionality are only accessible via the Tailscale network (or locally if preferred), adding a strong privacy layer to your self-hosted file server.
+In this setup, the `tailscale-copyparty` service runs Tailscale, which handles the secure networking layer. The `copyparty` service uses Docker’s `network_mode: service:tailscale` setting to share the network stack of the Tailscale container. This means the Copyparty web interface and all file sharing functionality are only accessible via the Tailscale network (or locally if preferred), adding a strong privacy layer to your self-hosted file server.
+
+Before starting the stack, replace `/path/to/your/fileshare/top/folder` in `compose.yaml` with an absolute host directory for the files Copyparty should serve.

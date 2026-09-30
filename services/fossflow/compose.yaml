@@ -4,7 +4,7 @@ configs:
       {"TCP":{"443":{"HTTPS":true}},
       "Web":{"$${TS_CERT_DOMAIN}:443":
           {"Handlers":{"/":
-          {"Proxy":"http://127.0.0.1:3000"}}}},
+          {"Proxy":"http://127.0.0.1:80"}}}},
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
@@ -35,7 +35,7 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:80 # Binding the host port to FossFLOW's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns: 
     #  - ${DNS_SERVER}
@@ -52,16 +52,13 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    build:
-      context: https://github.com/stan-smith/FossFLOW.git
-      dockerfile: Dockerfile
     environment:
-      - PUBLIC_URL="https://fossflow.<YOUR-TS-DOMAIN>.ts.net"
+      - PUBLIC_URL=https://fossflow.<YOUR-TS-DOMAIN>.ts.net
     depends_on:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:3000 || exit 1"] # Check if ${SERVICE} process is running
+      test: ["CMD-SHELL", "wget --spider -q http://127.0.0.1:80 || exit 1"] # Check if ${SERVICE} process is running
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

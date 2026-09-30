@@ -26,7 +26,7 @@ No `serve.json` configuration is needed for this service.
 
 ## Configuration Overview
 
-In this setup, the `tailscale-minecraft` service runs the Tailscale client to join your private mesh network. The `minecraft` service is configured with `network_mode: service:tailscale-minecraft`, so all network traffic for the game server is routed through the Tailscale container. The Minecraft server binds TCP port 25565, which is reachable only from devices on your Tailnet.
+In this setup, the `tailscale-minecraft` service runs the Tailscale client to join your private mesh network. The `minecraft` service is configured with `network_mode: service:tailscale`, so all network traffic for the game server is routed through the Tailscale container. The Minecraft server binds TCP port 25565, which is reachable only from devices on your Tailnet.
 
 ## Setup
 

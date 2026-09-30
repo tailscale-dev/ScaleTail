@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Tautulli for Docker](https://hub.dock
 
 ## Configuration Overview
 
-In this setup, the tailscale-tautulli service runs Tailscale, which manages secure networking for the Tautulli service. The tautulli service utilizes the Tailscale network stack via Docker's network_mode: service: configuration. This setup ensures that Tautulli’s monitoring interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your Plex server monitoring and management.
+In this setup, the tailscale-tautulli service runs Tailscale, which manages secure networking for the Tautulli service. The tautulli service utilizes the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Tautulli’s monitoring interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your Plex server monitoring and management.

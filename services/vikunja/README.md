@@ -19,7 +19,7 @@ Vikunja is ideal for individuals or teams who want full ownership of their produ
 
 ## Configuration Overview
 
-In this setup, the `tailscale-vikunja` service runs Tailscale, which manages secure networking for Vikunja. The `vikunja` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures the application is only accessible through your Tailnet unless you explicitly expose ports.
+In this setup, the `tailscale-vikunja` service runs Tailscale, which manages secure networking for Vikunja. The `vikunja` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures the application is only accessible through your Tailnet unless you explicitly expose ports.
 
 ### Service-Specific Notes
 

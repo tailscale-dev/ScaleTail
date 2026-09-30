@@ -8,4 +8,4 @@ This Docker Compose configuration sets up [Plex Media Server](https://hub.docker
 
 ## Configuration Overview
 
-In this setup, the `tailscale-plex` service runs Tailscale, which manages secure networking for the Plex Media Server. The `plex` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that Plex's media streaming service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your media server.
+In this setup, the `tailscale-plex` service runs Tailscale, which manages secure networking for the Plex Media Server. The `plex` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Plex's media streaming service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your media server.

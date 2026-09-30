@@ -8,4 +8,4 @@ The Beszel Agent is the client-side component that connects to the Hub to send a
 
 ## Configuration Overview
 
-In this setup, the `tailscale` service runs Tailscale, which manages secure networking for the Beszel Agent service. The Agent service connects to the Tailscale network stack using Docker's `network_mode: service:` configuration. This setup guarantees that the Agent's communication channels are only accessible through the Tailscale network, providing an extra layer of security and privacy.
+In this setup, the `tailscale` service runs Tailscale, which manages secure networking for the Beszel Agent service. The Agent service connects to the Tailscale network stack using Docker's `network_mode: service:tailscale` configuration. This setup guarantees that the Agent's communication channels are only accessible through the Tailscale network, providing an extra layer of security and privacy.

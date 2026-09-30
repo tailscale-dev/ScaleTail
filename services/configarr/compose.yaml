@@ -42,7 +42,7 @@ services:
       - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/config:/app/config
-      - ${PWD}/${SERVICE}-data/dockerrepos:/app/repos
+      - ./${SERVICE}-data/dockerrepos:/app/repos
     depends_on:
       tailscale:
         condition: service_healthy
@@ -52,6 +52,6 @@ services:
     #   timeout: 10s # Time to wait for the check to succeed
     #   retries: 3 # Number of retries before marking as unhealthy
     #   start_period: 30s # Time to wait before starting health checks
-    restart: never
+    restart: "no" # Configarr runs one sync and exits. Schedule repeated runs externally, for example with cron.
 
     

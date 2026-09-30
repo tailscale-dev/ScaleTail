@@ -51,7 +51,7 @@ services:
     network_mode: service:tailscale
     volumes:
       - ./app-storage:/rails/storage
-    restart: unless-stopped
+    restart: always
     environment:
       - POSTGRES_USER=${POSTGRES_USER:-sure_user}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-sure_password}
@@ -84,7 +84,7 @@ services:
     command: bundle exec sidekiq
     volumes:
       - ./app-storage:/rails/storage
-    restart: unless-stopped
+    restart: always
     depends_on:
       tailscale:
         condition: service_healthy
@@ -108,7 +108,7 @@ services:
   db:
     image: postgres:16
     container_name: app-${SERVICE}-db
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
     environment:
@@ -129,7 +129,7 @@ services:
       - backup
     image: prodrigestivill/postgres-backup-local
     container_name: app-${SERVICE}-backup
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./backups:/backups # Change this path to your desired backup location on the host machine
     environment:
@@ -149,7 +149,7 @@ services:
   redis:
     image: redis:latest
     container_name: app-${SERVICE}-redis
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./redis-data:/data
     healthcheck:

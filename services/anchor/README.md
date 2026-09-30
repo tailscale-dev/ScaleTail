@@ -18,7 +18,7 @@ This Docker Compose configuration sets up [Anchor](https://github.com/ZhFahim/an
 
 ## Configuration Overview
 
-In this setup, the `tailscale-anchor` service runs Tailscale and manages secure networking for Anchor. The `anchor` service shares that network stack via Docker's `network_mode: service:` configuration, which keeps the app private to your Tailnet unless you intentionally add host port mappings or funnel it through another public entrypoint.
+In this setup, the `tailscale-anchor` service runs Tailscale and manages secure networking for Anchor. The `anchor` service shares that network stack via Docker's `network_mode: service:tailscale` configuration, which keeps the app private to your Tailnet unless you intentionally add host port mappings or funnel it through another public entrypoint.
 
 ## Upstream documentation
 

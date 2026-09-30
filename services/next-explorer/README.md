@@ -8,4 +8,6 @@ This Docker Compose configuration sets up [NextExplorer](https://github.com/nxza
 
 ## Configuration Overview
 
-In this setup, the `tailscale-files` service runs Tailscale, which manages secure networking for the NextExplorer service. The `files` service uses the Tailscale network stack via Docker’s `network_mode: service:` configuration. This setup ensures that NextExplorer management interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for managing your file systems.
+In this setup, the `tailscale` service runs Tailscale, which manages secure networking for NextExplorer. The `application` service uses Docker's `network_mode: service:tailscale` configuration. This keeps the management interface on your Tailnet unless you enable the optional host port mapping.
+
+Set `ACCESS_PATH` in `.env` to an absolute host directory before starting the stack. NextExplorer mounts that directory at `/mnt/Files`. Replace the sample `SESSION_SECRET` and `PUBLIC_URL` values with deployment-specific values when those settings are used.

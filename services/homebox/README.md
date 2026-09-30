@@ -30,7 +30,7 @@ When combined with Tailscale, Homebox becomes a **secure, Tailnet-only inventory
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-homebox`) runs the Tailscale client and joins your private Tailscale network. The main `homebox` service uses:
 
 ```plain
-network_mode: service:tailscale-homebox
+network_mode: service:tailscale
 ```
 
 This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Homebox web UI and API are accessible **only via your Tailscale network**. No public port exposure is required unless explicitly configured.
@@ -52,3 +52,11 @@ This is especially important when using the rootless or hardened Homebox images 
 ```plain
 user: 65532:65532
 ```
+
+## Files to check
+
+Please check the following contents for validity as some variables need to be defined upfront.
+
+- `.env`
+  - Required: `TS_AUTHKEY`
+  - Required: `HBOX_AUTH_API_KEY_PEPPER`, at least 32 bytes. Generate it with `openssl rand -base64 48`. Compose stops with an error if it is empty. Changing it later invalidates all issued API keys.

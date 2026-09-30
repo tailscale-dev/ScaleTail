@@ -67,12 +67,9 @@ services:
       start_period: 30s # Time to wait before starting health checks
     restart: always
     volumes:
-      - type: bind
-        source: ./${SERVICE}-data/app/traefik.yml
-        target: /etc/traefik.yml
       - ./${SERVICE}-data/log/:/var/log/
       - /var/run/docker.sock:/var/run/docker.sock #Required for the Service Connections
-    command:
+    command: # Static configuration. Traefik ignores these flags if it finds a traefik.yml file.
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -92,6 +89,6 @@ services:
   simpleweb:
     image: yeasy/simple-web:latest
     labels:
-      - traefik.enable=true # To 
+      - traefik.enable=true # Let Traefik route this sample container
       - traefik.http.routers.simpleweb.rule=Host(`simpleweb.domain.local`)
       - traefik.http.routers.simpleweb.entrypoints=web

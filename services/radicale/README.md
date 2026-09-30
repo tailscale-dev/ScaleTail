@@ -17,7 +17,7 @@ This Docker Compose configuration sets up [Radicale](https://radicale.org/) with
 
 ## Configuration Overview
 
-In this setup, the `tailscale-radicale` service runs Tailscale, which manages secure networking for Radicale. The `radicale` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+In this setup, the `tailscale-radicale` service runs Tailscale, which manages secure networking for Radicale. The `radicale` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
 
 The container runs with hardened security settings: read-only filesystem, no new privileges, dropped capabilities, and resource limits (256M memory, 50 pids).
 

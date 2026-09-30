@@ -17,7 +17,7 @@ This Docker Compose configuration sets up [Kavita](https://github.com/Kareadita/
 
 ## Configuration Overview
 
-In this setup, the `tailscale-kavita` service runs the Tailscale client to join your private mesh network. The `kavita` service is configured with `network_mode: service:tailscale-kavita`, so all network traffic for Kavita is routed through the Tailscale container. This ensures the web UI and API are reachable only via your Tailscale network (or locally), adding an extra layer of privacy and security to your self-hosted library.
+In this setup, the `tailscale-kavita` service runs the Tailscale client to join your private mesh network. The `kavita` service is configured with `network_mode: service:tailscale`, so all network traffic for Kavita is routed through the Tailscale container. This ensures the web UI and API are reachable only via your Tailscale network (or locally), adding an extra layer of privacy and security to your self-hosted library.
 
 ## Files to check
 

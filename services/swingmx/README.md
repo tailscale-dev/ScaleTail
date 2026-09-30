@@ -27,7 +27,9 @@ Self-hosting Swing Music gives you **full ownership of your music library**, com
 In this deployment, a **Tailscale sidecar container** (for example `tailscale-swingmusic`) runs the Tailscale client and joins your private Tailscale network. The main `swingmusic` service uses:
 
 ```plain
-network_mode: service:tailscale-swingmusic
+network_mode: service:tailscale
 ```
 
 This configuration routes all traffic through the Tailscale interface, ensuring the Swing Music web UI and streaming endpoints are accessible **only via your Tailscale network**. This keeps your music library secure while allowing seamless access from all your trusted devices.
+
+Before starting the stack, replace `/path/to/music` in `compose.yaml` with the absolute host directory that contains your music library.

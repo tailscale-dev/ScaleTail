@@ -8,4 +8,4 @@ The Beszel Hub is the core component responsible for routing messages between ag
 
 ## Configuration Overview
 
-In this setup, the `tailscale` service runs Tailscale, which manages secure networking for the Beszel Hub service. The Hub service connects to the Tailscale network stack using Docker's `network_mode: service:` configuration. This setup guarantees that the Hub's communication channels are only accessible through the Tailscale network, providing an extra layer of security and privacy.
+In this setup, the `tailscale` service runs Tailscale, which manages secure networking for the Beszel Hub service. The Hub service connects to the Tailscale network stack using Docker's `network_mode: service:tailscale` configuration. This setup guarantees that the Hub's communication channels are only accessible through the Tailscale network, providing an extra layer of security and privacy.

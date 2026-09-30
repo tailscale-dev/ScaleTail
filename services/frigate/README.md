@@ -10,7 +10,7 @@ Frigate is often paired with Tailscale to ensure that camera feeds, recordings, 
 
 ## Configuration Overview
 
-In this setup, the `tailscale-frigate` service runs Tailscale, which manages secure networking for Frigate. The `frigate` container shares the network stack using Docker’s `network_mode: service:tailscale-frigate`.
+In this setup, the `tailscale-frigate` service runs Tailscale, which manages secure networking for Frigate. The `frigate` container shares the network stack using Docker’s `network_mode: service:tailscale`.
 
 This ensures:
 

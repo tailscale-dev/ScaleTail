@@ -8,4 +8,4 @@ Stirling-PDF is a versatile, open-source toolkit that allows you to perform vari
 
 ## Configuration Overview
 
-In this setup, the `tailscale-stirlingpdf` service runs Tailscale, which manages secure networking for the Stirling-PDF service. The `stirlingpdf` service uses the Tailscale network stack via Docker’s `network_mode: service:` configuration. This setup ensures that Stirling-PDF's interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your PDF processing tasks.
+In this setup, the `tailscale-stirlingpdf` service runs Tailscale, which manages secure networking for the Stirling-PDF service. The `stirlingpdf` service uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that Stirling-PDF's interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your PDF processing tasks.

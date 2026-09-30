@@ -16,4 +16,4 @@ This Docker Compose configuration sets up [Gitea](https://gitea.com/) with Tails
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-gitea` service runs the Tailscale client to establish a secure private network. The `gitea` container uses `network_mode: service:tailscale-gitea` to route all traffic through the Tailscale interface. This ensures your Git service, web interface, and API endpoints are only accessible via Tailscale, preventing public exposure while still offering seamless remote access to your team.
+In this deployment, the `tailscale-gitea` service runs the Tailscale client to establish a secure private network. The `gitea` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures your Git service, web interface, and API endpoints are only accessible via Tailscale, preventing public exposure while still offering seamless remote access to your team.

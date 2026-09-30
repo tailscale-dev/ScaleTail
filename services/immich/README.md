@@ -19,4 +19,4 @@ Immich is a self-hosted, high-performance solution for backing up and browsing p
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-immich` service runs the Tailscale client to establish a secure private network. The `immich` container uses `network_mode: service:tailscale-immich` to route its traffic through the Tailscale interface. This ensures that the Immich web UI and backend services are only reachable via your Tailscale network, keeping your personal media safe from public exposure.
+In this deployment, the `tailscale-immich` service runs the Tailscale client to establish a secure private network. The `immich` container uses `network_mode: service:tailscale` to route its traffic through the Tailscale interface. This ensures that the Immich web UI and backend services are only reachable via your Tailscale network, keeping your personal media safe from public exposure.

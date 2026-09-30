@@ -53,6 +53,8 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     depends_on:
+      tailscale:
+        condition: service_healthy
       redis:
         condition: service_healthy
       postgres:
@@ -66,16 +68,16 @@ services:
     env_file:
       - .env
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
-      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${postgres:-affine}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     restart: always
 
   affine_migration:
     image: ghcr.io/toeverything/affine:${AFFINE_REVISION:-stable} # Image to be used
-    container_name: affine_migration_job # Name for local container management
+    container_name: app-${SERVICE}-migration # Name for local container management
     volumes:
       # custom configurations
       - ./${SERVICE}-storage:/root/.affine/storage
@@ -84,9 +86,9 @@ services:
     env_file:
       - .env
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
-      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${postgres:-affine}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     depends_on:
@@ -97,7 +99,7 @@ services:
 
   redis:
     image: redis # Image to be used
-    container_name: affine_redis # Name for local container management
+    container_name: app-${SERVICE}-redis # Name for local container management
     healthcheck:
       test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if redis process is running
       interval: 10s # How often to perform the check
@@ -107,21 +109,21 @@ services:
 
   postgres:
     image: pgvector/pgvector:pg16 # Image to be used
-    container_name: affine_postgres # Name for local container management
+    container_name: app-${SERVICE}-postgres # Name for local container management
     volumes:
       - ./postgres:/var/lib/postgresql/data
     environment:
-      # Varibles are delared in .env file.
+      # Variables are declared in .env file.
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_PASSWORD: ${DB_PASSWORD}
-      POSTGRES_DB: ${postgres:-affine}
+      POSTGRES_DB: ${DB_DATABASE:-affine}
       POSTGRES_INITDB_ARGS: '--data-checksums'
       # you better set a password for you database
       # or you may add 'POSTGRES_HOST_AUTH_METHOD=trust' to ignore postgres security policy
       POSTGRES_HOST_AUTH_METHOD: trust
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     healthcheck:
-      test: [ 'CMD', 'pg_isready', '-U', "${DB_USERNAME}", '-d', "${postgres:-affine}" ] # Check if postgres process is running
+      test: [ 'CMD', 'pg_isready', '-U', "${DB_USERNAME}", '-d', "${DB_DATABASE:-affine}" ] # Check if postgres process is running
       interval: 15s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy

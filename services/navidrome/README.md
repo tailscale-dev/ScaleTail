@@ -17,4 +17,6 @@ Navidrome is a self-hosted music streaming server and web-based player. It allow
 
 ## Configuration Overview
 
-In this setup, the `tailscale-navidrome` container runs the Tailscale client and forms a private mesh network. The `navidrome` container is configured with `network_mode: service:tailscale-navidrome`, which routes all of Navidrome’s traffic through Tailscale. This ensures that your music server is never exposed publicly, and can only be accessed from devices authenticated through your Tailscale Tailnet.
+In this setup, the `tailscale-navidrome` container runs the Tailscale client and forms a private mesh network. The `navidrome` container is configured with `network_mode: service:tailscale`, which routes all of Navidrome’s traffic through Tailscale. This ensures that your music server is never exposed publicly, and can only be accessed from devices authenticated through your Tailscale Tailnet.
+
+Before starting the stack, replace `/path/to/your/music/folder` in `compose.yaml` with the absolute host directory that contains your music library.

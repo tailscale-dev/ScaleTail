@@ -1,6 +1,6 @@
 # Mattermost with Tailscale Sidecar Configuration
 
-This Docker Compose configuration sets up [Mattermost](https://mattermost.com/platform-overview/) with Tailscale as a sidecar container to securely manage and access your clipboard history over a private Tailscale network. By integrating Tailscale, you can ensure that your Mattermost instance remains private and accessible only to authorized devices on your Tailscale network.
+This Docker Compose configuration sets up [Mattermost](https://mattermost.com/platform-overview/) with Tailscale as a sidecar container to securely manage team communication over a private Tailscale network. By integrating Tailscale, you can ensure that your Mattermost instance remains private and accessible only to authorized devices on your Tailscale network.
 
 ## Mattermost
 
@@ -17,20 +17,24 @@ This Docker Compose configuration sets up [Mattermost](https://mattermost.com/pl
 
 ## Configuration Overview
 
-In this setup, the `tailscale-Mattermost` service runs Tailscale, which manages secure networking for the Mattermost service. The `Mattermost` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Mattermost’s web interface and functionality are only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for managing your clipboard history.
+In this setup, the `tailscale-Mattermost` container runs Tailscale, which manages secure networking for the Mattermost service. The `Mattermost` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Mattermost’s web interface and functionality are only accessible through the Tailscale network unless you enable host port mappings.
+
+The stack stores Mattermost and PostgreSQL data under the local `${SERVICE}-data` directory, which is `mattermost-data` by default. The path variables in `.env` are relative to this service directory, so the stack does not depend on the shell's current PWD variable.
 
 ## Troubleshooting
 
-After initial start-up you may experience an error.
+The Mattermost image runs as UID/GID `2000`. Docker creates missing bind-mount directories as `root:root`, and Mattermost then fails with:
 
 ```plain
 app-mattermost        | Error: failed to load configuration: could not create config file: open /mattermost/config/config.json: permission denied
 ```
 
-Please adjust the permissions of the newly created folder `mattermost-data/` with the following command and restart the service.
+Create the Mattermost directories and set their owner before the first start. Run the commands from this service directory. If you changed `SERVICE` in `.env`, set `DATA_DIR` to `<SERVICE>-data`. Do not change the owner of the `postgres` directory, which PostgreSQL manages itself.
 
 ```bash
-chown -R 2000:2000 mattermost-data/
+DATA_DIR=mattermost-data
+mkdir -p "$DATA_DIR"/{config,data,logs,plugins,client/plugins,bleve-indexes}
+sudo chown -R 2000:2000 "$DATA_DIR"/{config,data,logs,plugins,client,bleve-indexes}
 ```
 
 Reference - [Starting/Stopping Docker](https://github.com/mattermost/mattermost-docker/commit/37331ba3d7122aeb30272308dddf51ef70e2134c#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5L146)

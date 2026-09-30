@@ -17,7 +17,7 @@ This Docker Compose configuration sets up [Miniflux](https://github.com/miniflux
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-miniflux` service runs the Tailscale client to establish a secure private network. The `miniflux` application and its `postgres` database both use `network_mode: service:tailscale-miniflux`. This means all services share the same network namespace, allowing them to communicate via `localhost` and keeping the application reachable only via the Tailscale network.
+In this deployment, the `tailscale-miniflux` service runs the Tailscale client to establish a secure private network. The `miniflux` application and its `postgres` database both use `network_mode: service:tailscale`. This means all services share the same network namespace, allowing them to communicate via `localhost` and keeping the application reachable only via the Tailscale network.
 
 ## Files to check
 

@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [AdGuard Home](https://github.com/Adgu
 
 ## Configuration Overview
 
-In this setup, the `tailscale-adguardhome` service runs Tailscale, which manages secure networking for the AdGuard Home service. The `adguardhome` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that AdGuard Home's DNS service is only accessible through the Tailscale network (or local as well, if preferred).
+In this setup, the `tailscale-adguardhome` service runs Tailscale, which manages secure networking for the AdGuard Home service. The `adguardhome` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that AdGuard Home's DNS service is only accessible through the Tailscale network (or local as well, if preferred).
 
 ## Binding to your local host machine? Port 53 - DNSStubListener
 

@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [Rustdesk Server](https://rustdesk.com
 
 ## Configuration Overview
 
-In this setup, the `tailscale-rustdesk-server` service runs Tailscale, which manages secure networking for Rustdesk Server. The `Rustdesk Server` service utilizes the Tailscale network stack via Docker's `network_mode: service:` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+In this setup, the `tailscale-rustdesk-server` service runs Tailscale, which manages secure networking for Rustdesk Server. The `Rustdesk Server` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
 
 ## Client setup
 

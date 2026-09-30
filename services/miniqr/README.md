@@ -16,4 +16,4 @@ This Docker Compose configuration sets up **[Mini-QR](https://github.com/lyqht/m
 
 ## Configuration Overview  
 
-In this setup, the `tailscale-miniqr` service runs Tailscale, which handles secure networking for the Mini-QR service. The `mini-qr` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that the Mini-QR web interface is only accessible via your Tailscale network (or locally if preferred), giving you complete control over access and visibility.
+In this setup, the `tailscale-miniqr` service runs Tailscale, which handles secure networking for the Mini-QR service. The `mini-qr` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that the Mini-QR web interface is only accessible via your Tailscale network (or locally if preferred), giving you complete control over access and visibility.

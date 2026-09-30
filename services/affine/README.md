@@ -20,7 +20,7 @@ AFFiNE is designed around modern knowledge work, blending structured content and
 
 ## Configuration Overview
 
-In this setup, the `tailscale-affine` service runs Tailscale and handles secure networking for the stack. The `affine` service shares the Tailscale container's network namespace using Docker's `network_mode: service:` configuration. This means AFFiNE is reachable through your Tailnet without exposing it directly to the public internet.
+In this setup, the `tailscale-affine` service runs Tailscale and handles secure networking for the stack. The `affine` service shares the Tailscale container's network namespace using Docker's `network_mode: service:tailscale` configuration. This means AFFiNE is reachable through your Tailnet without exposing it directly to the public internet.
 
 This approach provides a secure and simple way to self-host AFFiNE privately, whether for personal note-taking, team collaboration, or internal documentation.
 

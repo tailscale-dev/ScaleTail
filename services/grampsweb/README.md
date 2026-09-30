@@ -19,4 +19,4 @@ This Docker Compose configuration sets up [**Gramps Web**](https://github.com/gr
 
 ## Configuration Overview
 
-In this deployment, the `tailscale-grampsweb` service runs the Tailscale client to establish a secure private network. The `grampsweb` container uses `network_mode: service:tailscale-grampsweb` to route all traffic through the Tailscale interface. This ensures that your genealogy database, charts, and administration interface are only accessible via Tailscale, preventing public exposure.
+In this deployment, the `tailscale-grampsweb` service runs the Tailscale client to establish a secure private network. The `grampsweb` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures that your genealogy database, charts, and administration interface are only accessible via Tailscale, preventing public exposure.

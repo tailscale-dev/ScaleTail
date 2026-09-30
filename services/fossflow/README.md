@@ -17,4 +17,4 @@ FossFLOW is a free and open-source flow **visualization** tool. Unlike automatio
 
 ## Configuration Overview
 
-This setup includes a `tailscale-fossflow` container running the Tailscale client to establish a secure connection. The `fossflow` container uses `network_mode: service:tailscale-fossflow`, ensuring all traffic routes through Tailscale. This keeps your flow diagrams accessible only to authenticated devices within your Tailnet, with no exposure to the public internet.
+This setup includes a `tailscale-fossflow` container running the Tailscale client to establish a secure connection. The `fossflow` container uses `network_mode: service:tailscale`, ensuring all traffic routes through Tailscale. This keeps your flow diagrams accessible only to authenticated devices within your Tailnet, with no exposure to the public internet.

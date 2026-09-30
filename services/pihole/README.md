@@ -8,7 +8,7 @@ This Docker Compose configuration sets up [Pi-hole](https://github.com/pi-hole/p
 
 ## Configuration Overview
 
-In this setup, the `tailscale-pihole` service runs Tailscale, which manages secure networking for the Pi-hole service. The `pihole` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This setup ensures that Pi-hole’s DNS service and web interface are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your network-wide ad blocker.
+In this setup, the `tailscale-pihole` service runs Tailscale, which manages secure networking for the Pi-hole service. The `pihole` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Pi-hole’s DNS service and web interface are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your network-wide ad blocker.
 
 ## Binding to your local host machine? Port 53 - DNSStubListener
 

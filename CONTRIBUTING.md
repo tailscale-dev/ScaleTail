@@ -1,75 +1,109 @@
 # Contributing to ScaleTail
 
-Thanks for helping expand these Tailscale sidecar examples. Keeping services aligned with the template makes it easier for users to migrate existing Compose stacks without breaking them.
+Thanks for helping improve these Tailscale sidecar examples.
 
-## Adding a new service
+## Add a service
 
-1. Copy `templates/service-template` into `services/<service-name>` and rename the compose and README files accordingly.
-2. Update `compose.yaml`:
-   - Keep the Tailscale container named `tailscale-<service>` and the app container named `app-<service>`.
-   - Set `IMAGE_URL`, `SERVICEPORT`, and any other app variables in `.env`; do not commit secrets or real auth keys.
-   - Leave `network_mode: service:tailscale` in place and keep `depends_on` using the Tailscale health check.
-   - Keep the `ports` section commented unless LAN exposure is required; explain why in the README if you expose anything.
-   - Adjust volumes to match the service, and pre-create bind-mount paths so Docker does not create root-owned folders. (optional)
-   - If the service needs devices (GPU, render, fuse, etc.) or extra capabilities, add them explicitly and mention them in the README. (optional)
-3. Update `"Proxy":"http://127.0.0.1:80"` in `compose.yaml` with the app's actual internal port; it does not consume `.env` values automatically. Remove `TS_SERVE_CONFIG` if Serve/Funnel is not needed.
-4. Fill in the service README using the template:
-   - Briefly describe the app and why Tailscale helps.
-   - List prerequisites (user in `docker` group, GPU/group membership, devices).
-   - Call out gotchas: initial admin setup, default credentials, path expectations, required group IDs, or config directory names that must change.
-   - Clarify MagicDNS/HTTPS steps (`TS_ACCEPT_DNS`), optional 0.0.0.0 port exposure, and any health checks.
-   - Link to upstream service docs and any official setup videos.
-5. Sanity-check the stack with `docker compose config` from the service directory to catch typos and missing variables.
+1. Copy the service template from the repository root. Replace `my-service` with your service name:
 
-### Service contract and validation
+   ```sh
+   cp -R templates/service-template services/my-service
+   ```
 
-The files in `templates/service-template` are the canonical structure for a
-new service. Keep the explanatory comments in the Tailscale and application
-blocks; add service-specific comments beside the template comments instead of
-deleting them. New services must use `compose.yaml`, include a complete `.env`
-template, and add a categorized link to the root `README.md`.
+   This command includes the hidden `.env` file. Use a lowercase directory name.
 
-Run the repository validator before opening a pull request:
+2. Update `.env` with safe example values.
 
-```console
-python -m pip install -r tools/requirements.txt
-python tools/validate_services.py services/<service-name> --new-service <service-name>
-(cd services/<service-name> && docker compose config --quiet)
+   Set `SERVICE`, `IMAGE_URL`, `SERVICEPORT`, and the application variables.
+   Never commit a working auth key, password, token, or other credential.
+
+3. Adapt `compose.yaml`.
+
+   - Keep the Compose service keys `tailscale` and `application`.
+   - Name the containers `tailscale-${SERVICE}` and `app-${SERVICE}`.
+   - Keep `network_mode: service:tailscale` on the application.
+   - Keep the application's health-based dependency on `tailscale`.
+   - Add all required persistent volumes.
+   - Add required devices and capabilities explicitly.
+
+4. Set the Serve proxy to the application's internal port.
+
+   The Serve JSON does not read `SERVICEPORT` from `.env`. Keep runtime variables
+   escaped, such as `$${TS_CERT_DOMAIN}`.
+
+   Keep the `ports` block commented for Tailnet-only access. Document any LAN
+   port you expose. Remove the Serve configuration when the service does not use
+   Tailscale Serve.
+
+5. Add a health check that the application image can run.
+
+   Prefer an application endpoint or an upstream health command. Remove the
+   application health check when no reliable check exists. Keep the Tailscale
+   health check.
+
+6. Complete the service README.
+
+   Document prerequisites, persistent paths, setup steps, ports, Tailnet access,
+   and service-specific exceptions. Link to the upstream documentation.
+
+7. Add the service to the correct category in the root `README.md`.
+
+   Keep the entries in that category alphabetized.
+
+## Update a service
+
+- Read the service README and Compose file before you make changes.
+- Preserve the shared network namespace and Tailscale dependency.
+- Preserve persistent volumes unless you document a safe migration.
+- Use `${VARIABLE}` for Compose interpolation, not `$(VARIABLE)`.
+- Update the service README when ports, paths, setup, or behavior change.
+- Update the root service list when you add, remove, or rename a service.
+
+Preserve valid service-specific exceptions.
+
+## Verify your change
+
+Run Compose validation from each changed service directory:
+
+```sh
+docker compose config --quiet
 ```
 
-The `service-contract` GitHub check runs these deterministic checks for changed
-services. It does not pull images or start third-party containers. Multi-container
-layouts must be listed in `tools/service-profiles.yml` with an ingress service;
-all non-default profiles need a maintainer-owned reason. Tailscale-node profiles
-are restricted to the approved routing services.
+This command does not prove that the application works.
 
-The validator cannot prove that an upstream image's internal port, healthcheck,
-volume path, UID/GID, or device requirements are correct. Verify those details
-against the service's official documentation and record the links and gotchas in
-the service README before requesting review.
+The repository validator is the deterministic contract check for new and
+changed services:
 
-The repository-wide baseline and remediation backlog are recorded in
-[`documentation/service-contract-baseline.md`](documentation/service-contract-baseline.md).
+```sh
+python -m pip install -r tools/requirements.txt
+python tools/validate_services.py services/<service-name> --new-service <service-name>
+```
 
-## Updating an existing service
+Run it from the repository root, and run Compose validation from the service
+directory. The `service-contract` GitHub check performs these checks without
+pulling images or starting third-party containers. Multi-container layouts
+must be listed in `tools/service-profiles.yml` with an ingress service and a
+maintainer-owned reason; Tailscale-node profiles are restricted to approved
+routing services. Preserve template comments and verify ports, healthchecks,
+volume paths, permissions, devices, capabilities, and architecture support
+against authoritative upstream documentation.
 
-- Keep the sidecar pattern intact (`network_mode: service:tailscale`, health checks, `depends_on`).
-- Avoid removing existing volumes or changing container names unless the change is clearly documented in the README.
-- Preserve the template comments and run the validator for the service after any
-  Compose or `.env` change.
+When possible, start the stack and confirm:
 
-## Issue and pull request review
+- Tailscale becomes healthy and joins the Tailnet.
+- The application starts and is reachable through the Tailnet.
+- The application's main function works.
+- Persistent storage and documented LAN access work, when applicable.
 
-Use the personal `scaletail-maintainer` Codex skill for research-heavy reviews,
-new-service validation, and issue triage. It reports findings by default and
-only edits the local checkout when explicitly asked to fix something. It does
-not push branches, post GitHub comments, resolve review threads, apply labels,
-or close issues unless those actions are separately requested.
+## Submit a pull request
 
-Issue triage uses the existing GitHub labels plus these small cross-cutting
-labels when they are useful: `needs-info`, `template`, `service`, `upstream`,
-`security`, and `blocked`. Start by checking for duplicates and whether the
-form contains enough reproduction or upstream information. Runtime reports
-such as sidecar healthcheck and database-DNS failures need evidence from the
-service, image, Docker/Compose, and Tailscale layers; a formatting-only change
-is not proof that they are resolved.
+Follow the pull request template. Report the checks you ran and any checks you
+could not run.
+
+For research-heavy PR reviews and issue triage, use the personal
+`scaletail-maintainer` skill. It reports findings by default and only edits the
+local checkout after an explicit request; it does not push branches, post
+GitHub comments, resolve review threads, apply labels, or close issues unless
+separately requested. Runtime reports need evidence from the service image,
+Docker/Compose, Tailscale, and environment layers rather than formatting-only
+changes.

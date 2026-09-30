@@ -34,4 +34,4 @@ This Docker Compose configuration sets up **[Karakeep](https://github.com/karake
 
 ## Configuration Overview
 
-In this setup, the `tailscale-karakeep` service runs Tailscale, which manages secure networking for the Karakeep service. The `karakeep` service uses the Tailscale network stack via Docker's `network_mode: service:` configuration. This ensures that Karakeep’s web interface is only accessible through the Tailscale network (or locally, if preferred), enhancing the privacy and security of your notes and collaborative workspace.
+In this setup, the `tailscale-karakeep` service runs Tailscale, which manages secure networking for the Karakeep service. The `karakeep` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Karakeep’s web interface is only accessible through the Tailscale network (or locally, if preferred), enhancing the privacy and security of your notes and collaborative workspace.
