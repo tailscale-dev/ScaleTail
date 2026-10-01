@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment when using MagicDNS
+      #- TS_ACCEPT_DNS=true # Keep disabled: it replaces Docker DNS, so Immich cannot resolve database and redis - see the README
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
@@ -37,6 +37,7 @@ services:
     #ports:
     #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
+    # To resolve MagicDNS names from Immich, uncomment the config below and use 100.100.100.100 as the DNS server
     #dns:
     #  - ${DNS_SERVER}
     healthcheck:

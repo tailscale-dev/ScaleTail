@@ -20,3 +20,9 @@ Immich is a self-hosted, high-performance solution for backing up and browsing p
 ## Configuration Overview
 
 In this deployment, the `tailscale-immich` service runs the Tailscale client to establish a secure private network. The `immich` container uses `network_mode: service:tailscale` to route its traffic through the Tailscale interface. This ensures that the Immich web UI and backend services are only reachable via your Tailscale network, keeping your personal media safe from public exposure.
+
+## Usage Notes
+
+* **Keep `TS_ACCEPT_DNS` disabled.** The `application` service shares the DNS configuration of the `tailscale` service. With `TS_ACCEPT_DNS=true`, Tailscale replaces Docker's DNS with MagicDNS, which cannot resolve the `database`, `redis`, and `immich-machine-learning` services. Immich then fails to start with `getaddrinfo ENOTFOUND database`. You can reach Immich over your Tailnet without this setting.
+* **Resolving MagicDNS names from Immich.** If Immich itself must look up other Tailnet devices by name, such as an OAuth provider or SMTP server, uncomment the `dns` block of the `tailscale` service and set `100.100.100.100` as the DNS server. Docker keeps resolving the service names and forwards all other lookups to MagicDNS. Use the full name, such as `device.example.ts.net`.
+* **Renamed services.** Immich connects to the hostnames `database` and `redis` by default. If you rename these services in `compose.yaml`, set `DB_HOSTNAME` and `REDIS_HOSTNAME` in `.env` to the new names.
