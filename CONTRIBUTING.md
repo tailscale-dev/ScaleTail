@@ -100,6 +100,23 @@ docker compose config --quiet
 
 This command does not prove that the application works.
 
+The repository validator is the deterministic contract check for new and
+changed services:
+
+```sh
+python -m pip install -r tools/requirements.txt
+python tools/validate_services.py services/<service-name> --new-service <service-name>
+```
+
+Run it from the repository root, and run Compose validation from the service
+directory. The `service-contract` GitHub check performs these checks without
+pulling images or starting third-party containers. Multi-container layouts
+must be listed in `tools/service-profiles.yml` with an ingress service and a
+maintainer-owned reason; Tailscale-node profiles are restricted to approved
+routing services. Preserve template comments and verify ports, healthchecks,
+volume paths, permissions, devices, capabilities, and architecture support
+against authoritative upstream documentation.
+
 When possible, start the stack and confirm:
 
 - Tailscale becomes healthy and joins the Tailnet.
@@ -111,3 +128,11 @@ When possible, start the stack and confirm:
 
 Follow the pull request template. Report the checks you ran and any checks you
 could not run.
+
+For research-heavy PR reviews and issue triage, use the personal
+`scaletail-maintainer` skill. It reports findings by default and only edits the
+local checkout after an explicit request; it does not push branches, post
+GitHub comments, resolve review threads, apply labels, or close issues unless
+separately requested. Runtime reports need evidence from the service image,
+Docker/Compose, Tailscale, and environment layers rather than formatting-only
+changes.
