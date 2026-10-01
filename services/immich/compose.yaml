@@ -68,9 +68,8 @@ services:
         condition: service_healthy
       tailscale:
         condition: service_healthy
+    # Healthcheck: defined by the image (immich-healthcheck), so this file does not override it.
     restart: always
-    healthcheck: # Use the healthcheck defined by the image (immich-healthcheck)
-      disable: false
 
   immich-machine-learning:
     container_name: app-${SERVICE}-machine-learning
@@ -84,9 +83,8 @@ services:
       - ./${SERVICE}-data/model-cache:/cache
     env_file:
       - .env
+    # Healthcheck: defined by the image (python3 healthcheck.py), so this file does not override it.
     restart: always
-    healthcheck: # Use the healthcheck defined by the image
-      disable: false
 
   redis:
     container_name: app-${SERVICE}-redis
@@ -109,4 +107,5 @@ services:
       # Do not edit the next line. If you want to change the database storage location on your system, edit the value of DB_DATA_LOCATION in the .env file
       - ./${SERVICE}-data/database:/var/lib/postgresql/data
     # Healthcheck: defined by the image (/usr/local/bin/healthcheck.sh), so this file does not override it.
+    # The image's check connects over the Unix socket, so it can report ready during first-start initialization.
     restart: always

@@ -64,13 +64,18 @@ services:
         condition: service_healthy
     # Healthcheck: use the first option the image supports, and test it inside the running container.
     # 1. The image defines its own HEALTHCHECK: remove this block and replace it with
-    #    "# Healthcheck: defined by the image (<command>), so this file does not override it."
+    #    "# Healthcheck: defined by the image (<command, or what it checks>), so this file does not override it."
     #    Override it only when it does not work with this stack, and say why in a comment.
     # 2. An application endpoint, called with a client the image ships (wget, curl, python3, or node).
     # 3. A health command that ships with the image, such as `/app/binary healthcheck`.
-    # 4. The image has no shell, HTTP client, or health command (for example Portainer and RustDesk):
+    # 4. A fixed process name, with `pidof <name>` or `pgrep -x <name>`, when the container has no endpoint
+    #    or the image has no HTTP client. `pgrep -x` matches at most 15 characters of the name.
+    #    When the process name is generic, such as python, use `pgrep -f <fixed pattern>`.
+    # 5. The image has no shell, HTTP client, or health command (for example Portainer and RustDesk):
     #    no check is possible. Remove this block and replace it with
     #    "# Healthcheck: none possible. The image contains only <binary>, with no shell, HTTP client, or health command."
+    # A container that runs once and exits needs no check. Remove this block and replace it with
+    # "# Healthcheck: none needed. <reason>."
     # Avoid `pgrep -f ${SERVICE}`: it breaks when SERVICE is renamed, and many images do not include pgrep.
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:80/"] # Check if the service is responding

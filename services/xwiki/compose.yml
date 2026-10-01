@@ -90,7 +90,7 @@ services:
       - "--collation-server=utf8mb4_bin"
       - "--explicit-defaults-for-timestamp=1"
     healthcheck:
-      test: ["CMD", "healthcheck.sh", "--connect"] # Check if MariaDB accepts TCP connections; --innodb_initialized would need the healthcheck user, which older data directories lack
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"] # Check if MariaDB accepts TCP connections and InnoDB is initialized
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

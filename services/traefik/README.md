@@ -9,3 +9,5 @@ This Docker Compose configuration sets up [Traefik](https://github.com/traefik/t
 ## Configuration Overview
 
 In this setup, the `tailscale-traefik` service runs Tailscale, which manages secure networking for Traefik. The `traefik_proxy` service uses Docker's `network_mode: service:tailscale` configuration. Traefik reads its static configuration from the `command:` flags in `compose.yaml`. Traefik ignores these flags when it finds a static configuration file, so edit the flags instead of adding a `traefik.yml` file.
+
+The Traefik health check calls the ping endpoint, so keep the `--ping=true` flag. Traefik routes only to containers that Docker reports as healthy. The `simpleweb` sample therefore becomes reachable only after its first health check passes.

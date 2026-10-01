@@ -65,7 +65,7 @@ services:
       tailscale:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "/app/vikunja/vikunja", "healthcheck"] # Built-in check; the image has no shell tools
+      test: ["CMD", "/app/vikunja/vikunja", "healthcheck"] # Built-in check: starts a second instance and pings the database. It does not test the web server, but the image has no shell or HTTP client
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy

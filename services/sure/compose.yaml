@@ -132,6 +132,7 @@ services:
       interval: 5s
       timeout: 5s
       retries: 5
+      start_period: 30s
     networks:
       sure_net:
         ipv4_address: 172.28.0.10

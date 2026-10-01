@@ -13,6 +13,7 @@ In this setup, the `tailscale-seafile` service runs Tailscale, which manages sec
 ## Notes
 
 - This configuration is intended for small (single digit) groups of users. It omits the SeaDoc, Collabora and Notification servers, and uses Memcached instead of Redis. You would probably want all of those things in a large deployment.
+- Keep `SEAFILE_MEMCACHED_IMAGE` on a Debian-based tag. The Memcached health check needs perl, which Alpine tags lack, and Seafile waits for Memcached to be healthy before it starts.
 - Additional Docker Compose settings for Seafile can be found here: <https://manual.seafile.com/latest/setup/setup_ce_by_docker/>
 
 ## Files to check
