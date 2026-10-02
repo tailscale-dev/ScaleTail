@@ -61,7 +61,7 @@ services:
       ALLOW_SIGNUP: "false"
       PUID: 1000
       PGID: 1000
-      TZ: Europe/Amsterdam
+      TZ: ${TZ}
       BASE_URL: https://mealie.yourdomain.ts.net # Alter to your domain
     volumes:
       - ./${SERVICE}-data:/app/data/

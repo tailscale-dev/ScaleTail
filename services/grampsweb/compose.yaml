@@ -55,7 +55,7 @@ services:
     environment:
       PUID: 1000
       PGID: 1000
-      TZ: Europe/Amsterdam
+      TZ: ${TZ}
       GRAMPSWEB_TREE: "Gramps Web"  # will create a new tree if not exists
       GRAMPSWEB_CELERY_CONFIG__broker_url: "redis://grampsweb_redis:6379/0"
       GRAMPSWEB_CELERY_CONFIG__result_backend: "redis://grampsweb_redis:6379/0"
