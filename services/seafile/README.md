@@ -26,3 +26,19 @@ Please check the following contents for validity as some variables need to be de
 - Admin Email: Update `INIT_SEAFILE_ADMIN_EMAIL`. This doesn't have to be a valid email address, although you can configure SMTP notifications in Seafile, which will require a valid email address.
 - `JWT_PRIVATE_KEY`: Generate this by running `pwgen -s 40 1` or `openssl rand -base64 40`
 - `SEAFILE_SERVER_HOSTNAME`: Update the FQDN to match your Tailnet MagicDNS suffix.
+
+## Troubleshooting
+
+### Seafile cannot connect to the database
+
+Seafile waits for the database before it starts and logs nothing while it waits. The `app-seafile` container stays up, turns `unhealthy`, and the web interface answers `502 Bad Gateway`. Two causes are common.
+
+**`TS_ACCEPT_DNS=true` is enabled.** Seafile shares the network of the Tailscale container and reaches the database and Memcached through the Compose service names `db` and `memcached`. With `TS_ACCEPT_DNS=true`, Tailscale replaces Docker DNS and those names no longer resolve. Check whether the names resolve:
+
+```bash
+docker exec app-seafile getent hosts db memcached
+```
+
+If the command prints nothing, comment out `TS_ACCEPT_DNS` in `compose.yaml` and run `docker compose up -d`. Seafile does not need MagicDNS, and Tailscale Serve works without this setting.
+
+**The database passwords changed after the first start.** MariaDB applies `INIT_SEAFILE_MYSQL_ROOT_PASSWORD` only when it creates an empty data directory, and Seafile creates its database user with `SEAFILE_MYSQL_DB_PASSWORD` on the first start. Later changes in `.env` do not reach the existing database, so Seafile can no longer log in and `docker logs app-seafile-db` shows `Access denied for user`. Restore the original passwords. On a new installation without data, you can instead stop the stack, delete the `SEAFILE_MYSQL_VOLUME` and `SEAFILE_VOLUME` directories, and start again.
