@@ -58,7 +58,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=${TZ}
       - ALWAYS_USE_RELAY=${ALWAYS_USE_RELAY}
     depends_on:
       tailscale:
@@ -77,7 +76,6 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=${TZ}
     network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
     # Healthcheck: none possible. The image contains only the hbbs and hbbr binaries, with no shell, HTTP client, or health command.
     restart: always

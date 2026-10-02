@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - HOST_DATA_DIR=/app/data
+      - TZ=${TZ}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./dockhand-data:/app/data # Data directory for Dockhand - you may need to change the path

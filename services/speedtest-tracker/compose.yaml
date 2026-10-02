@@ -55,6 +55,7 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+      - TZ=${TZ}
       - APP_KEY=${APP_KEY:?Set APP_KEY in .env}
       - DB_CONNECTION=sqlite
       #- APP_NAME=

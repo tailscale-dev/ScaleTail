@@ -61,6 +61,7 @@ services:
       - LOG_LEVEL=info # Optional
       - LOG_JSON=false # Optional
       - OIDC_ENABLED=false # Optional
+      - TZ=${TZ}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./${SERVICE}-data:/app/data

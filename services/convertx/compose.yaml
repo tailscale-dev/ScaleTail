@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - JWT_SECRET=aLongAndSecretStringUsedToSignTheJSONWebToken1234 # will use randomUUID() if unset
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data:/app/data
     depends_on:

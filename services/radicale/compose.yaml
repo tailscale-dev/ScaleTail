@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - TAKE_FILE_OWNERSHIP=true
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/app/data:/data
       - ./${SERVICE}-data/config/radicale.conf:/config/radicale.conf

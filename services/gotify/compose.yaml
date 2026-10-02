@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - GOTIFY_DEFAULTUSER_PASS=admin
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/app/data:/app/data
     depends_on:

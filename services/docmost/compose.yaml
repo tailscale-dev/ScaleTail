@@ -57,6 +57,7 @@ services:
       APP_SECRET: ${APP_SECRET:?Set APP_SECRET in .env}
       DATABASE_URL: 'postgresql://docmost:${DB_PASSWORD:?Set DB_PASSWORD in .env}@localhost:5432/docmost?schema=public'
       REDIS_URL: 'redis://localhost:6379'
+      TZ: ${TZ}
     volumes:
       - ./${SERVICE}-data/docmost:/app/data/storage
     depends_on:

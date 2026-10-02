@@ -60,6 +60,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - DATABASE_PATH=/data/portracker.db
+      - TZ=${TZ}
     depends_on:
       tailscale:
         condition: service_healthy

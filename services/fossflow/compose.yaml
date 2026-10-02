@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - PUBLIC_URL=https://fossflow.<YOUR-TS-DOMAIN>.ts.net
+      - TZ=${TZ}
     depends_on:
       tailscale:
         condition: service_healthy

@@ -74,6 +74,7 @@ services:
       - OIDC_CLIENT_ID=${OIDC_CLIENT_ID} # Optional: OIDC client ID for authentication. Required if OIDC_ISSUER is set.
       - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET} # Optional: OIDC client secret for authentication. Required if OIDC_ISSUER is set.
       - OIDC_REDIRECT_URI=${OIDC_REDIRECT_URI} # Optional: OIDC redirect URI for authentication. Required if OIDC_ISSUER is set.
+      - TZ=${TZ}
       # BINDING: "::"  # Uncomment for IPv6 dual-stack inside the container
     depends_on:
       tailscale:
@@ -116,6 +117,7 @@ services:
       - DB_PORT=${DB_PORT:-5432}
       - REDIS_URL=${REDIS_URL:-redis://172.28.0.11:6379/1}
       - OPENAI_ACCESS_TOKEN=${OPENAI_ACCESS_TOKEN} # NOTE: enabling OpenAI will incur costs when you use AI-related features in the app (chat, rules).  Make sure you have set appropriate spend limits on your account before adding this.
+      - TZ=${TZ}
 
   db:
     image: postgres:16

@@ -59,6 +59,7 @@ services:
       - ADMIN_USERNAME=${ADMIN_USERNAME}
       - ADMIN_PASSWORD=${ADMIN_PASSWORD}
       - BASE_URL=https://${SERVICE}.${TAILNET_NAME} # Change to your tailnet name
+      - TZ=${TZ}
     depends_on:
       tailscale:
         condition: service_healthy

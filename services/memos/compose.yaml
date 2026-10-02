@@ -56,6 +56,7 @@ services:
       MEMOS_PORT: 5230
       MEMOS_DRIVER: sqlite
       MEMOS_INSTANCE_URL: https://memos.<YOUR_TS_DOMAIN>.ts.net # Update with your Tailscale domain
+      TZ: ${TZ}
     volumes:
       - ./${SERVICE}-data:/var/opt/memos
     depends_on:

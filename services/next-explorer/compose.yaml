@@ -67,6 +67,7 @@ services:
       # Optional host UID/GID mapping
       - PUID=${PUID} # Change according to your customization if needed
       - PGID=${PGID} # Change according to your customization if needed
+      - TZ=${TZ}
     volumes:
       - ./config:/config
       - ./cache:/cache

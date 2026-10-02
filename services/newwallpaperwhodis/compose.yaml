@@ -54,6 +54,7 @@ services:
     container_name: app-${SERVICE}
     environment:
       - NODE_ENV=production
+      - TZ=${TZ}
     volumes:
       # Map the data folder where the SQLite DB or structured metadata will live
       - ./data:/app/data

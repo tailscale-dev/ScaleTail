@@ -63,6 +63,7 @@ services:
       - DB_PASSWORD=${DB_PASSWORD}
       - DB_DATABASE=${DB_DATABASE}
       - DB_HOST=db-${SERVICE}
+      - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data/xwiki:/usr/local/xwiki
     healthcheck:
