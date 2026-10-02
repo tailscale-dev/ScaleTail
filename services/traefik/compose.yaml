@@ -74,8 +74,7 @@ services:
       - "--ping=true" # Required by the health check
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.ssl.address=:443"
+      - "--entrypoints.web.address=:80" # Tailscale Serve already listens on port 443 and forwards to this entrypoint - do not add an entrypoint on port 443
       - --log.level=INFO
       - --log.filepath=/var/log/traefik.log
       - --accesslog=true
@@ -86,6 +85,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.mydashboard.rule=Host(`traefik.domain.local`)
       - traefik.http.routers.mydashboard.service=api@internal
+      - traefik.http.services.mydashboard.loadbalancer.server.port=8080 # Traefik drops the labels of a container without a port - this container exposes none, because it uses the Tailscale network
 
   simpleweb:
     image: yeasy/simple-web:latest
