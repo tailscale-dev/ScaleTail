@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -37,8 +37,8 @@ services:
     #ports:
     #  - 0.0.0.0:${SERVICEPORT}:6060 # Binding the host port to BookLore's container port
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -47,17 +47,17 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - PUID=1000
       - PGID=1000
       - DATABASE_URL=jdbc:mariadb://mariadb:3306/booklore   # Only modify this if you're familiar with JDBC and your database setup
       - DATABASE_USERNAME=${MYSQL_USER}                          # Must match MYSQL_USER defined in the mariadb container
-      - DATABASE_PASSWORD=${MYSQL_PASSWORD}               #  Use a strong password; must match MYSQL_PASSWORD defined in the mariadb container 
+      - DATABASE_PASSWORD=${MYSQL_PASSWORD}               #  Use a strong password; must match MYSQL_PASSWORD defined in the mariadb container
       - SWAGGER_ENABLED=false                               # Swagger UI (API docs).
       - TZ=${TZ}
     volumes:
@@ -65,7 +65,7 @@ services:
       - ./books:/books1       # Book library folder — point to one of your collections
     depends_on:
       mariadb:
-        condition: service_healthy    
+        condition: service_healthy
       tailscale:
         condition: service_healthy
     healthcheck:

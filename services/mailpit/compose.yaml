@@ -9,7 +9,7 @@ configs:
 
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# All the ${ xx } need to be defined there.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used (for example tailscale/tailscale:latest)
@@ -48,10 +48,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   mailpit:
     image: ${IMAGE_URL} # Image to be used (for example axllent/mailpit:latest)
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment: # Variables are declared in the .env file.
       - TZ=${TZ}

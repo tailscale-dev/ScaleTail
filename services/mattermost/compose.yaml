@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-# Make sure you have updated/checked the .env file with the correct variables. 
-# All the ${ xx } need to be defined there.
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -35,13 +35,13 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - ${HTTP_PORT}:${HTTP_PORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
-    #  - ${HTTPS_PORT}:${HTTPS_PORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - ${HTTP_PORT}:${HTTP_PORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
+    #  - ${HTTPS_PORT}:${HTTPS_PORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     #  - ${CALLS_PORT}:${CALLS_PORT}/udp
     #  - ${CALLS_PORT}:${CALLS_PORT}/tcp
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    # dns: 
-    #   - ${DNS_SERVER}
+    #dns:
+    #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
@@ -53,7 +53,7 @@ services:
   application:
     image: ${IMAGE_URL} # Image to be used
     container_name: app-${SERVICE} # Name for local container management
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     volumes:
       - ${MATTERMOST_CONFIG_PATH}:/mattermost/config:rw ## ./${SERVICE}-data/mattermost/
       - ${MATTERMOST_DATA_PATH}:/mattermost/data:rw
@@ -62,7 +62,7 @@ services:
       - ${MATTERMOST_CLIENT_PLUGINS_PATH}:/mattermost/client/plugins:rw
       - ${MATTERMOST_BLEVE_INDEXES_PATH}:/mattermost/bleve-indexes:rw
       # When you want to use SSO with GitLab, you have to add the cert pki chain of GitLab inside Alpine
-      # to avoid Token request failed: certificate signed by unknown authority 
+      # to avoid Token request failed: certificate signed by unknown authority
       # (link: https://github.com/mattermost/mattermost-server/issues/13059 and https://github.com/mattermost/docker/issues/34)
       # - ${GITLAB_PKI_CHAIN_PATH}:/etc/ssl/certs/pki_chain.pem:ro
     security_opt:

@@ -9,7 +9,7 @@ configs:
 
 services:
   # Make sure you have updated/checked the .env file with the correct variables.
-  # All the ${xx} need to be defined there.
+  # Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used

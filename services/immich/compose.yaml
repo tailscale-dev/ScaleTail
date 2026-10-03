@@ -9,7 +9,7 @@ configs:
 
 services:
   # Make sure you have updated/checked the .env file with the correct variables.
-  # All the ${ xx } need to be defined there.
+  # Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -35,7 +35,7 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding port ${SERVICE}PORT to the local network - may be removed if only exposure to your Tailnet is required
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     # To resolve MagicDNS names from Immich, uncomment the config below and use 100.100.100.100 as the DNS server
     #dns:
@@ -48,10 +48,10 @@ services:
       start_period: 10s # Time to wait before starting health checks
     restart: always
 
-  # ${SERVICE}
+  # Application
   application:
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    network_mode: service:tailscale # Sidecar configuration to route ${SERVICE} through Tailscale
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-server # Name for local container management
     # extends:
     #   file: hwaccel.transcoding.yml

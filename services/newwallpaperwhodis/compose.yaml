@@ -8,8 +8,8 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
-  # Make sure you have updated/checked the .env file with the correct variables. 
-  # All the ${ xx } need to be defined there.
+  # Make sure you have updated/checked the .env file with the correct variables.
+  # Every variable used in this file must be defined there.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -37,7 +37,7 @@ services:
     #ports:
     #  - "0.0.0.0:${SERVICEPORT:-6767}:3000" # Binding port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
-    #dns: 
+    #dns:
     #  - ${DNS_SERVER}
     healthcheck:
       test: [ "CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz" ] # Check Tailscale has a Tailnet IP and is operational
