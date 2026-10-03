@@ -1,0 +1,33 @@
+{
+  "TCP": {
+    "443": {
+      "HTTPS": true
+    },
+    "8443": {
+      "HTTPS": true
+    }
+  },
+  "Web": {
+    "${TS_CERT_DOMAIN}:443": {
+      "Handlers": {
+        "/script.js": {
+          "Proxy": "http://127.0.0.1:3000/script.js"
+        },
+        "/api/send": {
+          "Proxy": "http://127.0.0.1:3000/api/send"
+        }
+      }
+    },
+    "${TS_CERT_DOMAIN}:8443": {
+      "Handlers": {
+        "/": {
+          "Proxy": "http://127.0.0.1:3000/"
+        }
+      }
+    }
+  },
+  "AllowFunnel": {
+    "${TS_CERT_DOMAIN}:443": true,
+    "${TS_CERT_DOMAIN}:8443": false
+  }
+}

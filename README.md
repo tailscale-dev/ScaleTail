@@ -201,12 +201,13 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 
 ### 📈 Monitoring and Analytics
 
-| 📈 Service               | 📝 Description                                                                            | 🔗 Link                                |
-| ----------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------- |
+| 📈 Service               | 📝 Description                                                                           | 🔗 Link                               |
+|--------------------------|------------------------------------------------------------------------------------------|---------------------------------------|
 | 📉 **Beszel Hub**        | The Beszel Hub provides historical monitoring data, Docker stats, and alerts.            | [Details](services/beszel-hub)        |
-| 🛰️ **Beszel Agent**      | The Beszel Agent collects stats and reports them back to the Hub.                        | [Details](services/beszel-agent)      |
+| 🛰️ **Beszel Agent**     | The Beszel Agent collects stats and reports them back to the Hub.                        | [Details](services/beszel-agent)      |
 | 🔎 **Portracker**        | A simple, self-hosted port monitoring and tracking tool for auditing open ports.         | [Details](services/portracker)        |
 | 🚀 **Speedtest Tracker** | A self-hosted tool to monitor and log internet speed tests with detailed visualizations. | [Details](services/speedtest-tracker) |
+| 📊 **Umami**             | An open-source web analytics platform that respects user privacy.                        | [Details](services/umami)             |
 | 📊 **Uptime Kuma**       | A self-hosted monitoring tool like "Uptime Robot".                                       | [Details](services/uptime-kuma)       |
 
 ### 🏠 Smart Home
