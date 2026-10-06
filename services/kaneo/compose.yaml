@@ -71,9 +71,9 @@ services:
 
   # Application
   application:
-    image: ${IMAGE_URL_BACKEND} # Image to be used
+    image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
-    container_name: app-${SERVICE}-backend # Name for local container management
+    container_name: app-${SERVICE} # Name for local container management
     env_file:
       - .env
     environment:
@@ -83,13 +83,5 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:5173/"] # Check if the service is responding
-      interval: 1m # How often to perform the check
-      timeout: 10s # Time to wait for the check to succeed
-      retries: 3 # Number of retries before marking as unhealthy
-      start_period: 30s # Time to wait before starting health checks
+    # Healthcheck: defined by the image (wget against /api/health), so this file does not override it.
     restart: always
-
-volumes:
-  postgres_data:
