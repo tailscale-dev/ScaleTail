@@ -17,7 +17,7 @@ configs:
       admin:changeme
 
       [/]
-      /data
+      /w
       accs:
         rw: admin
 
