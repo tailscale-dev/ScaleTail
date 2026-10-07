@@ -12,7 +12,7 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 | Service port  | `5380`                                                                                     |
 | DNS           | Port `53` (TCP and UDP) on the Tailscale IP address of `technitium` and on the Docker host |
 | Image         | `technitium/dns-server`                                                                    |
-| Data          | None on the host, see the deviations                                                       |
+| Data          | `./technitium-data/app/config` (settings, zones, logs, and statistics)                     |
 
 ## Before you start
 
@@ -23,7 +23,6 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 ## Deviations from the standard setup
 
 - **Published host ports.** The `ports` block is active. It publishes the web interface on port `5380`, DNS on port `53`, DNS-over-TLS and DNS-over-QUIC on port `853`, and DNS-over-HTTPS on port `443` of the Docker host. Devices in your local network can therefore reach Technitium without Tailscale. Remove the lines that you do not need.
-- **Settings are not stored on the host.** Technitium keeps its settings and zones in `/etc/dns` in the container. The stack mounts `./technitium-data/app/config` at `/config`, which Technitium does not use. Your settings are lost when the container is recreated, for example after an image update. Back up your settings in the web interface before you update.
 - **Settings through environment variables.** `compose.yaml` sets the server name, recursion, and forwarders. Technitium reads these variables only at the first start, when it has no configuration yet.
 
 ## First run
@@ -36,6 +35,30 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 ### Use Technitium as the DNS server of your Tailnet
 
 In the Tailscale admin console, open the **DNS** page. Add the Tailscale IP address of the `technitium` device as a custom nameserver and enable **Override DNS servers**.
+
+## Upgrading
+
+Earlier versions of this stack mounted the data folder at `/config`, which Technitium does not use. Technitium kept its settings and zones inside the container, and they were lost when the container was recreated. The stack now mounts the folder at `/etc/dns`.
+
+If you run an earlier version, copy your settings to the host before you start the new version. Otherwise Technitium starts without them.
+
+1. Stop Technitium, so that it writes all changes to disk:
+
+   ```bash
+   docker compose stop application
+   ```
+
+2. Copy the settings from the container to the data folder. Docker created this folder as user `root`, so the command needs `sudo`:
+
+   ```bash
+   sudo docker cp app-technitium:/etc/dns/. ./technitium-data/app/config/
+   ```
+
+3. Start the stack with the updated `compose.yaml`:
+
+   ```bash
+   docker compose up -d
+   ```
 
 ## Links
 
