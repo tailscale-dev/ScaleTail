@@ -21,7 +21,7 @@ Request an activation code, for example for [Nessus Essentials](https://www.tena
 
 ## Deviations from the standard setup
 
-- **No data folder.** The stack has no volumes for Nessus. Your settings, scans, and license activation are lost when the container is recreated, for example after an image update.
+- **No data folder.** Tenable does not support storage volumes for the Nessus image, so the stack has none. Your settings, scans, and license activation are lost when the container is recreated, for example after an image update. The Tenable documentation lists environment variables, such as `USERNAME`, `PASSWORD`, and `ACTIVATION_CODE`, that set up Nessus again at each start.
 - **Serve forwards to HTTPS.** Nessus serves its web interface on port `8834` with a self-signed certificate. Tailscale Serve forwards to it with `https+insecure`.
 
 ## First run
