@@ -1,28 +1,31 @@
-# Actual Budget with Tailscale Sidecar Configuration
+# Actual Budget
 
-This Docker Compose configuration sets up **Actual Budget** with a Tailscale sidecar container, enabling secure and private access to your personal finance app over your Tailnet. With this setup, your budgeting data stays fully private and is only accessible from trusted devices, without exposing anything to the public internet.
+[Actual Budget](https://actualbudget.org/) is a personal finance app for budgeting. You track your accounts and spending and plan your budget, and your data stays on your own server.
 
-## Actual Budget
+This stack runs Actual Budget with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Actual Budget](https://github.com/actualbudget/actual) is an open-source, self-hosted personal finance and budgeting app focused on privacy and control. It serves as a modern alternative to tools like YNAB, allowing you to track spending, manage accounts, and plan budgets while retaining full ownership of your financial data.
+## At a glance
 
-When paired with Tailscale, Actual Budget becomes accessible across your devices through your secure Tailnet, eliminating the need for public exposure or complex reverse proxy configurations.
+| Item          | Value                                    |
+| ------------- | ---------------------------------------- |
+| Web interface | `https://actual-budget.<tailnet>.ts.net` |
+| Service port  | `5006`                                   |
+| Image         | `docker.io/actualbudget/actual-server`   |
+| Data          | `./actual-budget-data`                   |
 
-## Configuration Overview
+## Before you start
 
-In this setup, the `tailscale-actual` service runs Tailscale, which manages secure networking for Actual Budget. The `actual` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures the application is only reachable over your Tailnet unless you explicitly expose ports.
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-## Key Features
+## Deviations from the standard setup
 
-- Self-hosted personal budgeting platform
-- Privacy-first approach with full data ownership
-- Sync across devices without relying on third-party cloud services
-- Transaction tracking, budgeting, and reporting
-- Secure Tailnet-only access via Tailscale
+None.
 
-## Files to check
+## First run
 
-Please check the following contents for validity as some variables need to be defined upfront.
+Open the web interface and set a password for the server. Then create a budget file or import an existing one.
 
-- `.env`
-  - Required: `TS_AUTHKEY`
+## Links
+
+- [Actual Budget documentation](https://actualbudget.org/docs/)
+- [Actual Budget source code](https://github.com/actualbudget/actual)

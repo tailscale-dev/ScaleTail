@@ -1,23 +1,33 @@
-# Dockge with Tailscale Sidecar Configuration
+# Dockge
 
-This Docker Compose configuration sets up Dockge with a Tailscale sidecar container, enabling secure, private access to your Docker Compose management UI over your Tailnet. With this setup, your Dockge instance is not exposed to the public internet and is only accessible from authorized devices connected via Tailscale.
+[Dockge](https://github.com/louislam/dockge) is a web interface to manage Docker Compose stacks. You create, edit, start, and update your `compose.yaml` files in the browser.
 
-## Dockge
+This stack runs Dockge with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Dockge](https://github.com/louislam/dockge) is a lightweight, self-hosted Docker Compose stack manager built for simplicity and control. Created by the developer behind Uptime Kuma, Dockge provides an intuitive web interface for managing, editing, and deploying docker-compose.yml stacks without relying solely on the CLI.
+## At a glance
 
-It is especially well-suited for homelabs, self-hosted environments, and DevOps workflows where multiple services are managed via Docker Compose.
+| Item          | Value                                              |
+| ------------- | -------------------------------------------------- |
+| Web interface | `https://dockge.<tailnet>.ts.net`                  |
+| Service port  | `5001`                                             |
+| Image         | `louislam/dockge:1`                                |
+| Data          | `./dockge-data/app/config` (Dockge settings)       |
+|               | The folder from `STACKS_DIR` (your Compose stacks) |
 
-## Key Features
+## Before you start
 
-* 🐳 Web-based Docker Compose stack management
-* ✏️ Live editing of docker-compose.yml files
-* ▶️ One-click start, stop, and restart of stacks
-* 📜 Real-time container logs viewer
-* 📦 Multi-stack organization via directories
-* ⚡ Lightweight and fast interface
-* 🔍 Clear visibility into container status
+Set `STACKS_DIR` in `.env` to the absolute path of the folder on the Docker host that holds your stacks. The stack mounts it at the same path in the container. The default is `/opt/stacks`.
 
-## Important Notice
+## Deviations from the standard setup
 
-Set `STACKS_DIR` in `.env` to an absolute host path. The Compose file mounts that path at the same path inside the container. The sample uses `/opt/stacks`.
+- **Docker socket.** Dockge mounts `/var/run/docker.sock` with write access, which it needs to manage your stacks. Everyone who can log in to Dockge has full control over the Docker host.
+- **Stacks folder.** The stacks are in the folder from `STACKS_DIR`, outside this directory.
+- **User and group.** `PUID` and `PGID` in `.env` set the owner of the stack files.
+
+## First run
+
+Open the web interface and create the administrator account.
+
+## Links
+
+- [Dockge documentation and source code](https://github.com/louislam/dockge)

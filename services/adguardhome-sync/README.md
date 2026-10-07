@@ -1,19 +1,42 @@
-# AdGuardHome Sync with Tailscale Sidecar Configuration
+# AdGuard Home Sync
 
-This Docker Compose configuration sets up **[AdGuardHome Sync](https://github.com/bakito/adguardhome-sync)** with Tailscale as a sidecar container to securely synchronize your AdGuard Home instances over a private Tailscale network. By integrating Tailscale, you ensure that configuration data is transmitted securely between nodes and accessible only to authorized devices in your private network.
+[AdGuard Home Sync](https://github.com/bakito/adguardhome-sync) copies the configuration of one AdGuard Home instance to one or more replicas, including filters, rewrites, clients, and DNS settings.
 
-## AdGuardHome Sync
+This stack runs AdGuard Home Sync with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[AdGuardHome Sync](https://github.com/bakito/adguardhome-sync) is a **lightweight tool for synchronizing configuration between multiple AdGuard Home servers**. It supports syncing DNS settings, clients, rules, rewrites, and more—making it ideal for managing AdGuard Home across multiple networks or locations. Whether you're managing redundant setups or simply keeping home and remote deployments in sync, this tool helps you maintain consistency and saves time.
+## At a glance
 
-## Key Features
+| Item          | Value                                                                           |
+| ------------- | ------------------------------------------------------------------------------- |
+| Web interface | None                                                                            |
+| Service port  | `8080` on the Tailscale IP address of `adguardhome-sync` (API of the sync tool) |
+| Image         | `ghcr.io/bakito/adguardhome-sync`                                               |
+| Data          | None                                                                            |
 
-* **Multi-Node Syncing** – Keep multiple AdGuard Home instances in sync effortlessly.
-* **Granular Configuration** – Choose which parts of the configuration to sync (rules, clients, rewrites, etc.).
-* **Push or Pull Modes** – Use a master-push or node-pull strategy to fit your setup.
-* **Self-Hosted** – Fully local, no third-party service required.
-* **Secure Access with Tailscale** – Safely connect and sync instances across private networks using Tailscale.
+## Before you start
 
-## Configuration Overview
+Replace the sample values in the `environment` block of `compose.yaml`:
 
-In this setup, the `tailscale-adguardhome-sync` service runs Tailscale, which manages secure networking for the AdGuardHome Sync service. The `adguardhome-sync` container uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This ensures that all sync communication is confined to your private Tailscale network, preventing exposure to the public internet.
+- **`ORIGIN_URL`, `ORIGIN_USERNAME`, `ORIGIN_PASSWORD`.** The AdGuard Home instance to copy from.
+- **`REPLICA1_URL`, `REPLICA1_USERNAME`, `REPLICA1_PASSWORD`.** The instance to copy to.
+- **`CRON`.** The schedule. The sample value runs a sync every minute.
+
+To reach an AdGuard Home instance on your Tailnet, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+
+## Deviations from the standard setup
+
+- **No Tailscale Serve.** The stack has no Serve configuration. The tool only makes outgoing connections to your AdGuard Home instances.
+- **Start command.** The stack starts the tool with the `run` command.
+- **No data folder.** The tool stores nothing on disk. All settings are in `compose.yaml`.
+
+## First run
+
+Check the log to see whether the sync works:
+
+```bash
+docker logs app-adguardhome-sync
+```
+
+## Links
+
+- [AdGuard Home Sync documentation and source code](https://github.com/bakito/adguardhome-sync)

@@ -1,61 +1,43 @@
-# Radicale with Tailscale Sidecar Configuration
+# Radicale
 
-This Docker Compose configuration sets up [Radicale](https://radicale.org/) with Tailscale as a sidecar container to keep the app reachable over your Tailnet.
+[Radicale](https://radicale.org/) is a small CalDAV and CardDAV server. It synchronises your calendars, to-do lists, and contacts between your devices.
 
-## Radicale
+This stack runs Radicale with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Radicale](https://radicale.org/) is a small but powerful CalDAV (calendars, to-do lists) and CardDAV (contacts) server. It is lightweight, easy to configure, and requires minimal resources, making it a great self-hosted alternative to cloud-based calendar and contact sync services.
+## At a glance
 
-## Key Features
+| Item          | Value                                                  |
+| ------------- | ------------------------------------------------------ |
+| Web interface | `https://radicale.<tailnet>.ts.net`                    |
+| Service port  | `5232`                                                 |
+| Image         | `tomsquest/docker-radicale`                            |
+| Data          | `./radicale-data/app/data` (calendars and contacts)    |
+|               | `./radicale-data/config/radicale.conf` (configuration) |
+|               | `./radicale-data/users` (users and password hashes)    |
 
-- CalDAV and CardDAV support for syncing calendars, to-do lists, and contacts
-- Works with any compliant client (Thunderbird, GNOME Calendar, DAVx5, Apple Calendar, etc.)
-- Lightweight with minimal resource usage
-- Simple file-based storage
-- Web interface for managing collections
-- Built-in access control and authentication
+## Before you start
 
-## Configuration Overview
+Radicale needs its configuration file and its user file before the first start. Run the commands from this directory.
 
-In this setup, the `tailscale-radicale` service runs Tailscale, which manages secure networking for Radicale. The `radicale` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
-
-The container runs with hardened security settings: read-only filesystem, no new privileges, dropped capabilities, and resource limits (256M memory, 50 pids).
-
-## Prerequisites
-
-- This image uses [tomsquest/docker-radicale](https://github.com/tomsquest/docker-radicale). Refer to their documentation for advanced configuration options.
-- To configure users and authentication, mount a custom config file or refer to the [Radicale documentation](https://radicale.org/v3.html#configuration).
-
-## Creating Users
-
-Radicale uses `htpasswd` for authentication. To set up users:
-
-1. **Create the required directories:**
+1. Create the configuration folder:
 
    ```bash
-   set -a && source .env && set +a
-   mkdir -p ./${SERVICE}-data/config
+   mkdir -p ./radicale-data/config
    ```
 
-2. **Create an `htpasswd` file** with your first user (requires `apache2-utils` on Debian/Ubuntu or `httpd-tools` on Fedora):
+2. Create the user file with your first user. The `htpasswd` tool is in the package `apache2-utils` on Debian and Ubuntu, and in `httpd-tools` on Fedora.
 
    ```bash
-   htpasswd -B -c ./${SERVICE}-data/users <username>
+   htpasswd -B -c ./radicale-data/users <username>
    ```
 
-   To add more users without overwriting the file, omit `-c`:
+   To add more users later, leave out `-c`, which would overwrite the file:
 
    ```bash
-   htpasswd -B ./${SERVICE}-data/users <username>
+   htpasswd -B ./radicale-data/users <username>
    ```
 
-3. **Fill out config file**:
-
-   ```bash
-   nano ./${SERVICE}-data/config/radicale.conf
-   ```
-
-   With:
+3. Create `./radicale-data/config/radicale.conf` with this content:
 
    ```ini
    [auth]
@@ -67,14 +49,16 @@ Radicale uses `htpasswd` for authentication. To set up users:
    filesystem_folder = /data/collections
    ```
 
-4. **Restart the stack:**
+## Deviations from the standard setup
 
-   ```bash
-   docker compose down && docker compose up -d
-   ```
+- **Configuration and user file.** The stack mounts `radicale.conf` and the user file as single files and starts Radicale with that configuration file.
+- **File ownership.** `TAKE_FILE_OWNERSHIP=true` makes the image set the owner of the data folder at each start.
 
-## Files to check
+## First run
 
-Please check the following contents for validity as some variables need to be defined upfront.
+Open the web interface and log in with a user from the user file. Create your calendars and address books there, then add the account to your devices with `https://radicale.<tailnet>.ts.net` as the server address.
 
-- `.env` — Main variable: `TS_AUTHKEY`
+## Links
+
+- [Radicale documentation](https://radicale.org/v3.html)
+- [tomsquest/docker-radicale image](https://github.com/tomsquest/docker-radicale)

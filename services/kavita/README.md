@@ -1,28 +1,32 @@
-# Kavita with Tailscale Sidecar Configuration
+# Kavita
 
-This Docker Compose configuration sets up [Kavita](https://github.com/Kareadita/Kavita) with Tailscale as a sidecar container to securely serve your comics, manga, and ebooks over a private Tailscale network. By running Tailscale as a sidecar, you restrict access to your Kavita instance to devices authenticated on your Tailnet, avoiding public exposure.
+[Kavita](https://www.kavitareader.com/) is a digital library for comics, manga, and books. You read in the browser, and Kavita keeps your reading progress in sync between your devices.
 
-## Kavita
+This stack runs Kavita with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Kavita](https://github.com/Kareadita/Kavita) is an open-source, self-hosted digital library manager optimized for comics, manga, and ebooks. It provides a modern web UI for browsing collections, reading in-browser, managing metadata, and syncing reading progress across devices. Kavita supports multiple users, libraries, and common archive formats.
+## At a glance
 
-## Key Features
+| Item          | Value                                                                                     |
+| ------------- | ----------------------------------------------------------------------------------------- |
+| Web interface | `https://kavita.<tailnet>.ts.net`                                                         |
+| Service port  | `5000`                                                                                    |
+| Image         | `jvmilazz0/kavita`                                                                        |
+| Data          | `./kavita-data/config` (configuration and database)                                       |
+|               | `./kavita-data/manga`, `./kavita-data/comics`, and `./kavita-data/books` (your libraries) |
 
-* **Library Management** – Organize comics, manga, and ebooks with metadata, tags, and collections.
-* **In-Browser Reader** – Read content directly in the browser with smooth navigation and zoom controls.
-* **Multi-User Support** – Create accounts with individualized reading progress and permissions.
-* **Archive Support** – Handles CBZ, CBR, EPUB, and other common formats.
-* **Self-Hosted & Private** – Keep your media on your infrastructure.
-* **Private by Default with Tailscale** – Access Kavita only from devices on your Tailnet.
+## Before you start
 
-## Configuration Overview
+To use an existing collection, point the `/manga`, `/comics`, and `/books` volumes in `compose.yaml` at your own folders. Otherwise the stack starts with empty folders in `./kavita-data`.
 
-In this setup, the `tailscale-kavita` service runs the Tailscale client to join your private mesh network. The `kavita` service is configured with `network_mode: service:tailscale`, so all network traffic for Kavita is routed through the Tailscale container. This ensures the web UI and API are reachable only via your Tailscale network (or locally), adding an extra layer of privacy and security to your self-hosted library.
+## Deviations from the standard setup
 
-## Files to check
+None.
 
-Please verify the following files and variables before deploying:
+## First run
 
-* `.env` — define SERVICE, IMAGE_URL, SERVICEPORT, TS_AUTHKEY, etc.
-* `./config/serve.json` — optional Tailscale Serve configuration if you want to expose specific ports within the Tailnet.
-* `./kavita-data` — ensure persistent volumes for libraries and config are correctly mapped.
+Open the web interface and create the administrator account. Then add a library for each of the folders `/manga`, `/comics`, and `/books`.
+
+## Links
+
+- [Kavita documentation](https://wiki.kavitareader.com/)
+- [Kavita source code](https://github.com/Kareadita/Kavita)

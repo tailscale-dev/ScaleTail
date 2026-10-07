@@ -1,33 +1,31 @@
-# BentoPDF with Tailscale Sidecar Configuration
+# BentoPDF
 
-This Docker Compose configuration sets up **BentoPDF** with a Tailscale sidecar container, enabling secure access to your self-hosted PDF management interface over your private Tailscale network. With this setup, your BentoPDF instance remains **private and accessible only from authorized devices on your Tailnet**, keeping your documents protected from public exposure.
+[BentoPDF](https://github.com/alam00000/bentopdf) is a toolkit for PDF files. You merge, split, compress, convert, and edit PDF files in your browser, and the files do not leave your device.
 
-## BentoPDF
+This stack runs BentoPDF with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**BentoPDF**](https://github.com/alam00000/bentopdf) is an open-source, self-hosted web application for **viewing, organizing, and managing PDF documents**. It provides a clean, modern interface focused on simplicity and performance, making it ideal for personal document libraries, internal teams, or homelab environments that require private document access.
+## At a glance
 
-## Key Features
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
+| Web interface | `https://bentopdf.<tailnet>.ts.net` |
+| Service port  | `8080`                              |
+| Image         | `ghcr.io/alam00000/bentopdf`        |
+| Data          | None                                |
 
-- 📄 **In-Browser PDF Viewer** – View PDF files directly from a modern web interface.
-- 🗂 **Document Organization** – Browse and manage PDFs stored on your server.
-- 🔍 **Fast & Lightweight** – Minimal overhead with a focus on performance.
-- 🧭 **Clean, Minimal UI** – Simple and distraction-free user experience.
-- 🐳 **Docker-Friendly** – Designed to run easily in containerized environments.
-- 🔐 **Privacy-First** – Your documents stay entirely on your own infrastructure.
-- 📦 **Open Source** – Fully open-source and self-hostable.
+## Before you start
 
-## Why Self-Host?
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-PDF files often contain sensitive personal or business information. Self-hosting BentoPDF ensures **full control and ownership of your documents**, without relying on third-party cloud storage or services. Combined with Tailscale, BentoPDF becomes a private document portal that is securely accessible from anywhere while remaining invisible to the public internet.
+## Deviations from the standard setup
 
-## Configuration Overview
+- **No application data.** BentoPDF processes the files in your browser and stores nothing on the server. The `./bentopdf-data/app/config` volume from the template stays empty.
+- **Service port.** BentoPDF listens on port `8080`. `SERVICEPORT` in `.env` is only the host port of the optional `ports` block.
 
-In this deployment, a **Tailscale sidecar container** (for example `tailscale-bentopdf`) runs the Tailscale client and joins your private Tailscale network. The main `bentopdf` service uses:
+## First run
 
-```plain
-network_mode: service:tailscale
-```
+Nothing to set up. Open the web interface.
 
-This configuration routes all traffic through the Tailscale interface, ensuring that the BentoPDF web UI is accessible **only via your Tailscale network**. This provides a simple and secure way to access your PDF library from all trusted devices.
+## Links
 
-BentoPDF listens on port `8080` inside the container. If you enable the optional host mapping, `SERVICEPORT` is the host port and maps to container port `8080`.
+- [BentoPDF documentation and source code](https://github.com/alam00000/bentopdf)

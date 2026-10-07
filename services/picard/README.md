@@ -1,40 +1,32 @@
-# MusicBrainz Picard with Tailscale Sidecar Configuration
+# MusicBrainz Picard
 
-This Docker Compose setup deploys **MusicBrainz Picard** alongside a **Tailscale sidecar container**, allowing secure access to your self-hosted music tagging and metadata management environment over your private **Tailscale network**. With this setup, Picard remains **private and reachable only from trusted devices within your Tailnet**, ensuring your media metadata library stays secure and isolated from the public internet.
+[MusicBrainz Picard](https://picard.musicbrainz.org/) is the tag editor of MusicBrainz. It identifies your music files, also by their audio fingerprint, and writes the correct tags and cover art. This stack runs the desktop application in a container and shows it in your browser.
 
-## MusicBrainz Picard
+This stack runs MusicBrainz Picard with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**MusicBrainz Picard**](https://picard.musicbrainz.org/) is the official cross-platform tag editor from [MusicBrainz](https://musicbrainz.org/). It uses the community-maintained MusicBrainz database to identify, tag, and organize your music files with accurate and rich metadata — including artist information, album art, release data, and more.
+## At a glance
 
-Picard supports a wide range of audio formats and integrates powerful plugins to streamline batch processing, fingerprinting (via AcoustID), and custom tagging workflows.
+| Item          | Value                                                           |
+| ------------- | --------------------------------------------------------------- |
+| Web interface | `https://picard.<tailnet>.ts.net`                               |
+| Service port  | `5800`                                                          |
+| Image         | `mikenye/picard`                                                |
+| Data          | `./picard-data/config` (Picard settings)                        |
+|               | `./picard-data/music` (your music, `/storage` in the container) |
 
-## Key Features
+## Before you start
 
-- 🎵 **Accurate Tagging** – Automatically identify and tag music files using MusicBrainz metadata.
-- 🧠 **AcoustID Matching** – Use audio fingerprints to detect and tag tracks even without metadata.
-- 🖼️ **Album Art Integration** – Fetch and embed high-quality cover art automatically.
-- ⚙️ **Plugin Support** – Extend functionality with community or custom plugins.
-- 📁 **Batch Processing** – Organize entire libraries with flexible renaming and folder rules.
-- 🐳 **Docker-Ready** – Simple to deploy and run in containers.
-- 🔐 **Private Access via Tailscale** – Keep your tagging environment accessible only on your Tailnet.
-- 📦 **Open Source** – Actively maintained and community-driven.
+Point the `/storage` volume in `compose.yaml` at the folder with your music. Picard changes and renames the files in that folder. User and group `1000` need write access to it.
 
-## Why Self-Host?
+## Deviations from the standard setup
 
-When you manage large local music libraries, you may prefer **full privacy and control** over which metadata services your files connect to. Self-hosting Picard behind Tailscale offers:
+- **User and group.** The image uses `USER_ID` and `GROUP_ID` for the user that runs Picard, which `compose.yaml` sets to `1000`.
 
-- No exposure of ports to the public internet.  
-- Private access to your tagging environment from any authorized Tailscale device.  
-- A streamlined tagging workflow fully contained within your home media infrastructure.
+## First run
 
-With this setup, your tagging process is secured and contained — perfect for privacy-conscious audiophiles and homelab enthusiasts.
+Open the web interface. It shows the Picard window and has no login. Add files from `/storage` to start tagging.
 
-## Configuration Overview
+## Links
 
-In this deployment, a **Tailscale sidecar container** (for example `tailscale-picard`) connects your Picard instance to your private Tailnet. The main `picard` container uses:
-
-```plain
-network_mode: service:tailscale
-```
-
-This means all Picard traffic — web interface, plugin updates, and library calls — travels securely through Tailscale.
+- [MusicBrainz Picard documentation](https://picard-docs.musicbrainz.org/)
+- [mikenye/picard image](https://github.com/mikenye/docker-picard)

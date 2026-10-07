@@ -1,18 +1,40 @@
-# Linkding with Tailscale Sidecar Configuration
+# linkding
 
-This Docker Compose configuration sets up [Linkding](https://github.com/sissbruecker/linkding) with Tailscale as a sidecar container to securely manage and access your self-hosted bookmark manager over a private Tailscale network. By integrating Tailscale, you can ensure that your Linkding instance remains private and accessible only to authorized devices on your Tailscale network.
+[linkding](https://linkding.link/) is a bookmark manager. You save, tag, and search your links, and a browser extension adds bookmarks with one click.
 
-## Linkding
+This stack runs linkding with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Linkding](https://github.com/sissbruecker/linkding) is a lightweight, self-hosted bookmark manager designed to simplify saving and organizing links. It supports features like tagging, searching, and bookmark importing/exporting. It also includes a browser extension for quick access and management. With Tailscale, your Linkding instance is safeguarded, ensuring that your bookmarks are only accessible to you and authorized users within your private network.
+## At a glance
 
-## Key Features
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
+| Web interface | `https://linkding.<tailnet>.ts.net` |
+| Service port  | `9090`                              |
+| Image         | `sissbruecker/linkding`             |
+| Data          | `./linkding-data/data`              |
 
-- **Tagging and Search**: Organize and find bookmarks effortlessly with tags and a robust search feature.
-- **Browser Integration**: Quickly save and manage bookmarks via browser extensions.
-- **Self-Hosted Privacy**: Keep your bookmarks secure and private with a locally hosted solution.
-- **Import/Export**: Easily migrate bookmarks to and from other services.
+## Before you start
 
-## Configuration Overview
+The settings of linkding are in the file `.linkding.env` in this directory.
 
-In this setup, the `tailscale-linkding` service runs Tailscale, which manages secure networking for the Linkding service. The `linkding` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Linkding’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for managing your bookmarks.
+- **`LD_SUPERUSER_NAME` and `LD_SUPERUSER_PASSWORD`.** Set both to let linkding create your account at the first start. If you leave them empty, create the account by hand after the start, as described under the first run.
+
+## Deviations from the standard setup
+
+- **Separate settings file.** The `application` container loads `.linkding.env` through `env_file`, in addition to the variables in `compose.yaml`.
+
+## First run
+
+Open the web interface and log in with the account from `.linkding.env`.
+
+If you did not set an account there, create one first:
+
+```bash
+docker exec -it app-linkding python manage.py createsuperuser --username=<name> --email=<email>
+```
+
+## Links
+
+- [linkding documentation](https://linkding.link/)
+- [linkding options](https://linkding.link/options/)
+- [linkding source code](https://github.com/sissbruecker/linkding)

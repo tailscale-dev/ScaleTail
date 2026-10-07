@@ -1,20 +1,40 @@
-# searXNG with Tailscale Sidecar Configuration
+# SearXNG
 
-This Docker Compose configuration sets up [searXNG](https://github.com/searxng/searxng) with Tailscale as a sidecar container, enabling secure access to your private metasearch engine over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you can ensure that your searXNG instance is accessible only within your Tailscale network, providing an additional layer of security and privacy for your searches.
+[SearXNG](https://github.com/searxng/searxng) is a metasearch engine. It combines the results of many search engines and does not track or profile its users.
 
-## searXNG
+This stack runs SearXNG with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[searXNG](https://github.com/searxng/searxng) is a free, open-source metasearch engine that aggregates results from multiple search engines while protecting your privacy. With no user tracking and the ability to self-host, searXNG empowers you to take control of your search experience. By leveraging Tailscale, you can securely access your self-hosted searXNG instance from any of your devices, ensuring that your searches remain private and inaccessible to unauthorized users.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                       |
+| ------------- | ------------------------------------------- |
+| Web interface | `https://searxng.<tailnet>.ts.net`          |
+| Service port  | `8080`                                      |
+| Images        | `docker.io/searxng/searxng`                 |
+|               | `docker.io/valkey/valkey:8-alpine`          |
+| Data          | `./searxng` (configuration, `settings.yml`) |
+|               | Docker volume `valkey-data2` (Valkey data)  |
 
-In this setup, the `tailscale-searxng` service runs Tailscale, which manages secure networking for the searXNG service. The `searxng` service utilizes the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that searXNG is only accessible through your Tailscale network (or locally, if preferred). With this configuration, you can enjoy a private, secure, and customizable search engine experience, free from user tracking or external access.
+## Before you start
 
-We use `/searxng/settings.yml` copied from <https://github.com/searxng/searxng/blob/master/searx/settings.yml> as the default settings file. This dir is mounted as a volume, on docker and required for the first run.
-The default `settings.yml` does not use valkey ([valkey](https://github.com/searxng/searxng/blob/master/searx/settings.yml#L121) URL is set to `false`). We enable this by setting the `SEARXNG_VALKEY_URL` in `.env` file and using that in the `compose.yaml` file.
-Set `SEARXNG_SECRET` in `.env` to a random value, for example with `openssl rand -hex 32`. The Compose file passes it to the mounted settings file as the instance secret, and Compose stops with an error if it is empty.
-Set `TAILNET_NAME` in `.env` to your Tailnet name, the part between the service name and `.ts.net`. The Compose file builds the base URL `https://<SERVICE>.<TAILNET_NAME>.ts.net/` from it. SearXNG uses it to build its inbound links, and an empty value would produce an invalid address, so Compose stops with an error if `TAILNET_NAME` is empty.
+Set these values in `.env`. Compose stops with an error if one of them is empty.
 
-## References
+- **`TAILNET_NAME`.** Your Tailnet name, the part between the service name and `.ts.net`. `compose.yaml` builds the base address `https://<SERVICE>.<TAILNET_NAME>.ts.net/` from it, which SearXNG uses for its links.
+- **`SEARXNG_SECRET`.** A random value. Generate one with `openssl rand -hex 32`.
 
-[![Replace Google with SearXNG - a privacy respecting, self-hosted search engine](https://img.youtube.com/vi/cg9d87PuanE/0.jpg)](https://www.youtube.com/watch?v=cg9d87PuanE)
+## Deviations from the standard setup
+
+- **Settings file.** This directory contains `searxng/settings.yml`, a copy of the [default settings of SearXNG](https://github.com/searxng/searxng/blob/master/searx/settings.yml). The stack mounts the folder at `/etc/searxng`. Edit that file to change the engines and other settings.
+- **Extra container.** The stack runs a `valkey` container on the default Compose network. `SEARXNG_VALKEY_URL` in `.env` points SearXNG at it, because the default settings do not use Valkey. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve the name `valkey`.
+- **Reduced privileges.** Both containers drop all capabilities and add back only the few that they need.
+- **Log size.** Both containers limit their log to one file of 1 MB.
+
+## First run
+
+Nothing to set up. Open the web interface and search. SearXNG has no login.
+
+## Links
+
+- [SearXNG documentation](https://docs.searxng.org/)
+- [SearXNG source code](https://github.com/searxng/searxng)
+- [Video: replace Google with SearXNG](https://www.youtube.com/watch?v=cg9d87PuanE)

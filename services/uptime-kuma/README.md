@@ -1,11 +1,33 @@
-# Uptime Kuma with Tailscale Sidecar Configuration
+# Uptime Kuma
 
-This Docker Compose configuration sets up [Uptime Kuma](https://github.com/louislam/uptime-kuma) with Tailscale as a sidecar container to securely monitor your services and websites over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your monitoring dashboard, ensuring that it is only accessible within your Tailscale network.
+[Uptime Kuma](https://github.com/louislam/uptime-kuma) monitors your websites and services. It checks them at an interval, shows their uptime, and sends a notification when one is down.
 
-## Uptime Kuma
+This stack runs Uptime Kuma with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Uptime Kuma](https://github.com/louislam/uptime-kuma) is a self-hosted monitoring tool that allows you to keep track of the uptime and performance of your websites, APIs, and services. With a sleek and user-friendly interface, Uptime Kuma provides real-time monitoring, notifications, and detailed reports to help you maintain the reliability of your infrastructure. This configuration leverages Tailscale to securely connect to your Uptime Kuma dashboard, protecting your monitoring data from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                  |
+| ------------- | -------------------------------------- |
+| Web interface | `https://uptime-kuma.<tailnet>.ts.net` |
+| Service port  | `3001`                                 |
+| Image         | `louislam/uptime-kuma:2`               |
+| Data          | `./uptime-kuma-data/uptime-kuma-data`  |
 
-In this setup, the `tailscale-uptimekuma` service runs Tailscale, which manages secure networking for the Uptime Kuma service. The `uptimekuma` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Uptime Kuma's monitoring dashboard is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your monitoring solution.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **Docker socket.** Uptime Kuma mounts `/var/run/docker.sock` read-only, so that it can monitor the containers on the Docker host. Remove the line if you do not use this monitor type.
+
+## First run
+
+1. Open the web interface. Uptime Kuma first asks which database to use. SQLite needs no further settings.
+2. Create the administrator account.
+3. Add your first monitor. To monitor a service in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+
+## Links
+
+- [Uptime Kuma wiki](https://github.com/louislam/uptime-kuma/wiki)
+- [Uptime Kuma source code](https://github.com/louislam/uptime-kuma)

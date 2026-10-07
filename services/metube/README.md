@@ -1,11 +1,31 @@
-# Metube with Tailscale Sidecar Configuration
+# MeTube
 
-This Docker Compose configuration sets up [Metube](https://github.com/alexta69/metube) with Tailscale as a sidecar container to securely manage and access your self-hosted YouTube downloader over a private Tailscale network. By integrating Tailscale, you can ensure that your Metube instance remains private and accessible only to authorized devices on your Tailscale network.
+[MeTube](https://github.com/alexta69/metube) is a web interface for `yt-dlp`. It downloads videos and audio from YouTube and many other sites to your server.
 
-## Metube
+This stack runs MeTube with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Metube](https://github.com/alexta69/metube) is a self-hosted YouTube downloader with playlist support. Allows you to download videos from YouTube and dozens of other sites.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                             |
+| ------------- | --------------------------------- |
+| Web interface | `https://metube.<tailnet>.ts.net` |
+| Service port  | `8081`                            |
+| Image         | `ghcr.io/alexta69/metube`         |
+| Data          | `./downloads`                     |
 
-In this setup, the `tailscale-metube` service runs Tailscale, which manages secure networking for the metube application. The `metube` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that metube’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **MagicDNS is enabled.** The stack sets `TS_ACCEPT_DNS=true`, so the containers resolve names through MagicDNS and not through Docker's DNS.
+- **Download folder.** The downloads are in `./downloads`, not in a `./metube-data` folder.
+
+## First run
+
+MeTube has no login. Open the web interface, paste a link, and select **Download**. The files appear in `./downloads`.
+
+## Links
+
+- [MeTube documentation and source code](https://github.com/alexta69/metube)

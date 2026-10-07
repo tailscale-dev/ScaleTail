@@ -1,60 +1,52 @@
-# ArtistTrackarr with Tailscale Sidecar Configuration
+# ArtistTrackarr
 
-This Docker Compose configuration sets up [ArtistTrackarr](https://github.com/crypt0rr/ArtistTrackarr) with Tailscale as a sidecar container, keeping the application securely reachable over your Tailnet without exposing it directly to the public internet.
+[ArtistTrackarr](https://github.com/crypt0rr/ArtistTrackarr) watches MusicBrainz and, optionally, Spotify for new albums and EPs of the artists that your household follows. It sends notifications for announcements and release days.
 
-## ArtistTrackarr
+This stack runs ArtistTrackarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[ArtistTrackarr](https://github.com/crypt0rr/ArtistTrackarr) is a self-hosted household dashboard that monitors MusicBrainz and, optionally, Spotify for newly announced and released albums and EPs. It can send announcement and release-day notifications through Email, Discord, Telegram, ntfy, Gotify, generic webhooks, and other services supported by Shoutrrr.
+## At a glance
 
-Pairing ArtistTrackarr with Tailscale provides private access to its web interface from authorized Tailnet devices without requiring public port forwarding or a publicly accessible reverse proxy.
+| Item          | Value                                             |
+| ------------- | ------------------------------------------------- |
+| Web interface | `https://artist-trackarr.<tailnet>.ts.net`        |
+| Service port  | `8080`                                            |
+| Image         | `ghcr.io/crypt0rr/artist-trackarr`                |
+| Data          | `./artist-trackarr-data` (database and cover art) |
 
-## Configuration Overview
+## Before you start
 
-In this setup, the `tailscale-artist-trackarr` service runs Tailscale and manages secure networking for ArtistTrackarr. The `artist-trackarr` service uses the Tailscale container's network stack through Docker's `network_mode: service:tailscale` configuration.
+1. Create the data folder yourself and make user `10001` its owner. Docker creates missing folders as user `root`, and the image runs as user and group `10001`. With the wrong owner, ArtistTrackarr cannot create its database.
 
-ArtistTrackarr listens on port `8080`. Because both containers share the same network namespace, Tailscale Serve can forward traffic directly to `http://127.0.0.1:8080`.
+   ```bash
+   mkdir -p ./artist-trackarr-data
+   sudo chown -R 10001:10001 ./artist-trackarr-data
+   ```
 
-This keeps ArtistTrackarr Tailnet-only unless you intentionally publish its port on the Docker host.
+2. Set these values in `.env`:
 
-## Good to Know
+   - **`SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET`.** Three different random values of at least 32 characters each.
+   - **`MUSICBRAINZ_CONTACT`.** A real email address or project address. ArtistTrackarr sends it to MusicBrainz with each request.
+   - **`PUBLIC_URL`.** The address of the web interface, `https://artist-trackarr.<tailnet>.ts.net`.
 
-- **Container permissions:** The ArtistTrackarr image runs as UID and GID `10001`. When using a bind-mounted host directory for `/data`, create it before starting the stack and make it writable by UID and GID `10001`:
+## Deviations from the standard setup
 
-  ```console
-  mkdir -p ./artist-trackarr-data
-  sudo chown -R 10001:10001 ./artist-trackarr-data
-  ```
+- **Device name.** `SERVICE` in `.env` is `artist-trackarr`, which differs from the name of this directory.
+- **Secrets as files.** The stack passes `SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET` to the container as Docker secrets, not as environment variables.
+- **Reduced privileges.** The `application` container drops all capabilities and sets `no-new-privileges`.
 
-  Incorrect ownership can prevent ArtistTrackarr from creating or opening its SQLite database.
+## First run
 
-- **Volumes:** ArtistTrackarr stores its SQLite database, cached Cover Art Archive artwork, and other persistent application data in `/data`. The upstream deployment uses the legacy-named `artist-tracker-data` Docker volume for compatibility with existing installations.
+Open `https://artist-trackarr.<tailnet>.ts.net/setup`, enter the value of `SETUP_TOKEN`, and create the first administrator. After that, the web interface shows the sign-in page.
 
-- **Required application configuration:** Before starting ArtistTrackarr, define the following values:
+## Configuration
 
-  - `SETUP_TOKEN`
-  - `APP_ENCRYPTION_KEY`
-  - `SESSION_SECRET`
-  - `MUSICBRAINZ_CONTACT`
-  - `PUBLIC_URL`
+- **Polling interval.** `POLL_INTERVAL` in `.env` sets how often ArtistTrackarr checks for releases. The default is `6h`, and the application rejects values below one hour.
+- **Spotify.** To use Spotify as an additional source, set `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and a two-letter `SPOTIFY_MARKET`, such as `NL`, in `.env`. You create the client in the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
+- **Client addresses.** Tailscale Serve is the reverse proxy of this stack. Set `TRUST_PROXY=true` in `.env` only if ArtistTrackarr should trust the client addresses that the proxy forwards.
+- **Backups.** Stop the stack before you back up `./artist-trackarr-data`, so that the copy of the database is consistent.
 
-  `SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET` should each contain a random value of at least 32 characters. `MUSICBRAINZ_CONTACT` must contain a real email address or project URL because it is included in the MusicBrainz API User-Agent.
+## Links
 
-- **Public URL:** Set `PUBLIC_URL` to the HTTPS address through which users will access ArtistTrackarr over Tailscale, for example:
-
-  ```env
-  PUBLIC_URL=https://artist-trackarr.example-tailnet.ts.net
-  ```
-
-- **Polling interval:** The default `POLL_INTERVAL` is `6h`. Values below one hour are rejected by the application.
-
-- **Spotify integration:** Spotify integration is optional. Configure `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and an appropriate two-letter `SPOTIFY_MARKET`, such as `NL`, to enable Spotify-first artist discovery and an additional release-observation feed.
-
-- **Reverse-proxy handling:** Tailscale Serve acts as the HTTPS reverse proxy in this deployment. Set `TRUST_PROXY=true` only when ArtistTrackarr should trust forwarded client-address headers from the proxy.
-
-- **Backups:** Stop ArtistTrackarr before backing up its persistent `/data` directory or Docker volume to ensure a consistent SQLite backup. Database migrations run automatically when the application is upgraded.
-
-- **Official links:**
-  - [ArtistTrackarr repository](https://github.com/crypt0rr/ArtistTrackarr)
-  - [Shoutrrr documentation](https://containrrr.dev/shoutrrr/)
-  - [MusicBrainz](https://musicbrainz.org/)
-  - [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
+- [ArtistTrackarr documentation and source code](https://github.com/crypt0rr/ArtistTrackarr)
+- [Shoutrrr documentation](https://containrrr.dev/shoutrrr/), for the notification services
+- [MusicBrainz](https://musicbrainz.org/)

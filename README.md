@@ -40,6 +40,8 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
    docker compose up -d
    ```
 
+Every stack starts from the same [standard setup](documentation/standard-setup.md), which explains the containers, the Tailnet address, and the settings in `.env`.
+
 ## Table of Contents
 
 - [ScaleTail - Secure Self-Hosting Made Simple](#scaletail---secure-self-hosting-made-simple)

@@ -1,40 +1,33 @@
-# Tracktor with Tailscale Sidecar Configuration
+# Tracktor
 
-This Docker Compose configuration sets up **Tracktor** with a **Tailscale sidecar** container, enabling secure access to your self-hosted vehicle management interface over your private Tailscale network. With this setup, your Tracktor instance remains **private and accessible only from authorized devices on your Tailnet**, keeping sensitive vehicle data, documents, and analytics off the public internet.
+[Tracktor](https://github.com/javedh-dev/tracktor) manages your vehicles. You track fuel use, maintenance, insurance, and documents with their renewal dates.
 
-## Tracktor
+Tracktor is under active development and can have breaking changes. Back up your data before you update.
 
-[**Tracktor**](https://github.com/javedh-dev/tracktor) is an open-source web application for comprehensive vehicle management. It helps you track multiple vehicles in one place, including fuel consumption, maintenance history, insurance, and regulatory documents with renewal dates.
+This stack runs Tracktor with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-Tracktor is under active development and may include breaking changes. Keep regular backups of your data and validate upgrades before relying on it for critical workflows.
+## At a glance
 
-## Key Features
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
+| Web interface | `https://tracktor.<tailnet>.ts.net` |
+| Service port  | `3000`                              |
+| Image         | `ghcr.io/javedh-dev/tracktor`       |
+| Data          | `./tracktor-data`                   |
 
-- 🚗 **Vehicle Management** – Add, edit, and manage multiple vehicles, including different fuel types.
-- ⛽ **Fuel Tracking** – Log fuel refills and monitor consumption and efficiency over time.
-- 🧰 **Maintenance Log** – Record and review maintenance history per vehicle.
-- 📄 **Document Tracking** – Track insurance, inspection, and regulatory documents with renewal dates.
-- ⏰ **Reminders** – Set reminders for maintenance, renewals, and other vehicle events.
-- 📊 **Dashboard & Analytics** – Visualize key metrics and upcoming renewals.
-- 🔐 **User Authentication** – Username/password auth with session management.
-- 🎛️ **Feature Toggles** – Enable or disable features depending on your needs.
+## Before you start
 
-## Why Self-Host?
+Set `TS_TAILNET` in `.env` to your Tailnet name without `.ts.net`, for example `tail123abc`. `compose.yaml` builds the allowed browser origin from it, such as `https://tracktor.tail123abc.ts.net`.
 
-A vehicle management system often contains personal and operational data such as license plate numbers, VINs, service history, and document expiration dates. Hosting this data yourself ensures you retain full ownership, avoid third-party data exposure, and can integrate it cleanly into your homelab or internal tooling.
+## Deviations from the standard setup
 
-When combined with Tailscale, Tracktor becomes a private portal accessible only to authenticated devices on your Tailnet. This significantly reduces attack surface by avoiding public port exposure, while preserving the convenience of accessing your vehicle records from anywhere.
+- **Allowed origin.** `CORS_ORIGINS` in `compose.yaml` only accepts requests from the Tailnet address of the web interface.
+- **Service port.** Tracktor listens on port `3000`. `SERVICEPORT` in `.env` is only the host port of the optional `ports` block.
 
-## Configuration Overview
+## First run
 
-In this deployment, a **Tailscale sidecar container** (for example `tailscale-tracktor`) runs the Tailscale client and joins your private Tailscale network. The main `tracktor` service uses:
+Open the web interface. Tracktor sends you to the registration page, where you create the first account.
 
-```plain
-network_mode: service:tailscale
-```
+## Links
 
-This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Tracktor web UI is accessible **only via your Tailscale network**.
-
-Set `TS_TAILNET` in `.env` to your Tailnet DNS name without `.ts.net`, for example `tail123abc`. Compose appends `.ts.net` to build the allowed browser origin, such as `https://tracktor.tail123abc.ts.net`.
-
-If you enable the optional host port mapping, it maps `SERVICEPORT` to Tracktor's container port `3000`.
+- [Tracktor documentation and source code](https://github.com/javedh-dev/tracktor)

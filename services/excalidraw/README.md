@@ -1,11 +1,31 @@
-# Excalidraw with Tailscale Sidecar Configuration
+# Excalidraw
 
-This Docker Compose configuration sets up [Excalidraw](https://github.com/excalidraw/excalidraw) with Tailscale as a sidecar container to securely collaborate on whiteboard diagrams over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you can enhance the security and accessibility of your Excalidraw server, ensuring that it is only available within your Tailscale network.
+[Excalidraw](https://github.com/excalidraw/excalidraw) is a virtual whiteboard for diagrams and sketches with a hand-drawn look.
 
-## Excalidraw
+This stack runs Excalidraw with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Excalidraw](https://github.com/excalidraw/excalidraw) is an open-source virtual whiteboard tool designed for real-time collaboration. It allows users to create diagrams, sketches, and wireframes in a minimalist, hand-drawn style. Excalidraw is easy to set up and supports self-hosting for private, secure collaboration. This configuration incorporates Tailscale to provide a secure connection to your Excalidraw server, protecting your sessions from unauthorized access and enabling private collaboration.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://excalidraw.<tailnet>.ts.net` |
+| Service port  | `80`                                  |
+| Image         | `excalidraw/excalidraw`               |
+| Data          | None                                  |
 
-In this setup, the `tailscale-excalidraw` service runs Tailscale, which manages secure networking for the Excalidraw service. The `excalidraw` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This design ensures that Excalidraw's collaboration and editing features are only accessible through the Tailscale network (or locally, if preferred), providing enhanced security and privacy for your self-hosted Excalidraw instance.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **No application data.** Excalidraw keeps your drawings in the browser and stores nothing on the server. The `./excalidraw-data/app/config` volume from the template stays empty.
+
+## First run
+
+Nothing to set up. Open the web interface.
+
+## Links
+
+- [Excalidraw documentation](https://docs.excalidraw.com/)
+- [Excalidraw source code](https://github.com/excalidraw/excalidraw)

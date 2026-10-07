@@ -1,27 +1,37 @@
-# DDNS Updater with Tailscale Sidecar Configuration
+# DDNS Updater
 
-This Docker Compose configuration sets up [DDNS Updater](https://github.com/qdm12/ddns-updater) with Tailscale as a sidecar container, enabling secure and private management of your dynamic DNS records over a Tailscale network. Integrating Tailscale ensures that your DDNS Updater instance is accessible only to authorized devices within your Tailnet, enhancing the security of your DNS management.
+[DDNS Updater](https://github.com/qdm12/ddns-updater) keeps the DNS records of your domains pointed at your current public IP address. It supports many DNS providers and shows the state of each record in a web interface.
 
-## DDNS Updater
+This stack runs DDNS Updater with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[DDNS Updater](https://github.com/qdm12/ddns-updater) is a lightweight, universal program designed to keep your DNS A and/or AAAA records updated across multiple DNS providers. It supports a wide range of DNS services, including Cloudflare, DuckDNS, and many others. Key features include:
+## At a glance
 
-- **Periodic Updates**: Automatically updates DNS records at specified intervals to ensure they always point to your current IP address.
-- **Web User Interface**: Provides a user-friendly web UI for monitoring and managing your DNS records.
-- **Multi-Provider Support**: Compatible with numerous DNS providers, offering flexibility in your DNS management.
-- **Docker Compatibility**: Available as a lightweight Docker image, facilitating easy deployment and integration into existing setups.
+| Item          | Value                                                                  |
+| ------------- | ---------------------------------------------------------------------- |
+| Web interface | `https://ddns-updater.<tailnet>.ts.net`                                |
+| Service port  | `8000`                                                                 |
+| Image         | `qmcgaw/ddns-updater`                                                  |
+| Data          | `./ddns-updater-data/data` (your `config.json` and the update history) |
 
-By combining DDNS Updater with Tailscale, you can securely manage your dynamic DNS records without exposing the service to the public internet.
+## Before you start
 
-## Configuration Overview
+Create the data folder yourself and make user `1000` its owner. Docker creates missing folders as user `root`. DDNS Updater runs as user `1000` and then exits with `permission denied` when it writes `config.json`.
 
-In this setup, the `tailscale-ddns-updater` service runs Tailscale, providing a secure networking layer for the DDNS Updater service. The `ddns-updater` service utilizes Docker's `network_mode: service:tailscale` configuration to route all traffic through the Tailscale network. This setup ensures that the DDNS Updater's web interface and API are only accessible within your private Tailnet, adding an extra layer of security to your DNS management.
-
-## Volume Permissions
-
-The DDNS Updater image runs as UID `1000`. Docker creates missing bind-mount directories as `root:root`, and DDNS Updater then exits with `permission denied` when it writes `config.json`. Create the data directory before the first start:
-
-```sh
+```bash
 mkdir -p ddns-updater-data/data
 sudo chown -R 1000:1000 ddns-updater-data
 ```
+
+## Deviations from the standard setup
+
+- **Settings through environment variables.** `compose.yaml` sets the update period, the services that report your public IP address, and the port of the web interface.
+
+## First run
+
+1. Start the stack once. DDNS Updater creates an empty `config.json` in `./ddns-updater-data/data`.
+2. Add your domains and DNS providers to that file. The [DDNS Updater documentation](https://github.com/qdm12/ddns-updater#configuration) describes the format for each provider.
+3. Restart the stack. The web interface has no login and shows the state of each record.
+
+## Links
+
+- [DDNS Updater documentation and source code](https://github.com/qdm12/ddns-updater)

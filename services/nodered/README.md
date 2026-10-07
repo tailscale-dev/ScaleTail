@@ -1,20 +1,37 @@
-# Node-RED with Tailscale Sidecar Configuration
+# Node-RED
 
-This Docker Compose configuration sets up [Node-RED](https://github.com/node-red/node-red) with Tailscale as a sidecar container to securely access and manage your flow-based programming tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Node-RED instance, ensuring it is only accessible within your Tailscale network.
+[Node-RED](https://nodered.org/) is a low-code tool for event-driven applications. You connect devices, APIs, and online services by wiring nodes together in a flow editor in your browser.
 
-## Node-RED
+This stack runs Node-RED with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Node-RED](https://github.com/node-red/node-red) is a low-code programming tool for event-driven applications, designed to connect devices, APIs, and online services through an intuitive, browser-based flow editor. It’s widely used for IoT, automation, and integration tasks, offering a powerful yet user-friendly way to build workflows. This configuration leverages Tailscale to securely connect to your Node-RED instance, ensuring that your workflows and configurations are protected from unauthorized access and accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                              |
+| ------------- | ------------------------------------------------------------------ |
+| Web interface | `https://nodered.<tailnet>.ts.net`                                 |
+| Service port  | `1880`                                                             |
+| Image         | `nodered/node-red`                                                 |
+| Data          | `./nodered-data/app/config` (flows, settings, and installed nodes) |
 
-In this setup, the `tailscale-node-red` service runs Tailscale, which manages secure networking for the Node-RED service. The `node-red` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Node-RED’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your flow-based programming environment.
+## Before you start
 
-## Volume Permissions
+Create the data folder yourself and make user `1000` its owner. Docker creates missing folders as user `root`. The Node-RED image runs as user and group `1000`, and it then exits with `EACCES` when it copies `settings.js` into `/data`.
 
-The Node-RED image runs as UID/GID `1000`. Docker creates missing bind-mount directories as `root:root`, and Node-RED then exits with `EACCES` when it copies `settings.js` into `/data`. Create the data directory before the first start:
-
-```sh
+```bash
 mkdir -p nodered-data/app/config
 sudo chown -R 1000:1000 nodered-data
 ```
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface. The flow editor has no login by default, so everyone who can reach the device on your Tailnet can change your flows. See [Securing Node-RED](https://nodered.org/docs/user-guide/runtime/securing-node-red) to add one.
+
+## Links
+
+- [Node-RED documentation](https://nodered.org/docs/)
+- [Node-RED in Docker](https://nodered.org/docs/getting-started/docker)
+- [Node-RED source code](https://github.com/node-red/node-red)

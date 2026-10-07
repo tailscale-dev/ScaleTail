@@ -1,35 +1,41 @@
-# AFFiNE with Tailscale Sidecar Configuration
+# AFFiNE
 
-This Docker Compose configuration sets up **AFFiNE** with a Tailscale sidecar container, enabling secure, private access to your workspace over your Tailnet. With this setup, your AFFiNE instance remains **private and accessible only from authorized devices on your Tailnet**, keeping your notes, documents, and collaborative content away from the public internet.
+[AFFiNE](https://affine.pro/) is a workspace that combines documents, whiteboards, and databases. It is an open-source alternative to tools such as Notion and Miro.
 
-## AFFiNE
+This stack runs AFFiNE with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**AFFiNE**](https://github.com/toeverything/affine) is an open-source, privacy-focused workspace that combines **documents, whiteboards, and databases** into a single platform. It is often described as an alternative to tools like Notion and Miro, giving individuals and teams a flexible environment for writing, planning, organizing, and collaborating.
+## At a glance
 
-AFFiNE is designed around modern knowledge work, blending structured content and visual collaboration while remaining self-hostable and open-source. That makes it a strong fit for users who want full ownership of their data and workflows.
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
+| Web interface | `https://affine.<tailnet>.ts.net`   |
+| Service port  | `3010`                              |
+| Images        | `ghcr.io/toeverything/affine`       |
+|               | `pgvector/pgvector:pg16`            |
+|               | `redis`                             |
+| Data          | `./affine-storage` (uploaded files) |
+|               | `./affine-config` (configuration)   |
+|               | `./postgres` (PostgreSQL database)  |
 
-## Key Features
+## Before you start
 
-- **Unified workspace** for docs, whiteboards, and knowledge organization
-- **Open-source and self-hostable** for full control over your data
-- **Privacy-focused design** without dependence on proprietary SaaS platforms
-- **Collaborative editing** for teams and shared projects
-- **Modern block-based editor** for flexible content creation
-- **Visual thinking tools** with integrated whiteboard-style workflows
-- **Notion and Miro alternative** in a single platform
+Set these values in `.env`:
 
-## Configuration Overview
+- **`AFFINE_SERVER_EXTERNAL_URL`.** The address of the web interface, `https://affine.<tailnet>.ts.net`. AFFiNE does not start with the sample value, because the `affine_migration` container fails.
+- **`DB_PASSWORD`.** The password of the database. The default is `affine`.
 
-In this setup, the `tailscale-affine` service runs Tailscale and handles secure networking for the stack. The `affine` service shares the Tailscale container's network namespace using Docker's `network_mode: service:tailscale` configuration. This means AFFiNE is reachable through your Tailnet without exposing it directly to the public internet.
+## Deviations from the standard setup
 
-This approach provides a secure and simple way to self-host AFFiNE privately, whether for personal note-taking, team collaboration, or internal documentation.
+- **Extra containers.** The stack runs `postgres`, `redis`, and `affine_migration`. The migration container prepares the database and then exits. All three use the default Compose network, and AFFiNE reaches them by their service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve these names.
+- **Image version.** `AFFINE_REVISION` in `.env` selects the version of the AFFiNE image.
+- **Data folders.** The data is in `./affine-storage`, `./affine-config`, and `./postgres`, not in a `./affine-data` folder.
+- **The containers read the whole `.env` file.** The `application` and `affine_migration` containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in their environment.
 
-## Typical Use Cases
+## First run
 
-This setup is especially useful for:
+Open the web interface. AFFiNE sends you to its setup page, where you create the administrator account.
 
-- Personal knowledge management
-- Team wikis and internal documentation
-- Project planning and collaborative workspaces
-- Visual brainstorming and whiteboarding
-- Private alternatives to cloud-based productivity suites
+## Links
+
+- [AFFiNE self-hosting documentation](https://docs.affine.pro/self-host-affine)
+- [AFFiNE source code](https://github.com/toeverything/affine)

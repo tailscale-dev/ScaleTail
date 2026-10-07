@@ -1,22 +1,31 @@
-# Portracker with Tailscale Sidecar Configuration
+# Portracker
 
-This Docker Compose configuration sets up [Portracker](https://github.com/mostafa-wahied/portracker) with Tailscale as a sidecar container to securely access your lightweight port monitoring and tracking tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and accessibility of your Portracker instance, ensuring it is only available within your Tailscale network.
+[Portracker](https://github.com/mostafa-wahied/portracker) discovers the services on your systems and shows which ports they use, so that you have a live map of your ports.
 
-## Portracker
+This stack runs Portracker with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Portracker](https://github.com/mostafa-wahied/portracker) is a simple, self-hosted port monitoring tool that helps you keep track of open ports on your servers. It provides a web interface for viewing, searching, and exporting port information, making it easy to audit and manage your network exposure. Portracker is lightweight, easy to deploy, and requires minimal configuration. With this setup, Portracker is exposed only to your Tailscale network, providing secure, peer-to-peer access from your devices.
+## At a glance
 
-**Key Features:**
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://portracker.<tailnet>.ts.net` |
+| Service port  | `4999`                                |
+| Image         | `mostafawahied/portracker`            |
+| Data          | `./portracker-data/data`              |
 
-- 🔍 Real-time port monitoring and listing
-- 📊 Export port data to CSV for audits
-- 🖥️ Simple web interface for browsing and searching
-- 🛡️ Helps identify open ports and potential vulnerabilities
-- ⚡ Lightweight and fast deployment
-- 🔧 Minimal configuration required
+## Before you start
 
-With Tailscale in place, all of these features are securely tunneled through your private mesh network—no need to expose ports to the public internet.
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-## Configuration Overview
+## Deviations from the standard setup
 
-In this setup, the `tailscale-portracker` service runs Tailscale, which handles the secure networking layer. The `portracker` service uses Docker’s `network_mode: service:tailscale` setting to share the network stack of the Tailscale container. This means the Portracker web interface and all monitoring functionality are only accessible via the Tailscale network (or locally if preferred), adding a strong privacy layer to your self-hosted port tracker.
+- **Docker socket.** Portracker mounts `/var/run/docker.sock` read-only to discover the containers on the Docker host.
+- **No access to host processes.** Upstream also uses `pid: host` and the `SYS_PTRACE` and `SYS_ADMIN` capabilities to discover the ports of processes on the host. This stack does not set them. See the upstream documentation if you need these ports.
+
+## First run
+
+Portracker has no login by default. Open the web interface. To require a login, set `ENABLE_AUTH=true` in the `environment` block of `compose.yaml`. Portracker then shows a setup wizard for the administrator account.
+
+## Links
+
+- [Portracker documentation and source code](https://github.com/mostafa-wahied/portracker)

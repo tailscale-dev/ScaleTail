@@ -1,21 +1,36 @@
-# Ghost with Tailscale Sidecar Configuration  
+# Ghost
 
-This Docker Compose configuration sets up **[Ghost](https://github.com/TryGhost/Ghost)** with Tailscale as a sidecar container to securely manage and access your self-hosted publishing platform over a private Tailscale network. By integrating Tailscale, you can ensure that your Ghost instance remains private and accessible only to authorized devices within your Tailscale network.
+[Ghost](https://ghost.org/) is a publishing platform for blogs, newsletters, and online publications.
 
-## Ghost  
+This stack runs Ghost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Ghost](https://github.com/TryGhost/Ghost) is a modern, open-source publishing platform designed for professional blogs, newsletters, and online publications. It provides a sleek, minimalist editor, built-in SEO features, and powerful customization options. By integrating Tailscale, your Ghost instance remains secure and accessible only to authorized users, ensuring that your content is managed in a private environment.
+## At a glance
 
-## Key Features  
+| Item          | Value                                                                                               |
+| ------------- | --------------------------------------------------------------------------------------------------- |
+| Web interface | `https://ghost.<tailnet>.ts.net` (site) and `https://ghost.<tailnet>.ts.net/ghost` (administration) |
+| Service port  | `2368`                                                                                              |
+| Images        | `ghost:5-alpine`                                                                                    |
+|               | `mysql:8.0`                                                                                         |
+| Data          | `./ghost-data/ghost` (themes, images, and settings)                                                 |
+|               | `./ghost-data/db` (MySQL database)                                                                  |
 
-- **Minimalist & Fast** – A lightweight, streamlined writing experience for bloggers and content creators.  
-- **Built-in SEO & Analytics** – Optimize content for search engines and track performance effortlessly.  
-- **Customizable Themes & Integrations** – Extend Ghost with themes, memberships, and integrations.  
-- **Self-Hosted Privacy** – Maintain full control over your content with a locally hosted instance.  
-- **Secure Access with Tailscale** – Restrict access to only authorized devices within your private network.  
+## Before you start
 
-## Configuration Overview  
+- **Set `GHOST_URL` in `.env`.** Use the address of the site, `https://ghost.<tailnet>.ts.net`. Ghost does not start with the sample value and reports `Invalid URL`.
+- **Change the database password.** `compose.yaml` uses the password `example` for the MySQL `root` user, in `database__connection__password` and in `MYSQL_ROOT_PASSWORD`. Replace both with the same value of your own before the first start.
 
-In this setup, the `tailscale-ghost` service runs Tailscale, which manages secure networking for the Ghost service. The `ghost` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Ghost’s web interface and publishing tools are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your publishing workflow.
+## Deviations from the standard setup
 
-Set `GHOST_URL` in `.env` to the HTTPS hostname that you use on your Tailnet. Ghost listens on port `2368`, and Tailscale Serve forwards HTTPS traffic to that port.
+- **Extra container.** The stack runs a `db` container with MySQL, named `db-ghost`. It uses the default Compose network, and Ghost reaches it by its service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve that name.
+- **Service port.** Ghost listens on port `2368`. `SERVICEPORT` in `.env` is only the host port of the optional `ports` block.
+
+## First run
+
+Open `https://ghost.<tailnet>.ts.net/ghost` and create the first account, which becomes the owner of the site.
+
+## Links
+
+- [Ghost documentation](https://ghost.org/docs/)
+- [Ghost Docker image](https://hub.docker.com/_/ghost)
+- [Ghost source code](https://github.com/TryGhost/Ghost)

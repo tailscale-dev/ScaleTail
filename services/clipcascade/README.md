@@ -1,18 +1,36 @@
-# ClipCascade with Tailscale Sidecar Configuration
+# ClipCascade
 
-This Docker Compose configuration sets up [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) with Tailscale as a sidecar container to securely manage and access your clipboard history over a private Tailscale network. By integrating Tailscale, you can ensure that your ClipCascade instance remains private and accessible only to authorized devices on your Tailscale network.
+[ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) synchronises the clipboard between your devices. What you copy on one device is available on the others.
 
-## ClipCascade
+This stack runs ClipCascade with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) is a self-hosted, open-source clipboard manager that synchronizes and organizes clipboard history across devices. It offers features like an intuitive web interface, multi-device clipboard synchronization, and searchable history, making it an essential tool for productivity and seamless workflows. By leveraging Tailscale, your ClipCascade instance remains secure and accessible only to devices within your private network.
+## At a glance
 
-## Key Features
+| Item          | Value                                         |
+| ------------- | --------------------------------------------- |
+| Web interface | `https://clipcascade.<tailnet>.ts.net`        |
+| Service port  | `8080`                                        |
+| Image         | `sathvikrao/clipcascade`                      |
+| Data          | `./clipcascade-data/cc_users` (user database) |
 
-- **Multi-Device Sync**: Synchronize clipboard history across multiple devices.
-- **Searchable History**: Easily search and retrieve past clipboard entries.
-- **Self-Hosted Privacy**: Keep your clipboard data secure and private.
-- **User-Friendly Interface**: Manage clipboard history through an intuitive web interface.
+## Before you start
 
-## Configuration Overview
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this setup, the `tailscale-clipcascade` service runs Tailscale, which manages secure networking for the ClipCascade service. The `clipcascade` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that ClipCascade’s web interface and functionality are only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for managing your clipboard history.
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface and log in with username `admin` and password `admin123`. Change the password right after you log in.
+
+In the ClipCascade apps, use `https://clipcascade.<tailnet>.ts.net` as the server address. The device must be connected to your Tailnet.
+
+## Configuration
+
+`CC_MAX_MESSAGE_SIZE_IN_MiB` in `compose.yaml` limits the size of a clipboard item. The stack sets it to `1`.
+
+## Links
+
+- [ClipCascade documentation and source code](https://github.com/Sathvik-Rao/ClipCascade)

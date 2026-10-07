@@ -1,11 +1,32 @@
-# Gokapi with Tailscale Sidecar Configuration
+# Gokapi
 
-This Docker Compose configuration sets up [Gokapi](https://github.com/Forceu/Gokapi) with Tailscale as a sidecar container to securely manage and access your lightweight file-sharing service over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Gokapi instance, ensuring that it is only accessible within your Tailscale network.
+[Gokapi](https://github.com/Forceu/Gokapi) is a file sharing server. You upload a file and share a link that expires after a number of downloads or days.
 
-## Gokapi
+This stack runs Gokapi with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Gokapi](https://github.com/Forceu/Gokapi) is a lightweight, self-hosted file-sharing platform designed to provide a simple and secure way to share files with others. It features an intuitive web interface, token-based sharing, and the ability to control file expiry and download limits. This configuration leverages Tailscale to securely connect to your Gokapi instance, ensuring that your file-sharing activities remain private and protected from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                         |
+| ------------- | --------------------------------------------- |
+| Web interface | `https://gokapi.<tailnet>.ts.net`             |
+| Service port  | `53842`                                       |
+| Image         | `f0rc3/gokapi`                                |
+| Data          | `./gokapi-data/gokapi-data` (uploaded files)  |
+|               | `./gokapi-data/gokapi-config` (configuration) |
 
-In this setup, the `tailscale-gokapi` service runs Tailscale, which manages secure networking for the Gokapi service. The `gokapi` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Gokapi's web interface and file-sharing services are only accessible through the Tailscale network (or locally, if preferred), providing an additional layer of security and privacy for your file-sharing solution.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open `https://gokapi.<tailnet>.ts.net/setup`. The setup wizard asks for the authentication method, the administrator account, the storage, and the public address of the server. Until you finish it, the web interface only shows a maintenance message.
+
+## Links
+
+- [Gokapi documentation](https://gokapi.readthedocs.io/en/latest/)
+- [Gokapi source code](https://github.com/Forceu/Gokapi)

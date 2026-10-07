@@ -1,11 +1,32 @@
-# Stirling-PDF with Tailscale Sidecar Configuration
+# Stirling-PDF
 
-This Docker Compose configuration sets up [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) with Tailscale as a sidecar container to securely manage and manipulate PDF files over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your PDF processing, ensuring that the Stirling-PDF interface is only accessible within your Tailscale network.
+[Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) is a toolbox for PDF files. You merge, split, convert, compress, sign, and edit PDF files in your browser, and the files stay on your own server.
 
-## Stirling-PDF
+This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-Stirling-PDF is a versatile, open-source toolkit that allows you to perform various PDF manipulations, such as merging, splitting, compressing, and converting PDF files. With an intuitive and user-friendly interface, Stirling-PDF simplifies complex PDF tasks, making it a valuable tool for both personal and professional use. This configuration leverages Tailscale to securely connect to your Stirling-PDF instance, protecting your sensitive document operations from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                                   |
+| ------------- | ----------------------------------------------------------------------- |
+| Web interface | `https://stirlingpdf.<tailnet>.ts.net`                                  |
+| Service port  | `8080`                                                                  |
+| Image         | `frooodle/s-pdf`                                                        |
+| Data          | `./stirlingpdf-data/extraConfigs` (settings and database)               |
+|               | `./stirlingpdf-data/trainingData` (language files for text recognition) |
 
-In this setup, the `tailscale-stirlingpdf` service runs Tailscale, which manages secure networking for the Stirling-PDF service. The `stirlingpdf` service uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that Stirling-PDF's interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your PDF processing tasks.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface and log in with username `admin` and password `stirling`. Stirling-PDF creates this account at the first start, so change the password right after you log in.
+
+## Links
+
+- [Stirling-PDF documentation](https://docs.stirlingpdf.com/)
+- [Stirling-PDF source code](https://github.com/Stirling-Tools/Stirling-PDF)

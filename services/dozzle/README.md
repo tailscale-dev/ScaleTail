@@ -1,11 +1,37 @@
-# Dozzle with Tailscale Sidecar Configuration
+# Dozzle
 
-This Docker Compose configuration sets up [Dozzle](https://github.com/amir20/dozzle) with Tailscale as a sidecar container to securely access your real-time Docker log viewer over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Dozzle instance, ensuring that it is only accessible within your Tailscale network.
+[Dozzle](https://dozzle.dev/) is a web interface to follow the logs of your Docker containers in real time.
 
-## Dozzle
+This stack runs Dozzle with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Dozzle](https://github.com/amir20/dozzle) is a lightweight, self-hosted application for viewing Docker container logs in real time. It offers an intuitive web interface that makes it easy to monitor logs from your Docker environment without the need for complex setups or additional dependencies. This configuration leverages Tailscale to securely connect to your Dozzle instance, ensuring that your log viewer is protected from unauthorized access and that your instance is only accessible via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                             |
+| ------------- | --------------------------------- |
+| Web interface | `https://dozzle.<tailnet>.ts.net` |
+| Service port  | `8080`                            |
+| Image         | `amir20/dozzle`                   |
+| Data          | `./dozzle-data/dozzle-data`       |
 
-In this setup, the `tailscale-dozzle` service runs Tailscale, which manages secure networking for the Dozzle service. The `dozzle` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Dozzle’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted log viewer.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **Docker socket.** Dozzle mounts `/var/run/docker.sock` read-only to read the logs of all containers on the Docker host.
+
+## First run
+
+Dozzle has no login by default. Open the web interface to see the containers of the Docker host. Everyone who can reach the device on your Tailnet can read these logs.
+
+## Configuration
+
+### Require a login
+
+Dozzle can ask for a username and password. See [Dozzle authentication](https://dozzle.dev/guide/authentication) for the `simple` provider and its `users.yml` file. The file `dozzle-data/users.yml` in this directory is an example of that format.
+
+## Links
+
+- [Dozzle documentation](https://dozzle.dev/guide/getting-started)
+- [Dozzle source code](https://github.com/amir20/dozzle)

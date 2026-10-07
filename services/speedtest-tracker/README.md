@@ -1,28 +1,38 @@
-# Speedtest Tracker with Tailscale Sidecar Configuration
+# Speedtest Tracker
 
-This Docker Compose configuration sets up [Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker) with Tailscale as a sidecar container to securely monitor and access your internet speed tracking tool over a private Tailscale network. By integrating Tailscale, you can ensure that your Speedtest Tracker instance remains private and accessible only to authorized devices on your Tailscale network.
+[Speedtest Tracker](https://docs.speedtest-tracker.dev/) tests the speed of your internet connection on a schedule. It keeps the history and shows it in graphs.
 
-## Speedtest Tracker
+This stack runs Speedtest Tracker with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Speedtest Tracker](https://github.com/alexjustesen/speedtest-tracker) is an open-source, self-hosted tool designed to regularly test and monitor your internet connection speed. It logs historical speed test data and provides detailed visualizations, making it ideal for diagnosing network issues or keeping your ISP accountable. Adding Tailscale enhances the security of your Speedtest Tracker instance by ensuring access is limited to authorized devices within your private network.
+## At a glance
 
-## Key Features
+| Item          | Value                                                   |
+| ------------- | ------------------------------------------------------- |
+| Web interface | `https://speedtest-tracker.<tailnet>.ts.net`            |
+| Service port  | `8888`                                                  |
+| Image         | `lscr.io/linuxserver/speedtest-tracker`                 |
+| Data          | `./speedtest-tracker-data` (configuration and database) |
+|               | `./nginx/default.conf` (web server configuration)       |
 
-- **Automated Speed Tests**: Schedule regular speed tests for consistent monitoring.
-- **Data Logging**: Keep historical records of your upload, download, and ping stats.
-- **Detailed Visualizations**: View trends and performance over time with an intuitive web interface.
-- **Self-Hosted**: Maintain full control over your data with a locally hosted solution.
+## Before you start
 
-## Configuration Overview
+Set `APP_KEY` in `.env`. Generate the value with `echo "base64:$(openssl rand -base64 32)"`. Compose stops with an error if it is empty.
 
-In this setup, the `tailscale-speedtest` service runs Tailscale, which manages secure networking for the Speedtest Tracker service. The `speedtest-tracker` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Speedtest Tracker’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing enhanced privacy and security for your internet speed monitoring.
+## Deviations from the standard setup
 
-## Files to check
+- **Web server port.** This directory contains `nginx/default.conf`, which makes the web server in the container listen on port `8888`. The stack mounts it over the configuration of the image.
+- **Database.** `DB_CONNECTION=sqlite` makes Speedtest Tracker store its data in a SQLite database in the data folder.
 
-Please check the following contents for validity as some variables need to be defined upfront.
+## First run
 
-- `.env`
-  - Required: `TS_AUTHKEY`
-  - Required: `APP_KEY`. Generate it with `echo "base64:$(openssl rand -base64 32)"`. Compose stops with an error if it is empty.
+Open the web interface and log in with the default account `admin@example.com` and password `password`. Change both right after you log in.
 
-If you previously set `APP_KEY` in `compose.yaml`, move that value to `.env`. A new key cannot decrypt data that Speedtest Tracker already encrypted.
+## Upgrading
+
+If you set `APP_KEY` in `compose.yaml` before, move that value to `.env`. A new key cannot decrypt the data that Speedtest Tracker already encrypted.
+
+## Links
+
+- [Speedtest Tracker documentation](https://docs.speedtest-tracker.dev/)
+- [Speedtest Tracker source code](https://github.com/alexjustesen/speedtest-tracker)
+- [LinuxServer.io image documentation](https://docs.linuxserver.io/images/docker-speedtest-tracker/)

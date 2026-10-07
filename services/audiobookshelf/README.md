@@ -1,11 +1,36 @@
-# Audiobookshelf with Tailscale Sidecar Configuration
+# Audiobookshelf
 
-This Docker Compose configuration sets up [Audiobookshelf](https://github.com/advplyr/audiobookshelf) with Tailscale as a sidecar container to securely access and manage your audiobook and podcast library over a private Tailscale network. By integrating Tailscale, you can ensure that your Audiobookshelf instance remains private and accessible only to devices within your Tailscale network.
+[Audiobookshelf](https://www.audiobookshelf.org/) is a server for your audiobooks and podcasts. It streams them to the web player and the mobile apps and keeps your listening progress in sync.
 
-## Audiobookshelf
+This stack runs Audiobookshelf with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Audiobookshelf](https://github.com/advplyr/audiobookshelf) is an open-source self-hosted application for managing and streaming audiobooks and podcasts. It offers features like multi-user support, playback progress sync, a web player, and mobile app integrations, making it easy to organize and enjoy your audiobook and podcast collection from anywhere. By adding Tailscale, you can protect your library from unauthorized access while maintaining seamless and secure connectivity for all your devices.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                             |
+| ------------- | ----------------------------------------------------------------- |
+| Web interface | `https://audiobookshelf.<tailnet>.ts.net`                         |
+| Service port  | `80`                                                              |
+| Image         | `ghcr.io/advplyr/audiobookshelf`                                  |
+| Data          | `./audiobookshelf-data/app/config` (configuration and database)   |
+|               | `./audiobookshelf-data/app/metadata` (covers, cache, and backups) |
+|               | `./audiobookshelf-data/app/audiobooks` (audiobook library)        |
+|               | `./audiobookshelf-data/app/podcasts` (podcast library)            |
 
-In this setup, the `tailscale-audiobookshelf` service runs Tailscale, which manages secure networking for the Audiobookshelf service. The `audiobookshelf` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Audiobookshelf’s web interface and streaming capabilities are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your personal audiobook and podcast collection.
+## Before you start
+
+To use an existing collection, point the `/audiobooks` and `/podcasts` volumes in `compose.yaml` at your own folders. Otherwise the stack starts with empty folders in `./audiobookshelf-data`.
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface and create the root user. Then add a library that points to `/audiobooks` or `/podcasts`.
+
+In the mobile apps, use `https://audiobookshelf.<tailnet>.ts.net` as the server address. The device must be connected to your Tailnet.
+
+## Links
+
+- [Audiobookshelf documentation](https://www.audiobookshelf.org/docs)
+- [Audiobookshelf source code](https://github.com/advplyr/audiobookshelf)

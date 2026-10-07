@@ -1,19 +1,40 @@
-# Kaneo with Tailscale Sidecar Configuration  
+# Kaneo
 
-This Docker Compose configuration sets up **[Kaneo](https://github.com/usekaneo/kaneo)** with Tailscale as a sidecar container to securely manage and access your self-hosted project management platform over a private Tailscale network. By integrating Tailscale, you ensure that your Kaneo instance is only accessible to authorized devices within your Tailscale network, keeping your tasks, projects, and team discussions private.
+[Kaneo](https://kaneo.app/) is a project management tool with boards, tasks, and a clean interface. It is an open-source alternative to tools such as Trello and Linear.
 
-## Kaneo  
+This stack runs Kaneo with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Kaneo](https://github.com/usekaneo/kaneo) is an **open-source, self-hosted project management platform** focused on simplicity, clean UI, and efficient workflows. Designed as an alternative to tools like Trello or Linear, Kaneo offers a modern and distraction-free environment to manage tasks, organize projects, and collaborate with your team. You can self-host and fully customize the platform to match your workflow—no vendor lock-in, no subscriptions.
+## At a glance
 
-## Key Features  
+| Item          | Value                                              |
+| ------------- | -------------------------------------------------- |
+| Web interface | `https://kaneo.<tailnet>.ts.net`                   |
+| Service ports | `5173` (web interface) and `1337` (API)            |
+| Images        | `ghcr.io/usekaneo/web`                             |
+|               | `ghcr.io/usekaneo/api`                             |
+|               | `postgres:16-alpine`                               |
+| Data          | `./kaneo-data/postgres_data` (PostgreSQL database) |
 
-- **Project & Task Boards** – Kanban-style boards for managing tasks and workflows.  
-- **Clean & Fast UI** – Minimalist design focused on usability and speed.  
-- **Self-Hosted & Customizable** – Deploy on your own infrastructure and modify freely.  
-- **Privacy-First** – No tracking, no external dependencies.  
-- **Secure Access with Tailscale** – Limit access to authorized devices in your private network.  
+## Before you start
 
-## Configuration Overview  
+Set these values in `.env`:
 
-In this setup, the `tailscale-kaneo` service runs Tailscale, which manages secure networking for the Kaneo service. The `kaneo` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Kaneo’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding a strong layer of privacy and security to your self-hosted project management platform.
+- **`KANEO_CLIENT_URL` and `KANEO_API_URL`.** The address of the web interface, `https://kaneo.<tailnet>.ts.net`, and the same address with `/api`. The backend does not start with the sample values.
+- **`AUTH_SECRET`.** A long random value, for example from `openssl rand -hex 32`.
+- **`DB_PASSWORD`.** The password of the database.
+
+## Deviations from the standard setup
+
+- **Three application containers.** The stack has no `application` service. It runs `frontend`, `backend`, and `postgres`, which all use the network of the `tailscale` container and reach each other at `localhost`. PostgreSQL therefore also listens on port `5432` of the Tailscale IP address of the device.
+- **Two Serve routes.** Tailscale Serve forwards `/api/` to the backend and everything else to the frontend. The ports come from `SERVICEPORT_BACKEND` and `SERVICEPORT_FRONTEND` in `.env`.
+- **Images are set in `.env`.** The stack does not use `IMAGE_URL` and `SERVICEPORT`. `IMAGE_URL_FRONTEND`, `IMAGE_URL_BACKEND`, and `IMAGE_URL_DATABASE` select the images.
+- **The containers read the whole `.env` file.** All three containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in their environment.
+
+## First run
+
+Open the web interface and sign up to create the first account. Then create your workspace.
+
+## Links
+
+- [Kaneo documentation](https://kaneo.app/docs)
+- [Kaneo source code](https://github.com/usekaneo/kaneo)

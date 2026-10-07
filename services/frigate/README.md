@@ -1,40 +1,45 @@
-# Frigate with Tailscale Sidecar Configuration
+# Frigate
 
-This Docker Compose configuration sets up **Frigate** with Tailscale as a sidecar container, enabling secure, private access to your NVR and AI-based camera monitoring system over your Tailnet.
+[Frigate](https://frigate.video/) is a network video recorder for IP cameras. It detects objects such as people, cars, and animals in real time and can use a GPU or an accelerator for the detection.
 
-## Frigate
+This stack runs Frigate with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Frigate](https://github.com/blakeblackshear/frigate) is an open-source network video recorder (NVR) designed for real-time object detection using AI. It integrates with IP cameras and leverages hardware acceleration (such as Google Coral, GPUs, or CPUs) to detect objects like people, cars, and animals with high efficiency.
+## At a glance
 
-Frigate is often paired with Tailscale to ensure that camera feeds, recordings, and detection events remain completely private, accessible only from trusted devices on your Tailnet rather than being exposed to the public internet.
+| Item           | Value                                                                   |
+| -------------- | ----------------------------------------------------------------------- |
+| Web interface  | `https://frigate.<tailnet>.ts.net`                                      |
+| Service port   | `8971` (HTTPS with a self-signed certificate)                           |
+| Camera streams | Ports `8554` (RTSP) and `8555` (WebRTC, TCP and UDP) on the Docker host |
+| Image          | `ghcr.io/blakeblackshear/frigate:stable`                                |
+| Data           | `./frigate-data/config` (configuration and database)                    |
+|                | `./frigate-data/storage` (recordings, clips, and exports)               |
 
-## Configuration Overview
+## Before you start
 
-In this setup, the `tailscale-frigate` service runs Tailscale, which manages secure networking for Frigate. The `frigate` container shares the network stack using Docker’s `network_mode: service:tailscale`.
+Change `FRIGATE_RTSP_PASSWORD` in `compose.yaml`. The sample value is `password`.
 
-This ensures:
+## Deviations from the standard setup
 
-- No public ports are exposed by default
-- Access is restricted to your Tailnet
-- HTTPS access can be enabled via Tailscale Serve if desired
+- **Serve forwards to HTTPS.** Frigate serves its authenticated web interface on port `8971` with a self-signed certificate. Tailscale Serve forwards to it with `https+insecure`.
+- **Published host ports.** The `ports` block is active. It publishes the restream ports `8554` and `8555` on the Docker host, so that devices in your local network can reach the camera streams without Tailscale.
+- **Privileged container.** The `application` container runs with `privileged: true`, so that Frigate can use the hardware of the Docker host for decoding and detection.
+- **Shared memory and cache.** The stack gives Frigate 512 MB of shared memory and a 1 GB temporary file system for its cache. Increase the shared memory when you add many cameras.
+- **Time zone.** The stack mounts `/etc/localtime` of the Docker host read-only, in addition to `TZ`.
 
-## Key Features
+## First run
 
-- Real-time AI object detection (people, vehicles, animals, etc.)
-- Local processing with optional hardware acceleration (Coral, GPU, CPU)
-- RTSP camera support
-- Event-based recording and snapshots
-- Web UI for live view and playback
-- MQTT integration for automation systems like Home Assistant
+1. Frigate creates the user `admin` with a random password at the first start. Find it in the log:
 
-## Files to Check
+   ```bash
+   docker logs app-frigate 2>&1 | grep -B1 "Password:"
+   ```
 
-Please review:
+2. Open the web interface and log in.
+3. Add your cameras in the configuration editor of the web interface. Frigate stores the configuration in `./frigate-data/config/config.yml`.
 
-- `.env` → Ensure `TS_AUTHKEY` is set
+## Links
 
-## Useful Links
-
-- Frigate Documentation: <https://docs.frigate.video/>
-- GitHub Repository: <https://github.com/blakeblackshear/frigate>
-- Hardware Acceleration Guide: <https://docs.frigate.video/hardware/>
+- [Frigate documentation](https://docs.frigate.video/)
+- [Frigate hardware guide](https://docs.frigate.video/frigate/hardware)
+- [Frigate source code](https://github.com/blakeblackshear/frigate)

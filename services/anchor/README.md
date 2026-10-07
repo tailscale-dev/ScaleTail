@@ -1,32 +1,31 @@
-# Anchor with Tailscale Sidecar Configuration
+# Anchor
 
-This Docker Compose configuration sets up [Anchor](https://github.com/ZhFahim/anchor) with Tailscale as a sidecar container so your notes stay reachable only over your Tailnet instead of being exposed to the public internet.
+[Anchor](https://github.com/ZhFahim/anchor) is a note-taking application for the web and mobile devices. It works offline and synchronises your notes when the device is online again.
 
-## Anchor
+This stack runs Anchor with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Anchor](https://github.com/ZhFahim/anchor) is an offline-first, self-hostable note-taking application focused on speed, privacy, and reliability across web and mobile. It stores notes locally, syncs changes across devices when online, and supports features like rich text editing, attachments, tagging, sharing, and optional OIDC authentication. Pairing Anchor with Tailscale is a strong fit when you want private access to your notes from anywhere without putting the app behind a public reverse proxy.
+## At a glance
 
-## Key Features
+| Item          | Value                                         |
+| ------------- | --------------------------------------------- |
+| Web interface | `https://anchor.<tailnet>.ts.net`             |
+| Service port  | `3000`                                        |
+| Image         | `ghcr.io/zhfahim/anchor`                      |
+| Data          | `./anchor-data` (database and uploaded files) |
 
-- Offline-first note-taking with automatic sync when devices reconnect
-- Clean, fast web and mobile interface with rich text editing
-- Support for attachments, tags, and note organization
-- Optional sharing capabilities for collaboration
-- OIDC authentication support (Authelia, Authentik, Keycloak, Pocket ID, etc.)
-- Self-hosted and privacy-focused with full data ownership
-- Works seamlessly with Tailscale for private, secure remote access
+## Before you start
 
-## Configuration Overview
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this setup, the `tailscale-anchor` service runs Tailscale and manages secure networking for Anchor. The `anchor` service shares that network stack via Docker's `network_mode: service:tailscale` configuration, which keeps the app private to your Tailnet unless you intentionally add host port mappings or funnel it through another public entrypoint.
+## Deviations from the standard setup
 
-## Upstream documentation
+None.
 
-- [Anchor GitHub repository](https://github.com/ZhFahim/anchor)
+## First run
+
+Open the web interface and register the first account.
+
+## Links
+
+- [Anchor documentation and source code](https://github.com/ZhFahim/anchor)
 - [Anchor OIDC configuration](https://github.com/ZhFahim/anchor#oidc-authentication)
-
-## Files to check
-
-Please check the following contents for validity as some variables need to be defined upfront.
-
-- `.env` // Main variable `TS_AUTHKEY`

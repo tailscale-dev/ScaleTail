@@ -1,13 +1,39 @@
-# NextExplorer with Tailscale Sidecar Configuration
+# NextExplorer
 
-This Docker Compose configuration sets up [NextExplorer](https://github.com/nxzai/NextExplorer) with Tailscale as a sidecar container to securely manage file system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Next Explorer instance, ensuring that it is only accessible within your Tailscale network.
+[NextExplorer](https://github.com/nxzai/NextExplorer) is a file explorer for your server. You browse, upload, download, and edit the files of a folder in your browser.
 
-## NextExplorer
+This stack runs NextExplorer with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[NextExplorer](https://github.com/nxzai/NextExplorer) is a modern, self-hosted file explorer designed for teams, creative agencies, and homelabs that need both a polished user interface and fine-grained access control. It ships as a single Docker container, mounts any number of volumes, and pairs seamlessly with reverse proxies or zero-trust networks. Whether you're organizing project assets for a small studio or providing secure file access across a household, NextExplorer delivers a responsive, feature-rich experience out of the box. This configuration leverages Tailscale to securely connect to your NextExplorer instance, protecting your file management interface from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                                     |
+| ------------- | ------------------------------------------------------------------------- |
+| Web interface | `https://file-explorer.<tailnet>.ts.net`                                  |
+| Service port  | `3000`                                                                    |
+| Image         | `nxzai/explorer`                                                          |
+| Data          | `./config` (configuration and database)                                   |
+|               | `./cache` (thumbnails and unfinished uploads)                             |
+|               | The folder from `ACCESS_PATH` (your files, `/mnt/Files` in the container) |
 
-In this setup, the `tailscale` service runs Tailscale, which manages secure networking for NextExplorer. The `application` service uses Docker's `network_mode: service:tailscale` configuration. This keeps the management interface on your Tailnet unless you enable the optional host port mapping.
+## Before you start
 
-Set `ACCESS_PATH` in `.env` to an absolute host directory before starting the stack. NextExplorer mounts that directory at `/mnt/Files`. Replace the sample `SESSION_SECRET` and `PUBLIC_URL` values with deployment-specific values when those settings are used.
+Set these values in `.env`:
+
+- **`ACCESS_PATH`.** The absolute path of the folder on the Docker host that NextExplorer should show.
+- **`SESSION_SECRET`.** A long random value. Generate one with `openssl rand -base64 32`.
+- **`PUBLIC_URL`.** The address of the web interface, `https://file-explorer.<tailnet>.ts.net`. NextExplorer uses it for its cookies, so use this address to open the web interface.
+
+## Deviations from the standard setup
+
+- **Device name.** `SERVICE` in `.env` is `file-explorer`, which differs from the name of this directory.
+- **Shared configuration folder.** NextExplorer stores its configuration in `./config`, the folder that also holds the Tailscale configuration files.
+- **Data folders.** The data is in `./config` and `./cache`, not in a `./file-explorer-data` folder.
+- **User and group.** `PUID` and `PGID` come from `.env`.
+
+## First run
+
+Open the web interface. NextExplorer asks you to create the first account.
+
+## Links
+
+- [NextExplorer documentation and source code](https://github.com/nxzai/NextExplorer)

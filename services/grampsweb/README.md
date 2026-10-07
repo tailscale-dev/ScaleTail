@@ -1,22 +1,37 @@
-# Gramps Web with Tailscale Sidecar Configuration
+# Gramps Web
 
-This Docker Compose configuration sets up [**Gramps Web**](https://github.com/gramps-project/gramps-web) with Tailscale as a sidecar container, enabling secure access to your self-hosted genealogy platform from anywhere on your private Tailscale network. With this setup, your Gramps Web instance remains fully private and accessible only from authorized devices.
+[Gramps Web](https://www.grampsweb.org/) is a web application to browse and edit your family tree together with others. It works with the data of the Gramps desktop application.
 
-## Gramps Web
+This stack runs Gramps Web with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Gramps Web**](https://github.com/gramps-project/gramps-web) is an open-source, self-hosted web application for collaborative browsing and editing of genealogical data. It provides a modern, mobile-friendly interface to your family tree, with full interoperability with the Gramps Desktop application. Designed for individuals, families, and research groups, Gramps Web makes it easy to share, visualize, and enrich family history data while keeping full control over your information.
+## At a glance
 
-## Key Features
+| Item          | Value                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Web interface | `https://grampsweb.<tailnet>.ts.net`                                                                              |
+| Service port  | `5000`                                                                                                            |
+| Images        | `ghcr.io/gramps-project/grampsweb`                                                                                |
+|               | `docker.io/library/redis:7.2.4-alpine`                                                                            |
+| Data          | `./grampsweb-data/gramps_db` (family tree database)                                                               |
+|               | `./grampsweb-data/gramps_media` (media files)                                                                     |
+|               | `./grampsweb-data/gramps_users` (user database)                                                                   |
+|               | `./grampsweb-data/gramps_secret` (secret key)                                                                     |
+|               | `./grampsweb-data/gramps_index`, `gramps_thumb_cache`, `gramps_cache`, and `gramps_tmp` (search index and caches) |
 
-* **Collaborative Editing** – Multiple users can view and edit the same family tree with role-based permissions.
-* **Interactive Charts and Maps** – Explore family relationships through dynamic ancestor, descendant, and hourglass charts, plus integrated mapping with historical overlays.
-* **AI-Powered Chat** – Ask questions about your family tree using natural language, with AI providing context-aware answers.
-* **Media and Face Tagging** – Store and manage media files, with automatic face detection and tagging to link people to photos.
-* **Search and Reporting** – Perform full-text searches and generate printable reports directly in the browser.
-* **Bi-Directional Sync with Gramps Desktop** – Keep online and offline databases in sync using the Gramps Web Sync add-on.
-* **Privacy Controls** – Mark individuals or events as private and filter sensitive data from public views.
-* **Self-Hosted & Open Source** – Run on your own infrastructure with Docker, keeping your data under your control.
+## Before you start
 
-## Configuration Overview
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this deployment, the `tailscale-grampsweb` service runs the Tailscale client to establish a secure private network. The `grampsweb` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures that your genealogy database, charts, and administration interface are only accessible via Tailscale, preventing public exposure.
+## Deviations from the standard setup
+
+- **Extra containers.** The stack runs `grampsweb_celery`, a worker for background tasks that uses the same image and the same data folders, and `grampsweb_redis`. The worker uses the network of the `tailscale` container, like Gramps Web itself. Redis uses the default Compose network, and Gramps Web reaches it by its service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve that name.
+- **Tree name.** `GRAMPSWEB_TREE` in `compose.yaml` sets the name of the family tree to `Gramps Web`.
+
+## First run
+
+Open the web interface. Gramps Web asks you to create the owner account. Then start an empty tree or import a Gramps XML file.
+
+## Links
+
+- [Gramps Web documentation](https://www.grampsweb.org/)
+- [Gramps Web source code](https://github.com/gramps-project/gramps-web)

@@ -1,26 +1,39 @@
-# Forgejo with Tailscale Sidecar Configuration
+# Forgejo
 
-This Docker Compose configuration sets up [**Forgejo**](https://forgejo.org/) with Tailscale as a sidecar container, enabling secure access to your self-hosted Git service from anywhere on your private Tailscale network. With this setup, your Forgejo instance remains fully private and accessible only from authorized devices.
+[Forgejo](https://forgejo.org/) is a Git service that you host yourself. It offers repositories, pull requests, issues, packages, and CI, and a community governs its development.
 
-## Forgejo
+This stack runs Forgejo with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Forgejo**](https://forgejo.org/) is a community-driven, self-hosted Git service inspired by the Esperanto word for *forge*. Designed as a lightweight and independent alternative to monopoly platforms, Forgejo offers Git hosting along with rich collaboration and project management tools. It is actively developed and governed by an open community, promising **Independent Free/Libre Software forever**.
+## At a glance
 
-## Key Features
+| Item          | Value                                                             |
+| ------------- | ----------------------------------------------------------------- |
+| Web interface | `https://forgejo.<tailnet>.ts.net`                                |
+| Service port  | `3000`                                                            |
+| Git over SSH  | Port `22` on the Tailscale IP address of `forgejo`                |
+| Image         | `codeberg.org/forgejo/forgejo:12`                                 |
+| Data          | `./forgejo-data/data` (repositories, database, and configuration) |
 
-* **Lightweight Deployment** – Runs smoothly on nearly any machine, from Raspberry Pi to cloud instances.
-* **Project Management** – Built-in issues, pull requests, wikis, and kanban boards for seamless teamwork.
-* **Publishing Tools** – Host software releases or publish via the built-in package registry (Docker, npm, etc.).
-* **Customizable & Flexible** – Tweak configuration switches to adapt Forgejo to your exact needs.
-* **Advanced Capabilities** – Organizations, permissions, CI/CD integration, code search, LDAP/OAuth support.
-* **Privacy-First** – Minimal tracking and safe defaults to protect users and their data.
-* **Federation (WIP)** – Ongoing work on ActivityPub integration to connect forges into a wider network.
-* **Free & Open Source** – Licensed under GPL-3.0+, ensuring transparency and community ownership.
+## Before you start
 
-## Configuration Overview
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this deployment, the `tailscale-forgejo` service runs the Tailscale client to establish a secure private network. The `forgejo` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures your Git service, web interface, and API endpoints are only accessible via Tailscale, preventing public exposure while still offering seamless remote access to your team.
+## Deviations from the standard setup
 
-## Reference Material
+- **Git over SSH.** The SSH server of Forgejo listens on port `22` of the Tailscale IP address of the device. It does not use Tailscale Serve.
+- **Time zone.** The stack mounts `/etc/timezone` and `/etc/localtime` of the Docker host read-only, in addition to `TZ`.
+- **User and group.** The image uses `USER_UID` and `USER_GID` for the owner of the data, which `compose.yaml` sets to `1000`.
 
-* [Youtube.com - Own Your Code Forever - A Private Git Server Setup Guide with Tailscale and Forgejo](https://www.youtube.com/watch?v=JcrcbkDGJuk)
+## First run
+
+Open the web interface. Forgejo shows its installation page:
+
+1. Keep SQLite as the database, or enter the details of your own database.
+2. Set the server domain to `forgejo.<tailnet>.ts.net` and the base URL to `https://forgejo.<tailnet>.ts.net/`.
+3. Create the administrator account at the bottom of the page. If you skip this, the first account that registers becomes the administrator.
+
+## Links
+
+- [Forgejo documentation](https://forgejo.org/docs/latest/)
+- [Forgejo source code](https://codeberg.org/forgejo/forgejo)
+- [Video: a private Git server with Tailscale and Forgejo](https://www.youtube.com/watch?v=JcrcbkDGJuk)

@@ -1,13 +1,63 @@
-# ntfy with Tailscale Sidecar Configuration
+# ntfy
 
-This Docker Compose configuration sets up [ntfy](https://ntfy.sh/) with Tailscale as a sidecar container to securely deliver push notifications over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your ntfy instance, ensuring it is only accessible within your Tailscale network.
+[ntfy](https://ntfy.sh/) is a notification service. Scripts and applications publish messages to a topic with a simple HTTP request, and your phone or browser receives them.
 
-## ntfy
+This stack runs ntfy with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[ntfy](https://ntfy.sh/) is a simple HTTP-based pub/sub notification service for sending push notifications to your devices and services. It supports sending messages via simple HTTP requests, with clients available for many platforms. By pairing ntfy with Tailscale, your notification broker becomes securely reachable through a zero-config mesh VPN, preventing unauthorized access over the public internet while keeping delivery fast and reliable.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                           |
+| ------------- | ----------------------------------------------- |
+| Web interface | `https://ntfy.<tailnet>.ts.net`                 |
+| Service port  | `80`                                            |
+| Image         | `binwiederhier/ntfy`                            |
+| Data          | `./ntfy-data/etc` (configuration, `server.yml`) |
+|               | `./ntfy-data/cache` (message cache)             |
 
-In this setup, the `tailscale-ntfy` service runs the Tailscale daemon to provide secure, private networking. The `ntfy` service is configured to use Tailscale’s network stack via Docker’s `network_mode: service:tailscale` syntax. This binds ntfy’s network interface to the Tailscale container, making the HTTP API available only through your Tailscale network (or locally, if needed).
+## Before you start
 
-This architecture is ideal for self-hosters who want to send and receive notifications from anywhere without exposing the ntfy broker to the internet, maintaining both ease of access and strict privacy controls.
+Create the data folders yourself and make user `1000` their owner. Docker creates missing folders as user `root`. ntfy runs as user `1000` and cannot write to folders that `root` owns.
+
+```bash
+mkdir -p ntfy-data/etc ntfy-data/cache
+sudo chown -R 1000:1000 ntfy-data
+```
+
+## Deviations from the standard setup
+
+- **Fixed user.** The `application` container runs as user and group `1000` through the `user` setting.
+- **Start command.** The stack starts ntfy with the `serve` command.
+
+## First run
+
+ntfy has no login by default. Everyone who can reach the device on your Tailnet can read and publish all topics.
+
+1. Open the web interface and subscribe to a topic.
+2. Publish a test message from a device on your Tailnet:
+
+   ```bash
+   curl -d "Hello from ScaleTail" https://ntfy.<tailnet>.ts.net/mytopic
+   ```
+
+3. In the ntfy mobile app, set `https://ntfy.<tailnet>.ts.net` as the server.
+
+## Configuration
+
+ntfy reads its settings from `./ntfy-data/etc/server.yml`. Create the file and restart the stack to apply it. These settings are useful behind Tailscale Serve:
+
+```yaml
+base-url: "https://ntfy.<tailnet>.ts.net"
+behind-proxy: true
+cache-file: "/var/cache/ntfy/cache.db"
+```
+
+- `base-url` is required for attachments and for notifications on iOS.
+- `behind-proxy` makes ntfy rate-limit each visitor separately. Without it, all visitors count as one.
+- `cache-file` keeps messages across restarts. Without it, ntfy keeps them in memory for 12 hours.
+
+To require a login, set `auth-file` and `auth-default-access: "deny-all"`. See the [ntfy configuration documentation](https://docs.ntfy.sh/config/).
+
+## Links
+
+- [ntfy documentation](https://docs.ntfy.sh/)
+- [ntfy source code](https://github.com/binwiederhier/ntfy)

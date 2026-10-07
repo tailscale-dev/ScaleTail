@@ -1,24 +1,31 @@
-# Memos with Tailscale Sidecar Configuration
+# Memos
 
-This Docker Compose configuration sets up **Memos** with a Tailscale sidecar container, allowing you to securely access your personal knowledge base over your private Tailnet without exposing it to the public internet.
+[Memos](https://usememos.com/) is a note-taking service for quick thoughts. You write short notes in Markdown, tag them, and find them again in a timeline.
 
-## Memos
+This stack runs Memos with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Memos](https://github.com/usememos/memos) is a lightweight, open-source note-taking and knowledge management platform designed for capturing quick thoughts, ideas, and daily logs. It combines the simplicity of a personal notebook with the structure of a self-hosted knowledge base, making it ideal for developers, operators, and individuals who want full control over their notes.
+## At a glance
 
-By pairing Memos with Tailscale, you ensure that your notes remain private and accessible only to authorized devices on your Tailnet, eliminating the need for public exposure or complex reverse proxy setups.
+| Item          | Value                            |
+| ------------- | -------------------------------- |
+| Web interface | `https://memos.<tailnet>.ts.net` |
+| Service port  | `5230`                           |
+| Image         | `neosmemo/memos:stable`          |
+| Data          | `./memos-data`                   |
 
-## Configuration Overview
+## Before you start
 
-In this setup, the `tailscale-memos` service runs Tailscale and manages secure networking. The `memos` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Memos is only accessible through your Tailnet unless you explicitly expose ports.
+Set `MEMOS_INSTANCE_URL` in `compose.yaml` to the address of the web interface, `https://memos.<tailnet>.ts.net`.
 
-## Files to check
+## Deviations from the standard setup
 
-Please verify the following before starting:
+- **Database.** `MEMOS_DRIVER=sqlite` makes Memos store its data in a SQLite database in the data folder.
 
-- `.env` // Must include `TS_AUTHKEY` for Tailscale authentication
+## First run
 
-## Resources
+Open the web interface and sign up. The first account becomes the administrator.
 
-- Official Repository: <https://github.com/usememos/memos>
-- Documentation: <https://usememos.com/docs>
+## Links
+
+- [Memos documentation](https://usememos.com/docs)
+- [Memos source code](https://github.com/usememos/memos)

@@ -1,21 +1,35 @@
-# Homarr with Tailscale Sidecar Configuration
+# Homarr
 
-This Docker Compose configuration sets up [Homarr](https://github.com/ajnart/homarr) with Tailscale as a sidecar container to securely manage and access your dashboard over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Homarr instance, ensuring that it is only accessible within your Tailscale network.
+[Homarr](https://homarr.dev/) is a dashboard for your services. It shows your applications on one page and integrates with many of them to display live information.
 
-## Homarr
+This stack runs Homarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Homarr](https://github.com/ajnart/homarr) is an open-source, self-hosted dashboard that integrates with all your self-hosted services, providing a centralized location to manage and access your apps, notifications, and more. It supports customization and can be extended with various plugins and integrations. This configuration leverages Tailscale to securely connect to your Homarr instance, ensuring that your dashboard interface is protected from unauthorized access and that your instance is accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                             |
+| ------------- | --------------------------------- |
+| Web interface | `https://homarr.<tailnet>.ts.net` |
+| Service port  | `7575`                            |
+| Image         | `ghcr.io/homarr-labs/homarr`      |
+| Data          | `./homarr-data/appdata`           |
 
-In this setup, the tailscale-homarr service runs Tailscale, which manages secure networking for the Homarr service. The homarr service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Homarr’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted dashboard.
+## Before you start
 
-## Files to check
+Set `SECRET_ENCRYPTION_KEY` in `.env` to a hex key of 64 characters. Generate one with `openssl rand -hex 32`. Compose stops with an error if it is empty.
 
-Please check the following contents for validity as some variables need to be defined upfront.
+## Deviations from the standard setup
 
-- `.env`
-  - Required: `TS_AUTHKEY`
-  - Required: `SECRET_ENCRYPTION_KEY`, a 64-character hex key. Generate it with `openssl rand -hex 32`. Compose stops with an error if it is empty.
+None.
 
-If you previously set `SECRET_ENCRYPTION_KEY` in `compose.yaml`, move that value to `.env`. A new key cannot decrypt the integration secrets that Homarr already stored.
+## First run
+
+Open the web interface and follow the onboarding. Homarr asks you to create the administrator account.
+
+## Upgrading
+
+If you set `SECRET_ENCRYPTION_KEY` in `compose.yaml` before, move that value to `.env`. A new key cannot decrypt the secrets of the integrations that Homarr already stored.
+
+## Links
+
+- [Homarr documentation](https://homarr.dev/docs/getting-started/)
+- [Homarr source code](https://github.com/homarr-labs/homarr)

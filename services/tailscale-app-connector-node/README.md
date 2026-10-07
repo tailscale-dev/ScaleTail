@@ -1,16 +1,38 @@
-# Tailscale App Connector Node Configuration
+# Tailscale App Connector
 
-This Docker Compose configuration sets up a Tailscale an App Connector Node, allowing devices in your Tailscale network to route their traffic securely through this node to internet services.
+A Tailscale [app connector](https://tailscale.com/docs/features/app-connectors/how-to/setup) routes Tailnet traffic for selected applications through itself. Users and devices reach these applications by domain name instead of by IP address.
 
-## Tailscale App Connector Node
+This stack runs only the Tailscale container from [the standard setup](../../documentation/standard-setup.md), configured as an app connector.
 
-App connectors let you route Tailscale network (known as a tailnet) traffic to your software as a service (SaaS), cloud, and self-hosted applications, letting users and devices on the tailnet access applications by domain names instead of IP addresses. You can also incorporate monitoring, optimization, security, and reliability into your app connector setup. [See the App Connector documents for more information:](https://tailscale.com/docs/features/app-connectors/how-to/setup)
+## At a glance
 
-## Configuration Overview
+| Item           | Value                 |
+| -------------- | --------------------- |
+| Web interface  | None                  |
+| Tailnet device | `app-connector`       |
+| Image          | `tailscale/tailscale` |
+| Data           | `./ts/state`          |
 
-In this setup, the `tailscale` service runs a Tailscale container configures it as an App Connector Node.
+## Before you start
 
-- **TS_AUTHKEY**: This environment variable in the .env file is where you insert your Tailscale authentication key.
-- **TS_EXTRA_ARGS**: The `--advertise-connector` flag is used to designate this container as a App Connector Node within your Tailscale network.
-- **Sysctls**: The system controls `net.ipv4.ip_forward` and `net.ipv6.conf.all.forwarding` are enabled to allow IP forwarding, which is necessary for routing traffic through the Exit Node.
-- **Network Mode**: The `bridge` network mode is used to create a virtual network interface for the container, enabling it to handle traffic routing.
+An app connector needs a tag and matching rules in your Tailnet policy. Follow the [app connector setup guide](https://tailscale.com/docs/features/app-connectors/how-to/setup) first:
+
+1. Create a tag for the connector and add the `tagOwners`, `autoApprovers`, and `grants` entries from the guide to your Tailnet policy.
+2. Give the device that tag. Create the auth key for `TS_AUTHKEY` with the tag, or add `--advertise-tags=tag:<connector-tag-name>` to `TS_EXTRA_ARGS` in `compose.yaml`.
+
+## Deviations from the standard setup
+
+- **No application container.** The stack has no `application` service, no Tailscale Serve configuration, and no `./config` folder.
+- **Connector flag.** `TS_EXTRA_ARGS=--advertise-connector` offers the device as an app connector to your Tailnet.
+- **IP forwarding.** The `sysctls` block enables IPv4 and IPv6 forwarding in the container, which an app connector requires.
+- **Bridge network.** The container uses `network_mode: bridge`, so forwarded traffic leaves through the Docker host.
+- **DNS server.** The `dns` block is active and uses `DNS_SERVER` from `.env`.
+
+## First run
+
+Add your applications on the **Apps** page of the Tailscale admin console and assign them to the tag of the connector.
+
+## Links
+
+- [Tailscale app connector setup](https://tailscale.com/docs/features/app-connectors/how-to/setup)
+- [Tailscale in Docker](https://tailscale.com/kb/1282/docker)

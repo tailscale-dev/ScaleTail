@@ -1,27 +1,31 @@
-# Isley with Tailscale Sidecar Configuration
+# Isley
 
-This Docker Compose configuration sets up [Isley](https://github.com/dwot/isley) with Tailscale as a sidecar container, enabling secure and private access to your self-hosted cannabis grow journal over a Tailscale network. With Tailscale, you can ensure that your sensitive grow data and notes are only accessible by trusted devices within your Tailnet.
+[Isley](https://github.com/dwot/isley) is a grow journal for home growers. You log your plants, watering, and feeding, follow sensor data from your grow equipment, and keep track of seeds and harvests.
 
-## Isley
+This stack runs Isley with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Isley](https://github.com/dwot/isley) is a self-hosted cannabis grow journal designed for home growers to track and monitor their plants with ease. It replaces vendor apps, spreadsheets, and notepads by centralizing tools into a clean, intuitive interface. Isley helps growers with some Key Features 🚀
+## At a glance
 
-- **📒 Grow Logs**: Track plant growth, watering, and feeding schedules.
-- **🌡️ Environmental Monitoring**: View real-time data from grow equipment (AC Infinity, Ecowitt).
-- **📸 Image Uploads**: Attach photos to your grow logs for visual tracking.
-- **🌱 Seed Inventory**: Manage your seed collection and strain library.
-- **📊 Harvest Tracking**: Record harvest details and yields.
-- **📈 Graphs and Charts**: Visualize environmental data and plant progress over time.
-- **⚙️ Customizable Settings**: Add custom activities and measurements for your grow.
-- **📱 Mobile-Friendly**: Works on desktop and mobile devices for convenience.
+| Item          | Value                                          |
+| ------------- | ---------------------------------------------- |
+| Web interface | `https://isley.<tailnet>.ts.net`               |
+| Service port  | `8080`                                         |
+| Image         | `dwot/isley`                                   |
+| Data          | `./isley-data/isley-db` (database)             |
+|               | `./isley-data/isley-uploads` (uploaded images) |
 
-With integration options for popular grow equipment, Isley simplifies and elevates the grow experience by consolidating everything into one powerful and private tool.
+## Before you start
 
-## Default Credentials
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-- **Default Username:** `admin`
-- **Default Password:** `isley`
+## Deviations from the standard setup
 
-## Configuration Overview
+None.
 
-In this setup, the `tailscale-isley` service runs Tailscale, which manages secure networking for the Isley service. The `isley` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Isley's interface is not exposed to the public internet, protecting your grow journal and data with an additional layer of privacy.
+## First run
+
+Open the web interface and log in with username `admin` and password `isley`. Isley then asks you to set a new password.
+
+## Links
+
+- [Isley documentation and source code](https://github.com/dwot/isley)
