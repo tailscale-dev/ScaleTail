@@ -56,8 +56,8 @@ services:
       - APP_URL=https://arcane.${TAILNET_NAME}.ts.net
       - PUID=1000
       - PGID=1000
-      - ENCRYPTION_KEY=verysecretkeythatshouldbereplaced # ENCRYPTION_KEY must be 32 bytes (raw/base64/hex). Use 'openssl rand -base64 32' in your CLI to generate a secure random key.
-      - JWT_SECRET=verysecretkeythatshouldbereplaced # JWT_SECRET should be a secure random string. Use 'openssl rand -base64 32' in your CLI to generate another secure random key.
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY:?Set ENCRYPTION_KEY in .env}
+      - JWT_SECRET=${JWT_SECRET:?Set JWT_SECRET in .env}
       - LOG_LEVEL=info # Optional
       - LOG_JSON=false # Optional
       - OIDC_ENABLED=false # Optional

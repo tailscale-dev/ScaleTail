@@ -18,10 +18,8 @@ This stack runs Hemmelig with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
-Change these values in `compose.yaml`:
-
-- **`BETTER_AUTH_URL` and `HEMMELIG_BASE_URL`.** The address of the web interface, `https://hemmelig.<tailnet>.ts.net`. The sample value is `https://secrets.example.com`.
-- **`BETTER_AUTH_SECRET`.** A random value of at least 32 characters. The sample value is public.
+- **Set the addresses in `compose.yaml`.** Change `BETTER_AUTH_URL` and `HEMMELIG_BASE_URL` to the address of the web interface, `https://hemmelig.<tailnet>.ts.net`. The sample value is `https://secrets.example.com`.
+- **Set the secret in `.env`.** Set `BETTER_AUTH_SECRET` to a random value of at least 32 characters. Generate one with `openssl rand -hex 32`. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 
@@ -30,6 +28,10 @@ None.
 ## First run
 
 Open the web interface. Hemmelig asks you to create the first account.
+
+## Upgrading
+
+Earlier versions of this stack had a sample value for `BETTER_AUTH_SECRET` in `compose.yaml`. It is now empty in `.env`, and you must set it. With a new value, everyone has to log in again.
 
 ## Links
 

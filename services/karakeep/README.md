@@ -21,7 +21,7 @@ This stack runs Karakeep with a Tailscale sidecar, as described in [the standard
 Set these values in `.env`:
 
 - **`NEXTAUTH_URL`.** The address of the web interface, `https://karakeep.<tailnet>.ts.net`. Karakeep does not start with the sample value.
-- **`NEXTAUTH_SECRET` and `MEILI_MASTER_KEY`.** Two different random values, for example from `openssl rand -base64 36`. The sample values are public.
+- **`NEXTAUTH_SECRET` and `MEILI_MASTER_KEY`.** Two different random values. Generate each with `openssl rand -base64 36`. Compose stops with an error if one of them is empty.
 
 ## Deviations from the standard setup
 
@@ -33,6 +33,10 @@ Set these values in `.env`:
 ## First run
 
 Open the web interface and sign up. The first account becomes the administrator. To stop others from registering afterwards, set `DISABLE_SIGNUPS=true` in `.env` and restart the stack.
+
+## Upgrading
+
+Earlier versions of this stack shipped sample values for `NEXTAUTH_SECRET` and `MEILI_MASTER_KEY` in `.env`. They are now empty, and you must set them. If you already replaced the sample values, keep your own. With a new `NEXTAUTH_SECRET`, everyone has to log in again.
 
 ## Links
 

@@ -23,7 +23,7 @@ Set these values in `.env`:
 
 - **`TS_URL`.** The name of the device on your Tailnet, `formbricks.<tailnet>.ts.net`.
 - **`WEBAPP_URL`.** The address that you use to open Formbricks. The sample value is `http://${TS_URL}:3000`, which is the direct port on the Tailnet. To use the HTTPS address of Tailscale Serve, change it to `https://${TS_URL}`. `NEXTAUTH_URL` and `PUBLIC_URL` follow this value.
-- **`NEXTAUTH_SECRET`, `ENCRYPTION_KEY`, and `CRON_SECRET`.** The sample values are public. Replace each with its own random value from `openssl rand -hex 32`.
+- **`NEXTAUTH_SECRET`, `ENCRYPTION_KEY`, and `CRON_SECRET`.** Three different random values. Generate each with `openssl rand -hex 32`. Compose stops with an error if one of them is empty.
 - **The `SMTP_*` and `MAIL_FROM` values.** The details of your mail server, if Formbricks should send email. The sample values do not work.
 
 ## Deviations from the standard setup
@@ -37,6 +37,13 @@ Set these values in `.env`:
 ## First run
 
 The first start takes about three minutes, because Formbricks prepares its database. Then open the web interface at the address from `WEBAPP_URL` and create the first account, which becomes the owner of the organisation.
+
+## Upgrading
+
+Earlier versions of this stack shipped sample values for `NEXTAUTH_SECRET`, `ENCRYPTION_KEY`, and `CRON_SECRET` in `.env`. They are now empty, and you must set them.
+
+- If you already replaced the sample values, keep your own.
+- If your `.env` still has the sample values, set new ones. With a new `NEXTAUTH_SECRET`, everyone has to log in again. Formbricks uses `ENCRYPTION_KEY` for two-factor authentication and for single-use links of link surveys, so existing ones stop working with a new key.
 
 ## Links
 

@@ -56,6 +56,8 @@ services:
       - .env
     environment:
       MEILI_ADDR: http://meilisearch:7700
+      NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?Set NEXTAUTH_SECRET in .env}
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}
       BROWSER_WEB_URL: http://chrome:9222
       # OPENAI_API_KEY: ...
 
@@ -105,5 +107,6 @@ services:
       - .env
     environment:
       MEILI_NO_ANALYTICS: "true"
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}
     volumes:
       - ./${SERVICE}-data/meilisearch:/meili_data

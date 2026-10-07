@@ -15,7 +15,7 @@ This stack runs ConvertX with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
-Replace the value of `JWT_SECRET` in `compose.yaml` with your own long random string. The sample value is public, and ConvertX uses it to sign the login tokens.
+Set `JWT_SECRET` in `.env` to a long random value. Generate one with `openssl rand -hex 32`. ConvertX uses it to sign the login tokens, and Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 
@@ -24,6 +24,10 @@ None.
 ## First run
 
 Open the web interface. ConvertX sends you to the setup page, where you create your account. Do this right after the first start, because anyone who can reach the service can register the first account. After that, registration is closed.
+
+## Upgrading
+
+Earlier versions of this stack had a sample value for `JWT_SECRET` in `compose.yaml`. It is now empty in `.env`, and you must set it. With a new value, everyone has to log in again.
 
 ## Links
 
