@@ -53,8 +53,6 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment: # Variables are declared in .env file.
-      PUID: 1000
-      PGI: 1000
       TZ: ${TZ}
       LISTEN_ADDR: ":8080"
       PUBLIC_URL: "${PUBLIC_URL:-http://localhost:8080}"

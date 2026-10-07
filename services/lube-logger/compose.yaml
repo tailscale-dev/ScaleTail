@@ -52,7 +52,6 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    build: .
     env_file:
       - .env
     volumes:

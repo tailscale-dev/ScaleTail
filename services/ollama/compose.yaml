@@ -60,7 +60,6 @@ services:
     environment:
       - OLLAMA_HOST=0.0.0.0:11434
       - OLLAMA_KEEP_ALIVE=24h # Optional: keeps models loaded in memory (default is 5 min)
-      # - OLLAMA_API_KEY=${OLLAMA_API_KEY} # Optional: set an API key to restrict access
     volumes:
       - ./${SERVICE}-data:/root/.ollama # Stores downloaded models
     depends_on:
