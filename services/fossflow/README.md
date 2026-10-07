@@ -8,12 +8,12 @@ This stack runs FossFLOW with a Tailscale sidecar, as described in [the standard
 
 ## At a glance
 
-| Item          | Value                               |
-| ------------- | ----------------------------------- |
-| Web interface | `https://fossflow.<tailnet>.ts.net` |
-| Service port  | `80`                                |
-| Image         | `stnsmith/fossflow`                 |
-| Data          | None on the host                    |
+| Item          | Value                                                     |
+| ------------- | --------------------------------------------------------- |
+| Web interface | `https://fossflow.<tailnet>.ts.net`                       |
+| Service port  | `80`                                                      |
+| Image         | `stnsmith/fossflow`                                       |
+| Data          | `./fossflow-data/diagrams` (diagrams saved on the server) |
 
 ## Before you start
 
@@ -21,11 +21,23 @@ Set `PUBLIC_URL` in `compose.yaml` to the address of the web interface, `https:/
 
 ## Deviations from the standard setup
 
-- **Diagrams are not stored on the host.** FossFLOW saves diagrams on the server in `/data/diagrams` in the container, which this stack does not mount. They are lost when the container is recreated, for example after an image update. Export the diagrams that you want to keep.
+None.
 
 ## First run
 
 Nothing to set up. Open the web interface.
+
+## Upgrading
+
+Earlier versions of this stack had no volume for the diagrams. FossFLOW kept them inside the container, and they were lost when the container was recreated. The stack now stores them in `./fossflow-data/diagrams`.
+
+If you run an earlier version and saved diagrams on the server, copy them to the host before you start the new version:
+
+```bash
+mkdir -p fossflow-data/diagrams
+docker cp app-fossflow:/data/diagrams/. ./fossflow-data/diagrams/
+docker compose up -d
+```
 
 ## Links
 

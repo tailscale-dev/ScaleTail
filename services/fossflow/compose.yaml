@@ -55,6 +55,8 @@ services:
     environment:
       - PUBLIC_URL=https://fossflow.<YOUR-TS-DOMAIN>.ts.net
       - TZ=${TZ}
+    volumes:
+      - ./${SERVICE}-data/diagrams:/data/diagrams # Diagrams saved on the server
     depends_on:
       tailscale:
         condition: service_healthy
