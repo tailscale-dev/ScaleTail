@@ -20,7 +20,7 @@ This stack runs Tandoor Recipes with a Tailscale sidecar, as described in [the s
 
 Set these values in `.env`:
 
-- **`SECRET_KEY`.** A long random value. Generate one with `base64 /dev/urandom | head -c50`. Compose stops with an error if it is empty.
+- **`SECRET_KEY`.** A long random value. Generate one with `openssl rand -hex 32`. Compose stops with an error if it is empty.
 - **`POSTGRES_PASSWORD`.** A random password of letters and digits. Compose stops with an error if it is empty.
 - **`ALLOWED_HOSTS`.** The name of the device on your Tailnet, `tandoor.<tailnet>.ts.net`. Tandoor answers requests for other host names with error `400`.
 

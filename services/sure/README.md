@@ -29,7 +29,7 @@ This stack runs Sure with a Tailscale sidecar, as described in [the standard set
 
 2. Set these values in `.env`:
 
-   - **`SECRET_KEY_BASE`.** Required and empty by default. Generate a value with `openssl rand -hex 64`.
+   - **`SECRET_KEY_BASE`.** Required and empty by default. Generate a value with `openssl rand -hex 64`. Compose stops with an error until you set it.
    - **`POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB`.** The defaults for the user and the database are `sure_user` and `sure_production`. `POSTGRES_PASSWORD` is empty, and Compose stops with an error until you set it.
    - **`DB_HOST`, `REDIS_URL`, and `POSTGRES_HOST`.** Leave these as they are, unless you change the IP addresses of the network that the deviations describe.
 
