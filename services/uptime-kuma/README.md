@@ -19,7 +19,7 @@ Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
-- **Docker socket.** Uptime Kuma mounts `/var/run/docker.sock` read-only, so that it can monitor the containers on the Docker host. Remove the line if you do not use this monitor type.
+- **Docker socket.** Uptime Kuma mounts `/var/run/docker.sock` read-only, so that it can monitor the containers on the Docker host. Remove the line if you do not use this monitor type. The `:ro` flag only makes the socket file read-only. It does not limit what the service can do through the Docker API, so treat access to the socket as root access to the Docker host.
 
 ## First run
 

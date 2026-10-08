@@ -32,7 +32,7 @@ This stack runs Coder with a Tailscale sidecar, as described in [the standard se
 ## Deviations from the standard setup
 
 - **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Coder reaches it at `localhost`. PostgreSQL therefore also listens on port `5432` of the Tailscale IP address of the device.
-- **Docker socket.** Coder mounts `/var/run/docker.sock` read-only, so that templates can use Docker on the host.
+- **Docker socket.** Coder mounts `/var/run/docker.sock` read-only, so that templates can use Docker on the host. The `:ro` flag only makes the socket file read-only. It does not limit what the service can do through the Docker API, so treat access to the socket as root access to the Docker host.
 - **Image version.** `CODER_VERSION` in `.env` selects the version of the Coder image.
 
 ## First run

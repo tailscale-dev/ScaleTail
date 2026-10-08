@@ -19,7 +19,7 @@ Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
-- **Docker socket.** Portracker mounts `/var/run/docker.sock` read-only to discover the containers on the Docker host.
+- **Docker socket.** Portracker mounts `/var/run/docker.sock` read-only to discover the containers on the Docker host. The `:ro` flag only makes the socket file read-only. It does not limit what the service can do through the Docker API, so treat access to the socket as root access to the Docker host.
 - **No access to host processes.** Upstream also uses `pid: host` and the `SYS_PTRACE` and `SYS_ADMIN` capabilities to discover the ports of processes on the host. This stack does not set them. See the upstream documentation if you need these ports.
 
 ## First run
