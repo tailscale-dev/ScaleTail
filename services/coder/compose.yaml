@@ -53,7 +53,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
-      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER:-username}:${POSTGRES_PASSWORD:-password}@localhost/${POSTGRES_DB:-coder}?sslmode=disable"
+      CODER_PG_CONNECTION_URL: "postgresql://${POSTGRES_USER:-username}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@localhost/${POSTGRES_DB:-coder}?sslmode=disable"
       CODER_HTTP_ADDRESS: "0.0.0.0:7080"
       CODER_ACCESS_URL: "${CODER_ACCESS_URL}"
       TZ: ${TZ}
@@ -81,7 +81,7 @@ services:
     image: "postgres:17"
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-username} # The PostgreSQL user (useful to connect to the database)
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password} # The PostgreSQL password (useful to connect to the database)
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env} # The PostgreSQL password (useful to connect to the database)
       POSTGRES_DB: ${POSTGRES_DB:-coder} # The PostgreSQL default database (automatically created at first launch)
     volumes:
       - ./${SERVICE}-data/coder-data:/var/lib/postgresql/data # Use "docker volume rm coder_coder_data" to reset Coder

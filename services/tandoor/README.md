@@ -20,8 +20,8 @@ This stack runs Tandoor Recipes with a Tailscale sidecar, as described in [the s
 
 Set these values in `.env`:
 
-- **`SECRET_KEY`.** A long random value. Generate one with `base64 /dev/urandom | head -c50`.
-- **`POSTGRES_PASSWORD`.** A random password of letters and digits.
+- **`SECRET_KEY`.** A long random value. Generate one with `base64 /dev/urandom | head -c50`. Compose stops with an error if it is empty.
+- **`POSTGRES_PASSWORD`.** A random password of letters and digits. Compose stops with an error if it is empty.
 - **`ALLOWED_HOSTS`.** The name of the device on your Tailnet, `tandoor.<tailnet>.ts.net`. Tandoor answers requests for other host names with error `400`.
 
 ## Deviations from the standard setup
@@ -33,6 +33,10 @@ Set these values in `.env`:
 ## First run
 
 The first start can take a few minutes, because Tandoor prepares its database. Then open the web interface. Tandoor sends you to the setup page, where you create the first account.
+
+## Upgrading
+
+Earlier versions of this stack had sample values for `SECRET_KEY` and `POSTGRES_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
 
 ## Links
 

@@ -22,7 +22,7 @@ This stack runs AFFiNE with a Tailscale sidecar, as described in [the standard s
 Set these values in `.env`:
 
 - **`AFFINE_SERVER_EXTERNAL_URL`.** The address of the web interface, `https://affine.<tailnet>.ts.net`. AFFiNE does not start with the sample value, because the `affine_migration` container fails.
-- **`DB_PASSWORD`.** The password of the database. The default is `affine`.
+- **`DB_PASSWORD`.** The password of the database. It is empty, and Compose stops with an error until you set it.
 
 ## Deviations from the standard setup
 
@@ -34,6 +34,10 @@ Set these values in `.env`:
 ## First run
 
 Open the web interface. AFFiNE sends you to its setup page, where you create the administrator account.
+
+## Upgrading
+
+Earlier versions of this stack had a sample value for `DB_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
 
 ## Links
 

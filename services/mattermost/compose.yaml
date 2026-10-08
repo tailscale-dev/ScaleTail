@@ -111,5 +111,5 @@ services:
       - TZ=${TZ}
       # necessary Postgres options/variables defined in the .env file
       - POSTGRES_USER
-      - POSTGRES_PASSWORD
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       - POSTGRES_DB
