@@ -16,7 +16,7 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 
 ## Before you start
 
-- **Set the administrator password.** Change `ADMIN_PASSWORD` in `.env`. The default is `ChangeME`. Technitium reads it only at the first start.
+- **Set the administrator password.** Set `ADMIN_PASSWORD` in `.env`. It is empty, and Compose stops with an error until you set it. Technitium reads it only at the first start.
 - **Free port 53.** The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](../../documentation/free-up-port-53.md).
 - **Choose the forwarders.** `DNS_SERVER1` and `DNS_SERVER2` in `.env` set the DNS servers that Technitium forwards to.
 
@@ -59,6 +59,8 @@ If you run an earlier version, copy your settings to the host before you start t
    ```bash
    docker compose up -d
    ```
+
+Earlier versions of this stack had a sample value for `ADMIN_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now.
 
 ## Links
 

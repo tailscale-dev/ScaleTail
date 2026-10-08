@@ -20,7 +20,7 @@ This stack runs NextExplorer with a Tailscale sidecar, as described in [the stan
 Set these values in `.env`:
 
 - **`ACCESS_PATH`.** The absolute path of the folder on the Docker host that NextExplorer should show.
-- **`SESSION_SECRET`.** A long random value. Generate one with `openssl rand -base64 32`.
+- **`SESSION_SECRET`.** A long random value. Generate one with `openssl rand -base64 32`. Compose stops with an error if it is empty.
 - **`PUBLIC_URL`.** The address of the web interface, `https://file-explorer.<tailnet>.ts.net`. NextExplorer uses it for its cookies, so use this address to open the web interface.
 
 ## Deviations from the standard setup
@@ -33,6 +33,10 @@ Set these values in `.env`:
 ## First run
 
 Open the web interface. NextExplorer asks you to create the first account.
+
+## Upgrading
+
+Earlier versions of this stack had a sample value for `SESSION_SECRET` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now.
 
 ## Links
 
