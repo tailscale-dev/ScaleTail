@@ -216,6 +216,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | 🏠 Service            | 📝 Description                                                          | 🔗 Link                             |
 | -------------------- | ---------------------------------------------------------------------- | ---------------------------------- |
 | 🏡 **Home Assistant** | An open-source home automation platform for controlling smart devices. | [Details](services/home-assistant) |
+|  **Home Bridge** | Homebridge is a lightweight Node.js server that emulates the HomeKit API. | [Details](services/homebridge) |
 
 ### 📱 Utilities
 
