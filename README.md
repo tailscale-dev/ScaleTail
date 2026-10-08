@@ -84,6 +84,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | 🧩 **Pi-hole**                      | A network-level ad blocker that acts as a DNS sinkhole.                              | [Details](services/pihole)                       |
 | 🆔 **Pocket ID**                    | A self-hosted OIDC provider that signs users in to your services with passkeys.      | [Details](services/pocket-id)                    |
 | 🌐 **Rustdesk Server**              | RustDesk is an open source remote control alternative for self-hosting and security. | [Details](services/rustdesk-server)              |
+| 🏰 **SOCFortress WAF**              | Self-hosted Web Application Firewall with a modern admin UI (using Caddy + Coraza).  | [Details](services/socfortress-waf)              |
 | 🔒 **Technitium DNS**               | An open-source DNS server that can be used for self-hosted DNS services.             | [Details](services/technitium)                   |
 | 🌐 **Traefik**                      | A modern reverse proxy and load balancer for microservices.                          | [Details](services/traefik)                      |
 | 🌐 **Tailscale App Connector Node** | Configure a device to act as a App connector node for your Tailscale network.        | [Details](services/tailscale-app-connector-node) |
@@ -216,6 +217,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | 🏠 Service            | 📝 Description                                                          | 🔗 Link                             |
 | -------------------- | ---------------------------------------------------------------------- | ---------------------------------- |
 | 🏡 **Home Assistant** | An open-source home automation platform for controlling smart devices. | [Details](services/home-assistant) |
+|  **Home Bridge** | Homebridge is a lightweight Node.js server that emulates the HomeKit API. | [Details](services/homebridge) |
 
 ### 📱 Utilities
 
