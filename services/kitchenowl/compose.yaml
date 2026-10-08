@@ -56,7 +56,7 @@ services:
     volumes:
       - ./${SERVICE}-data/:/data
     environment:
-      - JWT_SECRET_KEY=${JWT_SECRET_KEY}  # JWT secret key for authentication - make sure to set this in the .env file
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:?Set JWT_SECRET_KEY in .env} # JWT secret key for authentication - make sure to set this in the .env file
       ## Optional for OIDC support - make sure to set these in the .env file if required!
       #- FRONT_URL=${FRONT_URL}
       #- OIDC_ISSUER=${OIDC_ISSUER}

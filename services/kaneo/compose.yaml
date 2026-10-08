@@ -56,7 +56,7 @@ services:
     env_file:
       - .env
     environment:
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}
     volumes:
@@ -77,7 +77,8 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_URL: "postgresql://${DB_USERNAME}:${DB_PASSWORD}@localhost:${SERVICEPORT_DATABASE}/${DB_DATABASE_NAME}"
+      AUTH_SECRET: ${AUTH_SECRET:?Set AUTH_SECRET in .env}
+      DATABASE_URL: "postgresql://${DB_USERNAME}:${DB_PASSWORD:?Set DB_PASSWORD in .env}@localhost:${SERVICEPORT_DATABASE}/${DB_DATABASE_NAME}"
     depends_on:
       tailscale:
         condition: service_healthy

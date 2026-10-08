@@ -20,7 +20,7 @@ Set these values in `.env` before the first start. FreshRSS uses them only while
 
 - **`TAILNET_NAME`.** Your Tailnet name with `.ts.net`. `compose.yaml` builds the base address of FreshRSS as `https://<SERVICE>.<TAILNET_NAME>`.
 - **`ADMIN_USERNAME`, `ADMIN_PASSWORD`, and `ADMIN_EMAIL`.** The administrator account.
-- **`ADMIN_API_PASSWORD`.** The password for clients that use the API.
+- **`ADMIN_API_PASSWORD`.** The password for clients that use the API. Compose stops with an error if `ADMIN_PASSWORD` or `ADMIN_API_PASSWORD` is empty.
 
 Do not use `$`, backticks, or backslashes in these values.
 
