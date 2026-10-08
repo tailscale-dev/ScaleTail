@@ -21,8 +21,8 @@ This stack runs Seafile with a Tailscale sidecar, as described in [the standard 
 Set these values in `.env`:
 
 - **`SEAFILE_SERVER_HOSTNAME`.** The name of the device on your Tailnet, `seafile.<tailnet>.ts.net`.
-- **`INIT_SEAFILE_MYSQL_ROOT_PASSWORD` and `SEAFILE_MYSQL_DB_PASSWORD`.** The passwords of the database. Use random values of letters and digits.
-- **`INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE_ADMIN_PASSWORD`.** The administrator account that Seafile creates at the first start. The address does not need to exist, unless you configure email notifications later.
+- **`INIT_SEAFILE_MYSQL_ROOT_PASSWORD` and `SEAFILE_MYSQL_DB_PASSWORD`.** The passwords of the database. Use random values of letters and digits. Compose stops with an error if either is empty.
+- **`INIT_SEAFILE_ADMIN_EMAIL` and `INIT_SEAFILE_ADMIN_PASSWORD`.** The administrator account that Seafile creates at the first start. The password is empty, and Compose stops with an error until you set it. The address does not need to exist, unless you configure email notifications later.
 - **`JWT_PRIVATE_KEY`.** A random value. Generate one with `openssl rand -base64 40`.
 - **`SEAFILE_VOLUME` and `SEAFILE_MYSQL_VOLUME`.** The data folders. Change them to store the data elsewhere.
 
@@ -55,6 +55,10 @@ docker compose exec seafile getent hosts db memcached
 If the command prints nothing, comment out `TS_ACCEPT_DNS` in `compose.yaml` and run `docker compose up -d`. Seafile does not need MagicDNS, and Tailscale Serve works without this setting.
 
 **The database passwords changed after the first start.** Later changes in `.env` do not reach the existing database, so Seafile can no longer log in, and `docker logs app-seafile-db` shows `Access denied for user`. Restore the original passwords. On a new installation without data, you can instead stop the stack, delete the folders from `SEAFILE_MYSQL_VOLUME` and `SEAFILE_VOLUME`, and start again.
+
+## Upgrading
+
+Earlier versions of this stack had sample values for `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `SEAFILE_MYSQL_DB_PASSWORD`, and `INIT_SEAFILE_ADMIN_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
 
 ## Links
 
