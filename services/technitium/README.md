@@ -22,7 +22,7 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 
 ## Deviations from the standard setup
 
-- **Published host ports.** The `ports` block is active. It publishes the web interface on port `5380`, DNS on port `53`, DNS-over-TLS and DNS-over-QUIC on port `853`, and DNS-over-HTTPS on port `443` of the Docker host. Devices in your local network can therefore reach Technitium without Tailscale. Remove the lines that you do not need.
+- **Published host ports.** The `ports` block is active. It publishes the web interface on port `5380`, DNS on port `53`, DNS-over-TLS and DNS-over-QUIC on port `853`, and DNS-over-HTTPS on port `443` of the Docker host. Devices in your local network can therefore reach Technitium without Tailscale. The web interface on port `5380` uses plain HTTP, so anyone on your local network can reach its login page and the password travels unencrypted. If you only use the web interface through Tailscale, remove the `5380:5380/tcp` line from `compose.yaml`. Remove the other lines that you do not need.
 - **Settings through environment variables.** `compose.yaml` sets the server name, recursion, and forwarders. Technitium reads these variables only at the first start, when it has no configuration yet.
 
 ## First run
