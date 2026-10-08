@@ -19,7 +19,7 @@ permissions:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   validate:
@@ -37,8 +37,10 @@ jobs:
           status=0
           for dir in services/*/; do
             vars=()
+            ok=0
             for attempt in $(seq 1 30); do
               if out=$(cd "$dir" && env "${vars[@]/%/=dummy}" docker compose config --quiet 2>&1); then
+                ok=1
                 break
               fi
               missing=$(grep -oE 'required variable [A-Za-z0-9_]+' <<<"$out" | awk '{print $3}' | sort -u | grep -vxFf <(printf '%s\n' "${vars[@]}") || true)
@@ -46,9 +48,14 @@ jobs:
                 echo "::error file=${dir}compose.yaml::docker compose config failed in ${dir}"
                 echo "$out"
                 status=1
+                ok=2
                 break
               fi
               vars+=($missing)
             done
+            if [ "$ok" = 0 ]; then
+              echo "::error file=${dir}compose.yaml::too many required variables in ${dir}"
+              status=1
+            fi
           done
           exit $status
