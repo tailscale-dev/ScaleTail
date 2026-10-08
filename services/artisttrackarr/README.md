@@ -47,7 +47,7 @@ Open `https://artist-trackarr.<tailnet>.ts.net/setup`, enter the value of `SETUP
 
 ## Upgrading
 
-Earlier versions of this stack had sample values for `SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET` in `.env`. They are now empty, and ArtistTrackarr stops with `SETUP_TOKEN must be at least 32 characters` until you set them. If you already run the stack, keep the values that you use now.
+Earlier versions of this stack had sample values for `SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET` in `.env`. They are now empty, and ArtistTrackarr stops with `SETUP_TOKEN must be at least 32 characters` until you set them. If you already run the stack, keep the values that you use now. If you kept the sample value, set `APP_ENCRYPTION_KEY=replace-with-at-least-32-random-characters` again. A new key cannot decrypt the data that ArtistTrackarr stored with the old one.
 
 ## Links
 

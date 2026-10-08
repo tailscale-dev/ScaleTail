@@ -42,7 +42,7 @@ Open the web interface and log in with the administrator account from `.env`. To
 
 ## Upgrading
 
-Earlier versions of this stack had sample values for `PAPERLESS_SECRET_KEY`, `PAPERLESS_ADMIN_PASSWORD`, and `POSTGRES_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
+Earlier versions of this stack had sample values for `PAPERLESS_SECRET_KEY`, `PAPERLESS_ADMIN_PASSWORD`, and `POSTGRES_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `POSTGRES_PASSWORD=paperless` again. The database still uses it.
 
 ## Links
 

@@ -59,7 +59,7 @@ Immich connects to the hostnames `database` and `redis` by default. If you renam
 
 Earlier versions of this stack ignored `UPLOAD_LOCATION` and `DB_DATA_LOCATION` and always used the default folders. If your `.env` still contains `UPLOAD_LOCATION=./library` or `DB_DATA_LOCATION=./postgres`, replace them with the defaults from [Storage locations](#storage-locations) before you restart. Otherwise Immich starts with an empty library and a new database. Your existing files stay untouched in `./immich-data`.
 
-Earlier versions of this stack had a sample value for `DB_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
+Earlier versions of this stack had a sample value for `DB_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `DB_PASSWORD=postgres` again. The database still uses it.
 
 ## Links
 

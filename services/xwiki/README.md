@@ -31,7 +31,7 @@ Open the web interface. The first start takes a few minutes. XWiki then shows it
 
 ## Upgrading
 
-Earlier versions of this stack had sample values for `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
+Earlier versions of this stack had sample values for `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample values, set `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` to `xwiki` again. The database still uses them.
 
 ## Links
 

@@ -41,7 +41,7 @@ From EspoCRM 10, the upstream Docker setup no longer mounts the whole `/var/www/
 2. Run `docker compose down`, then `docker compose pull` and `docker compose up -d`.
 3. Optionally, remove the files that older images copied into `./espocrm-data`, such as `application`, `vendor`, and `bootstrap.php`. The [EspoCRM 10 migration guide](https://docs.espocrm.com/administration/docker/installation/#migration-to-espocrm-10) lists them all.
 
-Earlier versions of this stack had sample values for `ESPOCRM_ADMIN_PASSWORD`, `MARIADB_ROOT_PASSWORD`, `MARIADB_PASSWORD`, and `ESPOCRM_DATABASE_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start.
+Earlier versions of this stack had sample values for `ESPOCRM_ADMIN_PASSWORD`, `MARIADB_ROOT_PASSWORD`, `MARIADB_PASSWORD`, and `ESPOCRM_DATABASE_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample values, set `MARIADB_ROOT_PASSWORD`, `MARIADB_PASSWORD`, and `ESPOCRM_DATABASE_PASSWORD` to `password` again. The database still uses it.
 
 ## Links
 
