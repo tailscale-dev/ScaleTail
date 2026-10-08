@@ -55,6 +55,7 @@ services:
     environment:
       - TZ=${TZ}
       - TANDOOR_PORT=${SERVICEPORT}
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}
     volumes:
       - ./${SERVICE}-data/staticfiles:/opt/recipes/staticfiles
       - ./${SERVICE}-data/mediafiles:/opt/recipes/mediafiles
