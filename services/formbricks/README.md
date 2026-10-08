@@ -1,39 +1,44 @@
+# Formbricks
 
-# Formbricks with Tailscale Sidecar Configuration
+[Formbricks](https://formbricks.com/) is a survey and feedback platform. You build surveys, show them in your website, app, or by link, and analyse the answers on your own server.
 
-This Docker Compose configuration sets up **Formbricks** with a Tailscale sidecar container, enabling secure access to your self-hosted user feedback and survey platform over your private Tailscale network. With this setup, your Formbricks instance remains **private and accessible only from authorized devices on your Tailnet**, keeping feedback data and analytics protected from public exposure.
+This stack runs Formbricks with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-## Formbricks
+## At a glance
 
-[**Formbricks**](https://github.com/formbricks/formbricks) is an open-source, self-hosted alternative to tools like Typeform, Hotjar, and Google Forms. It allows you to collect **user feedback, surveys, NPS scores, and product insights** directly from your applications or websites, while maintaining full control over your data.
+| Item          | Value                                                    |
+| ------------- | -------------------------------------------------------- |
+| Web interface | `https://formbricks.<tailnet>.ts.net`                    |
+| Service port  | `3000`                                                   |
+| Images        | `ghcr.io/formbricks/formbricks:4.9.7`                    |
+|               | `pgvector/pgvector:pg17`                                 |
+|               | `valkey/valkey`                                          |
+| Data          | `./formbricks-data/postgres` (PostgreSQL database)       |
+|               | `./formbricks-data/redis` (Valkey data)                  |
+|               | `./formbricks-data/saml-connection` (SAML configuration) |
 
-Formbricks is built with privacy, extensibility, and developer experience in mind, making it well-suited for internal tooling, SaaS products, and organizations that want insight without vendor lock-in.
+## Before you start
 
-## Key Features
+Set these values in `.env`:
 
-- 📝 **Surveys & Forms** – Create surveys, forms, and questionnaires with a modern UI.
-- ⭐ **NPS & CSAT** – Measure Net Promoter Score and customer satisfaction.
-- 🎯 **In-App Feedback** – Embed feedback widgets directly into your applications.
-- 📊 **Analytics & Dashboards** – Analyze responses with built-in insights.
-- 🔌 **API & Webhooks** – Integrate feedback data into external systems.
-- 🔐 **Privacy-First** – Full data ownership through self-hosting.
-- 🐳 **Docker-Ready** – Designed for containerized deployments.
-- 📦 **Open Source** – Community-driven and extensible.
+- **`TS_URL`.** The name of the device on your Tailnet, `formbricks.<tailnet>.ts.net`.
+- **`WEBAPP_URL`.** The address that you use to open Formbricks. The sample value is `http://${TS_URL}:3000`, which is the direct port on the Tailnet. To use the HTTPS address of Tailscale Serve, change it to `https://${TS_URL}`. `NEXTAUTH_URL` and `PUBLIC_URL` follow this value.
+- **`NEXTAUTH_SECRET`, `ENCRYPTION_KEY`, and `CRON_SECRET`.** The sample values are public. Replace each with its own random value from `openssl rand -hex 32`.
+- **The `SMTP_*` and `MAIL_FROM` values.** The details of your mail server, if Formbricks should send email. The sample values do not work.
 
-## Why Self-Host?
+## Deviations from the standard setup
 
-Feedback data can include sensitive product insights, internal metrics, and personal information. Self-hosting Formbricks ensures **complete ownership and control over your data**, supports compliance requirements, and removes reliance on third-party SaaS platforms. Combined with Tailscale, Formbricks becomes a secure internal feedback system that is never exposed to the public internet.
+- **Service name.** The application service is called `formbricks`, not `application`.
+- **Extra containers.** The stack runs `postgres` and `redis` (Valkey). They use the default Compose network, and Formbricks reaches them by their service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve these names.
+- **Database password.** The password of the database is `postgres`, set in `compose.yaml` and in `DATABASE_URL` in `.env`. Change both to the same value before the first start.
+- **Pinned version.** The stack pins Formbricks to `4.9.7`. Formbricks 5.0 and later also need the Cube, Hub, and SpiceDB services, which this stack does not include. See the [upstream Compose file](https://github.com/formbricks/formbricks/blob/main/docker/docker-compose.yml) before you upgrade.
+- **Email verification and password reset are off.** `.env` sets `EMAIL_VERIFICATION_DISABLED="1"` and `PASSWORD_RESET_DISABLED="1"`, so Formbricks works without a mail server.
 
-## Configuration Overview
+## First run
 
-In this deployment, a **Tailscale sidecar container** (for example `tailscale-formbricks`) runs the Tailscale client and joins your private Tailscale network. The main `formbricks` service uses:
+The first start takes about three minutes, because Formbricks prepares its database. Then open the web interface at the address from `WEBAPP_URL` and create the first account, which becomes the owner of the organisation.
 
-```plain
-network_mode: service:tailscale
-```
+## Links
 
-This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Formbricks admin UI, APIs, and feedback endpoints are accessible **only via your Tailscale network**. This keeps sensitive feedback data protected while still allowing secure access for authorized team members.
-
-## Image Version
-
-This configuration pins Formbricks to `4.9.7`. Formbricks 5.0 and later also require Cube, Hub, and SpiceDB services, which this stack does not include. See the [upstream Docker Compose file](https://github.com/formbricks/formbricks/blob/main/docker/docker-compose.yml) before you upgrade.
+- [Formbricks self-hosting documentation](https://formbricks.com/docs/self-hosting/overview)
+- [Formbricks source code](https://github.com/formbricks/formbricks)

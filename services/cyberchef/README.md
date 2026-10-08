@@ -1,11 +1,31 @@
-# CyberChef with Tailscale Sidecar Configuration
+# CyberChef
 
-This Docker Compose configuration sets up [CyberChef](https://github.com/gchq/CyberChef) with Tailscale as a sidecar container to securely access your data analysis and manipulation tool over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your CyberChef instance, ensuring that it is only accessible within your Tailscale network.
+[CyberChef](https://github.com/gchq/CyberChef) is a web application for encoding, decoding, encrypting, compressing, and analysing data. You combine operations into a recipe by drag and drop.
 
-## CyberChef
+This stack runs CyberChef with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[CyberChef](https://github.com/gchq/CyberChef) is an open-source web application designed to simplify the process of carrying out complex data analysis and encoding/decoding operations. It features a user-friendly drag-and-drop interface that enables users to create "recipes" for analyzing and manipulating data. This configuration leverages Tailscale to securely connect to your CyberChef instance, ensuring that your powerful data tool is protected from unauthorized access and that it is only accessible via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                |
+| ------------- | ------------------------------------ |
+| Web interface | `https://cyberchef.<tailnet>.ts.net` |
+| Service port  | `8080`                               |
+| Image         | `ghcr.io/gchq/cyberchef`             |
+| Data          | None                                 |
 
-In this setup, the `tailscale-cyberchef` service runs Tailscale, which manages secure networking for the CyberChef service. The `cyberchef` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that CyberChef’s web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted data analysis tool.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **No data folder.** CyberChef runs in your browser and stores nothing on the server, so the stack has no volumes.
+
+## First run
+
+Nothing to set up. Open the web interface.
+
+## Links
+
+- [CyberChef documentation](https://github.com/gchq/CyberChef/wiki)
+- [CyberChef source code](https://github.com/gchq/CyberChef)

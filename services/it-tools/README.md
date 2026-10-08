@@ -1,11 +1,30 @@
-# IT-Tools with Tailscale Sidecar Configuration
+# IT-Tools
 
-This Docker Compose configuration sets up [IT-Tools](https://github.com/CorentinTh/it-tools) with Tailscale as a sidecar container to securely access your all-in-one developer utility over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your IT-Tools instance, ensuring that it is only accessible within your Tailscale network.
+[IT-Tools](https://github.com/CorentinTh/it-tools) is a collection of tools for developers and IT staff, such as converters, encoders, formatters, and generators.
 
-## IT-Tools
+This stack runs IT-Tools with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[IT-Tools](https://github.com/CorentinTh/it-tools) is an open-source collection of online utilities designed for developers and IT professionals. It includes a variety of tools such as encoders, converters, formatters, and more—all in one sleek, web-based application. This configuration leverages Tailscale to securely connect to your IT-Tools instance, ensuring that your suite of developer utilities is protected from unauthorized access and accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
+| Web interface | `https://it-tools.<tailnet>.ts.net` |
+| Service port  | `80`                                |
+| Image         | `corentinth/it-tools`               |
+| Data          | None                                |
 
-In this setup, the `tailscale-it-tools` service runs Tailscale, which manages secure networking for the IT-Tools service. The `it-tools` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that IT-Tools’ web interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted developer utilities.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **No data folder.** IT-Tools runs in your browser and stores nothing on the server, so the stack has no volumes.
+
+## First run
+
+Nothing to set up. Open the web interface.
+
+## Links
+
+- [IT-Tools source code](https://github.com/CorentinTh/it-tools)

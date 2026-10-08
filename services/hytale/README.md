@@ -1,26 +1,41 @@
-# Hytale Server with Tailscale Sidecar Configuration
+# Hytale Server
 
-This Docker Compose configuration sets up a Hytale game server with Tailscale as a sidecar container to place the server directly on your Tailnet. The Hytale container uses the Tailscale network stack via `network_mode: service:tailscale`, so players connect over Tailscale without exposing the UDP port publicly.
+This stack runs a [Hytale](https://hytale.com/) game server with the community image [`deinfreu/hytale-server`](https://deinfreu.github.io/hytale-server-container/installation/container_installation/). Players connect to it over your Tailnet.
 
-## Hytale Server
+This stack runs Hytale Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-The Hytale server runs from `deinfreu/hytale-server:experimental` and is configured for UDP port `5520`. The game server data is stored in the `${SERVICE}-data` directory to persist across restarts.
+## At a glance
 
-Upstream container details and install notes:
-[https://deinfreu.github.io/hytale-server-container/installation/container_installation/](https://deinfreu.github.io/hytale-server-container/installation/container_installation/)
+| Item          | Value                                                   |
+| ------------- | ------------------------------------------------------- |
+| Web interface | None                                                    |
+| Game server   | `hytale.<tailnet>.ts.net`, UDP port `5520`              |
+| Image         | `deinfreu/hytale-server:experimental`                   |
+| Data          | `./hytale-data` (game files, worlds, and configuration) |
 
-## Key Notes
+## Before you start
 
-* First-time authentication should be done attached (do not use `-d` initially).
-* Game files, world data, and configuration are stored in the data volume and persist across restarts.
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-## Configuration Overview
+## Deviations from the standard setup
 
-In this setup, the `tailscale` service runs the Tailscale client to join your private mesh network. The `application` service is configured with `network_mode: service:tailscale`, so all network traffic for the game server is routed through the Tailscale container. The sidecar binds UDP `5520` for Tailnet access only.
+- **No Tailscale Serve.** The game uses UDP, which Tailscale Serve does not forward. The server listens on UDP port `5520` of the Tailscale IP address of the device, and the stack has no Serve configuration.
+- **Machine ID.** The stack mounts `/etc/machine-id` of the Docker host read-only.
+- **Interactive console.** The `application` container has `tty` and `stdin_open` enabled, so that you can attach to the server console.
+- **Server settings.** `SERVER_IP`, `SERVER_PORT`, `PROD`, and `DEBUG` in `.env` are passed to the server.
 
-## Files to check
+## First run
 
-Please verify the following files and variables before deploying:
+1. Start the stack in the foreground the first time, without `-d`, because the server asks you to authenticate:
 
-* `.env` — define `SERVICE`, `IMAGE_URL`, `SERVICEPORT`, `TS_AUTHKEY`, and the Hytale variables (`SERVER_IP`, `SERVER_PORT`, `PROD`, `DEBUG`, `TZ`).
-* `compose.yaml` — confirm environment variables and volume mappings for your server.
+   ```bash
+   docker compose up
+   ```
+
+2. Follow the authentication steps that the server prints. See the [installation notes of the image](https://deinfreu.github.io/hytale-server-container/installation/container_installation/).
+3. Stop the stack with `Ctrl+C` and start it in the background with `docker compose up -d`.
+4. In the game, connect to `hytale.<tailnet>.ts.net`. All players must be on your Tailnet, or you must share the device with them.
+
+## Links
+
+- [Hytale server container documentation](https://deinfreu.github.io/hytale-server-container/installation/container_installation/)

@@ -1,23 +1,45 @@
-# Traefik with Tailscale Sidecar Configuration
+# Traefik
 
-This Docker Compose configuration sets up [Traefik](https://github.com/traefik/traefik) with Tailscale as a sidecar container to securely manage and route your traffic over a private Tailscale network. By integrating Tailscale, you can enhance the security and privacy of your Traefik instance, ensuring that access is restricted to devices within your Tailscale network.
+[Traefik](https://traefik.io/traefik/) is a reverse proxy and load balancer. It discovers your containers through Docker and routes requests to them by rules that you set as labels.
 
-## Traefik
+This stack runs Traefik with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Traefik](https://github.com/traefik/traefik) is a modern, open-source reverse proxy and load balancer that simplifies the deployment and management of services in dynamic environments. It supports a wide range of integrations with container orchestration platforms and cloud providers, offering features like automatic HTTPS, load balancing, and monitoring. By incorporating Tailscale, your Traefik instance is safeguarded, ensuring that only authorized users and devices on your Tailscale network can access your applications and services.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                                           |
+| ------------- | ------------------------------------------------------------------------------- |
+| Web interface | `https://traefik.<tailnet>.ts.net` (routes to your services, see the first run) |
+| Service port  | `80`                                                                            |
+| Images        | `traefik`                                                                       |
+|               | `yeasy/simple-web` (sample site)                                                |
+| Data          | `./traefik-data/log` (Traefik log and access log)                               |
 
-In this setup, the `tailscale-traefik` service runs Tailscale, which manages secure networking for Traefik. The `traefik_proxy` service uses Docker's `network_mode: service:tailscale` configuration. Traefik reads its static configuration from the `command:` flags in `compose.yaml`. Traefik ignores these flags when it finds a static configuration file, so edit the flags instead of adding a `traefik.yml` file.
+## Before you start
 
-The Traefik health check calls the ping endpoint, so keep the `--ping=true` flag. Traefik routes only to containers that Docker reports as healthy. The `simpleweb` sample therefore becomes reachable only after its first health check passes.
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-## Tailnet Access
+## Deviations from the standard setup
 
-Tailscale Serve listens on port 443 of the Tailnet address, terminates HTTPS, and forwards requests to Traefik's `web` entrypoint on port 80. Do not add a Traefik entrypoint on port 443. Traefik shares the network of the Tailscale container, so the port is already in use. Traefik then exits, and the container restarts in a loop.
+- **Published host port.** The `ports` block is active and publishes port `80` of the Docker host. Devices in your local network can therefore reach Traefik without Tailscale.
+- **Service name.** The application service is called `traefik_proxy`, not `application`.
+- **Docker socket.** Traefik mounts `/var/run/docker.sock` to discover containers and their labels.
+- **Configuration through flags.** The `command` block in `compose.yaml` is the static configuration. Traefik ignores these flags when it finds a static configuration file, so edit the flags and do not add a `traefik.yml` file.
+- **Sample site.** The stack runs a `simpleweb` container with routing labels as an example. Replace it with your own services.
+- **Only port 80.** Tailscale Serve listens on port `443` of the Tailnet address and forwards to the `web` entrypoint of Traefik on port `80`. Do not add a Traefik entrypoint on port `443`. Traefik shares the network of the `tailscale` container, where that port is in use, so Traefik would exit and restart in a loop.
+- **Health check.** The health check calls the ping endpoint, so keep the `--ping=true` flag. Traefik only routes to containers that Docker reports as healthy, so the sample site is reachable only after its first health check passes.
 
-Requests through the Tailnet arrive with the host name `<SERVICE>.<tailnet>.ts.net`. The sample routers match `traefik.domain.local` and `simpleweb.domain.local`, so Traefik answers `404` over the Tailnet. Change a `Host()` rule to the Tailnet name to reach that router through Tailscale Serve.
+## First run
+
+Requests through your Tailnet arrive with the host name `traefik.<tailnet>.ts.net`. The sample routers match `traefik.domain.local` and `simpleweb.domain.local`, so Traefik answers `404` over the Tailnet at first.
+
+Change a `Host()` rule in the labels in `compose.yaml` to `traefik.<tailnet>.ts.net` and restart the stack. That router is then reachable at `https://traefik.<tailnet>.ts.net`.
 
 ## Troubleshooting
 
-Traefik writes its log to `./${SERVICE}-data/log/traefik.log`, so `docker logs app-traefik` stays empty. Read that file when the container restarts or a router does not work.
+Traefik writes its log to `./traefik-data/log/traefik.log`, so `docker logs` shows nothing for the Traefik container. Read that file when the container restarts or a router does not work.
+
+## Links
+
+- [Traefik documentation](https://doc.traefik.io/traefik/)
+- [Traefik Docker provider](https://doc.traefik.io/traefik/providers/docker/)
+- [Traefik source code](https://github.com/traefik/traefik)

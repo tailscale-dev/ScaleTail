@@ -1,26 +1,32 @@
-# Donetick with Tailscale Sidecar Configuration
+# Donetick
 
-This Docker Compose configuration sets up **[Donetick](https://github.com/donetick/donetick)** with Tailscale as a sidecar container to securely manage and access your self-hosted task management system over a private Tailscale network. By integrating Tailscale, you can ensure that your Donetick instance remains private and accessible only to authorized devices within your Tailscale network.
+[Donetick](https://github.com/donetick/donetick) is a task and chore manager for households and small groups. You create tasks, assign them, set a schedule, and track who did what.
 
-## Donetick
+This stack runs Donetick with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Donetick](https://github.com/donetick/donetick) is a **self-hosted task and checklist manager** designed for simplicity and efficiency. It helps users stay organized with structured to-do lists and task tracking while ensuring full control over their data. With Donetick, you can create tasks, set deadlines, and track progress without relying on third-party services. By integrating Tailscale, you can further secure your Donetick instance by restricting access to only authorized devices within your private network.
+## At a glance
 
-## Key Features
+| Item          | Value                                                       |
+| ------------- | ----------------------------------------------------------- |
+| Web interface | `https://donetick.<tailnet>.ts.net`                         |
+| Service port  | `2021`                                                      |
+| Image         | `donetick/donetick`                                         |
+| Data          | `./donetick-data/config` (configuration, `selfhosted.yaml`) |
+|               | `./donetick-data/data` (database)                           |
 
-- **Task & Checklist Management** – Organize and track tasks efficiently.
-- **Collaborative Workflows** – Share tasks and checklists with team members.
-- **Self-Hosted Privacy** – Keep full control over your task management data.
-- **Minimalist & Lightweight** – A simple, distraction-free interface for productivity.
-- **Secure Access with Tailscale** – Restrict access to only authorized devices within your private network.
+## Before you start
 
-## Configuration Overview
+Replace the value of `jwt.secret` in `donetick-data/config/selfhosted.yaml` with your own random value, for example from `openssl rand -base64 32`. Donetick refuses to start with the sample value and reports `JWT secret is too weak`.
 
-In this setup, the `tailscale-donetick` service runs Tailscale, which manages secure networking for the Donetick service. The `donetick` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Donetick’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing tasks and checklists.
+## Deviations from the standard setup
 
-## Files to check
+- **Configuration file.** This directory contains `donetick-data/config/selfhosted.yaml`. `DT_ENV=selfhosted` makes Donetick read that file.
 
-Please check the following contents for validity as some variables need to be defined upfront.
+## First run
 
-- `.env` // Main variable `TS_AUTHKEY`
-- `donetick-data/config/selfhosted.yaml` // Generate jwt secret with e.g. openssl rand -base64 32
+Open the web interface and sign up to create the first account.
+
+## Links
+
+- [Donetick documentation](https://docs.donetick.com/)
+- [Donetick source code](https://github.com/donetick/donetick)

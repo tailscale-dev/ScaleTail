@@ -1,48 +1,43 @@
-# Recyclarr with Tailscale Sidecar Configuration
+# Recyclarr
 
-This Docker Compose configuration sets up **Recyclarr** with a Tailscale sidecar container, allowing secure and private synchronization of quality profiles, custom formats, and media settings across your *Radarr* and *Sonarr* instances. With this setup, Recyclarr is **only reachable from within your Tailscale network**, keeping your media automation infrastructure fully private and protected.
+[Recyclarr](https://recyclarr.dev/) synchronises the quality profiles and custom formats of the TRaSH Guides to Radarr and Sonarr. You describe the result in a YAML file, and Recyclarr keeps your applications in line with it.
 
-## Recyclarr
+This stack runs Recyclarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Recyclarr**](https://github.com/recyclarr/recyclarr) is an automation tool designed to **synchronize TRaSH-Guides–based quality profiles and custom formats** to Radarr and Sonarr. Instead of manually configuring and maintaining complex quality rules, Recyclarr allows you to define everything declaratively in YAML and keep your media stack consistent and reproducible.
+## At a glance
 
-## Key Features
+| Item          | Value                                                          |
+| ------------- | -------------------------------------------------------------- |
+| Web interface | None                                                           |
+| Image         | `ghcr.io/recyclarr/recyclarr:8`                                |
+| Data          | `./recyclarr-data/config` (your `recyclarr.yml` and the state) |
 
-* ♻️ **TRaSH-Guides Integration** – Automatically syncs recommended quality profiles and custom formats.
-* 📐 **Declarative Configuration** – Manage Radarr and Sonarr settings using simple YAML files.
-* 🔄 **Consistent Media Rules** – Keep multiple Radarr/Sonarr instances aligned.
-* 🧩 **Custom Format Management** – Automatically create, update, and score custom formats.
-* 🧪 **Dry-Run Support** – Preview changes before applying them.
-* 🐳 **Docker-Friendly** – Lightweight container designed for scheduled or on-demand runs.
-* 🛠 **Automation-First** – Ideal for cron jobs, CI pipelines, or homelab orchestration.
+## Before you start
 
-## Why Self-Host?
+Create the configuration folder yourself and make user `1000` its owner. Docker creates missing folders as user `root`. The stack runs Recyclarr as user and group `1000`, and it then exits with `Access to the path '/config/state' is denied`.
 
-Recyclarr requires **API access to Radarr and Sonarr**, which often exposes sensitive configuration details about your media infrastructure. By self-hosting Recyclarr and restricting access via Tailscale, you ensure:
-
-* Your Radarr/Sonarr APIs are never exposed publicly
-* All synchronization traffic stays inside your private network
-* Remote management remains secure, even when traveling or managing multiple sites
-
-This is especially valuable in homelabs, seedbox setups, or multi-location media deployments.
-
-## Configuration Overview
-
-In this deployment, a **Tailscale sidecar container** (for example, `tailscale-recyclarr`) runs the Tailscale client and joins your private Tailscale network. The Recyclarr service uses:
-
-```plain
-network_mode: service:tailscale
-```
-
-This setup ensures that **all Recyclarr traffic flows exclusively through the Tailscale interface**, allowing it to securely reach Radarr and Sonarr instances that are also on your Tailscale network. No ports need to be exposed, and the container remains completely inaccessible from the public Internet.
-
-With this configuration, Recyclarr can safely automate and enforce your media quality standards across your entire media stack — privately, securely, and reproducibly.
-
-## Volume Permissions
-
-The Compose file runs Recyclarr as UID/GID `1000`. Docker creates missing bind-mount directories as `root:root`, and Recyclarr then exits with `Access to the path '/config/state' is denied`. Create the config directory before the first start:
-
-```sh
+```bash
 mkdir -p recyclarr-data/config
 sudo chown -R 1000:1000 recyclarr-data
 ```
+
+## Deviations from the standard setup
+
+- **No web interface.** The stack has no Tailscale Serve configuration and no `./config` folder. Recyclarr only makes outgoing connections to your applications.
+- **Fixed user.** The `application` container runs as user and group `1000` through the `user` setting.
+- **Starter configuration.** `RECYCLARR_CREATE_CONFIG=true` makes Recyclarr create a sample `recyclarr.yml` at the first start.
+
+## First run
+
+1. Start the stack once. Recyclarr creates `recyclarr.yml` in `./recyclarr-data/config`.
+2. Add the address and API key of Radarr and Sonarr to that file, and choose the profiles to synchronise. To reach an application in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+3. Restart the stack. The container then synchronises once a day. To run a sync right away:
+
+   ```bash
+   docker compose exec application recyclarr sync
+   ```
+
+## Links
+
+- [Recyclarr documentation](https://recyclarr.dev/wiki/)
+- [Recyclarr source code](https://github.com/recyclarr/recyclarr)

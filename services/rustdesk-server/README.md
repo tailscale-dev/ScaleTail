@@ -1,27 +1,46 @@
-# Rustdesk Server with Tailscale Sidecar Configuration
+# RustDesk Server
 
-This Docker Compose configuration sets up [Rustdesk Server](https://rustdesk.com/docs/en/) with Tailscale as a sidecar container to keep the app reachable over your Tailnet.
+[RustDesk](https://rustdesk.com/) is a remote desktop application. This stack runs its own ID and relay server, so that your RustDesk clients find and reach each other without the public servers.
 
-## Rustdesk Server
+This stack runs RustDesk Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Rustdesk Server](https://rustdesk.com/docs/en/) information about the service. Explain what the app does in 2-3 sentences and why someone would pair it with Tailscale.
+## At a glance
 
-## Configuration Overview
+| Item                  | Value                                                                                              |
+| --------------------- | -------------------------------------------------------------------------------------------------- |
+| Web interface         | None                                                                                               |
+| ID server (`hbbs`)    | Ports `21115`, `21116` (TCP and UDP), and `21118` on the Tailscale IP address of `rustdesk-server` |
+| Relay server (`hbbr`) | Ports `21117` and `21119` on the Tailscale IP address of `rustdesk-server`                         |
+| Image                 | `rustdesk/rustdesk-server`                                                                         |
+| Data                  | `./rustdesk-server-data/hbbs` (key pair and database of the ID server)                             |
+|                       | `./rustdesk-server-data/hbbr` (data of the relay server)                                           |
 
-In this setup, the `tailscale-rustdesk-server` service runs Tailscale, which manages secure networking for Rustdesk Server. The `Rustdesk Server` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+## Before you start
 
-## Client setup
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-- Service Configuration: The Rustdesk client public Key credentials are generated at first run and stored in the **id_ed25519.pub** file. This is found in the compose directory **./rustdesk-server-data/hbbs/** Clients can be setup using the --config switch. e.g. **rustdesk.exe --config "host=rustdesk-server.your-tailnet.ts.net,key=Public_Key_Credentials"** or in the client: Setting -> Network -> ID/Relay Server. Add **ID server** (e.g. rustdesk-server.your-tailnet.ts.net) and **Key**. There is no need to configure the Relay server or API server.
+## Deviations from the standard setup
 
-Links:
+- **Two application containers.** The `application` container runs the ID server `hbbs`, and the `hbbr` container runs the relay server. Both use the network of the `tailscale` container.
+- **No web interface.** The clients connect directly to the ports of the device on your Tailnet. The Tailscale Serve configuration from the template has no use here.
+- **Relay setting.** `ALWAYS_USE_RELAY` in `.env` is `N`. Set it to `Y` to send all connections through the relay server.
 
-- [Client setup](https://github.com/rustdesk/rustdesk/discussions/7118)
-- [Rustdesk](https://rustdesk.com/)
-- [Client Configuration](https://rustdesk.com/docs/en/self-host/client-configuration/)
+## First run
 
-## Files to check
+1. Start the stack. The ID server creates its key pair at the first start. Read the public key:
 
-Please check the following contents for validity as some variables need to be defined upfront.
+   ```bash
+   cat ./rustdesk-server-data/hbbs/id_ed25519.pub
+   ```
 
-- `.env` // Main variable `TS_AUTHKEY`
+2. In each RustDesk client, open **Settings** > **Network** > **ID/Relay Server**. Enter `rustdesk-server.<tailnet>.ts.net` as the **ID server** and the public key as the **Key**. You do not need to fill in the relay server or the API server.
+
+   You can also pass both values on the command line, for example `rustdesk.exe --config "host=rustdesk-server.<tailnet>.ts.net,key=<public key>"`.
+
+All clients must be on your Tailnet.
+
+## Links
+
+- [RustDesk self-hosting documentation](https://rustdesk.com/docs/en/self-host/)
+- [RustDesk client configuration](https://rustdesk.com/docs/en/self-host/client-configuration/)
+- [RustDesk server source code](https://github.com/rustdesk/rustdesk-server)

@@ -1,11 +1,33 @@
-# Resilio Sync with Tailscale Sidecar Configuration
+# Resilio Sync
 
-This Docker Compose configuration sets up [Resilio Sync](https://github.com/linuxserver/docker-resilio-sync) with Tailscale as a sidecar container to securely synchronize and share your files over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your file synchronization, ensuring that Resilio Sync is only accessible within your Tailscale network.
+[Resilio Sync](https://www.resilio.com/sync/) synchronises folders directly between your devices, without a central server.
 
-## Resilio Sync
+This stack runs Resilio Sync with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Resilio Sync](https://github.com/linuxserver/docker-resilio-sync) is a powerful, peer-to-peer file synchronization tool that allows you to sync files between devices or share them with others, without relying on cloud services. With its robust and flexible syncing capabilities, Resilio Sync is ideal for personal and professional use cases where secure, decentralized file sharing is required. This configuration leverages Tailscale to securely connect to your Resilio Sync instance, protecting your file transfers from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                                       |
+| ------------- | --------------------------------------------------------------------------- |
+| Web interface | `https://resilio-sync.<tailnet>.ts.net`                                     |
+| Service port  | `8888`                                                                      |
+| Image         | `linuxserver/resilio-sync`                                                  |
+| Data          | `./resilio-sync-data/config` (configuration)                                |
+|               | `./resilio-sync-data/data` (synchronised folders, `/sync` in the container) |
+|               | `./resilio-sync-data/downloads` (downloads)                                 |
 
-In this setup, the `tailscale-resilio-sync` service runs Tailscale, which manages secure networking for the Resilio Sync service. The `resilio-sync` service uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that Resilio Sync is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your file synchronization and sharing tasks.
+## Before you start
+
+To synchronise existing folders, point the `/sync` volume in `compose.yaml` at your own folder. The container runs as user and group `1000`, which need write access to it.
+
+## Deviations from the standard setup
+
+- **Sync port.** The stack publishes no ports, so the sync port `55555` is only reachable through your Tailnet and not from your local network or the internet.
+
+## First run
+
+Open the web interface and create the username and password for it. Then add your folders below `/sync`.
+
+## Links
+
+- [Resilio Sync website](https://www.resilio.com/sync/)
+- [LinuxServer.io image documentation](https://docs.linuxserver.io/images/docker-resilio-sync/)

@@ -1,40 +1,46 @@
-# Open WebUI with Tailscale Sidecar Configuration
+# Open WebUI
 
-This Docker Compose configuration sets up [Open WebUI](https://openwebui.com/) with Tailscale as a sidecar container to keep the app reachable over your Tailnet.
+[Open WebUI](https://openwebui.com/) is a chat interface for AI models. It works with Ollama and with every API that is compatible with OpenAI.
 
-## Open WebUI
+This stack runs Open WebUI with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Open WebUI](https://openwebui.com/) is a feature-rich, self-hosted AI platform that provides a ChatGPT-style interface for local and cloud-based AI models. It supports Ollama and any OpenAI-compatible API. Pairing it with Tailscale means your private AI interface is securely accessible from any of your devices without exposing it to the public internet.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://open-webui.<tailnet>.ts.net` |
+| Service port  | `8080`                                |
+| Image         | `ghcr.io/open-webui/open-webui:main`  |
+| Data          | `./open-webui-data`                   |
 
-In this setup, the `tailscale-open-webui` service runs Tailscale, which manages secure networking for Open WebUI. The `open-webui` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This keeps the app Tailnet-only unless you intentionally expose ports.
+## Before you start
 
-## What to document for users
+Set these values in `.env`:
 
-- **Prerequisites**: Docker and Docker Compose installed. No special group membership, GPU, or devices required for CPU-only inference. A Tailscale account with an auth key from <https://tailscale.com/admin/authkeys>.
-- **Volumes**: Pre-create `./open-webui-data` before deploying to avoid Docker creating a root-owned directory: `mkdir -p ./open-webui-data ./config ./ts/state`
-- **MagicDNS/Serve**: Enable MagicDNS and HTTPS in your Tailscale admin console before deploying. The serve config proxies to port `8080` — this is hardcoded in the `configs` block and does not consume `.env` values. Uncomment `TS_ACCEPT_DNS=true` in `compose.yaml` only if Open WebUI itself must resolve MagicDNS names, such as an Ollama instance addressed by its Tailnet name.
-- **Ollama**: Set `OLLAMA_BASE_URL` in `.env` to point at your Ollama instance. Options:
-  - Same Docker host: `http://host.docker.internal:11434`
-  - LAN machine: `http://<local-ip>:11434` (use the private IP of the machine running Ollama)
-  - Another Tailnet device: `http://100.x.x.x:11434`
-  - Leave blank to configure a different provider (e.g. OpenAI) via the UI after first launch.
-- **Ports**: The `0.0.0.0:${SERVICEPORT}:${SERVICEPORT}` mapping is commented out by default. Uncomment only if LAN access is required alongside Tailnet access.
-- **Gotchas**:
-  - Create your admin account immediately after first launch — Open WebUI is open to registration until the first user is created.
-  - Open WebUI requires WebSocket support — ensure nothing in your network path blocks WebSocket connections.
-  - After adding new models to Ollama, refresh the model list in Open WebUI via **Settings → Connections**.
+- **`WEBUI_SECRET_KEY`.** A long random value that Open WebUI uses to sign the login tokens.
+- **`OLLAMA_BASE_URL`.** The address of your Ollama instance:
+  - On the Docker host: `http://host.docker.internal:11434`
+  - On a machine in your local network: `http://<local-ip>:11434`
+  - On another Tailnet device: `http://<Tailscale IP address>:11434`
+  - Leave it empty to add another provider, such as OpenAI, in the web interface later.
 
-## Files to check
+## Deviations from the standard setup
 
-Please check the following contents for validity as some variables need to be defined upfront.
+None.
 
-- `.env` // Main variables: `TS_AUTHKEY`, `SERVICE`, `IMAGE_URL`, `OLLAMA_BASE_URL`, `WEBUI_SECRET_KEY`
+## First run
 
-## Resources
+Open the web interface and create your account right after the first start. The first account becomes the administrator, and until then everyone who can reach the device on your Tailnet can register it.
 
-- [Open WebUI Documentation](https://docs.openwebui.com/)
-- [Open WebUI GitHub](https://github.com/open-webui/open-webui)
-- [Tailscale Serve docs](https://tailscale.com/kb/1242/tailscale-serve)
-- [Tailscale Docker guide](https://tailscale.com/blog/docker-tailscale-guide)
+After you add models to Ollama, refresh the model list in Open WebUI under **Settings** > **Connections**.
+
+## Configuration
+
+- **MagicDNS.** Uncomment `TS_ACCEPT_DNS=true` in `compose.yaml` only if Open WebUI must resolve MagicDNS names, such as an Ollama instance that you address by its Tailnet name.
+- **WebSockets.** Open WebUI needs WebSocket connections. Make sure that nothing between your browser and the device blocks them.
+
+## Links
+
+- [Open WebUI documentation](https://docs.openwebui.com/)
+- [Open WebUI source code](https://github.com/open-webui/open-webui)
+- [Ollama stack in this repository](../ollama/)

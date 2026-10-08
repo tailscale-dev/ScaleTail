@@ -1,22 +1,36 @@
-# Seerr with Tailscale Sidecar Configuration
+# Seerr
 
-This Docker Compose configuration sets up [Seerr](https://github.com/seerr-team/seerr) with Tailscale as a sidecar container to securely manage and access your request management system over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you enhance the privacy and security of your Seerr instance, ensuring it is only accessible within your Tailscale network.
+[Seerr](https://github.com/seerr-team/seerr) is a request manager for your media library. Users search for movies and series and request them, and Seerr passes approved requests to Radarr and Sonarr. It works with Plex, Jellyfin, and Emby.
 
-## Seerr
+This stack runs Seerr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Seerr](https://github.com/seerr-team/seerr) is an open-source request management and media discovery tool built to work with Plex, Jellyfin and Emby. It allows users to search and request media, track request status, and manage users in a visually appealing and user-friendly interface. By pairing Seer with Tailscale, your instance becomes securely accessible through a zero-config mesh VPN, preventing unauthorized access over the public internet.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                            |
+| ------------- | -------------------------------- |
+| Web interface | `https://seerr.<tailnet>.ts.net` |
+| Service port  | `5055`                           |
+| Image         | `ghcr.io/seerr-team/seerr`       |
+| Data          | `./seerr-data/config`            |
 
-In this setup, the `tailscale-seerr` service runs the Tailscale daemon to provide secure, private networking. The `seerr` service is configured to use Tailscale’s network stack via Docker’s `network_mode: service:tailscale` syntax. This binds Seer’s network interface to the Tailscale container, making the web UI and API available only through your Tailscale network (or locally, if needed).
+## Before you start
 
-This architecture is ideal for self-hosters who want to access Seerr from anywhere without exposing it to the internet, maintaining both ease of access and strict privacy controls.
+Create the configuration folder yourself and make user `1000` its owner. Docker creates missing folders as user `root`. The Seerr image runs as user and group `1000`, and it then exits with `EACCES` when it creates `/app/config/logs`.
 
-## Volume Permissions
-
-The Seerr image runs as the non-root `node` user (UID/GID `1000`). Docker creates missing bind-mount directories as `root:root`, and Seerr then exits with `EACCES` when it creates `/app/config/logs`. Create the config directory before the first start:
-
-```sh
+```bash
 mkdir -p seerr-data/config
 sudo chown -R 1000:1000 seerr-data
 ```
+
+## Deviations from the standard setup
+
+- **Log level.** `compose.yaml` sets `LOG_LEVEL=debug`.
+
+## First run
+
+Open the web interface and follow the setup. You choose your media server, sign in with it, and add Radarr and Sonarr. To reach an application in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+
+## Links
+
+- [Seerr documentation](https://docs.seerr.dev/)
+- [Seerr source code](https://github.com/seerr-team/seerr)

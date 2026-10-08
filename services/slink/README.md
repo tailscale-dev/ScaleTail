@@ -1,11 +1,43 @@
-# Slink with Tailscale Sidecar Configuration
+# Slink
 
-This Docker Compose configuration sets up [Slink](https://github.com/andrii-kryvoviaz/slink) with Tailscale as a sidecar container to securely manage and access your local file-sharing system over a private Tailscale network. By integrating Tailscale in a sidecar configuration, you can ensure that your Slink instance is both secure and private, accessible only within your Tailscale network.
+[Slink](https://github.com/andrii-kryvoviaz/slink) is an image sharing platform. You upload images and share them with a link.
 
-## Slink
+This stack runs Slink with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Slink](https://github.com/andrii-kryvoviaz/slink) is a fast, self-hosted alternative to ShareDrop, enabling secure, real-time file sharing over local networks. It allows you to easily share files between devices without relying on third-party servers, ensuring complete control and privacy. By combining Slink with Tailscale, this configuration provides a secure way to connect and share files exclusively within your private network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                      |
+| ------------- | ------------------------------------------ |
+| Web interface | `https://slink.<tailnet>.ts.net`           |
+| Service port  | `3000`                                     |
+| Image         | `anirdev/slink`                            |
+| Data          | `./slink-data/var/data` (application data) |
+|               | `./slink-data/images` (uploaded images)    |
 
-In this setup, the `tailscale-slink` service runs Tailscale, which manages secure networking for the Slink service. The `slink` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Slink's file-sharing interface is only accessible through the Tailscale network, adding an extra layer of security and privacy for your self-hosted file-sharing system.
+## Before you start
+
+Set `ORIGIN` in `compose.yaml` to the address of the web interface, `https://slink.<tailnet>.ts.net`. Slink needs the correct address for its cookies, so the sample value `https://your-domain.com` does not work.
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+1. Open `https://slink.<tailnet>.ts.net/profile/signup` and create your account.
+2. The stack sets `USER_APPROVAL_REQUIRED=true`, so a new account must be activated first:
+
+   ```bash
+   docker exec -it app-slink slink user:activate --email=<user-email>
+   ```
+
+3. Make your account an administrator:
+
+   ```bash
+   docker exec -it app-slink slink user:grant:role --email=<user-email> ROLE_ADMIN
+   ```
+
+## Links
+
+- [Slink documentation](https://docs.slinkapp.io/)
+- [Slink source code](https://github.com/andrii-kryvoviaz/slink)

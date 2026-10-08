@@ -1,11 +1,33 @@
-# Beszel Hub with Tailscale Sidecar Configuration
+# Beszel Hub
 
-This Docker Compose configuration integrates the [Beszel](https://github.com/henrygd/beszel) Hub with Tailscale in a sidecar setup to enhance secure communication over a private Tailscale network. By utilizing Tailscale, this configuration ensures that all communication handled by the Hub remains secure and private within your Tailscale network. Thanks to @[henrygd](https://github.com/henrygd) for the tool development.
+[Beszel](https://beszel.dev/) is a lightweight server monitoring platform with historical data, Docker statistics, and alerts. The hub is its web interface. It collects the data from an agent on each system that you monitor.
 
-## Beszel Hub
+This stack runs Beszel Hub with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-The Beszel Hub is the core component responsible for routing messages between agents and managing the overall communication flow. In this configuration, the Hub runs in its own Docker service and is secured by the Tailscale sidecar, ensuring that all traffic to and from the Hub is encrypted and restricted to your Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://beszel-hub.<tailnet>.ts.net` |
+| Service port  | `8090`                                |
+| Image         | `henrygd/beszel`                      |
+| Data          | `./beszel-hub-data/beszel_data`       |
 
-In this setup, the `tailscale` service runs Tailscale, which manages secure networking for the Beszel Hub service. The Hub service connects to the Tailscale network stack using Docker's `network_mode: service:tailscale` configuration. This setup guarantees that the Hub's communication channels are only accessible through the Tailscale network, providing an extra layer of security and privacy.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+1. Open the web interface and create the first account.
+2. Select **Add System**. The dialog shows the public key that an agent needs.
+3. Start an agent on each system that you want to monitor, for example with the [Beszel Agent stack](../beszel-agent/), and add it in the same dialog.
+
+## Links
+
+- [Beszel documentation](https://beszel.dev/guide/getting-started)
+- [Beszel source code](https://github.com/henrygd/beszel)

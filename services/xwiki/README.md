@@ -1,21 +1,35 @@
-# XWiki with Tailscale Sidecar Configuration
+# XWiki
 
-This Docker Compose configuration sets up **XWiki** with a Tailscale sidecar container, enabling secure, private access to your self-hosted wiki over your Tailnet. With this setup, your XWiki instance is **not exposed to the public internet** and is only accessible from authorized devices connected via Tailscale.
+[XWiki](https://www.xwiki.org) is a wiki platform for documentation and knowledge management. It has structured pages, rights management, and many extensions.
 
-## XWiki
+This stack runs XWiki with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**XWiki**](https://www.xwiki.org) is a powerful open-source wiki platform designed for collaboration, knowledge management, and building custom web applications. It combines the flexibility of a wiki with the structure of a CMS, making it suitable for teams, documentation hubs, and internal tools.
+## At a glance
 
-## Key Features
+| Item          | Value                                     |
+| ------------- | ----------------------------------------- |
+| Web interface | `https://xwiki.<tailnet>.ts.net`          |
+| Service port  | `8080`                                    |
+| Images        | `xwiki:stable-mariadb-tomcat`             |
+|               | `mariadb:12`                              |
+| Data          | `./xwiki-data/xwiki` (XWiki data)         |
+|               | `./xwiki-data/mariadb` (MariaDB database) |
 
-- 📝 Rich content editing with WYSIWYG and Markdown support
-- 👥 Advanced user permissions and access control
-- 🔌 Highly extensible with plugins and macros
-- 📊 Structured data and application-building capabilities
-- 🔍 Full-text search and content organization tools
-- 🏢 Ideal for internal documentation and knowledge bases
+## Before you start
 
-## Resources
+Change `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env` before the first start. The default for both is `xwiki`.
 
-- XWiki Docker Repo: <https://github.com/xwiki/xwiki-docker>
-- XWiki Documentation: <https://www.xwiki.org/xwiki/bin/view/Documentation/>
+## Deviations from the standard setup
+
+- **Extra container.** The stack runs a `db` container with MariaDB, named `db-xwiki`. It uses the default Compose network, and XWiki reaches it by its container name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve that name.
+- **Database setup.** This directory contains `init.sql`, which the database container runs when it first creates the database.
+- **Service port.** XWiki listens on port `8080`. `SERVICEPORT` in `.env` is only used by the optional `ports` block.
+
+## First run
+
+Open the web interface. The first start takes a few minutes. XWiki then shows its distribution wizard, where you create the administrator account and install the standard flavor.
+
+## Links
+
+- [XWiki documentation](https://www.xwiki.org/xwiki/bin/view/Documentation/)
+- [XWiki Docker image](https://github.com/xwiki/xwiki-docker)

@@ -1,27 +1,34 @@
-# Nessus with Tailscale Sidecar Configuration
+# Nessus
 
-> ⚠️ **Important:** This container has no ability for persistent storage - your configuration will be lost when restarting the instance.
+[Nessus](https://www.tenable.com/products/nessus) is a vulnerability scanner. It scans the systems in your network and reports vulnerabilities, configuration errors, and compliance issues.
 
-This Docker Compose configuration sets up **[Nessus](https://www.tenable.com/products/nessus)** with Tailscale as a sidecar container to securely manage and access your vulnerability assessment tool over a private Tailscale network. By integrating Tailscale, you can ensure that your Nessus instance remains private and accessible only to authorized devices on your Tailscale network.
+[Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) is free for personal use and scans up to 16 IP addresses.
 
-## Nessus
+This stack runs Nessus with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Nessus](https://www.tenable.com/products/nessus) is one of the most widely used vulnerability assessment tools, designed to help identify and remediate security issues in IT environments. With powerful scanning capabilities, Nessus provides detailed reports on system vulnerabilities, configuration errors, and compliance issues. By pairing Nessus with Tailscale, you can further secure your vulnerability management setup by restricting access to authorized devices within your private network.
+## At a glance
 
-### Nessus Essentials: Free for Personal Use
+| Item          | Value                                         |
+| ------------- | --------------------------------------------- |
+| Web interface | `https://nessus.<tailnet>.ts.net`             |
+| Service port  | `8834` (HTTPS with a self-signed certificate) |
+| Image         | `tenable/nessus:latest-ubuntu`                |
+| Data          | None on the host                              |
 
-Nessus Essentials offers a free version of the tool for personal and home use, [request your license here](https://www.tenable.com/products/nessus/nessus-essentials). It allows scanning up to **16 IP addresses**, making it an excellent choice for individuals looking to improve the security of their home networks. Despite being a free version, Nessus Essentials provides access to many of the powerful scanning capabilities that Nessus is known for, making it ideal for learning or small-scale vulnerability assessments.
+## Before you start
 
-## Key Features
+Request an activation code, for example for [Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials). You need it in the setup.
 
-- **Comprehensive Scanning**: Identify vulnerabilities, misconfigurations, and compliance violations across networks.
-- **Detailed Reporting**: Generate in-depth reports to prioritize and remediate security issues effectively.
-- **Self-Hosted**: Maintain full control over your scanning environment with a locally hosted instance.
-- **Customizable Policies**: Tailor scans to meet your organization’s unique security needs.
-- **Free Essentials Model**: Start for free with up to 16 IPs using Nessus Essentials.
+## Deviations from the standard setup
 
-## Configuration Overview
+- **No data folder.** Tenable does not support storage volumes for the Nessus image, so the stack has none. Your settings, scans, and license activation are lost when the container is recreated, for example after an image update. The Tenable documentation lists environment variables, such as `USERNAME`, `PASSWORD`, and `ACTIVATION_CODE`, that set up Nessus again at each start.
+- **Serve forwards to HTTPS.** Nessus serves its web interface on port `8834` with a self-signed certificate. Tailscale Serve forwards to it with `https+insecure`.
 
-In this setup, the `tailscale-nessus` service runs Tailscale, which manages secure networking for the Nessus service. The `nessus` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Nessus’ web interface and scanning functionalities are only accessible through the Tailscale network (or locally, if preferred), adding an additional layer of security to your vulnerability management infrastructure.
+## First run
 
-For additional configuration (environment variables) - please refer to the [Tenable documentation](https://docs.tenable.com/nessus/Content/DeployNessusDocker.htm).
+Open the web interface and follow the setup. You choose the product, enter your activation code, and create the administrator account. Nessus then downloads and compiles its plugins, which takes a while.
+
+## Links
+
+- [Deploy Nessus as a Docker image](https://docs.tenable.com/nessus/Content/DeployNessusDocker.htm)
+- [Nessus documentation](https://docs.tenable.com/nessus/)

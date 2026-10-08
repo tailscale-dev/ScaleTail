@@ -82,7 +82,7 @@ services:
       # - DNS_SERVER_LOG_USING_LOCAL_TIME=true #Enable this option to use local time instead of UTC for logging.
       - TZ=${TZ}
     volumes:
-      - ./${SERVICE}-data/app/config:/config
+      - ./${SERVICE}-data/app/config:/etc/dns # Technitium settings and zones
     depends_on:
       tailscale:
         condition: service_healthy

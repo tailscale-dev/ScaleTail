@@ -1,20 +1,45 @@
-# FossFLOW with Tailscale Sidecar Configuration
+# FossFLOW
 
-This Docker Compose configuration sets up [FossFLOW](https://github.com/stan-smith/FossFLOW) with Tailscale as a sidecar container, enabling secure access to your visual workflow designer over your private Tailscale network. With this setup, FossFLOW remains fully self-hosted and is only accessible from authorized devices within your Tailnet.
+[FossFLOW](https://hub.docker.com/r/stnsmith/fossflow) is a tool to draw isometric diagrams, for example of infrastructure and workflows. It only visualises a flow and does not run it.
 
-## FossFLOW
+The original repository of the project is no longer available on GitHub. [Abrar74774/FossFLOW](https://github.com/Abrar74774/FossFLOW) continues it.
 
-FossFLOW is a free and open-source flow **visualization** tool. Unlike automation platforms like n8n or Node-RED, FossFLOW is focused purely on building and displaying visual representations of workflows—**not executing them**. It’s ideal for planning complex automations, designing data pipelines, or documenting logic in a clear, drag-and-drop interface.
+This stack runs FossFLOW with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-## Key Features
+## At a glance
 
-* **Flow Visualizer** – Build directed graphs and flows using an intuitive UI.
-* **No Execution** – FossFLOW is for visualization only, not for running workflows.
-* **Node-Based Editor** – Easily represent logic, data sources, APIs, and more.
-* **Export & Share** – Save flows as JSON and share them with others.
-* **No Telemetry** – Fully local with zero tracking or analytics.
-* **Secure with Tailscale** – Only accessible from your private Tailscale network.
+| Item          | Value                                                     |
+| ------------- | --------------------------------------------------------- |
+| Web interface | `https://fossflow.<tailnet>.ts.net`                       |
+| Service port  | `80`                                                      |
+| Image         | `stnsmith/fossflow`                                       |
+| Data          | `./fossflow-data/diagrams` (diagrams saved on the server) |
 
-## Configuration Overview
+## Before you start
 
-This setup includes a `tailscale-fossflow` container running the Tailscale client to establish a secure connection. The `fossflow` container uses `network_mode: service:tailscale`, ensuring all traffic routes through Tailscale. This keeps your flow diagrams accessible only to authenticated devices within your Tailnet, with no exposure to the public internet.
+Set `PUBLIC_URL` in `compose.yaml` to the address of the web interface, `https://fossflow.<tailnet>.ts.net`.
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Nothing to set up. Open the web interface.
+
+## Upgrading
+
+Earlier versions of this stack had no volume for the diagrams. FossFLOW kept them inside the container, and they were lost when the container was recreated. The stack now stores them in `./fossflow-data/diagrams`.
+
+If you run an earlier version and saved diagrams on the server, copy them to the host before you start the new version:
+
+```bash
+mkdir -p fossflow-data/diagrams
+docker cp app-fossflow:/data/diagrams/. ./fossflow-data/diagrams/
+docker compose up -d
+```
+
+## Links
+
+- [FossFLOW image on Docker Hub](https://hub.docker.com/r/stnsmith/fossflow)
+- [FossFLOW continuation, documentation and source code](https://github.com/Abrar74774/FossFLOW)

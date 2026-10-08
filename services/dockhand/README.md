@@ -1,38 +1,30 @@
-# Dockhand with Tailscale Sidecar Configuration
+# Dockhand
 
-This Docker Compose configuration sets up **Dockhand** with a Tailscale sidecar container, enabling secure access to your self-hosted Docker management interface over your private Tailscale network. With this setup, your Dockhand instance remains private and accessible only from authorized devices on your Tailnet, ensuring that container management and infrastructure controls are never exposed to the public internet.
+[Dockhand](https://github.com/Finsys/dockhand) is a web interface to manage Docker. You manage containers, images, volumes, networks, and Compose stacks on local and remote Docker hosts.
 
-## Dockhand
+This stack runs Dockhand with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Dockhand**](https://github.com/Finsys/dockhand) is a modern, lightweight Docker management UI focused on real-time container operations and multi-environment orchestration. It provides an intuitive interface for managing containers, images, volumes, networks, and Docker Compose stacks across local or remote Docker hosts.
+## At a glance
 
-Dockhand is designed for operators and homelab environments that want a clean, responsive alternative to heavier container management platforms, while still retaining full control over their infrastructure.
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
+| Web interface | `https://dockhand.<tailnet>.ts.net` |
+| Service port  | `3000`                              |
+| Image         | `fnsys/dockhand`                    |
+| Data          | `./dockhand-data`                   |
 
-## Key Features
+## Before you start
 
-- Container Management – Start, stop, restart, and inspect containers in real time.
-- Compose Stack Support – Deploy and manage Docker Compose applications.
-- Multi-Environment Support – Connect to and manage multiple Docker hosts.
-- Live Logs & Terminal – Stream logs and access container terminals directly from the UI.
-- File & Volume Access – Inspect volumes and container file systems.
-- Git-Based Deployments – Deploy stacks from Git repositories with optional sync.
-- Docker-Native – Built specifically for Docker environments.
-- Open Source – Community-driven and self-hostable.
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-## Why Self-Host?
+## Deviations from the standard setup
 
-A Docker management interface has full control over your infrastructure. Exposing such a tool publicly significantly increases risk, as it can allow attackers to manipulate containers, access secrets, or pivot deeper into your network.
+- **Docker socket.** Dockhand mounts `/var/run/docker.sock` with write access, which it needs to manage Docker. Everyone who can reach Dockhand has full control over the Docker host.
 
-Self-hosting Dockhand ensures that you maintain full ownership and operational control. When combined with Tailscale, Dockhand becomes a secure, private control plane for your Docker environments, accessible only from authenticated devices within your Tailnet. This dramatically reduces the attack surface while preserving remote management convenience.
+## First run
 
-## Configuration Overview
+Open the web interface. Dockhand has no login by default, so everyone who can reach the device on your Tailnet can manage Docker. Enable authentication in the settings.
 
-In this deployment, a Tailscale sidecar container (for example `tailscale-dockhand`) runs the Tailscale client and joins your private Tailscale network. The main `dockhand` service uses:
+## Links
 
-```plain
-network_mode: service:tailscale
-```
-
-This configuration routes all inbound and outbound traffic through the Tailscale interface, ensuring that the Dockhand web interface and Docker API interactions are accessible only via your Tailscale network.
-
-By avoiding public port mappings and relying exclusively on Tailnet access, you create a secure-by-default Docker management setup suitable for homelabs, remote infrastructure, and internal DevOps environments.
+- [Dockhand documentation and source code](https://github.com/Finsys/dockhand)

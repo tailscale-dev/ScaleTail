@@ -1,33 +1,43 @@
-# Docmost with Tailscale Sidecar Configuration
+# Docmost
 
-This Docker Compose configuration sets up [**Docmost**](https://github.com/docmost/docmost) with Tailscale as a sidecar container, enabling secure access to your collaborative wiki and documentation platform from anywhere on your private Tailscale network. With this setup, your Docmost instance remains fully private and accessible only to authorized users.
+[Docmost](https://docmost.com/) is a wiki and documentation tool for teams. Several people edit a page at the same time, and it supports diagrams, comments, page history, and permissions.
 
-## Docmost
+This stack runs Docmost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Docmost**](https://github.com/docmost/docmost) is an open-source, self-hosted wiki and documentation tool designed for teams that want real-time collaboration without vendor lock-in. It offers a sleek interface with support for rich editing, diagrams, permissions, inline comments, page history, and file attachments.
+## At a glance
 
-## Key Features
+| Item          | Value                                          |
+| ------------- | ---------------------------------------------- |
+| Web interface | `https://docmost.<tailnet>.ts.net`             |
+| Service port  | `3000`                                         |
+| Images        | `docmost/docmost`                              |
+|               | `postgres:16-alpine`                           |
+|               | `redis:7.2-alpine`                             |
+| Data          | `./docmost-data/docmost` (uploaded files)      |
+|               | `./docmost-data/db-data` (PostgreSQL database) |
+|               | `./docmost-data/redis-data` (Redis data)       |
 
-* **Real-Time Collaboration** – Multiple users can edit simultaneously with live syncing.
-* **Diagrams & Math** – Support for Mermaid, Draw\.io, Excalidraw, and LaTeX.
-* **Structured Content** – Organize documentation in spaces, nested pages, and groups.
-* **Permissions & Comments** – Enforce role-based access while enabling inline discussion.
-* **Page History & Export** – View history, revert changes, and import/export Markdown/HTML.
-* **Full-Text Search** – Quickly locate documentation across all content.
-* **File Attachments** – Embed images, PDFs, and other files.
-* **Privacy-first & Self-Hosted** – Keep all data under your control behind Tailscale.
+## Before you start
 
-## Configuration Overview
+Set these values in `.env`. Compose stops with an error if one of them is empty.
 
-In this configuration, the `tailscale-docmost` service runs the Tailscale client to secure network traffic. The `docmost` service uses `network_mode: service:tailscale`, ensuring all requests are routed through the Tailscale interface. This safeguards your documentation from public exposure, making it accessible only within your private mesh.
+- **`APP_SECRET`.** A random value of at least 32 characters. Generate one with `openssl rand -hex 32`.
+- **`DB_PASSWORD`.** The password of the database. Use letters and digits only, because the value is part of the database address. PostgreSQL applies it only when it first creates the database.
 
-## Files to check
+## Deviations from the standard setup
 
-Please check the following contents for validity as some variables need to be defined upfront.
+- **Extra containers.** The stack runs `db` (PostgreSQL) and `redis`. Both use the network of the `tailscale` container as well, so Docmost reaches them at `localhost`. PostgreSQL and Redis therefore also listen on ports `5432` and `6379` of the Tailscale IP address of the device.
+- **Application address.** `APP_URL` in `compose.yaml` is `http://localhost:3000`. Docmost uses this value for the links that it generates, for example in emails. Change it to `https://docmost.<tailnet>.ts.net` if you use such links.
 
-* `.env`
-  * Required: `TS_AUTHKEY`
-  * Required: `APP_SECRET`, at least 32 characters. Generate it with `openssl rand -hex 32`.
-  * Required: `DB_PASSWORD`. Use letters and digits only, because the value is part of `DATABASE_URL`.
+## First run
 
-Compose stops with an error if `APP_SECRET` or `DB_PASSWORD` is empty. PostgreSQL applies `DB_PASSWORD` only when it first creates the database. If you are upgrading, set `APP_SECRET` and `DB_PASSWORD` in `.env` to the values that your `compose.yaml` used before.
+Open the web interface. Docmost shows its setup page, where you create your workspace and your account.
+
+## Upgrading
+
+If your `compose.yaml` contained the secret and the database password before, set `APP_SECRET` and `DB_PASSWORD` in `.env` to those same values.
+
+## Links
+
+- [Docmost documentation](https://docmost.com/docs/)
+- [Docmost source code](https://github.com/docmost/docmost)

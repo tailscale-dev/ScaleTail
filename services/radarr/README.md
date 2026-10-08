@@ -1,15 +1,35 @@
-# Radarr with Tailscale Sidecar Configuration
+# Radarr
 
-This Docker Compose configuration sets up [Radarr](https://github.com/Radarr/Radarr) with Tailscale as a sidecar container to securely manage and access your media management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Radarr instance, ensuring that it is only accessible within your Tailscale network.
+[Radarr](https://github.com/Radarr/Radarr) manages your movie collection. It searches Usenet and BitTorrent sources for the movies you want, sends them to your download client, and sorts the files into your library.
 
-## Radarr
+This stack runs Radarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Radarr](https://github.com/Radarr/Radarr) is an open-source, self-hosted application for managing movies in your media collection. It allows you to automatically download movies from Usenet and BitTorrent sources and organize them in your media library. This configuration leverages Tailscale to securely connect to your Radarr instance, ensuring that your media management interface is protected from unauthorized access and that your instance is accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                         |
+| ------------- | ------------------------------------------------------------- |
+| Web interface | `https://radarr.<tailnet>.ts.net`                             |
+| Service port  | `7878`                                                        |
+| Image         | `lscr.io/linuxserver/radarr`                                  |
+| Data          | `./radarr-data/config` (configuration and database)           |
+|               | `./radarr-data/media/movies` (movie library, optional)        |
+|               | `./radarr-data/downloads` (download client output, optional)  |
 
-In this setup, the `tailscale-radarr` service runs Tailscale, which manages secure networking for the Radarr service. The `radarr` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Radarr’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted media manager.
+## Before you start
 
-### Trouble with presets or optimal download quality, try
+Point the `/movies` and `/downloads` volumes in `compose.yaml` at your movie library and at the output folder of your download client. Both are optional and default to empty folders in `./radarr-data`. Docker creates missing folders as user `root`. The container runs as user and group `1000`, which need write access to both folders.
 
-- [Configarr with presets](https://github.com/ChillBill77/configarr-presets)
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface. Radarr asks you to choose an authentication method and to create a username and password before you can continue.
+
+## Links
+
+- [Radarr documentation](https://wiki.servarr.com/radarr)
+- [Radarr source code](https://github.com/Radarr/Radarr)
+- [LinuxServer.io image documentation](https://docs.linuxserver.io/images/docker-radarr/)
+- [Configarr presets](https://github.com/ChillBill77/configarr-presets), for help with quality profiles and download quality

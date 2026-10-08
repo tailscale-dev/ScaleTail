@@ -1,21 +1,32 @@
-# Mealie with Tailscale Sidecar Configuration
+# Mealie
 
-This Docker Compose configuration sets up [**Mealie**](https://github.com/mealie-recipes/mealie/) with Tailscale as a sidecar container, enabling secure access to your personal recipe collection and meal planning platform from anywhere on your private Tailscale network. With this setup, your Mealie instance stays fully private and accessible only to your authorized devices.
+[Mealie](https://mealie.io/) is a recipe manager and meal planner. You import a recipe from a web address, plan your meals, and build shopping lists.
 
-## Mealie
+This stack runs Mealie with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Mealie**](https://github.com/mealie-recipes/mealie/) is a self-hosted recipe management platform designed for home cooks, meal planners, and families. It provides a clean and modern interface to organize, import, and share recipes. Mealie also offers robust tools for planning meals, generating shopping lists, and storing culinary inspiration—all without relying on third-party services.
+## At a glance
 
-## Key Features
+| Item          | Value                             |
+| ------------- | --------------------------------- |
+| Web interface | `https://mealie.<tailnet>.ts.net` |
+| Service port  | `9000`                            |
+| Image         | `ghcr.io/mealie-recipes/mealie`   |
+| Data          | `./mealie-data`                   |
 
-* **Recipe Management** – Create, edit, and store recipes with rich formatting and images.
-* **Recipe Scraping** – Import recipes directly from popular websites.
-* **Meal Planning** – Plan meals for the week or month with an easy-to-use calendar view.
-* **Shopping List Generator** – Automatically create shopping lists based on your meal plan.
-* **Multi-User Support** – Invite family members or housemates to collaborate.
-* **Self-Hosted** – All your data remains under your control.
-* **Private by Default with Tailscale** – Runs behind a Tailscale sidecar for private access only.
+## Before you start
 
-## Configuration Overview
+Set `BASE_URL` in `compose.yaml` to the address of the web interface, `https://mealie.<tailnet>.ts.net`. The sample value is `https://mealie.yourdomain.ts.net`.
 
-In this deployment, the `tailscale-mealie` service runs the Tailscale client to establish a secure private network. The `mealie` container uses `network_mode: service:tailscale` to route its network traffic through the Tailscale network interface. This configuration ensures that the web UI is only accessible over Tailscale, protecting your recipes and personal data from public exposure.
+## Deviations from the standard setup
+
+- **Memory limit.** The stack limits the `application` container to 1000 MB of memory.
+- **No sign-up.** `ALLOW_SIGNUP` is `"false"`, so new users need an invitation from an administrator.
+
+## First run
+
+Open the web interface and log in with the default account `changeme@example.com` and password `MyPassword`. Mealie then asks you to set up your own account. Change the email address and the password right away.
+
+## Links
+
+- [Mealie documentation](https://docs.mealie.io/)
+- [Mealie source code](https://github.com/mealie-recipes/mealie)

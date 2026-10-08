@@ -1,11 +1,36 @@
-# Jellyfin with Tailscale Sidecar Configuration
+# Jellyfin
 
-This Docker Compose configuration sets up [Jellyfin](https://github.com/jellyfin/jellyfin) with Tailscale as a sidecar container to securely manage and access your media server over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Jellyfin instance, ensuring that it is only accessible within your Tailscale network.
+[Jellyfin](https://jellyfin.org/) is a media server. It organises your movies, series, and music and streams them to your browser, television, and mobile devices.
 
-## Jellyfin
+This stack runs Jellyfin with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Jellyfin](https://github.com/jellyfin/jellyfin) is an open-source, self-hosted media server that allows you to manage and stream your media collection, including movies, TV shows, music, and more, to various devices. It provides a rich user interface and supports multiple clients, making it a powerful alternative to other media server solutions. This configuration leverages Tailscale to securely connect to your Jellyfin instance, ensuring that your media server interface is protected from unauthorized access and that your instance is accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                         |
+| ------------- | ------------------------------------------------------------- |
+| Web interface | `https://jellyfin.<tailnet>.ts.net`                           |
+| Service port  | `8096`                                                        |
+| Image         | `lscr.io/linuxserver/jellyfin`                                |
+| Data          | `./jellyfin-data/config` (configuration, database, and cache) |
+|               | `./media/movies` (movie library)                              |
+|               | `./media/tvseries` (series library)                           |
 
-In this setup, the tailscale-jellyfin service runs Tailscale, which manages secure networking for the Jellyfin service. The jellyfin service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Jellyfin’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted media server.
+## Before you start
+
+Point the `/data/movies` and `/data/tvshows` volumes in `compose.yaml` at your own media folders. Otherwise the stack starts with empty folders in `./media`.
+
+## Deviations from the standard setup
+
+- **Media folders.** The libraries are in `./media`, outside the `./jellyfin-data` folder.
+
+## First run
+
+Open the web interface. The setup wizard asks for the display language, the administrator account, your media libraries, and the metadata language. Use `/data/movies` and `/data/tvshows` as the library folders.
+
+In the Jellyfin apps, use `https://jellyfin.<tailnet>.ts.net` as the server address. The device must be connected to your Tailnet.
+
+## Links
+
+- [Jellyfin documentation](https://jellyfin.org/docs/)
+- [Jellyfin source code](https://github.com/jellyfin/jellyfin)
+- [LinuxServer.io image documentation](https://docs.linuxserver.io/images/docker-jellyfin/)

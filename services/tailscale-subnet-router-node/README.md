@@ -1,17 +1,37 @@
-# Tailscale Subnet Router Node Configuration
+# Tailscale Subnet Router
 
-This Docker Compose configuration sets up a Tailscale Subnet Router Node, allowing devices in your Tailscale network to route their traffic securely through this node to a local subnet. By configuring a Tailscale Router Node, you can extend your local network of device to tailscale connected clients, such as your home or office.
+A Tailscale [subnet router](https://tailscale.com/docs/features/subnet-routers) gives your Tailnet access to devices that cannot run Tailscale themselves. It forwards traffic between your Tailnet and a local network, such as your home or office network.
 
-## Tailscale Subnet Router Node
+This stack runs only the Tailscale container from [the standard setup](../../documentation/standard-setup.md), configured as a subnet router.
 
-Subnet routers let you extend your Tailscale network (known as a tailnet) to include devices that don't or can't run the Tailscale client. They act as gateways between your tailnet and physical subnets, enabling secure access to legacy devices, entire networks, or services without installing Tailscale everywhere. This capability maintains Tailscale's security model while providing flexibility for complex network environments.
+## At a glance
 
-## Configuration Overview
+| Item           | Value                 |
+| -------------- | --------------------- |
+| Web interface  | None                  |
+| Tailnet device | `subnet-router`       |
+| Image          | `tailscale/tailscale` |
+| Data           | `./ts/state`          |
 
-In this setup, the `tailscale` service runs a Tailscale container configures it as a Subnet Router Node.
+## Before you start
 
-- **TS_AUTHKEY**: This environment variable in the .env file is where you insert your Tailscale authentication key.
-- **SUBNET_ROUTES**: This setting defined in .env file allows the user to set the desired route. More information can be found on the [Tailscale subnet router documents page.](https://tailscale.com/docs/features/subnet-routers)
-- **TS_EXTRA_ARGS**: The `--advertise-routes` flag is used to designate this container as a Subnet Router Node within your Tailscale network.
-- **Sysctls**: The system controls `net.ipv4.ip_forward` and `net.ipv6.conf.all.forwarding` are enabled to allow IP forwarding, which is necessary for routing traffic through the Exit Node.
-- **Network Mode**: The `bridge` network mode is used to create a virtual network interface for the container, enabling it to handle traffic routing.
+Set `SUBNET_ROUTES` in `.env` to the networks that the router should offer, as a comma-separated list. The default `10.1.234.0/24` is an example.
+
+## Deviations from the standard setup
+
+- **No application container.** The stack has no `application` service, no Tailscale Serve configuration, and no `./config` folder.
+- **Advertised routes.** `TS_ROUTES` passes the value of `SUBNET_ROUTES` to Tailscale, which offers these routes to your Tailnet.
+- **IP forwarding.** The `sysctls` block enables IPv4 and IPv6 forwarding in the container, which a subnet router on Linux requires.
+- **Bridge network.** The container uses `network_mode: bridge`, so it reaches the local network through the Docker host.
+- **DNS server.** The `dns` block is active and uses `DNS_SERVER` from `.env`.
+
+## First run
+
+1. In the Tailscale admin console, open the **Machines** page and select the `subnet-router` device.
+2. In the **Subnets** section, select **Edit**. Under **Subnet routes**, select the routes to approve and select **Save**.
+3. Linux devices do not use subnet routes by default. Run `sudo tailscale set --accept-routes` on each Linux device that should use them.
+
+## Links
+
+- [Tailscale subnet routers](https://tailscale.com/docs/features/subnet-routers)
+- [Tailscale in Docker](https://tailscale.com/kb/1282/docker)

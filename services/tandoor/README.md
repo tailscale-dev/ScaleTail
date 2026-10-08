@@ -1,18 +1,40 @@
-# Tandoor Recipes with Tailscale Sidecar Configuration
+# Tandoor Recipes
 
-This Docker Compose configuration sets up [**Tandoor Recipes**](https://github.com/TandoorRecipes/recipes) with Tailscale as a sidecar container, which enables a secure access to your personal recipe and meal planning platform from your Tailscale network. As with all other services inside this repository, your service stays fully private and accessible only to your authorized devices.
+[Tandoor Recipes](https://tandoor.dev/) manages your recipes. It also plans your meals and builds your shopping lists.
 
-## Tandoor Recipes
+This stack runs Tandoor Recipes with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Tandoor Recipes**](https://github.com/TandoorRecipes/recipes) is an application for managing recipes, planning meals, building shopping lists and much much more:
+## At a glance
 
-- 🥗 **Manage your recipes** - Manage your ever growing recipe collection
-- 📆 **Plan** - multiple meals for each day
-- 🛒 **Shopping lists** - via the meal plan or straight from recipes
-- 🪄 **use AI** to recognize images, sort recipe steps, find nutrition facts and more
-- 📚 **Cookbooks** - collect recipes into books
-- 👪 **Share and collaborate** on recipes with friends and family
+| Item          | Value                                                     |
+| ------------- | --------------------------------------------------------- |
+| Web interface | `https://tandoor.<tailnet>.ts.net`                        |
+| Service port  | `9001`                                                    |
+| Images        | `vabene1111/recipes`                                      |
+|               | `postgres:16-alpine`                                      |
+| Data          | `./tandoor-data/mediafiles` (uploaded images and files)   |
+|               | `./tandoor-data/staticfiles` (files of the web interface) |
+|               | `./tandoor-data/database` (PostgreSQL database)           |
 
-## Configuration Overview
+## Before you start
 
-In this setup, the `tailscale-tandoor` service runs Tailscale, which manages secure networking for the service. The `tandoor` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that tandoor's service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your service.
+Set these values in `.env`:
+
+- **`SECRET_KEY`.** A long random value. Generate one with `base64 /dev/urandom | head -c50`.
+- **`POSTGRES_PASSWORD`.** A random password of letters and digits.
+- **`ALLOWED_HOSTS`.** The name of the device on your Tailnet, `tandoor.<tailnet>.ts.net`. Tandoor answers requests for other host names with error `400`.
+
+## Deviations from the standard setup
+
+- **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Tandoor reaches it at `127.0.0.1`. PostgreSQL therefore also listens on port `5432` of the Tailscale IP address of the device.
+- **Service port.** `TANDOOR_PORT` makes Tandoor listen on the port from `SERVICEPORT`, which is `9001`.
+- **The container reads the whole `.env` file.** The `application` container loads `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in its environment.
+
+## First run
+
+The first start can take a few minutes, because Tandoor prepares its database. Then open the web interface. Tandoor sends you to the setup page, where you create the first account.
+
+## Links
+
+- [Tandoor Recipes documentation](https://docs.tandoor.dev/)
+- [Tandoor Recipes source code](https://github.com/TandoorRecipes/recipes)

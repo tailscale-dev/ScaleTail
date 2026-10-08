@@ -1,19 +1,39 @@
-# Gitea with Tailscale Sidecar Configuration
+# Gitea
 
-This Docker Compose configuration sets up [Gitea](https://gitea.com/) with Tailscale as a sidecar container, enabling secure access to your self-hosted Git forge via your private Tailnet. With this setup, your Gitea instance remains fully private and accessible only from authorized Tailscale devices.
+[Gitea](https://about.gitea.com/) is a lightweight Git service that you host yourself. It offers repositories, pull requests, issues, packages, and CI.
 
-## Gitea
+This stack runs Gitea with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Gitea](https://gitea.com/) is a lightweight, self-hosted Git service that provides repository hosting, pull requests, issue tracking, and more. It is designed for easy deployment and minimal operational overhead, making it a great choice for private Git hosting on homelabs and small teams.
+## At a glance
 
-## Key Features
+| Item          | Value                                                           |
+| ------------- | --------------------------------------------------------------- |
+| Web interface | `https://gitea.<tailnet>.ts.net`                                |
+| Service port  | `3000`                                                          |
+| Git over SSH  | Port `22` on the Tailscale IP address of `gitea`                |
+| Image         | `docker.gitea.com/gitea`                                        |
+| Data          | `./gitea-data/data` (repositories, database, and configuration) |
 
-* **Lightweight Deployment** – Runs smoothly on nearly any machine, from Raspberry Pi to cloud instances.
-* **Repository Management** – Full Git repository hosting with web interface.
-* **Collaboration Tools** – Pull requests, issues, and wiki support for team collaboration.
-* **Self-Hosted** – Complete control over your code and data.
-* **Private by Default with Tailscale** – Secured with Tailscale, accessible only to your authorized devices.
+## Before you start
 
-## Configuration Overview
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this deployment, the `tailscale-gitea` service runs the Tailscale client to establish a secure private network. The `gitea` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures your Git service, web interface, and API endpoints are only accessible via Tailscale, preventing public exposure while still offering seamless remote access to your team.
+## Deviations from the standard setup
+
+- **Git over SSH.** The SSH server of Gitea listens on port `22` of the Tailscale IP address of the device. It does not use Tailscale Serve.
+- **Time zone.** The stack mounts `/etc/timezone` and `/etc/localtime` of the Docker host read-only, in addition to `TZ`.
+- **User and group.** The image uses `USER_UID` and `USER_GID` for the owner of the data, which `compose.yaml` sets to `1000`.
+- **Fixed data folder.** The data folder is always `./gitea-data`, also when you change `SERVICE` in `.env`.
+
+## First run
+
+Open the web interface. Gitea shows its installation page:
+
+1. Keep SQLite as the database, or enter the details of your own database.
+2. Set the server domain to `gitea.<tailnet>.ts.net` and the base URL to `https://gitea.<tailnet>.ts.net/`.
+3. Create the administrator account at the bottom of the page. If you skip this, the first account that registers becomes the administrator.
+
+## Links
+
+- [Gitea documentation](https://docs.gitea.com/)
+- [Gitea source code](https://github.com/go-gitea/gitea)

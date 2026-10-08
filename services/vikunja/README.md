@@ -1,34 +1,39 @@
-# Vikunja with Tailscale Sidecar Configuration
+# Vikunja
 
-This Docker Compose configuration sets up **Vikunja** with Tailscale as a sidecar container, enabling secure, private access to your task management system over your Tailnet. With this setup, your Vikunja instance is only reachable from authorized devices, keeping your tasks, projects, and personal data off the public internet.
+[Vikunja](https://vikunja.io) is a to-do and project management application. It has lists, boards, Gantt charts, labels, reminders, and recurring tasks, and you can share projects with others.
 
-## Vikunja
+This stack runs Vikunja with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Vikunja](https://vikunja.io) is an open-source, self-hosted task management and to-do list application designed as a privacy-focused alternative to tools like Todoist, Trello, and Asana. It supports projects, tasks, labels, reminders, recurring tasks, and team collaboration.
+## At a glance
 
-Vikunja is ideal for individuals or teams who want full ownership of their productivity data while maintaining a modern and feature-rich task management experience. Pairing it with Tailscale ensures that your task system remains private while still being accessible from anywhere on your Tailnet.
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://vikunja.<tailnet>.ts.net`    |
+| Service port  | `3456`                                |
+| Image         | `vikunja/vikunja`                     |
+| Data          | `./vikunja-data/files` (attachments)  |
+|               | `./vikunja-data/db` (SQLite database) |
 
-## Key Features
+## Before you start
 
-- Projects, tasks, and sub-tasks with flexible organization
-- Labels, priorities, due dates, and reminders
-- Recurring tasks and advanced filtering
-- Collaboration and shared projects
-- REST API and integrations
-- Clean web UI and mobile app support
+Set `VIKUNJA_SERVICE_PUBLICURL` in `.env` to the address of the web interface with a slash at the end, `https://vikunja.<tailnet>.ts.net/`.
 
-## Configuration Overview
+## Deviations from the standard setup
 
-In this setup, the `tailscale-vikunja` service runs Tailscale, which manages secure networking for Vikunja. The `vikunja` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures the application is only accessible through your Tailnet unless you explicitly expose ports.
+- **Runs as `root`.** The `application` container runs as user and group `0` through the `user` setting, so that Vikunja can write to the data folders that Docker creates.
+- **Database.** `VIKUNJA_DATABASE_PATH` in `.env` puts the SQLite database in the mounted `./vikunja-data/db` folder.
 
-### Service-Specific Notes
+## First run
 
-- On first launch, you will need to create an admin account via the web UI
-- Default URL will be your Tailscale IP or MagicDNS name
-- Vikunja stores data in its configured database (SQLite by default unless changed)
+Open the web interface and register the first account.
 
-## Useful Links
+## Configuration
 
-- Vikunja Website: <https://vikunja.io>
-- Documentation: <https://vikunja.io/docs>
-- GitHub: <https://github.com/go-vikunja/vikunja>
+### Configuration file
+
+This directory contains `config.yml`, a sample configuration file with all settings as comments. To use it, edit the file and uncomment the line that mounts it in the `volumes` block of `compose.yaml`.
+
+## Links
+
+- [Vikunja documentation](https://vikunja.io/docs)
+- [Vikunja source code](https://github.com/go-vikunja/vikunja)

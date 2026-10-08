@@ -1,62 +1,54 @@
-# AdGuard Home with Tailscale Sidecar Configuration
+# AdGuard Home
 
-This Docker Compose configuration sets up [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome) with Tailscale as a sidecar container to securely route DNS traffic over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your DNS queries, ensuring that they are only accessible within your Tailscale network.
+[AdGuard Home](https://github.com/AdguardTeam/AdGuardHome) is a DNS server that blocks advertisements and trackers for every device that uses it.
 
-## AdGuard Home
+This stack runs AdGuard Home with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[AdGuard Home](https://github.com/AdguardTeam/AdGuardHome) is a network-wide software that blocks ads and trackers. It provides a powerful DNS filtering solution that can protect all devices on your network. This configuration allows AdGuard Home to be used in combination with Tailscale, providing a secure and private network for DNS queries.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                                                       |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| Web interface | `https://adguardhome.<tailnet>.ts.net` (after the setup wizard)                             |
+| Setup wizard  | `http://<Tailscale IP address of adguardhome>:3000` (first start only)                      |
+| Service port  | `80`                                                                                        |
+| DNS           | Port `53` (TCP and UDP) on the Tailscale IP address of `adguardhome` and on the Docker host |
+| Image         | `adguard/adguardhome`                                                                       |
+| Data          | `./adguardhome-data/configdir` (configuration)                                              |
+|               | `./adguardhome-data/workdir` (filters, statistics, and query log)                           |
 
-In this setup, the `tailscale-adguardhome` service runs Tailscale, which manages secure networking for the AdGuard Home service. The `adguardhome` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that AdGuard Home's DNS service is only accessible through the Tailscale network (or local as well, if preferred).
+## Before you start
 
-## Binding to your local host machine? Port 53 - DNSStubListener
+The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](../../documentation/free-up-port-53.md).
 
-In Debian (e.g. Ubuntu Server 22.04.x / 24.04.x) systems, particularly when using systemd-resolved for DNS resolution, a DNS stub listener is employed by default to provide local DNS resolution through the loopback address (localhost). This stub listener binds to port 53 on the local interface 127.0.0.53, allowing local applications to send DNS queries to this address for resolution.
+## Deviations from the standard setup
 
-### What is DNSStubListener?
+- **Published host ports.** The `ports` block is active and publishes DNS on port `53` (TCP and UDP) of the Docker host. Devices in your local network can therefore use AdGuard Home without Tailscale.
+- **Setup wizard on port `3000`.** At the first start, AdGuard Home only listens on port `3000`. Tailscale Serve forwards to port `80`, so the web interface is not available at the Tailnet address until you finish the wizard.
+- **DNS does not use Tailscale Serve.** Serve only handles the web interface. AdGuard Home listens for DNS queries on port `53` of the Tailscale IP address of the device.
 
-`DNSStubListener` is a configuration option in the `/etc/systemd/resolved.conf` file that controls whether the `systemd-resolved` service will listen for DNS queries on the loopback address (127.0.0.53) over port 53.
+## First run
 
-- **DNSStubListener=yes**: When this option is enabled, `systemd-resolved` binds to `127.0.0.53:53`. This allows the system to use `systemd-resolved` as a local DNS resolver for local DNS queries.
-
-- **DNSStubListener=no**: Disabling the stub listener prevents `systemd-resolved` from binding to port 53 on the local interface, freeing up this port for other DNS services or applications that require direct control over port 53.
-
-### Why Change `DNSStubListener` to `no`?
-
-In certain scenarios, such as when running a local DNS server (e.g., AdguardHome, PiHole, BIND, Unbound, or Dnsmasq) or any other application that requires exclusive access to port 53 on all interfaces, `systemd-resolved`'s binding to the local DNS port can cause conflicts. For example, if you plan to run your own DNS server on the same machine, that service needs to bind to port 53 globally, including the loopback interface. With `systemd-resolved` already occupying this port, the new DNS service would fail to start or function properly.
-
-To resolve this issue, you need to disable `systemd-resolved` from binding to port 53 by setting `DNSStubListener=no` in the `/etc/systemd/resolved.conf` file.
-
-### Steps to Free Up Port 53
-
-1. **Open the configuration file**:
+1. Find the Tailscale IP address of the device:
 
    ```bash
-   sudo nano /etc/systemd/resolved.conf
+   docker exec tailscale-adguardhome tailscale ip -4
    ```
 
-2. **Modify the `DNSStubListener` setting**:
+2. Open `http://<Tailscale IP address>:3000` and follow the setup wizard. Keep port `80` for the web interface and port `53` for the DNS server, and create the administrator account.
+3. Open the web interface at `https://adguardhome.<tailnet>.ts.net` and log in.
 
-   Find the line containing `#DNSStubListener=yes` (it might be commented out by default) and change it to:
+## Configuration
 
-   ```bash
-   DNSStubListener=no
-   ```
+### Use AdGuard Home as the DNS server of your Tailnet
 
-3. **Restart the `systemd-resolved` service**:
-   After saving the changes, restart the service for the changes to take effect:
+In the Tailscale admin console, open the **DNS** page. Add the Tailscale IP address of the `adguardhome` device as a custom nameserver and enable **Override DNS servers**.
 
-   ```bash
-   sudo systemctl restart systemd-resolved
-   ```
+### Use AdGuard Home in your local network
 
-4. **Verify Port 53 is Free**:
+Point your devices or your router at the IP address of the Docker host as DNS server.
 
-   You can check that port 53 is no longer bound by `systemd-resolved` by running:
+## Links
 
-   ```bash
-   sudo netstat -tuln | grep :53
-   ```
-
-If the configuration was successful, no process should be listed as using port 53 on the loopback interface.
+- [AdGuard Home wiki](https://github.com/AdguardTeam/AdGuardHome/wiki)
+- [AdGuard Home Docker image](https://hub.docker.com/r/adguard/adguardhome)
+- [AdGuard Home source code](https://github.com/AdguardTeam/AdGuardHome)

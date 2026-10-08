@@ -1,11 +1,31 @@
-# ChangeDetection.io with Tailscale Sidecar Configuration
+# changedetection.io
 
-This Docker Compose configuration sets up [ChangeDetection.io](https://github.com/dgtlmoon/changedetection.io) with Tailscale as a sidecar container to securely monitor and access website changes over a private Tailscale network. By using Tailscale in a sidecar configuration, you can ensure that your ChangeDetection.io instance is only accessible within your Tailscale network, providing enhanced security and privacy.
+[changedetection.io](https://github.com/dgtlmoon/changedetection.io) watches web pages and notifies you when their content changes, for example for price drops, restocks, or updated documents.
 
-## ChangeDetection.io
+This stack runs changedetection.io with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[ChangeDetection.io](https://github.com/dgtlmoon/changedetection.io) is an open-source tool for tracking changes on websites. Whether monitoring prices, content updates, or new product launches, it provides an easy-to-use interface for tracking and alerting you to changes. By integrating Tailscale, you can securely connect to your ChangeDetection.io instance, ensuring that your sensitive tracking information and alerts are protected from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                      |
+| ------------- | ------------------------------------------ |
+| Web interface | `https://changedetection.<tailnet>.ts.net` |
+| Service port  | `5000`                                     |
+| Image         | `ghcr.io/dgtlmoon/changedetection.io`      |
+| Data          | `./changedetection-data/datastore`         |
 
-In this setup, the `tailscale-changedetection` service runs Tailscale, which manages secure networking for the ChangeDetection.io service. The `changedetection` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that ChangeDetection.io’s web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy to your website monitoring setup.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+changedetection.io has no password by default. Open the web interface and add the first page to watch. To require a password, set one under **Settings**.
+
+## Links
+
+- [changedetection.io documentation](https://github.com/dgtlmoon/changedetection.io/wiki)
+- [changedetection.io source code](https://github.com/dgtlmoon/changedetection.io)

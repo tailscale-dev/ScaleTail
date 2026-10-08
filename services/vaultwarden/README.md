@@ -1,11 +1,39 @@
-# Vaultwarden with Tailscale Sidecar Configuration
+# Vaultwarden
 
-This Docker Compose configuration sets up [Vaultwarden](https://github.com/dani-garcia/vaultwarden) with Tailscale as a sidecar container to securely manage and access your password manager over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Vaultwarden instance, ensuring that it is only accessible within your Tailscale network.
+[Vaultwarden](https://github.com/dani-garcia/vaultwarden) is a password manager server that works with the Bitwarden apps and browser extensions.
 
-## Vaultwarden
+This stack runs Vaultwarden with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Vaultwarden](https://github.com/dani-garcia/vaultwarden) is an open-source, self-hosted alternative to Bitwarden, a popular password manager. Vaultwarden allows you to securely store and manage your passwords, notes, and other sensitive data. This configuration leverages Tailscale to securely connect to your Vaultwarden instance, ensuring that your passwords and sensitive information are protected from unauthorized access and that your instance is accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                  |
+| ------------- | -------------------------------------- |
+| Web interface | `https://vaultwarden.<tailnet>.ts.net` |
+| Service port  | `80`                                   |
+| Image         | `vaultwarden/server`                   |
+| Data          | `./vaultwarden-data/vw-data`           |
 
-In this setup, the `tailscale-vaultwarden` service runs Tailscale, which manages secure networking for the Vaultwarden service. The `vaultwarden` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This setup ensures that Vaultwarden’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted password manager.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+1. Open the web interface and select **Create account**.
+2. Registration is open to everyone who can reach the device on your Tailnet. After you created your accounts, set `SIGNUPS_ALLOWED` to `"false"` in `compose.yaml` and restart the stack.
+3. In the Bitwarden apps and browser extensions, choose a self-hosted server and enter `https://vaultwarden.<tailnet>.ts.net`. The device must be connected to your Tailnet.
+
+## Configuration
+
+### Admin page
+
+The admin page at `/admin` is disabled by default. To enable it, add an `ADMIN_TOKEN` to the `environment` block of `compose.yaml`. See [Enabling admin page](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page).
+
+## Links
+
+- [Vaultwarden wiki](https://github.com/dani-garcia/vaultwarden/wiki)
+- [Vaultwarden source code](https://github.com/dani-garcia/vaultwarden)

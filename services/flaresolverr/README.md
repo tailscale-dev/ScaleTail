@@ -1,11 +1,33 @@
-# FlareSolverr with Tailscale Sidecar Configuration
+# FlareSolverr
 
-This Docker Compose configuration sets up FlareSolverr with Tailscale as a sidecar container to securely manage and route traffic for your Cloudflare bypass proxy over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security of your FlareSolverr instance, ensuring that its API is only accessible within your Tailscale network.
+[FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) is a proxy server that solves Cloudflare challenges for other applications, such as Prowlarr.
 
-## FlareSolverr
+This stack runs FlareSolverr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-FlareSolverr is an open-source proxy server to bypass Cloudflare and other anti-bot protections. It acts as a transparent bridge between your media automation tools (like Prowlarr or Jackett) and indexers that use Cloudflare, silently solving browser challenges in the background. This configuration leverages Tailscale to securely connect to your FlareSolverr API, ensuring that the proxy endpoint is protected from unauthorized access and that your instance is only accessible via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                   |
+| ------------- | --------------------------------------- |
+| Web interface | None                                    |
+| API           | `https://flaresolverr.<tailnet>.ts.net` |
+| Service port  | `8191`                                  |
+| Image         | `ghcr.io/flaresolverr/flaresolverr`     |
+| Data          | None                                    |
 
-In this setup, the tailscale-flaresolverr service runs Tailscale, which manages secure networking for the FlareSolverr service. The flaresolverr service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that FlareSolverr’s API (typically running on port 8191) is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted anti-bot proxy.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **No web interface.** Tailscale Serve publishes the API of FlareSolverr. The address answers with a short status message.
+- **No data folder.** FlareSolverr stores nothing on disk, so the stack has no volumes.
+- **Optional settings.** `compose.yaml` passes `LOG_LEVEL`, `LOG_FILE`, `LOG_HTML`, and `CAPTCHA_SOLVER` to the container when you add them to `.env`.
+
+## First run
+
+Nothing to set up in FlareSolverr itself. Enter its address in the application that uses it. From another stack in this repository, use `http://<Tailscale IP address of flaresolverr>:8191`. See the [DNS section of the standard setup](../../documentation/standard-setup.md#dns) for the use of names.
+
+## Links
+
+- [FlareSolverr documentation and source code](https://github.com/FlareSolverr/FlareSolverr)

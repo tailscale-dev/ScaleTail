@@ -1,11 +1,38 @@
-# Beszel Agent with Tailscale Sidecar Configuration
+# Beszel Agent
 
-This Docker Compose configuration integrates the [Beszel](https://github.com/henrygd/beszel) Agent with Tailscale in a sidecar setup to enhance secure communication over a private Tailscale network. By utilizing Tailscale, this configuration ensures that the Agent's communication with the Hub remains secure and private within your Tailscale network. Thanks to @[henrygd](https://github.com/henrygd) for the tool development.
+[Beszel](https://beszel.dev/) is a lightweight server monitoring platform. The agent collects the statistics of one system and its Docker containers for a [Beszel hub](../beszel-hub/).
 
-## Beszel Agent
+This stack runs Beszel Agent with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-The Beszel Agent is the client-side component that connects to the Hub to send and receive messages. Multiple agents can connect to a single Hub, enabling secure communication across different devices. The Agent also benefits from the Tailscale sidecar, ensuring that its communication with the Hub is conducted over a secure, private network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                 |
+| ------------- | ----------------------------------------------------- |
+| Web interface | None                                                  |
+| Agent port    | `45876` on the Tailscale IP address of `beszel-agent` |
+| Image         | `henrygd/beszel-agent`                                |
+| Data          | None                                                  |
 
-In this setup, the `tailscale` service runs Tailscale, which manages secure networking for the Beszel Agent service. The Agent service connects to the Tailscale network stack using Docker's `network_mode: service:tailscale` configuration. This setup guarantees that the Agent's communication channels are only accessible through the Tailscale network, providing an extra layer of security and privacy.
+## Before you start
+
+The agent only starts with the public key of your hub.
+
+1. In the web interface of the hub, select **Add System** and copy the public key.
+2. In `compose.yaml`, replace the value of `KEY` with that key.
+
+Without a valid key, the `application` container keeps restarting.
+
+## Deviations from the standard setup
+
+- **No web interface.** The stack has no Tailscale Serve configuration and no `./config` folder. The hub connects to the agent on port `45876` of its Tailscale IP address.
+- **Docker socket.** The agent mounts `/var/run/docker.sock` read-only to read the statistics of the containers on the Docker host.
+- **No data folder.** The agent stores nothing on disk.
+
+## First run
+
+In the **Add System** dialog of the hub, enter the Tailscale IP address of the `beszel-agent` device and port `45876`. Your Tailnet policy must allow the hub to reach the agent on that port.
+
+## Links
+
+- [Beszel documentation](https://beszel.dev/guide/getting-started)
+- [Beszel source code](https://github.com/henrygd/beszel)

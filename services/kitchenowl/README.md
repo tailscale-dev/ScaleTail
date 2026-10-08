@@ -1,58 +1,45 @@
-# Kitchenowl with Tailscale Sidecar Configuration
+# KitchenOwl
 
-This Docker Compose configuration sets up **Kitchenowl** with a Tailscale sidecar container, enabling secure, private access to your self-hosted grocery list, recipe manager, and meal planner over your Tailnet. With this setup, your Kitchenowl instance is **not exposed to the public internet** and is only accessible from authorized devices connected via Tailscale.
+[KitchenOwl](https://kitchenowl.org/) is a grocery list and recipe manager for households. You share shopping lists, collect recipes, plan your meals, and track expenses together.
 
-## Kitchenowl
+This stack runs KitchenOwl with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Kitchenowl**](https://github.com/TomBursch/kitchenowl) is a self-hosted grocery list, recipe manager, and meal planning application designed for households and shared kitchens. It helps you organize shopping lists, recipes, weekly meal plans, pantry items, and household food planning from a central web interface.
+## At a glance
 
-Kitchenowl is useful for families, housemates, and home labs that want a private alternative to cloud-hosted grocery and recipe apps. It supports collaborative lists, recipe import workflows, meal planning, and optional account integration features, making it a practical tool for day-to-day kitchen organization.
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://kitchenowl.<tailnet>.ts.net` |
+| Service port  | `8080`                                |
+| Image         | `tombursch/kitchenowl`                |
+| Data          | `./kitchenowl-data`                   |
 
-## Key Features
+## Before you start
 
-- 🛒 Shared grocery lists for households and teams
-- 🍽️ Recipe management with rich recipe import options
-- 📅 Weekly meal planning for organizing upcoming meals
-- 💸 Expense tracking for grocery and household food costs
-- 🧺 Pantry and household item organization
-- 👥 Multi-user collaboration for shared kitchens
-- 🔐 Optional OpenID Connect support for external authentication
-- 🛡️ Tailnet-only access when paired with the included Tailscale sidecar
+Set `JWT_SECRET_KEY` in `.env` to a long random value, for example from `openssl rand -hex 32`.
 
-## Tailscale Integration
+## Deviations from the standard setup
 
-This setup uses a **Tailscale sidecar container** to provide secure private networking for Kitchenowl. The Kitchenowl container shares the Tailscale container's network stack using Docker's `network_mode: service:tailscale` pattern.
+- **Service name.** The application service is called `kitchenowl`, not `application`.
+- **The container reads the whole `.env` file.** The `kitchenowl` container loads `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in its environment.
 
-Because of this, Kitchenowl does not need to publish ports directly to the host. Instead, you access the web interface through the Tailscale hostname or Tailnet IP assigned to the sidecar. This keeps the service private, reduces exposure, and avoids the need for public DNS, inbound firewall rules, or a public reverse proxy.
+## First run
 
-## Configuration Overview
+Open the web interface and create the first account, which becomes the administrator. Then create your household and invite the other members.
 
-The Compose stack is built around two services:
+In the KitchenOwl apps, use `https://kitchenowl.<tailnet>.ts.net` as the server address. The device must be connected to your Tailnet.
 
-1. **Tailscale sidecar**  
-   Handles authentication to your Tailnet and provides the private network endpoint for the application.
+## Configuration
 
-2. **Kitchenowl application**  
-   Runs the Kitchenowl web interface and uses the Tailscale sidecar's network namespace for secure Tailnet-only access.
+### OpenID Connect
 
-Kitchenowl should be configured with persistent storage so recipes, shopping lists, users, pantry data, meal plans, and application settings are retained across container restarts and updates. Review the provided `compose.yaml` and `.env` file before deployment, especially if you want to enable authentication integrations.
+KitchenOwl can use an OpenID Connect provider for the login, such as Authentik, Authelia, Keycloak, or [Pocket ID](../pocket-id/).
 
-## OpenID Connect
+1. Set `FRONT_URL` in `.env` to the exact address of the web interface, and fill in `OIDC_ISSUER`, `OIDC_CLIENT_ID`, and `OIDC_CLIENT_SECRET`.
+2. Uncomment the matching lines in the `environment` block of `compose.yaml`.
 
-Kitchenowl supports OpenID Connect for external authentication providers. This can be useful when integrating Kitchenowl with an existing identity provider such as Authentik, Authelia, Keycloak, or another OIDC-compatible service.
+See the [KitchenOwl OpenID Connect documentation](https://docs.kitchenowl.org/latest/self-hosting/oidc/).
 
-To enable OIDC in this ScaleTail service, review the commented OIDC sections in both the `.env` file and the `compose.yaml` file. Uncomment the relevant values and fill in the required provider details before starting the stack.
+## Links
 
-You can find the upstream Kitchenowl OIDC documentation here: [Kitchenowl OpenID Connect Documentation](https://docs.kitchenowl.org/latest/self-hosting/oidc/).
-
-## Usage Notes
-
-Once logged in, create your household, configure users, and begin adding grocery lists, recipes, pantry items, and meal plans. Since Kitchenowl is designed for shared household use, review user permissions and authentication settings before inviting other people to the instance.
-
-## References
-
-- [Kitchenowl Website](https://kitchenowl.org/)
-- [Kitchenowl GitHub Repository](https://github.com/TomBursch/kitchenowl)
-- [Kitchenowl Documentation](https://docs.kitchenowl.org/)
-- [Kitchenowl OpenID Connect Documentation](https://docs.kitchenowl.org/latest/self-hosting/oidc/)
-- [Tailscale Docker Documentation](https://tailscale.com/kb/1282/docker)
+- [KitchenOwl documentation](https://docs.kitchenowl.org/)
+- [KitchenOwl source code](https://github.com/TomBursch/kitchenowl)

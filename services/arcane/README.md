@@ -1,33 +1,34 @@
-# Arcane with Tailscale Sidecar Configuration
+# Arcane
 
-This Docker Compose configuration sets up **Arcane** with a Tailscale sidecar container, enabling secure access to your self-hosted Docker management interface over your private Tailscale network. With this setup, your Arcane instance remains **private and accessible only from authorized devices on your Tailnet**, keeping your Docker environment and operations shielded from public exposure.
+[Arcane](https://getarcane.app/) is a web interface to manage Docker. You manage containers, images, networks, volumes, and Compose projects without the command line.
 
-## Arcane
+This stack runs Arcane with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Arcane**](https://getarcane.app/docs) is an open-source, self-hosted platform for **Docker container and Compose stack management** with a modern web interface. It allows users to manage containers, images, networks, volumes, remote environments, and projects—all without needing to rely on the Docker CLI. Arcane makes container operations approachable while providing powerful features for both homelab and production use.
+## At a glance
 
-## Key Features
+| Item          | Value                                 |
+| ------------- | ------------------------------------- |
+| Web interface | `https://arcane.<tailnet>.ts.net`     |
+| Service port  | `3552`                                |
+| Image         | `ghcr.io/getarcaneapp/arcane`         |
+| Data          | `./arcane-data` (application data)    |
+|               | `./opt/dockerdata` (Compose projects) |
 
-* 🐳 **Containers** – Start, stop, inspect, and monitor containers from a unified web UI.
-* 📦 **Images** – List, pull, and manage container images.
-* 🌐 **Networks** – View and create Docker networks with driver and subnet information.
-* 🗂 **Projects** – Manage Docker Compose stacks as first-class resources, with a Projects UI and Git syncing.
-* 🔄 **Remote Environments** – Control containers on other hosts using Arcane Agents.
-* 💾 **Volumes** – Browse and manage Docker volumes.
-* 🧰 **Templates & Guides** – Built-in support for templates and guides to streamline deployment patterns.
-* 🔐 **Extensible Configuration** – Support for environment variables, OIDC single sign-on, notifications, HTTP proxies, and analytics.
+## Before you start
 
-## Configuration Overview
+- **Set your Tailnet name.** Set `TAILNET_NAME` in `.env` to your Tailnet name, without `.ts.net`. `compose.yaml` builds the address of the application, `APP_URL`, from it.
+- **Replace the secrets.** `ENCRYPTION_KEY` and `JWT_SECRET` in `compose.yaml` have a public sample value. Replace both with your own random values.
 
-In this deployment, a **Tailscale sidecar container** (for example `tailscale-arcane`) runs the Tailscale client and joins your private Tailscale network. The main `arcane` service uses:
+## Deviations from the standard setup
 
-```plain
-network_mode: service:tailscale
-```
+- **Docker socket.** Arcane mounts `/var/run/docker.sock` with write access, which it needs to manage Docker. Everyone who can log in to Arcane has full control over the Docker host.
+- **Data folders.** The Compose projects are in `./opt/dockerdata`, outside the `./arcane-data` folder.
 
-This configuration routes all traffic through the Tailscale interface, ensuring that the Arcane web UI and API are accessible **only via your Tailscale network**. This provides a simple and secure way to access your Docker management console from all trusted devices while preventing public access to container controls.
+## First run
 
-## Default Credentials
+Open the web interface and log in with username `arcane` and password `arcane-admin`. Arcane creates this account at the first start and asks you to change the password at the first login.
 
-* Username: `arcane`
-* Password: `arcane-admin`
+## Links
+
+- [Arcane documentation](https://getarcane.app/docs)
+- [Arcane source code](https://github.com/getarcaneapp/arcane)

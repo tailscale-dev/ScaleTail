@@ -1,15 +1,35 @@
-# Sonarr with Tailscale Sidecar Configuration
+# Sonarr
 
-This Docker Compose configuration sets up [Sonarr](https://github.com/Sonarr/Sonarr) with Tailscale as a sidecar container to securely manage and access your media management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Sonarr instance, ensuring that it is only accessible within your Tailscale network.
+[Sonarr](https://github.com/Sonarr/Sonarr) manages your series collection. It searches Usenet and BitTorrent sources for new episodes, sends them to your download client, and sorts the files into your library.
 
-## Sonarr
+This stack runs Sonarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Sonarr](https://github.com/Sonarr/Sonarr) is an open-source, self-hosted application for managing TV shows in your media collection. It allows you to automatically download TV episodes from Usenet and BitTorrent sources and organize them in your media library. This configuration leverages Tailscale to securely connect to your Sonarr instance, ensuring that your media management interface is protected from unauthorized access and that your instance is accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                                        |
+| ------------- | ------------------------------------------------------------ |
+| Web interface | `https://sonarr.<tailnet>.ts.net`                            |
+| Service port  | `8989`                                                       |
+| Image         | `lscr.io/linuxserver/sonarr`                                 |
+| Data          | `./sonarr-data/config` (configuration and database)          |
+|               | `./sonarr-data/media/tvseries` (series library, optional)    |
+|               | `./sonarr-data/downloads` (download client output, optional) |
 
-In this setup, the tailscale-sonarr service runs Tailscale, which manages secure networking for the Sonarr service. The sonarr service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Sonarr’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted media manager.
+## Before you start
 
-### Trouble with presets or optimal download quality, try
+Point the `/tv` and `/downloads` volumes in `compose.yaml` at your series library and at the output folder of your download client. Both are optional and default to empty folders in `./sonarr-data`. Docker creates missing folders as user `root`. The container runs as user and group `1000`, which need write access to both folders.
 
-- [Configarr with presets](https://github.com/ChillBill77/configarr-presets)
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface. Sonarr asks you to choose an authentication method and to create a username and password before you can continue.
+
+## Links
+
+- [Sonarr documentation](https://wiki.servarr.com/sonarr)
+- [Sonarr source code](https://github.com/Sonarr/Sonarr)
+- [LinuxServer.io image documentation](https://docs.linuxserver.io/images/docker-sonarr/)
+- [Configarr presets](https://github.com/ChillBill77/configarr-presets), for help with quality profiles and download quality

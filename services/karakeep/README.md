@@ -1,37 +1,40 @@
-# Karakeep with Tailscale Sidecar Configuration
+# Karakeep
 
-This Docker Compose configuration sets up **[Karakeep](https://github.com/karakeep-app/karakeep)** with Tailscale as a sidecar container to securely manage and access your self-hosted notes and collaboration app over a private Tailscale network. By integrating Tailscale, you can ensure that your Karakeep instance is only accessible to authorized devices within your Tailscale network, protecting your ideas and information from the public web.
+[Karakeep](https://karakeep.app/) is a bookmark manager for links, notes, and images. It archives the pages that you save, searches their full text, and can tag them automatically with AI.
 
-## Karakeep
+This stack runs Karakeep with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Karakeep](https://github.com/karakeep-app/karakeep) is an open-source, self-hosted **bookmark-everything app (links, notes and images)** with AI-based automatic tagging and full text search.
+## At a glance
 
-## Key Features
+| Item          | Value                                                    |
+| ------------- | -------------------------------------------------------- |
+| Web interface | `https://karakeep.<tailnet>.ts.net`                      |
+| Service port  | `3000`                                                   |
+| Images        | `ghcr.io/karakeep-app/karakeep`                          |
+|               | `ghcr.io/karakeep-app/karakeep-chrome:release`           |
+|               | `getmeili/meilisearch:v1.11.1`                           |
+| Data          | `./karakeep-data/data` (bookmarks, assets, and database) |
+|               | `./karakeep-data/meilisearch` (search index)             |
 
-- 🔗 Bookmark links, take simple notes and store images and pdfs.
-- ⬇️ Automatic fetching for link titles, descriptions and images.
-- 📋 Sort your bookmarks into lists.
-- 👥 Collaborate with others on the same list.
-- 🔎 Full text search of all the content stored.
-- ✨ AI-based (aka chatgpt) automatic tagging and summarization. With supports for local models using ollama!
-- 🤖 Rule-based engine for customized management.
-- 🎆 OCR for extracting text from images.
-- 🔖 Chrome plugin and Firefox addon for quick bookmarking.
-- 📱 An iOS app, and an Android app.
-- 📰 Auto hoarding from RSS feeds.
-- 🔌 REST API and multiple clients.
-- 🌐 Multi-language support.
-- 🖍️ Mark and store highlights from your hoarded content.
-- 🗄️ Full page archival (using monolith) to protect against link rot.
-- ▶️ Auto video archiving using yt-dlp.
-- ☑️ Bulk actions support.
-- 🔐 SSO support.
-- 🌙 Dark mode support.
-- 💾 Self-hosting first. Own your data, free from third-party cloud services.
-- ⬇️ Bookmark importers from Chrome, Pocket, Linkwarden, Omnivore, Tab Session Manager.
-- 🔄 Automatic sync with browser bookmarks via floccus.
-- **Secure Access with Tailscale** – Restrict access to your data using your private Tailscale network.
+## Before you start
 
-## Configuration Overview
+Set these values in `.env`:
 
-In this setup, the `tailscale-karakeep` service runs Tailscale, which manages secure networking for the Karakeep service. The `karakeep` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Karakeep’s web interface is only accessible through the Tailscale network (or locally, if preferred), enhancing the privacy and security of your notes and collaborative workspace.
+- **`NEXTAUTH_URL`.** The address of the web interface, `https://karakeep.<tailnet>.ts.net`. Karakeep does not start with the sample value.
+- **`NEXTAUTH_SECRET` and `MEILI_MASTER_KEY`.** Two different random values, for example from `openssl rand -base64 36`. The sample values are public.
+
+## Deviations from the standard setup
+
+- **Service name.** The application service is called `web`, not `application`, and its container is `app-karakeep-web`.
+- **Extra containers.** The stack runs `chrome`, a headless browser that fetches the pages, and `meilisearch` for the search. They use the default Compose network, and Karakeep reaches them by their service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve these names.
+- **Images are set in `compose.yaml`.** The stack does not use `IMAGE_URL`. `KARAKEEP_VERSION` in `.env` selects the version of the Karakeep image.
+- **The containers read the whole `.env` file.** The `web` and `meilisearch` containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in their environment.
+
+## First run
+
+Open the web interface and sign up. The first account becomes the administrator. To stop others from registering afterwards, set `DISABLE_SIGNUPS=true` in `.env` and restart the stack.
+
+## Links
+
+- [Karakeep documentation](https://docs.karakeep.app/)
+- [Karakeep source code](https://github.com/karakeep-app/karakeep)

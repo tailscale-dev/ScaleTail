@@ -1,35 +1,62 @@
-# LanguageTool with Tailscale Sidecar Configuration
+# LanguageTool
 
-This Docker Compose configuration sets up [LanguageTool](https://languagetool.org) with Tailscale as a sidecar container to enhance secure networking.
+[LanguageTool](https://languagetool.org) checks grammar, style, and spelling in many languages. This stack runs its server, which the LanguageTool browser extensions and other clients can use in place of the public service.
 
-## LanguageTool
+This stack runs LanguageTool with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[LanguageTool](https://languagetool.org) is a powerful grammar and spell-checking tool available for various languages. It can be used in various applications, including web browsers, office suites, and as a standalone server for integration with other services.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                               |
+| ------------- | --------------------------------------------------- |
+| Web interface | None                                                |
+| API           | `https://languagetool.<tailnet>.ts.net/v2`          |
+| Service port  | `8010`                                              |
+| Image         | `erikvl87/languagetool`                             |
+| Data          | `./languagetool-data/ngrams` (optional n-gram data) |
 
-In this setup, the `tailscale-adguardhome` service runs Tailscale, which manages secure networking for LanguageTool. The `languagetool` service utilizes the Tailscale network stack via Docker's `network_mode: service:tailscale`. This setup ensures that LanguageTool's service is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your LanguageTool deployment.
+## Before you start
 
-## Using n-gram datasets
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-> LanguageTool can make use of large n-gram data sets to detect errors with words that are often confused, like __their__ and __there__.
+## Deviations from the standard setup
 
-*Source: [https://dev.languagetool.org/finding-errors-using-n-gram-data](https://dev.languagetool.org/finding-errors-using-n-gram-data)*
+- **No web interface.** Tailscale Serve publishes the API of LanguageTool.
+- **Memory.** `Java_Xms` and `Java_Xmx` in `compose.yaml` set the Java heap to between 512 MB and 1 GB.
 
-[Download](http://languagetool.org/download/ngram-data/) the n-gram dataset(s) onto your local machine and unzip them into a local ngrams directory:
+## First run
 
-```plain
-home/
-├─ /
-│  ├─ ngrams/
-│  │  ├─ en/
-│  │  │  ├─ 1grams/
-│  │  │  ├─ 2grams/
-│  │  │  ├─ 3grams/
-│  │  ├─ nl/
-│  │  │  ├─ 1grams/
-│  │  │  ├─ 2grams/
-│  │  │  ├─ 3grams/
+Nothing to set up on the server. Test the API from a device on your Tailnet:
+
+```bash
+curl -d "language=en-US" -d "text=This are a test." https://languagetool.<tailnet>.ts.net/v2/check
 ```
 
-Mount the local ngrams directory to the `/ngrams` directory in the Docker container [using the `-v` configuration](https://docs.docker.com/engine/reference/commandline/container_run/#read-only) and set the `languageModel` configuration to the `/ngrams` folder.
+In the LanguageTool browser extension, choose your own server in the advanced settings and enter `https://languagetool.<tailnet>.ts.net/v2`.
+
+## Configuration
+
+### Use n-gram data
+
+LanguageTool can use large n-gram data sets to find errors with words that are often confused, such as *their* and *there*. See [Finding errors using n-gram data](https://dev.languagetool.org/finding-errors-using-n-gram-data).
+
+1. [Download](https://languagetool.org/download/ngram-data/) the data for your languages.
+2. Unzip each file into `./languagetool-data/ngrams`, so that each language has its own folder:
+
+   ```text
+   languagetool-data/ngrams/
+   ├─ en/
+   │  ├─ 1grams/
+   │  ├─ 2grams/
+   │  ├─ 3grams/
+   ├─ nl/
+   │  ├─ 1grams/
+   │  ├─ 2grams/
+   │  ├─ 3grams/
+   ```
+
+3. Restart the stack. `compose.yaml` already mounts the folder at `/ngrams` and sets `langtool_languageModel` to it.
+
+## Links
+
+- [LanguageTool HTTP API](https://dev.languagetool.org/http-server)
+- [erikvl87/languagetool image](https://github.com/Erikvl87/docker-languagetool)

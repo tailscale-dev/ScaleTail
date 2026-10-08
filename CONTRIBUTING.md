@@ -72,8 +72,40 @@ Thanks for helping improve these Tailscale sidecar examples.
 
 6. Complete the service README.
 
-   Document prerequisites, persistent paths, setup steps, ports, Tailnet access,
-   and service-specific exceptions. Link to the upstream documentation.
+   Every service README uses the headings of the template, in the same order.
+   Do not rename them and do not add others, so that every service reads the
+   same way. Replace the placeholders in capitals.
+
+   - **Introduction.** Say what the service does in one or two sentences and
+     link to the upstream project. Leave feature lists to upstream.
+   - **At a glance.** Give the Tailnet address, the port that Tailscale Serve
+     forwards to, the image, and the data paths on the host. Add a row for
+     each further port that users connect to, such as DNS or SMTP.
+   - **Before you start.** List only what the Quick Start does not cover:
+     values that must change in `.env`, secrets to generate, folders to
+     create, and required host groups or devices.
+   - **Deviations from the standard setup.** List every difference from
+     [the standard setup](documentation/standard-setup.md) and give the
+     reason. Examples are extra containers, published host ports, a changed
+     or removed Serve configuration, DNS settings, and added capabilities.
+   - **First run.** Describe what the user does after the first start, such
+     as creating the first account or finding a generated password.
+   - **Links.** Link to the upstream documentation and source code.
+
+   When a section has nothing to report, keep the heading and the sentence
+   from the template. A reader can then tell that the service follows the
+   standard setup, and that the section was not forgotten.
+
+   Add these optional sections between "First run" and "Links" when the
+   service needs them, in this order:
+
+   - **Configuration.** Optional settings that users commonly change.
+   - **Troubleshooting.** Known errors and their solutions.
+   - **Upgrading.** Steps for users of an older version of the stack.
+
+   State only what you confirmed in the Compose file, the upstream
+   documentation, or a running stack. Put guidance that applies to more than
+   one service in `documentation/` and link to it.
 
 7. Add the service to the correct category in the root `README.md`.
 

@@ -1,11 +1,40 @@
-# Bazarr with Tailscale Sidecar Configuration
+# Bazarr
 
-This Docker Compose configuration sets up [Bazarr](https://github.com/morpheus65535/bazarr) with Tailscale as a sidecar container to securely manage and access your subtitle management system over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Bazarr instance, ensuring that it is only accessible within your Tailscale network.
+[Bazarr](https://www.bazarr.media/) downloads subtitles for the movies and series that Radarr and Sonarr manage.
 
-## Bazarr
+This stack runs Bazarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Bazarr](https://github.com/morpheus65535/bazarr) is an open-source, self-hosted application for managing and downloading subtitles for your movies and TV shows. It works in conjunction with other media managers like Sonarr and Radarr to automatically search for and download subtitles from various sources. This configuration leverages Tailscale to securely connect to your Bazarr instance, ensuring that your subtitle management interface is protected from unauthorized access and that your instance is accessible only via your private Tailscale network.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                               |
+| ------------- | --------------------------------------------------- |
+| Web interface | `https://bazarr.<tailnet>.ts.net`                   |
+| Service port  | `6767`                                              |
+| Image         | `lscr.io/linuxserver/bazarr`                        |
+| Data          | `./bazarr-data/config` (configuration and database) |
+|               | `./bazarr-data/media/movies` (movie library)        |
+|               | `./bazarr-data/media/tvseries` (series library)     |
 
-In this setup, the tailscale-bazarr service runs Tailscale, which manages secure networking for the Bazarr service. The bazarr service uses the Tailscale network stack via Docker's network_mode: service:tailscale configuration. This setup ensures that Bazarr’s web interface and API are only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for your self-hosted subtitle manager.
+## Before you start
+
+Point the `/movies` and `/tv` volumes in `compose.yaml` at the folders that Radarr and Sonarr use, because Bazarr stores the subtitles next to the video files. Docker creates missing folders as user `root`. The container runs as user and group `1000`, which need write access to both folders.
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Bazarr has no login by default. Open the web interface and go to **Settings**:
+
+1. Under **Sonarr** and **Radarr**, enter the address, port, and API key of each application.
+2. Under **Languages**, choose your subtitle languages and create a language profile.
+3. Under **Providers**, enable the subtitle providers you want to use.
+
+To reach Sonarr or Radarr in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+
+## Links
+
+- [Bazarr setup guide](https://wiki.bazarr.media/Getting-Started/Setup-Guide/)
+- [Bazarr source code](https://github.com/morpheus65535/bazarr)
+- [LinuxServer.io image documentation](https://docs.linuxserver.io/images/docker-bazarr/)

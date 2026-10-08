@@ -1,19 +1,33 @@
-# Flatnotes with Tailscale Sidecar Configuration
+# flatnotes
 
-This Docker Compose configuration sets up **[Flatnotes](https://github.com/dullage/flatnotes)** with Tailscale as a sidecar container to securely manage and access your self-hosted note-taking application over a private Tailscale network. By integrating Tailscale, you can ensure that your Flatnotes instance remains private and accessible only to authorized devices within your Tailscale network.
+[flatnotes](https://github.com/dullage/flatnotes) is a note-taking application that stores your notes as plain Markdown files. It has tags, full-text search, and no database.
 
-## Flatnotes
+This stack runs flatnotes with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Flatnotes](https://github.com/dullage/flatnotes) is a **lightweight, self-hosted note-taking app** that stores notes in plain text Markdown files. With a simple yet powerful interface, Flatnotes offers **tag-based organization**, **full-text search**, and a **distraction-free writing experience**. By integrating Tailscale, you can keep your notes private and secure, ensuring that only trusted devices can access them.
+## At a glance
 
-## Key Features
+| Item          | Value                                             |
+| ------------- | ------------------------------------------------- |
+| Web interface | `https://flatnotes.<tailnet>.ts.net`              |
+| Service port  | `8080`                                            |
+| Image         | `dullage/flatnotes`                               |
+| Data          | `./flatnotes-data` (your notes as Markdown files) |
 
-- **Markdown-Based Notes** – Write and store notes in Markdown format for flexibility.
-- **Tag-Based Organization** – Easily categorize and manage notes with tags.
-- **Full-Text Search** – Quickly find notes with an efficient search function.
-- **Self-Hosted Privacy** – Keep full control of your data without relying on third-party services.
-- **Secure Access with Tailscale** – Restrict access to only authorized devices within your private network.
+## Before you start
 
-## Configuration Overview
+Change these values in `.env`:
 
-In this setup, the `tailscale-flatnotes` service runs Tailscale, which manages secure networking for the Flatnotes service. The `flatnotes` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Flatnotes’ web interface and note storage are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing your notes.
+- **`FLATNOTES_USERNAME` and `FLATNOTES_PASSWORD`.** The login of the web interface. The defaults are `user` and `changeMe!`.
+- **`FLATNOTES_SECRET_KEY`.** A long random value that flatnotes uses to sign the login tokens.
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface and log in with the username and password from `.env`.
+
+## Links
+
+- [flatnotes documentation and source code](https://github.com/dullage/flatnotes)

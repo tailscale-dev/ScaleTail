@@ -1,19 +1,31 @@
-# Eigenfocus with Tailscale Sidecar Configuration  
+# Eigenfocus
 
-This Docker Compose configuration sets up **[Eigenfocus](https://github.com/Eigenfocus/eigenfocus)** with Tailscale as a sidecar container to securely manage and access your self-hosted task and project management tool over a private Tailscale network. By integrating Tailscale, you can ensure that your Eigenfocus instance remains private and accessible only to authorized devices within your Tailscale network.
+[Eigenfocus](https://eigenfocus.com/) is a project and task manager with boards, time tracking, and focus tools.
 
-## Eigenfocus  
+This stack runs Eigenfocus with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Eigenfocus](https://github.com/Eigenfocus/eigenfocus) is a self-hosted, privacy-focused task and project management tool that helps individuals and teams stay organized. With its clean, minimalist interface and structured workflow, Eigenfocus is designed for those who prefer a lightweight yet powerful alternative to traditional project management apps. By integrating Tailscale, your Eigenfocus instance is secured, allowing access only from trusted devices within your private network.
+## At a glance
 
-## Key Features  
+| Item          | Value                                             |
+| ------------- | ------------------------------------------------- |
+| Web interface | `https://eigenfocus.<tailnet>.ts.net`             |
+| Service port  | `3000`                                            |
+| Image         | `eigenfocus/eigenfocus:0.8.0`                     |
+| Data          | `./eigenfocus-data` (database and uploaded files) |
 
-- **Task & Project Management** – Organize tasks, set deadlines, and track progress effortlessly.  
-- **Privacy-Focused** – Self-hosted to keep your data secure and under your control.  
-- **Minimalist Interface** – A distraction-free, efficient workflow for productivity.  
-- **Collaboration Ready** – Share tasks and projects with team members.  
-- **Secure Access with Tailscale** – Restrict access to only authorized devices within your private network.  
+## Before you start
 
-## Configuration Overview  
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this setup, the `tailscale-eigenfocus` service runs Tailscale, which manages secure networking for the Eigenfocus service. The `eigenfocus` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Eigenfocus’ web interface is only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for managing tasks and projects.
+## Deviations from the standard setup
+
+- **Pinned version.** `IMAGE_URL` in `.env` pins Eigenfocus to version `0.8.0`.
+
+## First run
+
+Open the web interface. Eigenfocus sends you to the profile page, where you enter your name and preferences before you create the first project.
+
+## Links
+
+- [Eigenfocus website](https://eigenfocus.com/)
+- [Eigenfocus source code](https://github.com/Eigenfocus/eigenfocus)

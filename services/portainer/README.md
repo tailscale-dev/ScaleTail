@@ -1,11 +1,38 @@
-# Portainer with Tailscale Sidecar Configuration
+# Portainer
 
-This Docker Compose configuration sets up [Portainer](https://github.com/portainer/portainer) with Tailscale as a sidecar container to securely manage and monitor your Docker environments over a private Tailscale network. By using Tailscale in a sidecar configuration, you can enhance the security and privacy of your Portainer instance, ensuring that it is only accessible within your Tailscale network.
+[Portainer](https://www.portainer.io/) is a web interface to manage Docker. You start, stop, inspect, and update the containers, images, volumes, and networks of the Docker host.
 
-## Portainer
+This stack runs Portainer with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Portainer](https://github.com/portainer/portainer) is an open-source management tool that provides a simple and easy-to-use interface for managing Docker environments. Whether you are deploying containers, managing networks, or monitoring your Docker services, Portainer offers a comprehensive solution for managing your containerized applications. This configuration leverages Tailscale to securely connect to your Portainer instance, protecting your Docker management interface from unauthorized access.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                |
+| ------------- | ------------------------------------ |
+| Web interface | `https://portainer.<tailnet>.ts.net` |
+| Service port  | `9000`                               |
+| Image         | `portainer/portainer-ce`             |
+| Data          | `./portainer-data/portainer_data`    |
 
-In this setup, the `tailscale-portainer` service runs Tailscale, which manages secure networking for the Portainer service. The `portainer` service uses the Tailscale network stack via Docker’s `network_mode: service:tailscale` configuration. This setup ensures that Portainer’s management interface is only accessible through the Tailscale network (or locally, if preferred), providing an extra layer of security and privacy for managing your Docker environments.
+## Before you start
+
+Nothing beyond the [Quick Start](../../README.md#quick-start).
+
+## Deviations from the standard setup
+
+- **Docker socket.** Portainer mounts `/var/run/docker.sock` with write access, which it needs to manage Docker. Everyone who can log in to Portainer has full control over the Docker host.
+
+## First run
+
+1. Portainer prints a setup token to the log at the first start:
+
+   ```bash
+   docker logs app-portainer 2>&1 | grep setup_token
+   ```
+
+2. Open the web interface. Enter the setup token and create the administrator account. The password must have at least 12 characters.
+3. Portainer then manages the Docker host through the mounted Docker socket.
+
+## Links
+
+- [Portainer documentation](https://docs.portainer.io/)
+- [Portainer source code](https://github.com/portainer/portainer)

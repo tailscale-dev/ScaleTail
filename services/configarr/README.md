@@ -1,41 +1,40 @@
-# Configarr with Tailscale Sidecar Configuration
+# Configarr
 
-This Docker Compose configuration sets up **Configarr** with a Tailscale sidecar container, enabling secure and private management of configuration files for your *Radarr*, *Sonarr*, and broader media automation stack. With this setup, Configarr is **only accessible from within your Tailscale network**, keeping your configuration workflows fully private and under your control.
+[Configarr](https://github.com/raydak-labs/configarr) keeps the settings of Radarr, Sonarr, and related applications in sync with YAML files. It applies custom formats and quality profiles, for example from the TRaSH Guides.
 
-## Configarr
+This stack runs Configarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**Configarr**](https://github.com/raydak-labs/configarr) is a configuration management tool designed to **declaratively manage and synchronize settings** for Radarr, Sonarr, and related media services. By defining your desired state in version-controlled YAML files, Configarr ensures your media applications remain consistent, reproducible, and easy to maintain.
+## At a glance
 
-## Key Features
+| Item          | Value                                                            |
+| ------------- | ---------------------------------------------------------------- |
+| Web interface | None                                                             |
+| Image         | `ghcr.io/raydak-labs/configarr`                                  |
+| Data          | `./configarr-data/config` (your `config.yml` and `secrets.yml`)  |
+|               | `./configarr-data/dockerrepos` (downloaded guides and templates) |
 
-* ⚙️ **Declarative Configuration Management** – Define Radarr and Sonarr settings in YAML.
-* 🔁 **Idempotent Syncing** – Apply configurations safely and repeatedly without drift.
-* 📦 **Multi-Instance Support** – Manage multiple Radarr/Sonarr instances from a single config.
-* 🧩 **Profile & Root Folder Management** – Keep paths, profiles, and settings aligned.
-* 🛠 **Automation-Friendly** – Ideal for cron jobs, CI pipelines, or GitOps-style workflows.
-* 🧪 **Dry-Run Mode** – Preview configuration changes before applying them.
-* 🐳 **Docker-Native** – Lightweight and easy to deploy in containerized environments.
+## Before you start
 
-## Why Self-Host?
+Create `config.yml` and `secrets.yml` in `./configarr-data/config`. The [Configarr documentation](https://configarr.de/docs/intro) describes both files. To reach Radarr or Sonarr in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
 
-Configarr requires **API access to Radarr and Sonarr**, exposing configuration and library metadata that should not be publicly reachable. By self-hosting Configarr behind Tailscale, you gain:
+## Deviations from the standard setup
 
-* Private, encrypted access to all Radarr/Sonarr APIs
-* No need to expose management endpoints to the public Internet
-* Secure remote configuration management across locations
+- **No web interface.** The stack has no Tailscale Serve configuration and no `./config` folder. Configarr only makes outgoing connections to your applications.
+- **Runs once.** The `application` container runs one sync and then exits, so the stack uses `restart: "no"`.
 
-This is especially useful for homelabs, shared servers, and environments where consistent configuration and security are critical.
+## First run
 
-## Configuration Overview
+Start the stack and read the result of the sync in the log:
 
-In this deployment, a **Tailscale sidecar container** (for example, `tailscale-configarr`) runs the Tailscale client and joins your private Tailscale network. The Configarr service uses:
-
-```plain
-network_mode: service:tailscale
+```bash
+docker compose up -d
+docker logs app-configarr
 ```
 
-This setup ensures that **all Configarr network traffic flows exclusively through the Tailscale interface**, allowing it to securely communicate with Radarr and Sonarr instances that are also connected via Tailscale. No ports need to be exposed, and the service remains completely inaccessible from the public Internet.
+To sync on a schedule, run `docker compose up application` from cron or another scheduler.
 
-The Configarr container runs one sync and then exits, so the Compose file uses `restart: "no"`. To run it on a schedule, trigger `docker compose up application` from cron or another scheduler.
+## Links
 
-With this configuration, Configarr can safely enforce and maintain your desired media configuration state — privately, securely, and reproducibly.
+- [Configarr documentation](https://configarr.de/docs/intro)
+- [Configarr source code](https://github.com/raydak-labs/configarr)
+- [Configarr presets](https://github.com/ChillBill77/configarr-presets)

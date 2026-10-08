@@ -1,20 +1,34 @@
-# GitSave with Tailscale Sidecar Configuration
+# GitSave
 
-This Docker Compose configuration sets up [**GitSave**](https://github.com/TimWitzdam/GitSave) with Tailscale as a sidecar container, enabling secure access to your self-hosted GitHub repository backup solution from anywhere on your private Tailscale network. With this setup, your GitSave instance remains fully private and accessible only from authorized devices.
+[GitSave](https://github.com/TimWitzdam/GitSave) backs up your Git repositories on a schedule. You add the repositories in a web interface and GitSave keeps copies of them on your server.
 
-## GitSave
+This stack runs GitSave with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[**GitSave**](https://github.com/TimWitzdam/GitSave) is a self-hosted tool for automatically backing up your GitHub repositories. It runs as a lightweight web service with a simple REST API and can be scheduled or triggered manually. Designed for developers, teams, and organizations who want to keep a secure copy of their code outside GitHub, GitSave ensures your projects remain safe and accessible under your own control.
+## At a glance
 
-## Key Features
+| Item          | Value                                                   |
+| ------------- | ------------------------------------------------------- |
+| Web interface | `https://gitsave.<tailnet>.ts.net`                      |
+| Service port  | `3000`                                                  |
+| Image         | `timwitzdam/gitsave`                                    |
+| Data          | `./gitsave-data/gitsave` (database)                     |
+|               | `./gitsave-data/backups` (backups of your repositories) |
 
-* **Automated Backups** – Regularly back up all your GitHub repositories with minimal setup.
-* **REST API Interface** – Trigger backups or manage configurations programmatically.
-* **Simple Configuration** – Connect with your GitHub account via a personal access token.
-* **Dockerized Deployment** – Run in a containerized environment for easy setup and portability.
-* **Lightweight & Fast** – Written in Go for speed and efficiency with minimal resource usage.
-* **Self-Hosted & Secure** – Maintain full control of your backup data on your own infrastructure.
+## Before you start
 
-## Configuration Overview
+Replace these values in `.env`:
 
-In this deployment, the `tailscale-gitsave` service runs the Tailscale client to establish a secure private network. The `gitsave` container uses `network_mode: service:tailscale` to route all traffic through the Tailscale interface. This ensures that your GitHub backup service and its API endpoints are only accessible via Tailscale, preventing public exposure.
+- **`JWT_SECRET`.** A long random value.
+- **`ENCRYPTION_SECRET`.** A random value of exactly 32 characters, for example from `openssl rand -hex 16`. GitSave does not start with the sample value and reports `ENCRYPTION_SECRET must be 32 bytes`.
+
+## Deviations from the standard setup
+
+None.
+
+## First run
+
+Open the web interface and create the first account.
+
+## Links
+
+- [GitSave documentation and source code](https://github.com/TimWitzdam/GitSave)

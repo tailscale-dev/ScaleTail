@@ -1,42 +1,46 @@
-# Home Assistant with Tailscale Sidecar Configuration
+# Home Assistant
 
-This Docker Compose configuration sets up **[Home Assistant](https://github.com/home-assistant/)** with Tailscale as a sidecar container to securely manage and access your smart home automation platform over a private Tailscale network. By integrating Tailscale, you can ensure that your Home Assistant instance remains private and accessible only to authorized devices within your Tailscale network.
+[Home Assistant](https://www.home-assistant.io/) is a home automation platform. It controls and automates the smart devices in your home from one interface and runs locally.
 
-## Home Assistant
+This stack runs Home Assistant with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Home Assistant](https://github.com/home-assistant/) is an open-source home automation platform that allows you to control and automate smart devices from a unified interface. With support for thousands of integrations, it provides powerful automation capabilities and privacy-focused self-hosted control over your smart home. Pairing Home Assistant with Tailscale ensures a secure, remote-accessible smart home without exposing it to the public internet.
+## At a glance
 
-## Key Features
+| Item          | Value                                          |
+| ------------- | ---------------------------------------------- |
+| Web interface | `https://home-assistant.<tailnet>.ts.net`      |
+| Service port  | `8123`                                         |
+| Image         | `ghcr.io/home-assistant/home-assistant:stable` |
+| Data          | `./home-assistant-data/config`                 |
 
-- **Local Control & Privacy** – Self-hosted and privacy-focused, keeping your data in your home.
-- **Extensive Integrations** – Supports thousands of smart home devices and services.
-- **Automation & Customization** – Create complex automations with YAML or visual editors.
-- **Secure Remote Access** – Pair with Tailscale to safely access your Home Assistant instance from anywhere.
+## Before you start
 
-## Configuration Overview
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
-In this setup, the `tailscale-homeassistant` service runs Tailscale, which manages secure networking for the Home Assistant service. The `homeassistant` service uses the Tailscale network stack via Docker's `network_mode: service:tailscale` configuration. This ensures that Home Assistant’s web interface and smart home control features are only accessible through the Tailscale network (or locally, if preferred), adding an extra layer of security and privacy for your home automation system.
+## Deviations from the standard setup
 
-## Troubleshooting
+- **Privileged container.** The `application` container runs with `privileged: true`, so that Home Assistant can use the devices of the Docker host, such as USB sticks for Zigbee or Z-Wave.
+- **D-Bus.** The stack mounts `/run/dbus` of the Docker host read-only, which the Bluetooth integration needs.
+- **Time zone.** The stack mounts `/etc/localtime` of the Docker host read-only, in addition to `TZ`.
+- **Not on your local network.** Home Assistant uses the network of the `tailscale` container and not that of the Docker host. Integrations that discover devices in your local network by broadcast may therefore not find them.
 
-If you encounter a `400: Bad Request` after deployment, please alter the file `ha-data/config/configurations.yaml` to trust the reverse proxy configuration used by Tailscale. The `configurations.yaml` should look like this.
+## First run
 
-```plain
-$ cat ha-data/config/configuration.yaml
+1. Start the stack once. Home Assistant creates its configuration in `./home-assistant-data/config`.
+2. Home Assistant rejects requests through a reverse proxy that it does not know, and answers `400: Bad Request`. Add this block to `./home-assistant-data/config/configuration.yaml` to trust Tailscale Serve:
 
-# Loads default set of integrations. Do not remove.
-default_config:
+   ```yaml
+   http:
+     use_x_forwarded_for: true
+     trusted_proxies:
+       - 127.0.0.1
+   ```
 
-# Load frontend themes from the themes folder
-frontend:
-  themes: !include_dir_merge_named themes
+3. Restart the stack with `docker compose restart application`.
+4. Open the web interface and follow the onboarding. You create the owner account and set your location.
 
-automation: !include automations.yaml
-script: !include scripts.yaml
-scene: !include scenes.yaml
+## Links
 
-http:
- use_x_forwarded_for: true
- trusted_proxies:
-   - 127.0.0.1
-```
+- [Home Assistant documentation](https://www.home-assistant.io/docs/)
+- [Home Assistant HTTP integration](https://www.home-assistant.io/integrations/http/), for the reverse proxy settings
+- [Home Assistant source code](https://github.com/home-assistant/core)

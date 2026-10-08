@@ -1,24 +1,50 @@
-# Caddy with Tailscale Sidecar Configuration
+# Caddy
 
-This Docker Compose configuration sets up [Caddy](https://github.com/caddyserver/caddy-docker) with Tailscale as a sidecar container to securely manage and route your traffic over a private Tailscale network. By integrating Tailscale, you can enhance the security and privacy of your Caddy instance, ensuring that access is restricted to devices within your Tailscale network.
+[Caddy](https://caddyserver.com/) is a web server and reverse proxy with automatic HTTPS. In this stack, it serves or proxies your own sites on your Tailnet.
 
-## Caddy
+This stack runs Caddy with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
-[Caddy](https://github.com/caddyserver/caddy-docker) is an extensible platform for deploying long-running services ("apps") using a single, unified configuration. It is enterprise-ready, extensible, open source, and provides automatic HTTPS. By incorporating Tailscale, your Caddy instance is safeguarded, ensuring that only authorized users and devices on your Tailscale network can access your applications and services.
+## At a glance
 
-## Configuration Overview
+| Item          | Value                                            |
+| ------------- | ------------------------------------------------ |
+| Web interface | `http://caddy.<tailnet>.ts.net` (sample site)    |
+| Service port  | `80`                                             |
+| Images        | `caddy`                                          |
+|               | `traefik/whoami` (sample site)                   |
+| Data          | `./Caddyfile` (Caddy configuration)              |
+|               | `./site` (static files, `/srv` in the container) |
+|               | `./caddy_data` (certificates)                    |
+|               | `./caddy_config` (saved configuration)           |
 
-In this setup, the `tailscale-caddy` service runs Tailscale, which manages secure networking for Caddy. The `application` service uses Docker's `network_mode: service:tailscale` configuration. This keeps Caddy's dashboard and routes on your Tailnet unless you publish a host port.
+## Before you start
 
-To get this working:
+Replace `caddy.MagicDNSname.ts.net` in `Caddyfile` with the name of the device on your Tailnet, `caddy.<tailnet>.ts.net`. If you change `SERVICE` in `.env`, change the name in `Caddyfile` as well.
 
-- Update the FQDN in `Caddyfile` to match your `${SERVICE}.MagicDNSname.ts.net`.
-- Update the TS_AUTHKEY in the .env file to your Tailscale key.
+## Deviations from the standard setup
 
-If you change `SERVICE` in `.env`, update the hostname in `Caddyfile` as well. The healthcheck calls Caddy's admin API on `127.0.0.1:2019`, so it does not depend on the hostname.
+- **No Tailscale Serve.** Caddy answers requests itself, on port `80` of the Tailscale IP address of the device. The stack has no Serve configuration.
+- **Sample site.** The stack runs a `whoami` container as a test site, and `Caddyfile` proxies to it. Replace both with your own sites.
+- **Tailscale socket.** Both containers mount `./tailscale/tmp`. Caddy uses the Tailscale socket in that folder to request HTTPS certificates. The stack shares the folder and not the socket file, so that Caddy finds the new socket after Tailscale restarts.
+- **Data folders.** The data is in `./site`, `./caddy_data`, and `./caddy_config`, not in a `./caddy-data` folder.
 
-Both containers mount the Tailscale socket directory. Caddy only uses the socket to get HTTPS certificates, which the sample `http://` site address does not request (see below). Sharing the directory instead of the socket file lets Caddy use the new socket after Tailscale restarts.
+## First run
 
-The example `compose.yaml` uses a simple webserver for testing purposes.
+Open `http://caddy.<tailnet>.ts.net`. The sample site shows the details of your request.
 
-Within your Tailscale dashboard do you have [HTTPS](https://tailscale.com/kb/1153/enabling-https) and [MagicDNS](https://tailscale.com/kb/1081/magicdns) enabled? If so, remove the http:// from the Caddyfile and Caddy should automatically provision a public HTTPS certificate from Let's Encrypt via the Tailscale infrastructure. The certificate takes ~20s to be procured upon first visit. This is further documented in [Caddy certificates on Tailscale](https://tailscale.com/kb/1190/caddy-certificates).
+## Configuration
+
+### HTTPS
+
+The sample site uses plain HTTP inside your Tailnet. To use HTTPS:
+
+1. Enable [MagicDNS](https://tailscale.com/kb/1081/magicdns) and [HTTPS certificates](https://tailscale.com/kb/1153/enabling-https) for your Tailnet.
+2. Remove `http://` from the site address in `Caddyfile` and restart the stack.
+
+Caddy then requests a certificate through Tailscale at the first visit, which takes about 20 seconds. See [Caddy certificates on Tailscale](https://tailscale.com/kb/1190/caddy-certificates).
+
+## Links
+
+- [Caddy documentation](https://caddyserver.com/docs/)
+- [Caddy Docker image](https://github.com/caddyserver/caddy-docker)
+- [Caddy certificates on Tailscale](https://tailscale.com/kb/1190/caddy-certificates)
