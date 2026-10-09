@@ -160,6 +160,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | 📅 **Radicale**      | A lightweight CalDAV and CardDAV server for self-hosted calendar, to-do, and contact sync.                                                                                 | [Details](services/radicale)      |
 | 🔄 **Resilio Sync**  | A fast, reliable, and simple file sync and share solution.                                                                                                                 | [Details](services/resilio-sync)  |
 | 📁 **Seafile**       | A self-hosted file syncing and collaboration platform with file sharing, versioning, and team library support.                                                             | [Details](services/seafile)       |
+| 🔄 **Skerry Sync**  | A self-hosted, zero-knowledge sync server for the Skerry SSH client.                                                                                                      | [Details](services/skerry-sync)   |
 | 🗂️ **Stirling-PDF**  | A web application for managing and editing PDF files.                                                                                                                      | [Details](services/stirlingpdf)   |
 | 💰 **Sure Finance**  | A self-hosted personal finance and budgeting app with optional AI insights.                                                                                                | [Details](services/sure)          |
 | 🏦 **Subtrackr**     | A self-hosted web app to track subscriptions, renewal dates, costs, and payment methods.                                                                                   | [Details](services/subtrackr)     |
@@ -200,6 +201,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | 🖥️ **Portainer**          | A lightweight management UI which allows you to easily manage your Docker environments.                     | [Details](services/portainer)       |
 | 🔍 **searXNG**            | A free internet metasearch engine which aggregates results from various search services.                    | [Details](services/searxng)         |
 | 🧠 **Ollama**             | A self-hosted solution for running open large language models (LLMs) locally with an OpenAI-compatible API. | [Details](services/ollama)          |
+| 🖥️ **Termix**             | A self-hosted server management platform with SSH terminals, remote desktops, tunnels, and Docker management. | [Details](services/termix)          |
 
 ### 📈 Monitoring and Analytics
 
