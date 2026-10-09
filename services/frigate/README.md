@@ -17,7 +17,7 @@ This stack runs Frigate with a Tailscale sidecar, as described in [the standard 
 
 ## Before you start
 
-Change `FRIGATE_RTSP_PASSWORD` in `compose.yaml`. The sample value is `password`.
+Set `FRIGATE_RTSP_PASSWORD` in `.env` to the password of your cameras, if you want to keep it out of the Frigate configuration. Frigate replaces `{FRIGATE_RTSP_PASSWORD}` in the camera addresses in `config.yml` with this value. The value is optional and empty by default.
 
 ## Deviations from the standard setup
 
@@ -37,6 +37,10 @@ Change `FRIGATE_RTSP_PASSWORD` in `compose.yaml`. The sample value is `password`
 
 2. Open the web interface and log in.
 3. Add your cameras in the configuration editor of the web interface. Frigate stores the configuration in `./frigate-data/config/config.yml`.
+
+## Upgrading
+
+Earlier versions of this stack set `FRIGATE_RTSP_PASSWORD=password` in `compose.yaml`. The value is now empty in `.env`. If your `config.yml` uses `{FRIGATE_RTSP_PASSWORD}`, set the password of your cameras in `.env`.
 
 ## Links
 

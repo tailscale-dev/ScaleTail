@@ -18,7 +18,7 @@ This stack runs Ghost with a Tailscale sidecar, as described in [the standard se
 ## Before you start
 
 - **Set `GHOST_URL` in `.env`.** Use the address of the site, `https://ghost.<tailnet>.ts.net`. Ghost does not start with the sample value and reports `Invalid URL`.
-- **Change the database password.** `compose.yaml` uses the password `example` for the MySQL `root` user, in `database__connection__password` and in `MYSQL_ROOT_PASSWORD`. Replace both with the same value of your own before the first start.
+- **Set `MYSQL_ROOT_PASSWORD` in `.env`.** The password of the MySQL `root` user, which Ghost uses to connect to the database. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 
@@ -28,6 +28,10 @@ This stack runs Ghost with a Tailscale sidecar, as described in [the standard se
 ## First run
 
 Open `https://ghost.<tailnet>.ts.net/ghost` and create the first account, which becomes the owner of the site.
+
+## Upgrading
+
+Earlier versions of this stack had the password `example` for the MySQL `root` user in `compose.yaml`. The password is now `MYSQL_ROOT_PASSWORD` in `.env`. It is empty, and Compose stops with an error until you set it. If you already run the stack, set it to the password that you use now, because the database applies it only at the first start. If you kept the sample value, set `MYSQL_ROOT_PASSWORD=example` again. The database still uses it.
 
 ## Links
 

@@ -68,7 +68,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=${TZ}
-      - FRIGATE_RTSP_PASSWORD=password
+      - FRIGATE_RTSP_PASSWORD=${FRIGATE_RTSP_PASSWORD} # Optional: password of your cameras, for use as {FRIGATE_RTSP_PASSWORD} in config.yml
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./${SERVICE}-data/config:/config
