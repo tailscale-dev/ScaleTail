@@ -27,7 +27,7 @@ This stack runs Coder with a Tailscale sidecar, as described in [the standard se
 2. Set these values in `.env`:
 
    - **`CODER_ACCESS_URL`.** The address of the web interface, `https://coder.<tailnet>.ts.net`.
-   - **`POSTGRES_PASSWORD`.** The password of the database. Compose stops with an error if it is empty.
+   - **`POSTGRES_PASSWORD`.** The password of the database. Use letters and digits only, because the database address contains it. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 

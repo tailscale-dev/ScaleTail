@@ -20,7 +20,7 @@ Set these values in `.env`:
 
 - **`TAILNET_NAME`.** Your Tailnet name with `.ts.net`. `compose.yaml` builds the base address of Miniflux as `https://<SERVICE>.<TAILNET_NAME>`.
 - **`ADMIN_USERNAME` and `ADMIN_PASSWORD`.** The administrator account that Miniflux creates at the first start. The password needs at least six characters.
-- **`POSTGRES_PASSWORD`.** The password of the database. Compose stops with an error if `ADMIN_PASSWORD` or `POSTGRES_PASSWORD` is empty.
+- **`POSTGRES_PASSWORD`.** The password of the database. Use letters and digits only, because the database address contains it. Compose stops with an error if `ADMIN_PASSWORD` or `POSTGRES_PASSWORD` is empty.
 
 ## Deviations from the standard setup
 
