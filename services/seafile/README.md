@@ -60,6 +60,8 @@ If the command prints nothing, comment out `TS_ACCEPT_DNS` in `compose.yaml` and
 
 Earlier versions of this stack had sample values for `INIT_SEAFILE_MYSQL_ROOT_PASSWORD`, `SEAFILE_MYSQL_DB_PASSWORD`, and `INIT_SEAFILE_ADMIN_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `SEAFILE_MYSQL_DB_PASSWORD=REPLACE_WITH_RANDOM_ALPHANUMERIC_PASSWORD` again. The database still uses it.
 
+`INIT_SEAFILE_ADMIN_PASSWORD` only creates the administrator at the first start. A new value does not change an existing account. If you kept the sample value, change the password of the administrator in the web interface.
+
 ## Links
 
 - [Seafile Docker setup](https://manual.seafile.com/latest/setup/setup_ce_by_docker/)

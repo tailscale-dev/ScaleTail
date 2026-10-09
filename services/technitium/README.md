@@ -60,7 +60,7 @@ If you run an earlier version, copy your settings to the host before you start t
    docker compose up -d
    ```
 
-Earlier versions of this stack had a sample value for `ADMIN_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now.
+Earlier versions of this stack had a sample value for `ADMIN_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. Technitium reads `ADMIN_PASSWORD` only at the first start, so a new value does not change an existing account. If you still log in with the password `ChangeME`, change the password in the web interface.
 
 ## Links
 

@@ -43,6 +43,8 @@ From EspoCRM 10, the upstream Docker setup no longer mounts the whole `/var/www/
 
 Earlier versions of this stack had sample values for `ESPOCRM_ADMIN_PASSWORD`, `MARIADB_ROOT_PASSWORD`, `MARIADB_PASSWORD`, and `ESPOCRM_DATABASE_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample values, set `MARIADB_ROOT_PASSWORD`, `MARIADB_PASSWORD`, and `ESPOCRM_DATABASE_PASSWORD` to `password` again. The database still uses it.
 
+`ESPOCRM_ADMIN_PASSWORD` only creates the administrator at the first start. A new value does not change an existing account. If you still log in as `admin` with the password `password`, change the password in the web interface.
+
 ## Links
 
 - [EspoCRM documentation](https://docs.espocrm.com/)
