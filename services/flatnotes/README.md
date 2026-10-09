@@ -17,8 +17,8 @@ This stack runs flatnotes with a Tailscale sidecar, as described in [the standar
 
 Change these values in `.env`:
 
-- **`FLATNOTES_USERNAME` and `FLATNOTES_PASSWORD`.** The login of the web interface. The defaults are `user` and `changeMe!`.
-- **`FLATNOTES_SECRET_KEY`.** A long random value that flatnotes uses to sign the login tokens.
+- **`FLATNOTES_USERNAME` and `FLATNOTES_PASSWORD`.** The login of the web interface. The default user is `user`. The password is empty, and Compose stops with an error until you set it.
+- **`FLATNOTES_SECRET_KEY`.** A long random value that flatnotes uses to sign the login tokens. Generate one with `openssl rand -hex 32`. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 
@@ -27,6 +27,10 @@ None.
 ## First run
 
 Open the web interface and log in with the username and password from `.env`.
+
+## Upgrading
+
+Earlier versions of this stack had sample values for `FLATNOTES_PASSWORD` and `FLATNOTES_SECRET_KEY` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now.
 
 ## Links
 

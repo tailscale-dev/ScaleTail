@@ -57,7 +57,7 @@ services:
       database__client: mysql
       database__connection__host: db
       database__connection__user: root
-      database__connection__password: example
+      database__connection__password: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
       database__connection__database: ghost
 
       # this url value is just an example, and is likely wrong for your environment!
@@ -85,7 +85,7 @@ services:
     image: mysql:8.0
     container_name: db-${SERVICE} # Name for local container management
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
     volumes:
       - ./${SERVICE}-data/db:/var/lib/mysql
     healthcheck:

@@ -20,7 +20,7 @@ This stack runs Immich with a Tailscale sidecar, as described in [the standard s
 
 ## Before you start
 
-* **Set a database password.** Change `DB_PASSWORD` in `.env` to a random value. Use only the characters `A-Za-z0-9`.
+* **Set a database password.** Set `DB_PASSWORD` in `.env` to a random value. Use only the characters `A-Za-z0-9`. It is empty, and Compose stops with an error until you set it.
 * **Choose where your media is stored.** To keep your photos and videos on another disk, set `UPLOAD_LOCATION` before the first start. See [Storage locations](#storage-locations).
 * **Compare with upstream.** Immich changes its [Compose file](https://docs.immich.app/install/docker-compose) often. We try to keep this stack in line with it, but check for yourself before you deploy.
 
@@ -58,6 +58,8 @@ Immich connects to the hostnames `database` and `redis` by default. If you renam
 ## Upgrading
 
 Earlier versions of this stack ignored `UPLOAD_LOCATION` and `DB_DATA_LOCATION` and always used the default folders. If your `.env` still contains `UPLOAD_LOCATION=./library` or `DB_DATA_LOCATION=./postgres`, replace them with the defaults from [Storage locations](#storage-locations) before you restart. Otherwise Immich starts with an empty library and a new database. Your existing files stay untouched in `./immich-data`.
+
+Earlier versions of this stack had a sample value for `DB_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `DB_PASSWORD=postgres` again. The database still uses it.
 
 ## Links
 

@@ -16,13 +16,13 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 
 ## Before you start
 
-- **Set the administrator password.** Change `ADMIN_PASSWORD` in `.env`. The default is `ChangeME`. Technitium reads it only at the first start.
+- **Set the administrator password.** Set `ADMIN_PASSWORD` in `.env`. It is empty, and Compose stops with an error until you set it. Technitium reads it only at the first start.
 - **Free port 53.** The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](../../documentation/free-up-port-53.md).
 - **Choose the forwarders.** `DNS_SERVER1` and `DNS_SERVER2` in `.env` set the DNS servers that Technitium forwards to.
 
 ## Deviations from the standard setup
 
-- **Published host ports.** The `ports` block is active. It publishes the web interface on port `5380`, DNS on port `53`, DNS-over-TLS and DNS-over-QUIC on port `853`, and DNS-over-HTTPS on port `443` of the Docker host. Devices in your local network can therefore reach Technitium without Tailscale. Remove the lines that you do not need.
+- **Published host ports.** The `ports` block is active. It publishes the web interface on port `5380`, DNS on port `53`, DNS-over-TLS and DNS-over-QUIC on port `853`, and DNS-over-HTTPS on port `443` of the Docker host. Devices in your local network can therefore reach Technitium without Tailscale. The web interface on port `5380` uses plain HTTP, so anyone on your local network can reach its login page and the password travels unencrypted. If you only use the web interface through Tailscale, remove the `5380:5380/tcp` line from `compose.yaml`. Remove the other lines that you do not need.
 - **Settings through environment variables.** `compose.yaml` sets the server name, recursion, and forwarders. Technitium reads these variables only at the first start, when it has no configuration yet.
 
 ## First run
@@ -59,6 +59,8 @@ If you run an earlier version, copy your settings to the host before you start t
    ```bash
    docker compose up -d
    ```
+
+Earlier versions of this stack had a sample value for `ADMIN_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. Technitium reads `ADMIN_PASSWORD` only at the first start, so a new value does not change an existing account. If you still log in with the password `ChangeME`, change the password in the web interface.
 
 ## Links
 

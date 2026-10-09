@@ -5,7 +5,6 @@ on:
     branches:
       - main
     paths-ignore:
-      - '.github/**'
       # - 'README.md'
       - 'LICENSE'
       - '.gitignore'
@@ -15,23 +14,31 @@ on:
     branches:
       - main
     paths-ignore:
-      - '.github/**'
       # - 'README.md'
       - 'LICENSE'
       - '.gitignore'
       - '.gitattributes'
       - '.editorconfig'
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   lint:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - name: Clone this repo
-        uses: actions/checkout@v7
-          
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Lint Markdown
-        uses: rvben/rumdl@v0.2.73
+        uses: rvben/rumdl@9c4cc2a2ebe176de68e1788106e25af8a9bd3899 # v0.2.78
         with:
+          version: "0.2.78" # Keep in line with the pinned action above
           path: "."
           config: ".markdownlint.yml"
           report-type: annotations

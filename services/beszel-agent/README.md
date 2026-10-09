@@ -25,7 +25,7 @@ Without a valid key, the `application` container keeps restarting.
 ## Deviations from the standard setup
 
 - **No web interface.** The stack has no Tailscale Serve configuration and no `./config` folder. The hub connects to the agent on port `45876` of its Tailscale IP address.
-- **Docker socket.** The agent mounts `/var/run/docker.sock` read-only to read the statistics of the containers on the Docker host.
+- **Docker socket.** The agent mounts `/var/run/docker.sock` read-only to read the statistics of the containers on the Docker host. The `:ro` flag only makes the socket file read-only. It does not limit what the service can do through the Docker API, so treat access to the socket as root access to the Docker host.
 - **No data folder.** The agent stores nothing on disk.
 
 ## First run

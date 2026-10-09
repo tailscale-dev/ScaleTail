@@ -30,7 +30,7 @@ This stack runs Mattermost with a Tailscale sidecar, as described in [the standa
 2. Set these values in `.env`:
 
    - **`DOMAIN`.** The name of the device on your Tailnet, `mattermost.<tailnet>.ts.net`. The stack builds the site address, `MM_SERVICESETTINGS_SITEURL`, from it.
-   - **`POSTGRES_USER` and `POSTGRES_PASSWORD`.** The login of the database. Replace the sample values.
+   - **`POSTGRES_USER` and `POSTGRES_PASSWORD`.** The login of the database. `POSTGRES_PASSWORD` is empty, and Compose stops with an error until you set it. Use letters and digits only, because the database address contains it.
 
 ## Deviations from the standard setup
 
@@ -42,6 +42,10 @@ This stack runs Mattermost with a Tailscale sidecar, as described in [the standa
 ## First run
 
 Open the web interface and create the first account, which becomes the system administrator. Then create your team.
+
+## Upgrading
+
+Earlier versions of this stack had a sample value for `POSTGRES_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `POSTGRES_PASSWORD=MMus3r_P4ssword` again. The database still uses it.
 
 ## Links
 

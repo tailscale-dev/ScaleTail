@@ -17,7 +17,7 @@ This stack runs XWiki with a Tailscale sidecar, as described in [the standard se
 
 ## Before you start
 
-Change `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env` before the first start. The default for both is `xwiki`.
+Set `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env` before the first start. Both are empty, and Compose stops with an error until you set them. Use random values of letters and digits.
 
 ## Deviations from the standard setup
 
@@ -28,6 +28,10 @@ Change `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env` before the first star
 ## First run
 
 Open the web interface. The first start takes a few minutes. XWiki then shows its distribution wizard, where you create the administrator account and install the standard flavor.
+
+## Upgrading
+
+Earlier versions of this stack had sample values for `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample values, set `DB_PASSWORD` and `MARIADB_ROOT_PASSWORD` to `xwiki` again. The database still uses them.
 
 ## Links
 

@@ -15,7 +15,7 @@ This stack runs KitchenOwl with a Tailscale sidecar, as described in [the standa
 
 ## Before you start
 
-Set `JWT_SECRET_KEY` in `.env` to a long random value, for example from `openssl rand -hex 32`.
+Set `JWT_SECRET_KEY` in `.env` to a long random value, for example from `openssl rand -hex 32`. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 

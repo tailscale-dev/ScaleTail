@@ -60,7 +60,7 @@ services:
     environment: # Variables are declared in .env file.
       - XWIKI_VERSION=${XWIKI_VERSION}
       - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PASSWORD=${DB_PASSWORD:?Set DB_PASSWORD in .env}
       - DB_DATABASE=${DB_DATABASE}
       - DB_HOST=db-${SERVICE}
       - TZ=${TZ}
@@ -82,9 +82,9 @@ services:
         source: ./init.sql
         target: /docker-entrypoint-initdb.d/init.sql
     environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD:?Set MARIADB_ROOT_PASSWORD in .env}
       - MARIADB_USER=${DB_USER}
-      - MARIADB_PASSWORD=${DB_PASSWORD}
+      - MARIADB_PASSWORD=${DB_PASSWORD:?Set DB_PASSWORD in .env}
       - MARIADB_DATABASE=${DB_DATABASE}
     command:
       - "--character-set-server=utf8mb4"

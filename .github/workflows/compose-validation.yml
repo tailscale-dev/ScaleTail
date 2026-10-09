@@ -1,0 +1,61 @@
+name: Validate Compose files
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'services/**'
+      - '.github/workflows/compose-validation.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'services/**'
+      - '.github/workflows/compose-validation.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Clone this repo
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # Some stacks require the user to set their own secrets and stop with
+      # "required variable X is missing". Supply a dummy value for those and
+      # retry, so that the rest of the file is still checked.
+      - name: Run docker compose config
+        run: |
+          status=0
+          for dir in services/*/; do
+            vars=()
+            ok=0
+            for attempt in $(seq 1 30); do
+              if out=$(cd "$dir" && env "${vars[@]/%/=dummy}" docker compose config --quiet 2>&1); then
+                ok=1
+                break
+              fi
+              missing=$(grep -oE 'required variable [A-Za-z0-9_]+' <<<"$out" | awk '{print $3}' | sort -u | grep -vxFf <(printf '%s\n' "${vars[@]}") || true)
+              if [ -z "$missing" ]; then
+                echo "::error file=${dir}compose.yaml::docker compose config failed in ${dir}"
+                echo "$out"
+                status=1
+                ok=2
+                break
+              fi
+              vars+=($missing)
+            done
+            if [ "$ok" = 0 ]; then
+              echo "::error file=${dir}compose.yaml::too many required variables in ${dir}"
+              status=1
+            fi
+          done
+          exit $status

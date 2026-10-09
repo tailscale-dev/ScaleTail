@@ -29,8 +29,8 @@ This stack runs Sure with a Tailscale sidecar, as described in [the standard set
 
 2. Set these values in `.env`:
 
-   - **`SECRET_KEY_BASE`.** Required and empty by default. Generate a value with `openssl rand -hex 64`.
-   - **`POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB`.** The defaults `sure_user`, `sure_password`, and `sure_production` are samples. Change them before you use Sure with real data.
+   - **`SECRET_KEY_BASE`.** Required and empty by default. Generate a value with `openssl rand -hex 64`. Compose stops with an error until you set it.
+   - **`POSTGRES_USER`, `POSTGRES_PASSWORD`, and `POSTGRES_DB`.** The defaults for the user and the database are `sure_user` and `sure_production`. `POSTGRES_PASSWORD` is empty, and Compose stops with an error until you set it.
    - **`DB_HOST`, `REDIS_URL`, and `POSTGRES_HOST`.** Leave these as they are, unless you change the IP addresses of the network that the deviations describe.
 
 ## Deviations from the standard setup
@@ -78,6 +78,10 @@ If a sync fails with `Failed to open TCP connection to fc.yahoo.com`, DNS probab
 ### Redirect loop without HTTPS
 
 If you open Sure over plain HTTP and get redirect errors, set `RAILS_FORCE_SSL` and `RAILS_ASSUME_SSL` in `.env` to `false`.
+
+## Upgrading
+
+Earlier versions of this stack had a sample value for `POSTGRES_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `POSTGRES_PASSWORD=sure_password` again. The database still uses it.
 
 ## Links
 

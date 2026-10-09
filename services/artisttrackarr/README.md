@@ -24,7 +24,7 @@ This stack runs ArtistTrackarr with a Tailscale sidecar, as described in [the st
 
 2. Set these values in `.env`:
 
-   - **`SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET`.** Three different random values of at least 32 characters each.
+   - **`SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET`.** Three different random values of at least 32 characters each. Generate each with `openssl rand -hex 32`.
    - **`MUSICBRAINZ_CONTACT`.** A real email address or project address. ArtistTrackarr sends it to MusicBrainz with each request.
    - **`PUBLIC_URL`.** The address of the web interface, `https://artist-trackarr.<tailnet>.ts.net`.
 
@@ -44,6 +44,10 @@ Open `https://artist-trackarr.<tailnet>.ts.net/setup`, enter the value of `SETUP
 - **Spotify.** To use Spotify as an additional source, set `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET`, and a two-letter `SPOTIFY_MARKET`, such as `NL`, in `.env`. You create the client in the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard).
 - **Client addresses.** Tailscale Serve is the reverse proxy of this stack. Set `TRUST_PROXY=true` in `.env` only if ArtistTrackarr should trust the client addresses that the proxy forwards.
 - **Backups.** Stop the stack before you back up `./artist-trackarr-data`, so that the copy of the database is consistent.
+
+## Upgrading
+
+Earlier versions of this stack had sample values for `SETUP_TOKEN`, `APP_ENCRYPTION_KEY`, and `SESSION_SECRET` in `.env`. They are now empty, and ArtistTrackarr stops with `SETUP_TOKEN must be at least 32 characters` until you set them. If you already run the stack, keep the values that you use now. If you kept the sample value, set `APP_ENCRYPTION_KEY=replace-with-at-least-32-random-characters` again. A new key cannot decrypt the data that ArtistTrackarr stored with the old one.
 
 ## Links
 

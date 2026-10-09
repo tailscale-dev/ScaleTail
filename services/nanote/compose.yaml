@@ -57,7 +57,7 @@ services:
       - PGID=1000
       - TZ=${TZ}
       - NOTES_PATH=/notes
-      - SECRET_KEY=<yourkey>
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env} # The key that you log in with
     volumes:
       - ./${SERVICE}-data:/notes
     depends_on:

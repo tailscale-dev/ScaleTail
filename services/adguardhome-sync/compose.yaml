@@ -46,12 +46,12 @@ services:
       # Origin AdGuardHome
       - ORIGIN_URL=http://192.168.1.1:3000 #Your origin Adguard Home instance -> change as necessary
       - ORIGIN_USERNAME=username #change as necessary
-      - ORIGIN_PASSWORD=password #change as necessary
+      - ORIGIN_PASSWORD=${ORIGIN_PASSWORD:?Set ORIGIN_PASSWORD in .env}
 
       # First replication target
       - REPLICA1_URL=http://192.168.1.2 #Your destination Adguard Home instance change as necessary
       - REPLICA1_USERNAME=dbtech #change as necessary
-      - REPLICA1_PASSWORD=password #change as necessary
+      - REPLICA1_PASSWORD=${REPLICA1_PASSWORD:?Set REPLICA1_PASSWORD in .env}
 
       # Second replication target (optional)
       #- REPLICA2_URL=http://192.168.1.3 #change as necessary

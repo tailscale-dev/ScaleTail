@@ -58,7 +58,7 @@ services:
       - TRUSTED_PROXY=127.0.0.1 # Tailscale Serve reaches FreshRSS over the shared loopback, so trust it for X-Forwarded-For
       # The two variables below are only read on the very first start (empty data volume).
       - FRESHRSS_INSTALL=--api-enabled --base-url https://${SERVICE}.${TAILNET_NAME} --db-type sqlite --default-user ${ADMIN_USERNAME} --language en
-      - FRESHRSS_USER=--api-password ${ADMIN_API_PASSWORD} --email ${ADMIN_EMAIL} --language en --password ${ADMIN_PASSWORD} --user ${ADMIN_USERNAME}
+      - FRESHRSS_USER=--api-password ${ADMIN_API_PASSWORD:?Set ADMIN_API_PASSWORD in .env} --email ${ADMIN_EMAIL} --language en --password ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env} --user ${ADMIN_USERNAME}
     volumes:
       - ./${SERVICE}-data/app/data:/var/www/FreshRSS/data # Configuration, SQLite database, feeds and articles
       - ./${SERVICE}-data/app/extensions:/var/www/FreshRSS/extensions # Optional third-party extensions

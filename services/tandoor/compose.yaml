@@ -55,6 +55,7 @@ services:
     environment:
       - TZ=${TZ}
       - TANDOOR_PORT=${SERVICEPORT}
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}
     volumes:
       - ./${SERVICE}-data/staticfiles:/opt/recipes/staticfiles
       - ./${SERVICE}-data/mediafiles:/opt/recipes/mediafiles
@@ -78,7 +79,7 @@ services:
     network_mode: service:tailscale
     container_name: app-${SERVICE}-database
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:

@@ -42,7 +42,7 @@ services:
       PORT: 45876
       KEY: "ssh-ed25519 <ADD-YOUR-beszel-agent-KEY-HERE>"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro # Read-only access to the docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro # The :ro flag does not limit Docker API access: the service can control Docker on the host
     depends_on:
       tailscale:
         condition: service_healthy

@@ -18,7 +18,7 @@ This stack runs BookLore with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
-- **Set the database passwords.** `MYSQL_ROOT_PASSWORD` and `MYSQL_PASSWORD` in `.env` are empty. Give both a random value.
+- **Set the database passwords.** `MYSQL_ROOT_PASSWORD` and `MYSQL_PASSWORD` in `.env` are empty. Give both a random value. Compose stops with an error until you set them.
 - **Choose your book folder.** To use an existing collection, point the `/books1` volume in `compose.yaml` at your own folder. Otherwise the stack starts with an empty `./books` folder.
 
 ## Deviations from the standard setup

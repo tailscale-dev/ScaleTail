@@ -19,7 +19,7 @@ This stack runs Kaneo with a Tailscale sidecar, as described in [the standard se
 Set these values in `.env`:
 
 - **`KANEO_CLIENT_URL`.** The address of the web interface, `https://kaneo.<tailnet>.ts.net`. Kaneo derives the address of its API from it and does not start with the sample value. Recreate the container after you change it.
-- **`AUTH_SECRET` and `DB_PASSWORD`.** Two different random values. Generate each with `openssl rand -hex 32`.
+- **`AUTH_SECRET` and `DB_PASSWORD`.** Two different random values. Generate each with `openssl rand -hex 32`. Compose stops with an error if one of them is empty.
 
 ## Deviations from the standard setup
 

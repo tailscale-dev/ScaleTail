@@ -70,7 +70,7 @@ services:
     environment:
       # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
-      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD:?Set DB_PASSWORD in .env}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     healthcheck:
@@ -95,7 +95,7 @@ services:
     environment:
       # Variables are declared in .env file.
       - REDIS_SERVER_HOST=redis
-      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
+      - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD:?Set DB_PASSWORD in .env}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     depends_on:
@@ -122,12 +122,9 @@ services:
     environment:
       # Variables are declared in .env file.
       POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
       POSTGRES_DB: ${DB_DATABASE:-affine}
       POSTGRES_INITDB_ARGS: '--data-checksums'
-      # you better set a password for you database
-      # or you may add 'POSTGRES_HOST_AUTH_METHOD=trust' to ignore postgres security policy
-      POSTGRES_HOST_AUTH_METHOD: trust
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     healthcheck:
       test: [ 'CMD', 'pg_isready', '-h', '127.0.0.1', '-U', "${DB_USERNAME}", '-d', "${DB_DATABASE:-affine}" ] # Check if PostgreSQL accepts connections

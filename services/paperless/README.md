@@ -24,9 +24,9 @@ This stack runs Paperless-ngx with a Tailscale sidecar, as described in [the sta
 
 Change these values in `.env`:
 
-- **`PAPERLESS_SECRET_KEY`.** A long random value. Paperless-ngx uses it to sign session tokens.
-- **`PAPERLESS_ADMIN_USER` and `PAPERLESS_ADMIN_PASSWORD`.** The administrator account that Paperless-ngx creates at the first start. The defaults are `admin` and `changeme`.
-- **`POSTGRES_PASSWORD`.** The password of the database.
+- **`PAPERLESS_SECRET_KEY`.** A long random value. Generate one with `openssl rand -hex 32`. Paperless-ngx uses it to sign session tokens. Compose stops with an error if it is empty.
+- **`PAPERLESS_ADMIN_USER` and `PAPERLESS_ADMIN_PASSWORD`.** The administrator account that Paperless-ngx creates at the first start. The default user is `admin`. The password is empty, and Compose stops with an error until you set it.
+- **`POSTGRES_PASSWORD`.** The password of the database. Compose stops with an error if it is empty.
 - **`PAPERLESS_OCR_LANGUAGE`.** The language of your documents as a three-letter code, such as `eng` or `nld`.
 - **`PAPERLESS_TIME_ZONE`.** Your time zone.
 
@@ -39,6 +39,12 @@ Change these values in `.env`:
 ## First run
 
 Open the web interface and log in with the administrator account from `.env`. To import documents, upload them in the web interface or put them in `./paperless-data/consume`.
+
+## Upgrading
+
+Earlier versions of this stack had sample values for `PAPERLESS_SECRET_KEY`, `PAPERLESS_ADMIN_PASSWORD`, and `POSTGRES_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `POSTGRES_PASSWORD=paperless` again. The database still uses it.
+
+`PAPERLESS_ADMIN_PASSWORD` only creates the administrator at the first start. A new value does not change an existing account. If you still log in as `admin` with the password `changeme`, change the password in the web interface.
 
 ## Links
 
