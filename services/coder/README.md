@@ -31,7 +31,7 @@ This stack runs Coder with a Tailscale sidecar, as described in [the standard se
 
 ## Deviations from the standard setup
 
-- **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Coder reaches it at `localhost`. PostgreSQL therefore also listens on port `5432` of the Tailscale IP address of the device.
+- **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Coder reaches it at `localhost`. PostgreSQL listens only on the loopback address of the device, so other devices on your Tailnet cannot reach it.
 - **Docker socket.** Coder mounts `/var/run/docker.sock` read-only, so that templates can use Docker on the host. The `:ro` flag only makes the socket file read-only. It does not limit what the service can do through the Docker API, so treat access to the socket as root access to the Docker host.
 - **Image version.** `CODER_VERSION` in `.env` selects the version of the Coder image.
 
@@ -42,6 +42,8 @@ Open the web interface and create the first account, which becomes the administr
 ## Upgrading
 
 Earlier versions of this stack had a sample value for `POSTGRES_PASSWORD` in `.env`. It is now empty, and Compose stops with an error until you set it. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `POSTGRES_PASSWORD=strongpassword` again. The database still uses it.
+
+Earlier versions listened on all addresses of the device, so PostgreSQL was reachable from your Tailnet. This version makes it listen on localhost only. Your data stays in place. Run `docker compose up -d` to recreate the `database` container. Any tool that connects to the database from another device stops working.
 
 ## Links
 

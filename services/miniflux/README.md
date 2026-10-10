@@ -24,12 +24,16 @@ Set these values in `.env`:
 
 ## Deviations from the standard setup
 
-- **Extra container.** The stack runs a `db` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Miniflux reaches it at `localhost`. PostgreSQL therefore also listens on port `5432` of the Tailscale IP address of the device.
+- **Extra container.** The stack runs a `db` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Miniflux reaches it at `localhost`. PostgreSQL listens only on the loopback address of the device, so other devices on your Tailnet cannot reach it.
 - **Automatic setup.** `RUN_MIGRATIONS=1` and `CREATE_ADMIN=1` make Miniflux prepare the database and create the administrator at the start.
 
 ## First run
 
 Open the web interface and log in with the administrator account from `.env`.
+
+## Upgrading
+
+Earlier versions listened on all addresses of the device, so PostgreSQL was reachable from your Tailnet. This version makes it listen on localhost only. Your data stays in place. Run `docker compose up -d` to recreate the `db` container. Any tool that connects to the database from another device stops working.
 
 ## Links
 

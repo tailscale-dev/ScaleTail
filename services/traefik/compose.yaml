@@ -70,7 +70,7 @@ services:
       - ./${SERVICE}-data/log/:/var/log/
       - /var/run/docker.sock:/var/run/docker.sock #Required for the Service Connections
     command: # Static configuration. Traefik ignores these flags if it finds a traefik.yml file.
-      - "--api.insecure=true"
+      - "--api.dashboard=true" # Enables the API and dashboard for a router you add; no router serves them by default - see the README
       - "--ping=true" # Required by the health check
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
@@ -79,13 +79,6 @@ services:
       - --log.filepath=/var/log/traefik.log
       - --accesslog=true
       - --accesslog.filepath=/var/log/traefik.access.log
-      - --experimental.plugins.traefik-plugin-geoblock.modulename=github.com/nscuro/traefik-plugin-geoblock
-      - --experimental.plugins.traefik-plugin-geoblock.version=v0.14.0
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.mydashboard.rule=Host(`traefik.domain.local`)
-      - traefik.http.routers.mydashboard.service=api@internal
-      - traefik.http.services.mydashboard.loadbalancer.server.port=8080 # Traefik drops the labels of a container without a port - this container exposes none, because it uses the Tailscale network
 
   simpleweb:
     image: yeasy/simple-web:latest

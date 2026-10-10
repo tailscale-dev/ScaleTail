@@ -53,6 +53,7 @@ services:
     image: ${IMAGE_URL_DATABASE} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-postgres # Name for local container management
+    command: ["postgres", "-c", "listen_addresses=localhost"] # Listen on localhost only, so the Tailnet cannot reach the database
     env_file:
       - .env
     environment:

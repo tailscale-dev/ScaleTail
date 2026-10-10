@@ -26,7 +26,7 @@ Set these values in `.env`:
 
 ## Deviations from the standard setup
 
-- **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Tandoor reaches it at `127.0.0.1`. PostgreSQL therefore also listens on port `5432` of the Tailscale IP address of the device.
+- **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Tandoor reaches it at `127.0.0.1`. PostgreSQL listens only on the loopback address of the device, so other devices on your Tailnet cannot reach it.
 - **Service port.** `TANDOOR_PORT` makes Tandoor listen on the port from `SERVICEPORT`, which is `9001`.
 - **The container reads the whole `.env` file.** The `application` container loads `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in its environment.
 
@@ -37,6 +37,8 @@ The first start can take a few minutes, because Tandoor prepares its database. T
 ## Upgrading
 
 Earlier versions of this stack had sample values for `SECRET_KEY` and `POSTGRES_PASSWORD` in `.env`. They are now empty, and Compose stops with an error until you set them. If you already run the stack, keep the values that you use now. This is required for the database password, because the database applies it only at the first start. If you kept the sample value, set `POSTGRES_PASSWORD=REPLACE_WITH_RANDOM_ALPHANUMERIC_PASSWORD` again. The database still uses it.
+
+Earlier versions listened on all addresses of the device, so PostgreSQL was reachable from your Tailnet. This version makes it listen on localhost only. Your data stays in place. Run `docker compose up -d` to recreate the `database` container. Any tool that connects to the database from another device stops working.
 
 ## Links
 
