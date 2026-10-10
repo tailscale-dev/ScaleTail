@@ -58,6 +58,7 @@ services:
       - SEARXNG_BASE_URL=https://${SERVICE}.${TAILNET_NAME:?Set TAILNET_NAME in .env}.ts.net/
       - SEARXNG_SECRET=${SEARXNG_SECRET:?Set SEARXNG_SECRET in .env}
       - SEARXNG_VALKEY_URL=${SEARXNG_VALKEY_URL}
+      - FORCE_OWNERSHIP=false # Leaves ./searxng owned by your user, so Git and your editor can change settings.yml - SearXNG logs an ownership warning at each start
       - TZ=${TZ}
     volumes:
       - ./searxng:/etc/searxng:rw

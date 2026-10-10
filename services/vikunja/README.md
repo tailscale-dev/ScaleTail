@@ -38,7 +38,7 @@ This directory contains `config.yml`, a sample configuration file with all setti
 
 ## Upgrading
 
-Earlier versions of this stack did not set `VIKUNJA_SERVICE_SECRET`, so Vikunja generated a new secret at every start. The stack now requires the secret in `.env`, and Compose stops with an error until you set it. Add a value with `openssl rand -hex 32`. The secret is fixed from now on, so a login stays valid across restarts. Link shares and clients that hold only a JWT stop working after the change, so they must log in again.
+Earlier versions of this stack did not set `VIKUNJA_SERVICE_SECRET`, so Vikunja generated a new secret at every start, which ended every login. The stack now requires the secret in `.env`, and Compose stops with an error until you set it. Add a value with `openssl rand -hex 32`. Existing logins end one last time when you start the stack with the secret. After that, a login stays valid across restarts.
 
 ## Links
 
