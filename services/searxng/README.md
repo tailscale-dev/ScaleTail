@@ -46,8 +46,6 @@ sudo chown -R "$(id -u):$(id -g)" searxng
 
 You need this only once, because the stack now sets `FORCE_OWNERSHIP=false`. If you changed `settings.yml`, also copy it to another folder and run `git restore searxng/settings.yml`, and move your own settings into the new file after the update.
 
-After the update, run `docker compose up -d`. Compose recreates the `application` container, which then reads the new file.
-
 If `git pull` already stopped with that error, run the `chown` command, and then finish the update with these commands. They keep your own changes, such as the values in `.env`:
 
 ```bash
@@ -57,6 +55,8 @@ git stash pop
 ```
 
 If you ran `git stash` before the pull, run `git stash pop` once more.
+
+In both cases, run `docker compose up -d` after the update. Compose recreates the `application` container. It then reads the new file and no longer takes the folder.
 
 SearXNG now uses its default request method, `GET`, so a search query shows in the address bar and in the browser history. The old file set `POST`. To keep `POST`, add the line `method: "POST"` under the existing `server:` key in `settings.yml`.
 
