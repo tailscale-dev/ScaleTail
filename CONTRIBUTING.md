@@ -12,33 +12,63 @@ Thanks for helping improve these Tailscale sidecar examples.
 
    This command includes the hidden `.env` file. Use a lowercase directory name.
 
-2. Update `.env` with safe example values.
+2. Update `.env`.
 
-   Set `SERVICE`, `IMAGE_URL`, `SERVICEPORT`, and the application variables.
-   Never commit a working auth key, password, token, or other credential.
+   Set `SERVICE`, usually to the directory name, and set `IMAGE_URL`,
+   `SERVICEPORT`, and the application variables. Define every variable that
+   `compose.yaml` uses, unless it has a default such as `${VAR:-value}`. Put
+   comments on their own line: `VAR= # note` sets `VAR` to `# note`.
+
+   `.env` is published with the repository. Never commit a working auth key,
+   password, token, or other credential. Leave each secret empty. When the stack
+   cannot start without it, require it in `compose.yaml`:
+
+   ```yaml
+   - DB_PASSWORD=${DB_PASSWORD:?Set DB_PASSWORD in .env}
+   ```
+
+   Compose then stops with an error until the user sets a value. Above the
+   empty variable in `.env`, add a comment that starts with `# Required:` and
+   says what to set, such as
+   `# Required: signs the sessions. Generate it with: openssl rand -hex 32`.
+   Keep `TS_AUTHKEY` and optional secrets without `:?`.
 
 3. Adapt `compose.yaml`.
 
    - Keep the Compose service keys `tailscale` and `application`.
-   - Name the containers `tailscale-${SERVICE}` and `app-${SERVICE}`.
+   - Name the containers `tailscale-${SERVICE}` and `app-${SERVICE}`, unless the
+     stack documents a deviation under "Deviations from the standard setup".
    - Keep `network_mode: service:tailscale` on the application.
    - Keep the application's health-based dependency on `tailscale`.
    - Add all required persistent volumes.
    - Add required devices and capabilities explicitly.
+   - When the stack needs another Compose service key or container name, more
+     than one application container, or none, list the difference and the
+     reason under "Deviations from the standard setup". Prefer
+     `app-${SERVICE}-<role>` for extra containers, such as `app-${SERVICE}-db`.
+   - Pass `PUID` and `PGID` only when the image reads them, such as LinuxServer.io
+     images. Keep `TZ`, as the template does.
+   - Write the image tag explicitly and use the tag upstream recommends. Pin
+     databases, caches, and search engines to a major or major.minor tag. When
+     you pin an exact version, say why in a comment.
+   - Keep application data under `./${SERVICE}-data/`, so that `.gitignore`
+     covers it.
 
 4. Set the Serve proxy to the application's internal port.
 
-   The Serve JSON does not read `SERVICEPORT` from `.env`. Keep runtime variables
-   escaped, such as `$${TS_CERT_DOMAIN}`.
+   Hard-code the port in the Serve JSON. Do not use `${SERVICEPORT}`: it is
+   meant for the optional LAN `ports` block and can differ from the port that
+   Serve must proxy to. Keep runtime variables escaped, such as
+   `$${TS_CERT_DOMAIN}`.
 
    Keep the `ports` block commented for Tailnet-only access. Document any LAN
-   port you expose. Remove the Serve configuration when the service does not use
-   Tailscale Serve.
+   port you expose. When nothing in the stack uses Tailscale Serve, remove the
+   Serve configuration: the `TS_SERVE_CONFIG` line, the `configs` entry of the
+   `tailscale` service, and the top-level `configs` block.
 
 5. Configure the application's health check.
 
-   Use the first option that the image supports. The template lists the same
-   options in the same order.
+   Use the first option that the image supports.
 
    1. When the image defines its own `HEALTHCHECK`, omit the block and add a
       `# Healthcheck: defined by the image (...)` comment that names the
@@ -54,42 +84,37 @@ Thanks for helping improve these Tailscale sidecar examples.
       is possible. Omit the block and add a `# Healthcheck: none possible ...`
       comment that names the reason.
 
-   Run the command inside the running container before you commit it. Avoid
-   `pgrep -f ${SERVICE}`, which breaks when `SERVICE` is renamed.
-
-   A container that runs once and exits needs no check. Omit the block and
-   add a `# Healthcheck: none needed ...` comment that names the reason.
-
-   For a database, connect over TCP, for example with
-   `pg_isready -h 127.0.0.1` or `mariadb-admin ping -h 127.0.0.1`. During the
-   first start, the image runs a temporary server that accepts only socket
-   connections, so a socket check reports ready too early. When another
-   service depends on the database, wait with `condition: service_healthy`.
-   A database image's own `HEALTHCHECK` still comes first. When that check
-   connects over the socket, say so in the comment.
-
-   Keep the Tailscale health check.
+   Use the comment text from the template's `compose.yaml`, which covers the
+   same options, the database case, and the no-check cases. Run the command
+   inside the running container before you commit it. Keep the Tailscale health
+   check.
 
 6. Complete the service README.
 
    Every service README uses the headings of the template, in the same order.
-   Do not rename them and do not add others, so that every service reads the
-   same way. Replace the placeholders in capitals.
+   Do not rename them, and add no headings other than the optional sections
+   below, so that every service reads the same way. Replace the placeholders in
+   capitals.
 
-   - **Introduction.** Say what the service does in one or two sentences and
-     link to the upstream project. Leave feature lists to upstream.
+   - **Introduction.** The paragraph under the title. Say what the service does
+     in one or two sentences and link to the upstream project. Leave feature
+     lists to upstream.
    - **At a glance.** Give the Tailnet address, the port that Tailscale Serve
      forwards to, the image, and the data paths on the host. Add a row for
-     each further port that users connect to, such as DNS or SMTP.
+     each further port that users connect to, such as DNS or SMTP. Write `None`
+     for the web interface when there is none, and add an `API` row when Serve
+     publishes an API.
    - **Before you start.** List only what the Quick Start does not cover:
      values that must change in `.env`, secrets to generate, folders to
-     create, and required host groups or devices.
+     create, and required host groups or devices. List every required secret
+     and say that Compose stops with an error until it is set.
    - **Deviations from the standard setup.** List every difference from
      [the standard setup](documentation/standard-setup.md) and give the
      reason. Examples are extra containers, published host ports, a changed
      or removed Serve configuration, DNS settings, and added capabilities.
    - **First run.** Describe what the user does after the first start, such
-     as creating the first account or finding a generated password.
+     as creating the first account or finding a generated password. When there
+     is nothing to do, write `Nothing to set up. Open the web interface.`
    - **Links.** Link to the upstream documentation and source code.
 
    When a section has nothing to report, keep the heading and the sentence
@@ -101,7 +126,9 @@ Thanks for helping improve these Tailscale sidecar examples.
 
    - **Configuration.** Optional settings that users commonly change.
    - **Troubleshooting.** Known errors and their solutions.
-   - **Upgrading.** Steps for users of an older version of the stack.
+   - **Upgrading.** Required when a change makes existing users act, such as a
+     new required secret, a moved data folder, or a changed `SERVICE`. Say what
+     to do, as in [FossFLOW](services/fossflow/README.md#upgrading).
 
    State only what you confirmed in the Compose file, the upstream
    documentation, or a running stack. Put guidance that applies to more than
@@ -109,7 +136,7 @@ Thanks for helping improve these Tailscale sidecar examples.
 
 7. Add the service to the correct category in the root `README.md`.
 
-   Keep the entries in that category alphabetized.
+   Insert the row in alphabetical order of the bold name, ignoring case.
 
 ## Update a service
 
@@ -119,20 +146,48 @@ Thanks for helping improve these Tailscale sidecar examples.
 - Use `${VARIABLE}` for Compose interpolation, not `$(VARIABLE)`.
 - Update the service README when ports, paths, setup, or behavior change.
 - Update the root service list when you add, remove, or rename a service.
+- Changing `SERVICE` renames the Tailnet device and its address, the
+  containers, and the `./${SERVICE}-data` folder. Treat it like a volume change
+  and add an "Upgrading" section.
+- Do not rename existing containers or service keys. Other containers and
+  `.env` values may refer to them.
 
 Preserve valid service-specific exceptions.
 
 ## Verify your change
 
-Run Compose validation from each changed service directory:
+Run Compose validation from each changed service directory. Stacks that
+require your own secrets stop with "required variable ... is missing a value".
+Give those variables a dummy value on the command line, as CI does, instead of
+editing `.env`:
 
 ```sh
-docker compose config --quiet
+env $(grep -ohE '\$\{[A-Za-z0-9_]+:\?' compose.yaml .env | sed -E 's/^\$\{//; s/:\?$/=dummy/' | sort -u) docker compose config --quiet
 ```
 
-This command does not prove that the application works.
+The command must exit with status 0 and add no "variable is not set"
+warnings. It does not prove that the application works.
 
-When possible, start the stack and confirm:
+The template leaves `SERVICE` and `IMAGE_URL` empty. To validate it, run
+`SERVICE=dummy IMAGE_URL=dummy docker compose config --quiet` from
+`templates/service-template/`.
+
+From the repository root, lint all Markdown with the rumdl version that
+`.github/workflows/linting.yml` pins, currently 0.2.78:
+
+```sh
+uvx rumdl@0.2.78 check --config .markdownlint.yml .
+```
+
+After you stage new files, check whitespace with `git diff --check origin/main`.
+
+When possible, start the stack from a copy outside the repository, such as
+`cp -R services/my-service /tmp/my-service`, and put real values only in the
+copy. A running stack writes `./config`, `./ts/state` (with the Tailscale
+device key), and its data folders next to `compose.yaml`. Before you commit,
+run `git status` and stage only the files you changed on purpose.
+
+Then confirm:
 
 - Tailscale becomes healthy and joins the Tailnet.
 - The application starts and is reachable through the Tailnet.
@@ -141,5 +196,8 @@ When possible, start the stack and confirm:
 
 ## Submit a pull request
 
-Follow the pull request template. Report the checks you ran and any checks you
-could not run.
+Title the pull request `Service: what changes`, such as `Umami: new service`.
+For several services, list them or use `All services:`. For other areas, use
+`CI:`, `Docs:`, or `Template:`. Fill in the pull request template, and report
+the checks you ran and any checks you could not run. Maintainers apply the
+labels.
