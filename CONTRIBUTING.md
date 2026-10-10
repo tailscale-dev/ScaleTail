@@ -168,6 +168,10 @@ env $(grep -ohE '\$\{[A-Za-z0-9_]+:\?' compose.yaml .env | sed -E 's/^\$\{//; s/
 The command must exit with status 0 and add no "variable is not set"
 warnings. It does not prove that the application works.
 
+The template leaves `SERVICE` and `IMAGE_URL` empty. To validate it, run
+`SERVICE=dummy IMAGE_URL=dummy docker compose config --quiet` from
+`templates/service-template/`.
+
 From the repository root, lint all Markdown with the rumdl version that
 `.github/workflows/linting.yml` pins, currently 0.2.78:
 
