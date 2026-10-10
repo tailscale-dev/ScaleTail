@@ -24,7 +24,7 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 
 ## Deviations from the standard setup
 
-- **Settings file.** This directory contains `searxng/settings.yml`, a copy of the [default settings of SearXNG](https://github.com/searxng/searxng/blob/master/searx/settings.yml). The stack mounts the folder at `/etc/searxng`. Edit that file to change the engines and other settings.
+- **Settings file.** This directory contains `searxng/settings.yml`, which only sets `use_default_settings: true` and the secret key. Every other setting comes from the [default settings of SearXNG](https://github.com/searxng/searxng/blob/master/searx/settings.yml). The stack mounts the folder at `/etc/searxng`. Add your own settings to that file; see the [settings documentation](https://docs.searxng.org/admin/settings/settings.html).
 - **Extra container.** The stack runs a `valkey` container on the default Compose network. `SEARXNG_VALKEY_URL` in `.env` points SearXNG at it, because the default settings do not use Valkey. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve the name `valkey`.
 - **Reduced privileges.** Both containers drop all capabilities and add back only the few that they need.
 - **Log size.** Both containers limit their log to one file of 1 MB.
@@ -32,6 +32,10 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 ## First run
 
 Nothing to set up. Open the web interface and search. SearXNG has no login.
+
+## Upgrading
+
+Earlier versions of this stack had a full copy of the SearXNG settings file. Its list of engines contained modules that upstream has since removed, so SearXNG logged `Cannot load engine` errors. The file now only overrides the secret key. Back up `searxng/settings.yml`, replace it with the new version, and move any settings of your own into it. Then restart the stack.
 
 ## Links
 

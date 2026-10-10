@@ -57,7 +57,7 @@ services:
       - PGID=1000
       - TZ=${TZ}
       - JWT_SECRET=${JWT_SECRET:?Set JWT_SECRET in .env}
-      - DISABLE_AUTH=${DISABLE_AUTH:?error}
+      - DISABLE_AUTH=${DISABLE_AUTH:-false}
       - ENCRYPTION_SECRET=${ENCRYPTION_SECRET:?Set ENCRYPTION_SECRET in .env}
     volumes:
       - ./${SERVICE}-data/gitsave:/app/data

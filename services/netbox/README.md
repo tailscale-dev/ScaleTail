@@ -48,6 +48,8 @@ Open the web interface and log in with that account.
 
 If you are upgrading, set `SUPER_SECRET` to the value from your previous `.env`, including the old default if you never changed it. Otherwise NetBox cannot log in to the existing database.
 
+Earlier versions of this stack sent background jobs to the `redis-cache` container. They now use the `redis` container. Jobs that were still queued in `redis-cache` are not moved to `redis`.
+
 ## Links
 
 - [NetBox documentation](https://netboxlabs.com/docs/netbox/)

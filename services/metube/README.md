@@ -19,7 +19,6 @@ Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
-- **MagicDNS is enabled.** The stack sets `TS_ACCEPT_DNS=true`, so the containers resolve names through MagicDNS and not through Docker's DNS.
 - **Download folder.** The downloads are in `./downloads`, not in a `./metube-data` folder.
 
 ## First run
