@@ -1,4 +1,4 @@
-# Setting up Tailscale on OpenPLi (ARM Linux)
+# Install Tailscale on an OpenPLi set-top box (without Docker)
 
 This page describes how to install and configure **Tailscale** on an OpenPLi set-top box using the ARM version of Linux.  
 Because OpenPLi is a lightweight distribution, the usual package manager method may not work. Instead, you may need to use Tailscale’s static binaries and configure an init.d service for automatic startup.
@@ -20,11 +20,10 @@ curl -fsSL https://tailscale.com/install.sh | sh
 
 ## 2. Download the ARM static binaries
 
-Go to [Tailscale Stable Releases](https://pkgs.tailscale.com/stable/#static) and download the ARM package.  
-For example:
+Go to [Tailscale Stable Releases](https://pkgs.tailscale.com/stable/#static) and download the archive for your architecture: `arm`, `arm64`, `mips`, or `mipsle`. The file names follow the pattern `tailscale_<version>_<arch>.tgz`, where `<version>` is the current version shown on that page. For an ARM device, for example:
 
 ```sh
-wget https://pkgs.tailscale.com/stable/tailscale_1.86.2_arm.tgz
+wget https://pkgs.tailscale.com/stable/tailscale_<version>_arm.tgz
 ```
 
 ---
@@ -34,10 +33,12 @@ wget https://pkgs.tailscale.com/stable/tailscale_1.86.2_arm.tgz
 Extract the archive and copy the executables into `/usr/sbin`:
 
 ```sh
-tar zxvf tailscale_1.86.2_arm.tgz
-cp tailscale_1.86.2_arm/tailscal* /usr/sbin/
+tar zxvf tailscale_*_arm.tgz
+cp tailscale_*_arm/tailscal* /usr/sbin/
 chmod +x /usr/sbin/tailscal*
 ```
+
+If you downloaded another architecture, replace `arm` in the file names.
 
 This provides both `tailscale` (CLI) and `tailscaled` (daemon).
 
@@ -50,7 +51,7 @@ Since OpenPLi does not use `systemd`, we need to create an **init.d service** to
 Create the service script:
 
 ```sh
-cat << EOF >/etc/init.d/tailscaled
+cat << 'EOF' > /etc/init.d/tailscaled
 #!/bin/sh
 DAEMON=/usr/sbin/tailscaled
 PIDFILE=/var/run/tailscaled.pid
@@ -59,20 +60,20 @@ DAEMON_OPTS="--state=/var/lib/tailscale/tailscaled.state --socket=/var/run/tails
 case "$1" in
   start)
     echo "Starting tailscaled"
-    start-stop-daemon --start --quiet --background --make-pidfile       --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_OPTS
+    start-stop-daemon --start --quiet --background --make-pidfile       --pidfile "$PIDFILE" --exec "$DAEMON" -- $DAEMON_OPTS
     ;;
   stop)
     echo "Stopping tailscaled"
-    start-stop-daemon --stop --quiet ---retry=TERM/9/KILL/11 --pidfile $PIDFILE
-    $DAEMON --cleanup
-    rm -f $PIDFILE
+    start-stop-daemon --stop --quiet --retry=TERM/9/KILL/11 --pidfile "$PIDFILE"
+    "$DAEMON" --cleanup
+    rm -f "$PIDFILE"
     ;;
   restart)
     $0 stop
     $0 start
     ;;
   status)
-    if [ -f $PIDFILE ] && kill -0 "$(cat $PIDFILE)" 2>/dev/null; then
+    if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
       echo "tailscaled is running"
     else
       echo "tailscaled is not running"
