@@ -7,8 +7,8 @@
 .AppleDouble
 .LSOverride
 
-# Icon must end with two \r
-Icon
+# Icon: the custom folder icon file that macOS creates
+Icon[]
 
 # Thumbnails
 ._*
@@ -35,6 +35,46 @@ Temporary Items
 
 # rumdl cache directories
 .rumdl_cache/
-**/.rumdl_cache/
 
 # End of https://www.toptal.com/developers/gitignore/api/macos
+
+# Runtime files that a stack creates when you start it from this repository.
+# Never commit them: ts/ holds the private key of the Tailscale device.
+services/*/ts/
+services/*/config/serve.json
+services/*/*-data/
+services/*/*-config/
+services/*/*-storage/
+services/*/*-db/
+services/*/*-database/
+
+# Tracked files inside a data folder
+!services/donetick/donetick-data/
+services/donetick/donetick-data/*
+!services/donetick/donetick-data/config/
+services/donetick/donetick-data/config/*
+!services/donetick/donetick-data/config/selfhosted.yaml
+!services/dozzle/dozzle-data/
+services/dozzle/dozzle-data/*
+!services/dozzle/dozzle-data/users.yml
+
+# Data folders that do not follow the <service>-data pattern
+services/affine/postgres/
+services/arcane/opt/
+services/booklore/books/
+services/booklore/data/
+services/booklore/mariadb_config/
+services/caddy/caddy_config/
+services/caddy/caddy_data/
+services/caddy/site/
+services/caddy/tailscale/
+services/copyparty/config/
+services/jellyfin/media/
+services/metube/downloads/
+services/netbox/netbox/
+services/newwallpaperwhodis/data/
+services/newwallpaperwhodis/wallpapers/
+services/next-explorer/cache/
+services/next-explorer/config/
+services/seafile/db/
+services/sure/backups/
