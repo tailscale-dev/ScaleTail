@@ -78,6 +78,8 @@ services:
     # A container that runs once and exits needs no check. Remove this block and replace it with
     # "# Healthcheck: none needed. <reason>."
     # Database: check over TCP (for example pg_isready -h 127.0.0.1), because the first-start server accepts only socket connections.
+    #    A database image's own HEALTHCHECK still comes first - when it connects over the socket, say so in the comment.
+    #    When another service depends on the database, let it wait with `condition: service_healthy`.
     # Avoid `pgrep -f` with the service name: it breaks when SERVICE is renamed, and many images do not include pgrep.
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:80/"] # Check if the service is responding
