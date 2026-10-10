@@ -4,15 +4,9 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'services/**'
-      - '.github/workflows/compose-validation.yml'
   pull_request:
     branches:
       - main
-    paths:
-      - 'services/**'
-      - '.github/workflows/compose-validation.yml'
 
 permissions:
   contents: read
@@ -23,24 +17,50 @@ concurrency:
 
 jobs:
   validate:
+    name: Compose files
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - name: Clone this repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
 
       # Some stacks require the user to set their own secrets and stop with
       # "required variable X is missing". Supply a dummy value for those and
-      # retry, so that the rest of the file is still checked.
+      # retry, so that the rest of the file is still checked. The template
+      # leaves SERVICE and IMAGE_URL empty, so it starts with dummy values for
+      # both. A variable that compose.yaml uses but .env does not define
+      # ("The X variable is not set") is an error, and so is a required
+      # variable that .env does not list or a Serve configuration that is not
+      # valid JSON.
       - name: Run docker compose config
         run: |
+          docker compose version
           status=0
-          for dir in services/*/; do
+          for dir in services/*/ templates/service-template/; do
             vars=()
+            if [ "$dir" = templates/service-template/ ]; then
+              vars=(SERVICE IMAGE_URL)
+            fi
             ok=0
-            for attempt in $(seq 1 30); do
+            for _ in $(seq 1 30); do
               if out=$(cd "$dir" && env "${vars[@]/%/=dummy}" docker compose config --quiet 2>&1); then
                 ok=1
+                unset_vars=$(sed -nE 's/.*The \\?"([A-Za-z0-9_]+)\\?" variable is not set.*/\1/p' <<<"$out" | sort -u | paste -sd' ' -)
+                if [ -n "$unset_vars" ]; then
+                  echo "::error file=${dir}compose.yaml::Used in compose.yaml but not defined in ${dir}.env: ${unset_vars}"
+                  status=1
+                fi
+                for v in "${vars[@]}"; do
+                  grep -qE "^${v}=" "${dir}.env" || { echo "::error file=${dir}compose.yaml::${v} is required but not listed in ${dir}.env"; status=1; }
+                done
+                if ! (cd "$dir" && env "${vars[@]/%/=dummy}" docker compose config --format json 2>/dev/null \
+                    | jq -r '(.configs // {}) | to_entries[] | select(.key | startswith("ts-serve")) | .value.content' \
+                    | jq empty); then
+                  echo "::error file=${dir}compose.yaml::The Tailscale Serve configuration is not valid JSON"
+                  status=1
+                fi
                 break
               fi
               missing=$(grep -oE 'required variable [A-Za-z0-9_]+' <<<"$out" | awk '{print $3}' | sort -u | grep -vxFf <(printf '%s\n' "${vars[@]}") || true)
@@ -51,7 +71,8 @@ jobs:
                 ok=2
                 break
               fi
-              vars+=($missing)
+              mapfile -t new <<<"$missing"
+              vars+=("${new[@]}")
             done
             if [ "$ok" = 0 ]; then
               echo "::error file=${dir}compose.yaml::too many required variables in ${dir}"
