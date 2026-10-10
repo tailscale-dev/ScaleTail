@@ -9,7 +9,7 @@ configs:
 
 services:
 # Make sure you have updated/checked the .env file with the correct variables.
-# Every variable used in this file must be defined there.
+# Every variable used in this file must be defined there, unless it has a default such as ${VAR:-value}.
   # Tailscale Sidecar Configuration
   tailscale:
     image: tailscale/tailscale:latest # Image to be used
@@ -53,8 +53,9 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment: # Variables are declared in .env file.
-      - PUID=1000
-      - PGID=1000
+      # Set PUID and PGID only for images that read them, such as LinuxServer.io images. Many images ignore them.
+      #- PUID=1000
+      #- PGID=1000
       - TZ=${TZ}
       #- EXAMPLE_VAR=${EXAMPLE_VAR}
     volumes:
@@ -76,7 +77,8 @@ services:
     #    "# Healthcheck: none possible. The image contains only <binary>, with no shell, HTTP client, or health command."
     # A container that runs once and exits needs no check. Remove this block and replace it with
     # "# Healthcheck: none needed. <reason>."
-    # Avoid `pgrep -f ${SERVICE}`: it breaks when SERVICE is renamed, and many images do not include pgrep.
+    # Database: check over TCP (for example pg_isready -h 127.0.0.1), because the first-start server accepts only socket connections.
+    # Avoid `pgrep -f` with the service name: it breaks when SERVICE is renamed, and many images do not include pgrep.
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:80/"] # Check if the service is responding
       interval: 1m # How often to perform the check
