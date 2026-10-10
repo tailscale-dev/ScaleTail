@@ -18,9 +18,9 @@ ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose
 You need:
 
 - A Linux host with [Docker Engine](https://docs.docker.com/engine/install/), Docker Compose 2.23.1 or later, and [Git](https://git-scm.com/). Check the Compose version with `docker compose version`.
-- [MagicDNS](https://tailscale.com/kb/1081/magicdns) and [HTTPS certificates](https://tailscale.com/kb/1153/enabling-https) enabled for your Tailnet, on the [DNS](https://login.tailscale.com/admin/dns) page of the admin console. Without them, the `https://` address of a stack does not work. With HTTPS enabled, device names appear in public certificate transparency logs.
+- [MagicDNS](https://tailscale.com/kb/1081/magicdns) and [HTTPS certificates](https://tailscale.com/kb/1153/enabling-https) enabled for your Tailnet, on the [DNS](https://console.tailscale.com/admin/dns) page of the admin console. Without them, the `https://` address of a stack does not work. With HTTPS enabled, device names appear in public certificate transparency logs.
 
-1. **Create an auth key** on the [Keys](https://login.tailscale.com/admin/settings/keys) page of the admin console.
+1. **Create an auth key** on the [Keys](https://console.tailscale.com/admin/settings/keys) page of the admin console.
 
    - Leave **Ephemeral** off. Tailscale removes an ephemeral device 30 to 60 minutes after it goes offline, for example when you stop the stack.
    - Turn on **Pre-approved** if your Tailnet uses [device approval](https://tailscale.com/kb/1099/device-approval).
@@ -50,7 +50,7 @@ You need:
 
 6. **Open the service.** From a device in your Tailnet, open the web interface from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`. `<SERVICE>` is the value of `SERVICE` in `.env`, and `<tailnet>` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name). The first request can take up to a minute, because Tailscale requests the certificate at that moment. Then follow "First run" in the service README. Some stacks have no web interface, and their service README says how to reach them.
 
-7. **Keep the device connected.** Its node key expires after 180 days by default. To prevent that, disable key expiry for the device on the [Machines](https://login.tailscale.com/admin/machines) page.
+7. **Keep the device connected.** Its node key expires after 180 days by default. To prevent that, disable key expiry for the device on the [Machines](https://console.tailscale.com/admin/machines) page.
 
 Every stack starts from the same [standard setup](documentation/standard-setup.md), which explains the containers, the Tailnet address, the data folders, and the settings in `.env`.
 
@@ -275,7 +275,7 @@ Before you restart the stack, read the "Upgrading" section of the service README
 
 ## Remove a stack
 
-From the service directory, run `docker compose down --volumes`. To remove the stack completely, also remove the device on the [Machines](https://login.tailscale.com/admin/machines) page and delete the service directory. It contains the Tailscale state in `./ts/state` and the application data. The containers create some of these folders as root, so deleting them may need `sudo`.
+From the service directory, run `docker compose down --volumes`. To remove the stack completely, also remove the device on the [Machines](https://console.tailscale.com/admin/machines) page and delete the service directory. It contains the Tailscale state in `./ts/state` and the application data. The containers create some of these folders as root, so deleting them may need `sudo`.
 
 ## Get help
 
