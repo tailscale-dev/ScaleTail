@@ -4,11 +4,11 @@ A DNS service such as Pi-hole or AdGuard Home needs port 53. This page applies o
 
 ## Why port 53 is in use
 
-On Debian-based systems that use `systemd-resolved`, such as Ubuntu Server 22.04 and 24.04, a DNS stub listener runs by default. It listens on `127.0.0.53:53` and `127.0.0.54:53` and answers DNS queries from local applications. A container that publishes port 53 on all host addresses then fails to start, because the port is already taken.
+On Debian-based systems that use `systemd-resolved`, such as Ubuntu Server 22.04 and 24.04, a DNS stub listener runs by default. It listens on `127.0.0.53:53` and, since systemd 250 (for example on Ubuntu 24.04), also on `127.0.0.54:53`. It answers DNS queries from local applications. A container that publishes port 53 on all host addresses then fails to start, because the port is already taken.
 
 The `DNSStubListener` option in `/etc/systemd/resolved.conf` controls this listener:
 
-- `DNSStubListener=yes`: `systemd-resolved` listens on `127.0.0.53:53` and `127.0.0.54:53`. This is the default.
+- `DNSStubListener=yes`: `systemd-resolved` listens on port 53 of these addresses. This is the default.
 - `DNSStubListener=no`: `systemd-resolved` does not listen on port 53, so another DNS service can use it.
 
 ## Steps

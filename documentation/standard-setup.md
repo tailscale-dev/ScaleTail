@@ -40,7 +40,7 @@ All data stays in the service directory, next to `compose.yaml`.
 
 | Path                | Content                                   |
 | ------------------- | ----------------------------------------- |
-| `./config`          | Holds `serve.json`, the Serve configuration. Compose rewrites it from the `configs` block in `compose.yaml` each time it starts the container, so change `compose.yaml` instead. |
+| `./config`          | Holds `serve.json`, the Serve configuration. Compose writes it from the `configs` block in `compose.yaml` when it creates the container or starts a stopped one, so change `compose.yaml` instead. `docker compose restart` keeps the current file. |
 | `./ts/state`        | Tailscale state, including the device key. |
 | `./<service>-data/` | Data of the application.                  |
 
