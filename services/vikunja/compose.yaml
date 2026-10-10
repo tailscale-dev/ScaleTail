@@ -57,6 +57,7 @@ services:
       - TZ=${TZ}
       - VIKUNJA_SERVICE_PUBLICURL=${VIKUNJA_SERVICE_PUBLICURL}
       - VIKUNJA_DATABASE_PATH=${VIKUNJA_DATABASE_PATH}
+      - VIKUNJA_SERVICE_SECRET=${VIKUNJA_SERVICE_SECRET:?Set VIKUNJA_SERVICE_SECRET in .env}
     volumes:
       - ./${SERVICE}-data/files:/app/vikunja/files
       - ./${SERVICE}-data/db:/db

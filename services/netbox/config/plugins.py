@@ -1,3 +1,4 @@
+# Copied from netbox-docker (https://github.com/netbox-community/netbox-docker, Apache-2.0).
 # Add your plugins and plugin settings here.
 # Of course uncomment this file out.
 

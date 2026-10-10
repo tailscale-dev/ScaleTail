@@ -37,7 +37,7 @@ This stack runs Sure with a Tailscale sidecar, as described in [the standard set
 
 - **Several application containers.** The stack has no `application` service. It runs `web` (the web interface), `worker` (background jobs with Sidekiq), `db` (PostgreSQL), `redis`, and the optional `backup`.
 - **Two networks.** `web` and `worker` use the network of the `tailscale` container. `db`, `redis`, and `backup` use a separate Docker network, `sure_net`, with fixed IP addresses. The `tailscale` container is attached to that network as well, so that `web` and `worker` can reach the database and Redis.
-- **MagicDNS is enabled.** The stack sets `TS_ACCEPT_DNS=true`, which replaces Docker's DNS for `web` and `worker`. They cannot resolve the names `db` and `redis`, so `.env` gives them the fixed IP addresses instead (`DB_HOST=172.28.0.10` and `REDIS_URL=redis://172.28.0.11:6379/1`).
+- **MagicDNS is enabled.** The stack sets `TS_ACCEPT_DNS=true`, so `web` and `worker` resolve Tailnet names, for example an OpenID Connect provider on your Tailnet such as [Pocket ID](../pocket-id/). The setting replaces Docker's DNS for `web` and `worker`, and they cannot resolve the names `db` and `redis`. `.env` therefore gives them the fixed IP addresses instead (`DB_HOST=172.28.0.10` and `REDIS_URL=redis://172.28.0.11:6379/1`).
 - **HTTPS settings.** `.env` sets `RAILS_FORCE_SSL=true` and `RAILS_ASSUME_SSL=true`. Tailscale Serve provides HTTPS and forwards plain HTTP to port `3000`, and `RAILS_ASSUME_SSL` tells Sure that the connection is secure.
 - **Data folders.** The data is in `./app-storage`, `./postgres-data`, `./redis-data`, and `./backups`, not in a `./sure-data` folder.
 

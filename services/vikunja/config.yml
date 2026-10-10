@@ -1,3 +1,4 @@
+# Sample configuration copied from the Vikunja project (https://github.com/go-vikunja/vikunja, AGPL-3.0).
 # service:
   # This secret is used to sign JWT tokens and for other cryptographic operations.
   # Default is a random secret which will be generated at each startup of Vikunja.

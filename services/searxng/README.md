@@ -24,7 +24,8 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 
 ## Deviations from the standard setup
 
-- **Settings file.** This directory contains `searxng/settings.yml`, a copy of the [default settings of SearXNG](https://github.com/searxng/searxng/blob/master/searx/settings.yml). The stack mounts the folder at `/etc/searxng`. Edit that file to change the engines and other settings.
+- **Settings file.** This directory contains `searxng/settings.yml`, which only sets `use_default_settings: true` and the secret key. Every other setting comes from the [default settings of SearXNG](https://github.com/searxng/searxng/blob/master/searx/settings.yml). The stack mounts the folder at `/etc/searxng`. Add your own settings to that file; see the [settings documentation](https://docs.searxng.org/admin/settings/settings.html). After you edit the file, run `docker compose restart application`.
+- **Folder ownership.** `FORCE_OWNERSHIP=false` in `compose.yaml` stops SearXNG from making its own user the owner of the `searxng` folder. The folder stays yours, so you can edit `settings.yml` without `sudo`, and `git pull` can update it. At each start, SearXNG logs a warning that the folder `is not owned by "searxng:searxng"`. This is expected. Do not change the owner to match, because `git pull` then fails.
 - **Extra container.** The stack runs a `valkey` container on the default Compose network. `SEARXNG_VALKEY_URL` in `.env` points SearXNG at it, because the default settings do not use Valkey. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve the name `valkey`.
 - **Reduced privileges.** Both containers drop all capabilities and add back only the few that they need.
 - **Log size.** Both containers limit their log to one file of 1 MB.
@@ -32,6 +33,32 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 ## First run
 
 Nothing to set up. Open the web interface and search. SearXNG has no login.
+
+## Upgrading
+
+Earlier versions of this stack had a full copy of the SearXNG settings file. Its list of engines contained modules that upstream has since removed, so SearXNG logged `Cannot load engine` errors. The file now only overrides the secret key.
+
+Earlier versions also let SearXNG make its own user (ID `977`) the owner of the `searxng` folder. If you started the stack before, Git cannot replace `settings.yml`. `git pull` then stops with `unable to unlink old 'services/searxng/searxng/settings.yml': Permission denied` and leaves your clone half updated. To prevent this, take the folder back before you update your clone. Run this from the service directory:
+
+```bash
+sudo chown -R "$(id -u):$(id -g)" searxng
+```
+
+You need this only once, because the stack now sets `FORCE_OWNERSHIP=false`. If you changed `settings.yml`, also copy it to another folder and run `git restore searxng/settings.yml`, and move your own settings into the new file after the update.
+
+If `git pull` already stopped with that error, run the `chown` command, and then finish the update with these commands. They keep your own changes, such as the values in `.env`:
+
+```bash
+git stash
+git reset --hard origin/main
+git stash pop
+```
+
+If you ran `git stash` before the pull, run `git stash pop` once more.
+
+In both cases, run `docker compose up -d` after the update. Compose recreates the `application` container. It then reads the new file and no longer takes the folder.
+
+SearXNG now uses its default request method, `GET`, so a search query shows in the address bar and in the browser history. The old file set `POST`. To keep `POST`, add the line `method: "POST"` under the existing `server:` key in `settings.yml`.
 
 ## Links
 

@@ -1,3 +1,4 @@
+# Copied from netbox-docker (https://github.com/netbox-community/netbox-docker, Apache-2.0).
 # # Remove first comment(#) on each line to implement this working logging example.
 # # Add LOGLEVEL environment variable to netbox if you use this example & want a different log level.
 # from os import environ

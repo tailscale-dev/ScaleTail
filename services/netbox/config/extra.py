@@ -1,3 +1,4 @@
+# Copied from netbox-docker (https://github.com/netbox-community/netbox-docker, Apache-2.0).
 ####
 ## This file contains extra configuration options that can't be configured
 ## directly through environment variables.
