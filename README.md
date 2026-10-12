@@ -48,7 +48,7 @@ You need:
 
    The application starts after the `tailscale` container reports `healthy`. If a container is not running, read the logs with `docker compose logs`.
 
-6. **Open the service.** From a device in your Tailnet, open the web interface from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`. `<SERVICE>` is the value of `SERVICE` in `.env`, and `<tailnet>` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name). The first request can take up to a minute, because Tailscale requests the certificate at that moment. Then follow "First run" in the service README. Some stacks have no web interface, and their service README says how to reach them.
+6. **Open the service.** From a device in your Tailnet, open the web interface from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`. `<SERVICE>` is the value of `SERVICE` in `.env`, and `<tailnet>.ts.net` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name), for example `tail1234.ts.net`. The first request can take up to a minute, because Tailscale requests the certificate at that moment. Then follow "First run" in the service README. Some stacks have no web interface, and their service README says how to reach them.
 
 7. **Keep the device connected.** Its node key expires after 180 days by default. To prevent that, disable key expiry for the device on the [Machines](https://console.tailscale.com/admin/machines) page.
 
