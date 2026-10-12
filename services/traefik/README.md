@@ -26,7 +26,7 @@ Nothing beyond the [Quick Start](../../README.md#quick-start).
 - **Configuration through flags.** The `command` block in `compose.yaml` is the static configuration. Traefik ignores these flags when it finds a static configuration file, so edit the flags and do not add a `traefik.yml` file.
 - **Sample site.** The stack runs a `simpleweb` container with routing labels as an example. Replace it with your own services.
 - **Only port 80.** Tailscale Serve listens on port `443` of the Tailnet address and forwards to the `web` entrypoint of Traefik on port `80`. Do not add a Traefik entrypoint on port `443`. Traefik shares the network of the `tailscale` container, where that port is in use, so Traefik would exit and restart in a loop.
-- **Health check.** The health check calls the ping endpoint, so keep the `--ping=true` flag. Traefik only routes to containers that Docker reports as healthy, so the sample site is reachable only after its first health check passes.
+- **Health check.** The health check calls the ping endpoint, so keep the `--ping=true` flag. Traefik therefore still listens on port `8080` of the Tailscale IP address, where it answers `/ping` and returns `404` for everything else. Traefik only routes to containers that Docker reports as healthy, so the sample site is reachable only after its first health check passes.
 - **Dashboard.** The stack does not serve the Traefik dashboard or its API. Serving them needs a router with a password, which is described in [Configuration](#configuration).
 
 ## First run
