@@ -3,4 +3,9 @@ contact_links:
   - name: 💬 Tailscale Discord
     url: https://discord.gg/tailscale
     about: For help and chatting with the community
-    
+  - name: 📖 Standard setup
+    url: https://github.com/tailscale-dev/ScaleTail/blob/main/documentation/standard-setup.md
+    about: How every ScaleTail stack works, including DNS and the settings in .env
+  - name: 🐛 Tailscale client bugs
+    url: https://github.com/tailscale/tailscale/issues
+    about: For a bug in Tailscale itself, not in a ScaleTail stack

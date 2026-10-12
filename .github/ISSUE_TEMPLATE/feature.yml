@@ -7,10 +7,35 @@ body:
   - type: markdown
     attributes:
       value: |
-        This issue type is intended to be used for new features for the Tailscale sidecar or environment variables. 
-        
+        Use this form for a change to the Tailscale sidecar or its environment variables, for an improvement to an existing service, or for a documentation request.
+
+        To request a new service, use the **New Service Request** form. To report something that is broken, use the **Bug Report** form.
+
         **Before you start:**
         Please check if the feature has already been requested by searching [existing feature requests](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3Aenhancement).
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: What does this request change?
+      options:
+        - Tailscale sidecar or environment variables
+        - An existing service
+        - Documentation
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: service
+    attributes:
+      label: Service
+      description: The directory name under `services/`, when the request is about one service.
+      placeholder: immich
+    validations:
+      required: false
+
   - type: textarea
     id: description
     attributes:
@@ -38,13 +63,13 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
+  - type: dropdown
     id: contribute
     attributes:
       label: Would you be willing to work on this feature?
       options:
-        - label: Yes, I'd like to implement this feature
-        - label: I could help with parts of this feature
-        - label: No, I'm just suggesting the feature
+        - Yes, I'd like to implement this feature
+        - I could help with parts of this feature
+        - No, I'm just suggesting the feature
     validations:
       required: true

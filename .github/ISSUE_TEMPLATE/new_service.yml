@@ -7,58 +7,79 @@ body:
   - type: markdown
     attributes:
       value: |
-        This issue type is intended to be used to request new services for ScaleTail. 
+        This issue type is intended to be used to request new services for ScaleTail.
         Only services with an existing Docker Compose container on a known container image registry (e.g., Docker Hub, GitHub Container Registry, etc.) are accepted.
-        
+
+        Put only the name of the service after "New Service:" in the title.
+
         **Before you start:**
-        Please check if the service has already been requested by searching [existing service requests](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3A%22new%20service%22).
+        Please check if the service is already in the [service list](https://github.com/tailscale-dev/ScaleTail#available-configurations), or has already been requested by searching [existing service requests](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3A%22new%20service%22).
 
   - type: textarea
     id: description
     attributes:
       label: Service Description
-      description: A clear and concise description of the service you'd like to see implemented.
-      placeholder: I would like to see {SERVICE} implemented...
+      description: What the service does and why it fits ScaleTail.
+      placeholder: A self-hosted app that...
+    validations:
+      required: true
+
+  - type: input
+    id: image
+    attributes:
+      label: Container Image
+      description: The image name on its registry, as it appears in a `docker pull` command.
+      placeholder: ghcr.io/example/service:latest
     validations:
       required: true
 
   - type: input
     id: link-to-compose
     attributes:
-      label: Docker Compose File Link
-      description: Please provide a link to your Docker Compose file.
-      placeholder: https://link.to/service.yml
+      label: Upstream Compose File or Install Docs
+      description: A link to the upstream Docker Compose file, or to the page that documents how to run the image with Docker.
+      placeholder: https://link.to/compose.yaml
     validations:
       required: true
-
-  - type: textarea
-    id: compose-example
-    attributes:
-      label: Docker Compose Configuration
-      description: If applicable, please share the Docker Compose content from the service.
-      placeholder: |
-        Paste the Docker Compose content here...
-
-      render: yaml
-    validations:
-      required: false
 
   - type: input
     id: link-to-website-of-service
     attributes:
       label: Website of Service
-      description: Please provide a link to the official website of the service.
+      description: Please provide a link to the official website or source repository of the service.
       placeholder: https://servicename.com/service
     validations:
       required: false
 
-  - type: checkboxes
+  - type: textarea
+    id: requirements
+    attributes:
+      label: Extra Requirements
+      description: Anything beyond one container that serves a web interface, such as a database or cache container, ports that are not HTTP, devices such as a GPU, or required capabilities.
+      placeholder: |
+        - PostgreSQL and Redis containers
+        - UDP port 53
+    validations:
+      required: false
+
+  - type: textarea
+    id: compose-example
+    attributes:
+      label: Docker Compose Configuration
+      description: If applicable, please share the Docker Compose content from the service. Remove any secrets first.
+      placeholder: |
+        Paste the Docker Compose content here...
+      render: yaml
+    validations:
+      required: false
+
+  - type: dropdown
     id: contribute
     attributes:
       label: Would you be willing to work on this service?
       options:
-        - label: Yes, I'd like to implement this feature
-        - label: I could help with parts of this feature
-        - label: No, I'm just suggesting the feature
+        - Yes, I'd like to implement this service
+        - I could help with parts of this service
+        - No, I'm just suggesting the service
     validations:
       required: true

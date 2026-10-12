@@ -7,14 +7,62 @@ body:
   - type: markdown
     attributes:
       value: |
+        Use this form for a problem with a ScaleTail stack: a `compose.yaml`, `.env`, or service README that is wrong or no longer works.
+
+        For a bug in the Tailscale client itself, report it to [tailscale/tailscale](https://github.com/tailscale/tailscale/issues). For a bug in the application itself, report it to the upstream project.
+
         **Before you start:**
-        Please check if the issue has already been reported or completed by searching [existing bugs](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3Abug). 
+        Please check if the issue has already been reported or completed by searching [existing bugs](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3Abug).
+
+  - type: checkboxes
+    id: preflight
+    attributes:
+      label: Before you report
+      options:
+        - label: I searched the existing issues and did not find this bug.
+          required: true
+        - label: I pulled the latest ScaleTail (`git pull`) and the problem still occurs.
+          required: true
+        - label: I read the README of the service and the [standard setup](https://github.com/tailscale-dev/ScaleTail/blob/main/documentation/standard-setup.md).
+          required: true
+
+  - type: input
+    id: service
+    attributes:
+      label: Service
+      description: The directory name of the service under `services/`.
+      placeholder: immich
+    validations:
+      required: true
+
+  - type: input
+    id: scaletail-version
+    attributes:
+      label: ScaleTail Version
+      description: The `#version=` line at the top of your `.env`, or the commit of your clone (run `git rev-parse --short HEAD`).
+      placeholder: '1.1'
+    validations:
+      required: false
+
   - type: textarea
     id: description
     attributes:
       label: Bug Description
       description: A clear and concise (short) description of what the bug is.
       placeholder: When I start the docker compose, the app crashes...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: The commands you ran and the changes you made to `.env` or `compose.yaml`, in order.
+      placeholder: |
+        1. cd services/<service>
+        2. Set TS_AUTHKEY in .env
+        3. docker compose up -d
+        4. ...
     validations:
       required: true
 
@@ -37,6 +85,19 @@ body:
       required: true
 
   - type: textarea
+    id: logs
+    attributes:
+      label: Container Status and Logs
+      description: |
+        Run these commands from the service directory and paste the output. Remove any secrets first.
+      placeholder: |
+        docker compose ps
+        docker compose logs --tail=100 tailscale application
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
     id: screenshots
     attributes:
       label: Screenshots
@@ -44,6 +105,15 @@ body:
       placeholder: Paste screenshots here...
     validations:
       required: false
+
+  - type: input
+    id: app-image
+    attributes:
+      label: Application Image and Tag
+      description: The `IMAGE_URL` from your `.env`. Add the version if the tag is `latest` and you know it.
+      placeholder: ghcr.io/sysadminsmedia/homebox:latest
+    validations:
+      required: true
 
   - type: dropdown
     id: os
@@ -59,10 +129,19 @@ body:
       required: true
 
   - type: input
+    id: platform
+    attributes:
+      label: Host Platform
+      description: Docker Desktop or Docker Engine, the CPU architecture, and any virtualization or NAS layer.
+      placeholder: Docker Engine on arm64, LXC container on Proxmox
+    validations:
+      required: false
+
+  - type: input
     id: tailscale
     attributes:
       label: Tailscale Version
-      description: What Tailscale version are you using? (Check Tailscale sidecar container Docker logs or run `tailscale --version' in the Tailscale sidecar container).
+      description: 'What Tailscale version are you using? Run `docker exec tailscale-<service> tailscale version`, or check the logs of the Tailscale sidecar container.'
       placeholder: '1.94.1'
     validations:
       required: true
@@ -76,31 +155,22 @@ body:
     validations:
       required: true
 
-  - type: textarea
-    id: logs
-    attributes:
-      label: Relevant Logs or Error Messages
-      description: Please share any relevant logs, error messages.
-      placeholder: |
-        Paste any error messages or (Docker) logs here...
-
-        To get Docker logs: docker logs <container-name>
-      render: shell
-    validations:
-      required: false
-
-  - type: textarea
+  - type: input
     id: compose
     attributes:
+      label: Docker Compose Version
+      description: What Docker Compose version are you using? (Run `docker compose version`).
+      placeholder: '2.29.1'
+    validations:
+      required: true
+
+  - type: textarea
+    id: compose-file
+    attributes:
       label: Docker Compose Configuration
-      description: Please share your compose.yaml file content (remove sensitive data).
+      description: Please share your compose.yaml file content, when you changed it.
       placeholder: |
         Paste your compose.yaml content here...
-
-        Please remove any sensitive information like:
-        - API_KEYS
-        - PASSWORDS
-
       render: yaml
     validations:
       required: false
@@ -109,18 +179,20 @@ body:
     id: env
     attributes:
       label: Environment Configuration (.env file)
-      description: Please share your .env file content (remove sensitive data).
+      description: Please share your .env file content, when you changed it.
       placeholder: |
         Paste your .env file content here...
-
-        Please remove any sensitive information like:
-        - TS_KEY
-        - ENCRYPTION_KEY
-        - JWT_SECRET
-
       render: shell
     validations:
       required: false
+
+  - type: checkboxes
+    id: secrets
+    attributes:
+      label: Secrets
+      options:
+        - label: I removed `TS_AUTHKEY`, passwords, tokens, and other secrets from everything I pasted above.
+          required: true
 
   - type: textarea
     id: additional
@@ -130,4 +202,3 @@ body:
       placeholder: Any other relevant information...
     validations:
       required: false
-      
