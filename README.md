@@ -290,4 +290,4 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidance on adding services with the 
 
 ## License
 
-[MIT](https://choosealicense.com/licenses/mit/)
+This repository is licensed under the [MIT License](LICENSE). The license covers the Compose files, templates, and documentation here. It does not cover the container images the services pull. Each image keeps its own license or terms, and some are commercial or require you to accept an agreement, such as Nessus, Minecraft, and Vikunja's optional license key. Check the upstream terms before you deploy a service.

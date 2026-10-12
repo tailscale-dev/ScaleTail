@@ -143,3 +143,8 @@ When possible, start the stack and confirm:
 
 Follow the pull request template. Report the checks you ran and any checks you
 could not run.
+
+## License
+
+By submitting a pull request, you agree to license your contribution under the
+repository's [MIT License](LICENSE).
