@@ -54,7 +54,7 @@ git reset --hard origin/main
 git stash pop
 ```
 
-If you ran `git stash` before the pull, run `git stash pop` once more.
+If you ran `git stash` before the pull, run `git stash pop` once more. `git reset --hard` removes commits of your own from the branch, although `git reflog` still lists them. If you pulled another branch, for example in a fork, name that branch instead of `origin/main`.
 
 In both cases, run `docker compose up -d` after the update. Compose recreates the `application` container. It then reads the new file and no longer takes the folder.
 
