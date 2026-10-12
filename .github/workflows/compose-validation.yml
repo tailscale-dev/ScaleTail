@@ -33,8 +33,10 @@ jobs:
       # both. A variable that compose.yaml uses but .env does not define
       # ("The X variable is not set") is an error, and so is a required
       # variable that .env does not list or a Serve configuration that is not
-      # valid JSON.
+      # valid JSON. Compose leaves a config that no service uses out of its
+      # output, so a second pass without interpolation reads those.
       - name: Run docker compose config
+        shell: bash
         run: |
           docker compose version
           status=0
@@ -61,6 +63,15 @@ jobs:
                   echo "::error file=${dir}compose.yaml::The Tailscale Serve configuration is not valid JSON"
                   status=1
                 fi
+                used=$(cd "$dir" && env "${vars[@]/%/=dummy}" docker compose config --format json 2>/dev/null \
+                    | jq -c '[(.configs // {}) | keys[] | select(startswith("ts-serve"))]') || used='[]'
+                raw=$(cd "$dir" && env "${vars[@]/%/=dummy}" docker compose config --no-interpolate --format json 2>/dev/null) || raw='{}'
+                while read -r name; do
+                  if ! jq -r --arg n "$name" '.configs[$n].content' <<<"$raw" | jq empty; then
+                    echo "::error file=${dir}compose.yaml::The Tailscale Serve configuration ${name}, which the stack does not use by default, is not valid JSON"
+                    status=1
+                  fi
+                done < <(jq -r --argjson used "$used" '(.configs // {}) | keys[] | select(startswith("ts-serve")) | select(. as $k | $used | index($k) | not)' <<<"$raw")
                 break
               fi
               missing=$(grep -oE 'required variable [A-Za-z0-9_]+' <<<"$out" | awk '{print $3}' | sort -u | grep -vxFf <(printf '%s\n' "${vars[@]}") || true)
