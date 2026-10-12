@@ -48,7 +48,8 @@ services/*/*-storage/
 services/*/*-db/
 services/*/*-database/
 
-# Tracked files inside a data folder
+# Tracked files inside a data folder. The rules above ignore such a file, so add
+# an exception for it here, as for Donetick and Dozzle.
 !services/donetick/donetick-data/
 services/donetick/donetick-data/*
 !services/donetick/donetick-data/config/
