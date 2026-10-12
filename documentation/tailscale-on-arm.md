@@ -65,7 +65,10 @@ case "$1" in
   stop)
     echo "Stopping tailscaled"
     PID="$(cat "$PIDFILE" 2>/dev/null)"
-    start-stop-daemon --stop --quiet --retry=TERM/9/KILL/11 --pidfile "$PIDFILE"
+    if ! start-stop-daemon --stop --quiet --retry=TERM/9/KILL/11 --pidfile "$PIDFILE"; then
+      # A start-stop-daemon that rejects --retry sends no signal, so send TERM here
+      [ -n "$PID" ] && kill "$PID" 2>/dev/null
+    fi
     # BusyBox ignores --retry and returns at once, so wait here until the process is gone
     i=0
     while [ -n "$PID" ] && kill -0 "$PID" 2>/dev/null; do
