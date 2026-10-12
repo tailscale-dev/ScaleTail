@@ -15,6 +15,7 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 - Confirm ports, commands, volumes, variables, and health checks in the image's upstream docs.
 - Preserve documented exceptions. Some stacks use other Compose service keys or container names, and other containers or `.env` values refer to those names.
 - Keep changes focused on the requested service or documentation.
+- Apply the rules to new stacks and to the parts of an existing stack that you change. Existing stacks are brought in line over time, so do not fix the rest of a stack unless that is the task.
 
 ## Files that change together
 
@@ -39,12 +40,15 @@ env $(grep -ohE '\$\{[A-Za-z0-9_]+:\?' compose.yaml .env | sed -E 's/^\$\{//; s/
 
 It must exit with status 0. CI fails on "variable is not set" warnings.
 
-From the repository root, lint all Markdown with the rumdl version that `.github/workflows/linting.yml` pins, currently 0.2.78, and check your changes for whitespace errors:
+From the repository root, lint all Markdown with the rumdl version that `.github/workflows/linting.yml` pins in its `version:` input, and check your changes for whitespace errors:
 
 ```sh
-uvx rumdl@0.2.78 check --config .markdownlint.yml .
+version=$(sed -nE 's/.*version: "([0-9.]+)".*/\1/p' .github/workflows/linting.yml)
+uvx "rumdl@$version" check --config .markdownlint.yml .
 git diff --check origin/main
 ```
+
+Without `uv`, download that version from the [rumdl releases](https://github.com/rvben/rumdl/releases) and run `rumdl check --config .markdownlint.yml .`.
 
 Lint the whole tree, because renaming a service breaks a link in the root `README.md`. `git diff --check origin/main` also covers staged and committed changes, but not untracked files, so stage new files first.
 

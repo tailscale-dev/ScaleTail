@@ -2,6 +2,10 @@
 
 Thanks for helping improve these Tailscale sidecar examples.
 
+The rules on this page apply to new stacks and to the parts of an existing
+stack that you change. Existing stacks are brought in line over time, so you
+do not have to fix the rest of a stack that you touch.
+
 ## Add a service
 
 1. Copy the service template from the repository root. Replace `my-service` with your service name:
@@ -173,11 +177,16 @@ The template leaves `SERVICE` and `IMAGE_URL` empty. To validate it, run
 `templates/service-template/`.
 
 From the repository root, lint all Markdown with the rumdl version that
-`.github/workflows/linting.yml` pins, currently 0.2.78:
+`.github/workflows/linting.yml` pins in its `version:` input:
 
 ```sh
-uvx rumdl@0.2.78 check --config .markdownlint.yml .
+version=$(sed -nE 's/.*version: "([0-9.]+)".*/\1/p' .github/workflows/linting.yml)
+uvx "rumdl@$version" check --config .markdownlint.yml .
 ```
+
+Without `uv`, download that version from the
+[rumdl releases](https://github.com/rvben/rumdl/releases) and run
+`rumdl check --config .markdownlint.yml .`.
 
 After you stage new files, check whitespace with `git diff --check origin/main`.
 
