@@ -50,7 +50,7 @@ git diff --check origin/main
 
 Without `uv`, download that version from the [rumdl releases](https://github.com/rvben/rumdl/releases) and run `rumdl check --config .markdownlint.yml .`.
 
-Lint the whole tree, because renaming a service breaks a link in the root `README.md`. `git diff --check origin/main` also covers staged and committed changes, but not untracked files, so stage new files first.
+Lint the whole tree, because renaming a service breaks a link in the root `README.md`. `git diff --check origin/main` also covers staged and committed changes, but not untracked files, so stage new files first. In a fork, compare with the `main` branch of this repository instead, for example `upstream/main`.
 
 When you have an auth key, start the copied stack and test its main function through the Tailnet. Run each health check command in its container with `docker exec`.
 

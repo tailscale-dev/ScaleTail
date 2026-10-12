@@ -56,7 +56,8 @@ do not have to fix the rest of a stack that you touch.
      databases, caches, and search engines to a major or major.minor tag. When
      you pin an exact version, say why in a comment.
    - Keep application data under `./${SERVICE}-data/`, so that `.gitignore`
-     covers it.
+     covers it. A file that the repository must track inside such a folder
+     needs its own exception in `.gitignore`, as for Donetick and Dozzle.
 
 4. Set the Serve proxy to the application's internal port.
 
@@ -189,6 +190,8 @@ Without `uv`, download that version from the
 `rumdl check --config .markdownlint.yml .`.
 
 After you stage new files, check whitespace with `git diff --check origin/main`.
+In a fork, compare with the `main` branch of this repository instead, for
+example `upstream/main`.
 
 When possible, start the stack from a copy outside the repository, such as
 `cp -R services/my-service /tmp/my-service`, and put real values only in the
