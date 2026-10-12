@@ -64,7 +64,18 @@ case "$1" in
     ;;
   stop)
     echo "Stopping tailscaled"
+    PID="$(cat "$PIDFILE" 2>/dev/null)"
     start-stop-daemon --stop --quiet --retry=TERM/9/KILL/11 --pidfile "$PIDFILE"
+    # BusyBox ignores --retry and returns at once, so wait here until the process is gone
+    i=0
+    while [ -n "$PID" ] && kill -0 "$PID" 2>/dev/null; do
+      if [ "$i" -ge 15 ]; then
+        kill -9 "$PID" 2>/dev/null
+        break
+      fi
+      sleep 1
+      i=$((i + 1))
+    done
     "$DAEMON" --cleanup
     rm -f "$PIDFILE"
     ;;

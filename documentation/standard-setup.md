@@ -15,7 +15,7 @@ The application uses `network_mode: service:tailscale` and starts only after the
 
 ## Tailnet access
 
-- **Web interface.** [Tailscale Serve](https://tailscale.com/kb/1312/serve) publishes the web interface at `https://<service>.<tailnet>.ts.net` and forwards it to the internal port of the application. `<service>` is the value of `SERVICE` and `<tailnet>` is your [Tailnet name](https://tailscale.com/kb/1217/tailnet-name).
+- **Web interface.** [Tailscale Serve](https://tailscale.com/kb/1312/serve) publishes the web interface at `https://<service>.<tailnet>.ts.net` and forwards it to the internal port of the application. `<service>` is the value of `SERVICE`, and `<tailnet>.ts.net` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name), for example `tail1234.ts.net`.
 - **Requirements.** Your Tailnet needs [MagicDNS](https://tailscale.com/kb/1081/magicdns) and [HTTPS certificates](https://tailscale.com/kb/1153/enabling-https) enabled. The first request can take up to a minute, because Tailscale requests the certificate at that moment.
 - **Tailnet only.** Tailscale Funnel is disabled, so the service is not reachable from the public internet.
 - **Other ports.** Any other port the application listens on is reachable at the Tailscale IP address of the device, when your Tailnet policy allows it.
