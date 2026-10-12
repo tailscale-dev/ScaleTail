@@ -65,9 +65,11 @@ case "$1" in
   stop)
     echo "Stopping tailscaled"
     PID="$(cat "$PIDFILE" 2>/dev/null)"
-    if ! start-stop-daemon --stop --quiet --retry=TERM/9/KILL/11 --pidfile "$PIDFILE"; then
+    # Ignore a stale PID file whose number now belongs to another process
+    grep -qF "$DAEMON" "/proc/$PID/cmdline" 2>/dev/null || PID=""
+    if [ -n "$PID" ] && ! start-stop-daemon --stop --quiet --retry=TERM/9/KILL/11 --pidfile "$PIDFILE"; then
       # A start-stop-daemon that rejects --retry sends no signal, so send TERM here
-      [ -n "$PID" ] && kill "$PID" 2>/dev/null
+      kill "$PID" 2>/dev/null
     fi
     # BusyBox ignores --retry and returns at once, so wait here until the process is gone
     i=0
@@ -87,7 +89,7 @@ case "$1" in
     $0 start
     ;;
   status)
-    if [ -f "$PIDFILE" ] && kill -0 "$(cat "$PIDFILE")" 2>/dev/null; then
+    if grep -qF "$DAEMON" "/proc/$(cat "$PIDFILE" 2>/dev/null)/cmdline" 2>/dev/null; then
       echo "tailscaled is running"
     else
       echo "tailscaled is not running"
