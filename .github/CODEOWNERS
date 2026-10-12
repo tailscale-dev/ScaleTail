@@ -1,0 +1,4 @@
+# Request a review from the maintainers on every pull request.
+# GitHub skips the pull request author, so each maintainer's own PRs
+# request only the other maintainer.
+* @crypt0rr @jackspiering
