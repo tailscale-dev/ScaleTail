@@ -171,6 +171,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                             | [Details](services/memos)         |
 | **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                            | [Details](services/nanote)        |
 | **NextExplorer**  | Web file manager for browsing, uploading, and editing files in one folder on your server.  | [Details](services/next-explorer) |
+| **Open Notebook** | Self-hosted alternative to NotebookLM, to chat with and search your sources using AI.      | [Details](services/open-notebook) |
 | **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                    | [Details](services/open-webui)    |
 | **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.           | [Details](services/paperless)     |
 | **Pingvin Share** | Archived. File sharing platform with links that can expire.                                | [Details](services/pingvin-share) |
