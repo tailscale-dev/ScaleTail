@@ -1,15 +1,39 @@
-# ScaleTail - Secure self-hosting made simple
+# ScaleTail
 
 [![GitHub stars](https://img.shields.io/github/stars/tailscale-dev/ScaleTail)](https://github.com/tailscale-dev/ScaleTail/stargazers)
 [![License](https://img.shields.io/github/license/tailscale-dev/ScaleTail)](LICENSE)
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-ScaleTail provides ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that connect self-hosted applications to your [Tailnet](https://tailscale.com/docs/concepts/tailnet). Each stack runs a Tailscale sidecar container, so the application joins your Tailnet as its own device. Most stacks publish the application at an HTTPS address such as `https://vaultwarden.<tailnet>.ts.net`, reachable from your Tailnet only.
+ScaleTail is a collection of ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that connect self-hosted applications to your [Tailnet](https://tailscale.com/docs/concepts/tailnet). Each stack runs a Tailscale sidecar container, so the application joins your Tailnet as its own device. Most stacks publish the application at an HTTPS address such as `https://vaultwarden.<tailnet>.ts.net`, reachable from your Tailnet only.
+
+## Table of contents
+
+- [Featured by Tailscale](#featured-by-tailscale)
+- [Quick Start](#quick-start)
+- [Available configurations](#available-configurations)
+  - [Networking and security](#networking-and-security)
+  - [Media and entertainment](#media-and-entertainment)
+  - [Productivity and collaboration](#productivity-and-collaboration)
+  - [Dashboards and visualization](#dashboards-and-visualization)
+  - [Development tools](#development-tools)
+  - [Monitoring and analytics](#monitoring-and-analytics)
+  - [Smart home](#smart-home)
+  - [Utilities](#utilities)
+  - [Food and wellness](#food-and-wellness)
+- [Update a stack](#update-a-stack)
+- [Remove a stack](#remove-a-stack)
+- [Get help](#get-help)
+- [Tailscale Serve and Funnel](#tailscale-serve-and-funnel)
+- [Documentation](#documentation)
+- [Contributors](#contributors)
+- [Contributing](#contributing)
+- [Star history](#star-history)
+- [License](#license)
 
 ## Featured by Tailscale
 
-[Alex](https://github.com/ironicbadger) from the official Tailscale YouTube channel did a deep dive into ScaleTail! He walks through how to deploy a secure, private service of ScaleTail in under 10 minutes.
+In this video from the Tailscale YouTube channel, [Alex](https://github.com/ironicbadger) deploys a ScaleTail service in under 10 minutes.
 
 [![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
 
@@ -48,209 +72,187 @@ You need:
 
    The application starts after the `tailscale` container reports `healthy`. If a container is not running, read the logs with `docker compose logs`.
 
-6. **Open the service.** From a device in your Tailnet, open the web interface from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`. `<SERVICE>` is the value of `SERVICE` in `.env`, and `<tailnet>.ts.net` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name), for example `tail1234.ts.net`. The first request can take up to a minute, because Tailscale requests the certificate at that moment. Then follow "First run" in the service README. Some stacks have no web interface, and their service README says how to reach them.
+6. **Open the service.** From a device in your Tailnet, open the address from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`.
+
+   - `<SERVICE>` is the value of `SERVICE` in `.env`.
+   - `<tailnet>.ts.net` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name), for example `tail1234.ts.net`.
+   - The first request can take up to a minute, because Tailscale requests the certificate at that moment.
+
+   Then follow "First run" in the service README. Some stacks have no web interface, and their service README says how to reach them.
 
 7. **Keep the device connected.** Its node key expires after 180 days by default. To prevent that, disable key expiry for the device on the [Machines](https://console.tailscale.com/admin/machines) page.
 
 Every stack starts from the same [standard setup](documentation/standard-setup.md), which explains the containers, the Tailnet address, the data folders, and the settings in `.env`.
 
-## Table of contents
-
-- [Featured by Tailscale](#featured-by-tailscale)
-- [Quick Start](#quick-start)
-- [Available configurations](#available-configurations)
-  - [🌐 Networking and security](#-networking-and-security)
-  - [🎥 Media and entertainment](#-media-and-entertainment)
-  - [💼 Productivity and collaboration](#-productivity-and-collaboration)
-  - [📊 Dashboards and visualization](#-dashboards-and-visualization)
-  - [🛠️ Development tools](#development-tools)
-  - [📈 Monitoring and analytics](#-monitoring-and-analytics)
-  - [🏠 Smart home](#-smart-home)
-  - [📱 Utilities](#-utilities)
-  - [🍽️ Food \& wellness](#food-wellness)
-- [Update a stack](#update-a-stack)
-- [Remove a stack](#remove-a-stack)
-- [Get help](#get-help)
-- [Tailscale Serve and Funnel](#tailscale-serve-and-funnel)
-- [Documentation](#documentation)
-- [Contributors](#contributors)
-- [Contributing](#contributing)
-- [Star history](#star-history)
-- [License](#license)
-
 ## Available configurations
 
-### 🌐 Networking and security
+### Networking and security
 
-| 🌐 Service                          | 📝 Description                                                                              | 🔗 Link                                          |
-| ----------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| 🛡️ **AdGuard Home**                 | A network-wide DNS server that blocks ads and trackers.                                     | [Details](services/adguardhome)                  |
-| 🔄 **AdGuardHome Sync**             | A tool for syncing configuration across multiple AdGuard Home instances.                    | [Details](services/adguardhome-sync)             |
-| 🌐 **Caddy**                        | A web server and reverse proxy with automatic HTTPS.                                        | [Details](services/caddy)                        |
-| 🌐 **DDNS Updater**                 | A self-hosted solution to keep DNS A/AAAA records updated automatically.                    | [Details](services/ddns-updater)                 |
-| 🌐 **FlareSolverr**                 | A proxy server to bypass Cloudflare and DDoS-GUARD protection.                              | [Details](services/flaresolverr)                 |
-| 🔍 **Nessus**                       | A vulnerability scanner from Tenable, with a limited free license called Nessus Essentials. | [Details](services/nessus)                       |
-| 🗃️ **NetBox**                       | A source of truth for documenting IP addresses, racks, devices, connections, and circuits.  | [Details](services/netbox)                       |
-| 🧩 **Pi-hole**                      | A network-level ad blocker that acts as a DNS sinkhole.                                     | [Details](services/pihole)                       |
-| 🆔 **Pocket ID**                    | A self-hosted OIDC provider that signs users in to your services with passkeys.             | [Details](services/pocket-id)                    |
-| 🌐 **RustDesk Server**              | A self-hosted ID and relay server for RustDesk remote desktop clients.                      | [Details](services/rustdesk-server)              |
-| 🌐 **Tailscale App Connector Node** | Configure a device to act as an app connector for your Tailscale network.                   | [Details](services/tailscale-app-connector-node) |
-| 🚀 **Tailscale Exit Node**          | Configure a device to act as an exit node for your Tailscale network.                       | [Details](services/tailscale-exit-node)          |
-| 🌐 **Tailscale Subnet Router Node** | Configure a device to act as a subnet router node for your Tailscale network.               | [Details](services/tailscale-subnet-router-node) |
-| 🔒 **Technitium DNS**               | An open-source DNS server with ad blocking, forwarders, and your own DNS zones.             | [Details](services/technitium)                   |
-| 🌐 **Traefik**                      | A reverse proxy and load balancer that routes requests to Docker containers by label.       | [Details](services/traefik)                      |
+| Service                          | Description                                                                            | Link                                             |
+| -------------------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| **AdGuard Home**                 | DNS server that blocks ads and trackers on every device that uses it.                  | [Details](services/adguardhome)                  |
+| **AdGuard Home Sync**             | Tool that copies the configuration of one AdGuard Home instance to replicas.           | [Details](services/adguardhome-sync)             |
+| **Caddy**                        | Web server and reverse proxy with automatic HTTPS.                                     | [Details](services/caddy)                        |
+| **DDNS Updater**                 | Updater that keeps DNS records pointed at your current public IP address.              | [Details](services/ddns-updater)                 |
+| **FlareSolverr**                 | Proxy that solves Cloudflare challenges for apps such as Prowlarr.                     | [Details](services/flaresolverr)                 |
+| **Nessus**                       | Vulnerability scanner from Tenable, with the limited free Nessus Essentials license.   | [Details](services/nessus)                       |
+| **NetBox**                       | Source of truth for IP addresses, racks, devices, connections, and circuits.           | [Details](services/netbox)                       |
+| **Pi-hole**                      | DNS sinkhole that blocks ads and trackers for your whole network.                      | [Details](services/pihole)                       |
+| **Pocket ID**                    | OpenID Connect provider that signs users in to your services with passkeys.            | [Details](services/pocket-id)                    |
+| **RustDesk Server**              | ID and relay server for RustDesk remote desktop clients.                               | [Details](services/rustdesk-server)              |
+| **Tailscale App Connector Node** | App connector that routes traffic for selected apps through this device.               | [Details](services/tailscale-app-connector-node) |
+| **Tailscale Exit Node**          | Exit node that routes the internet traffic of other Tailnet devices through this host. | [Details](services/tailscale-exit-node)          |
+| **Tailscale Subnet Router Node** | Subnet router that gives your Tailnet access to a local network.                       | [Details](services/tailscale-subnet-router-node) |
+| **Technitium DNS**               | DNS server with ad blocking, forwarders, and your own DNS zones.                       | [Details](services/technitium)                   |
+| **Traefik**                      | Reverse proxy and load balancer that routes requests to Docker containers by label.    | [Details](services/traefik)                      |
+| **Vaultwarden**                  | Unofficial Bitwarden server written in Rust.                                           | [Details](services/vaultwarden)                  |
 
-### 🎥 Media and entertainment
+### Media and entertainment
 
-| 🎥 Service            | 📝 Description                                                                                                   | 🔗 Link                            |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| 🎵 **ArtistTrackarr** | A self-hosted dashboard for tracking upcoming and newly released albums and EPs.                                 | [Details](services/artisttrackarr) |
-| 🎧 **Audiobookshelf** | A self-hosted audiobook and podcast server with multi-user support and playback syncing.                         | [Details](services/audiobookshelf) |
-| 🎥 **Bazarr**         | A companion tool to Radarr and Sonarr for managing subtitles.                                                    | [Details](services/bazarr)         |
-| 📚 **BookLore**       | A self-hosted application for managing and reading books.                                                        | [Details](services/booklore)       |
-| ⚙️ **Configarr**      | A tool that syncs TRaSH Guides and your own YAML configuration to Radarr, Sonarr, and related services.          | [Details](services/configarr)      |
-| 📰 **FreshRSS**       | A customizable feed reader with themes, extensions, and no separate database.                                    | [Details](services/freshrss)       |
-| 🎮 **Hytale**         | A self-hosted Hytale game server.                                                                                | [Details](services/hytale)         |
-| 🖼️ **Immich**         | A self-hosted Google Photos alternative with face recognition and mobile sync.                                   | [Details](services/immich)         |
-| 📺 **Jellyfin**       | An open-source media system that puts you in control of managing and streaming your media.                       | [Details](services/jellyfin)       |
-| 📖 **Kavita**         | An open-source, self-hosted digital library for comics, manga, and ebooks.                                       | [Details](services/kavita)         |
-| 📺 **MeTube**         | A self-hosted web UI for yt-dlp that downloads video and audio from YouTube and many other sites.                | [Details](services/metube)         |
-| ⛏️ **Minecraft**      | A self-hosted Minecraft Java Edition server for private Tailnet multiplayer.                                     | [Details](services/minecraft)      |
-| 📻 **Miniflux**       | A minimalist and opinionated feed reader.                                                                        | [Details](services/miniflux)       |
-| 🎶 **Navidrome**      | A self-hosted music server that streams your collection to its web player and Subsonic-compatible apps.          | [Details](services/navidrome)      |
-| 🎵 **Picard**         | A music tagger that looks up your files in MusicBrainz and writes tags and cover art, used through your browser. | [Details](services/picard)         |
-| 🎬 **Plex**           | A media server that organizes video, music, and photos from personal media libraries.                            | [Details](services/plex)           |
-| 🖼️ **Posterizarr**    | A tool that creates matching posters, backgrounds, and title cards for Plex, Jellyfin, and Emby libraries.       | [Details](services/posterizarr)    |
-| 📡 **Prowlarr**       | An indexer manager and proxy for applications like Radarr, Sonarr, and Lidarr.                                   | [Details](services/prowlarr)       |
-| 📥 **qBittorrent**    | An open-source BitTorrent client.                                                                                | [Details](services/qbittorrent)    |
-| 🎞️ **Radarr**         | A movie collection manager for Usenet and BitTorrent users.                                                      | [Details](services/radarr)         |
-| ♻️ **Recyclarr**      | A tool that syncs TRaSH Guides quality profiles and custom formats to Radarr and Sonarr.                         | [Details](services/recyclarr)      |
-| 🎬 **Seerr**          | A request management and media discovery tool for Plex, Jellyfin, and Emby.                                      | [Details](services/seerr)          |
-| 🔗 **Slink**          | A self-hosted image hosting and sharing platform with shareable links.                                           | [Details](services/slink)          |
-| 📡 **Sonarr**         | A PVR for Usenet and BitTorrent users to manage TV series.                                                       | [Details](services/sonarr)         |
-| 🎶 **Swing Music**    | A self-hosted music player and streaming server for your local audio library.                                    | [Details](services/swingmx)        |
-| 📊 **Tautulli**       | A monitoring and tracking tool for Plex Media Server.                                                            | [Details](services/tautulli)       |
+| Service            | Description                                                                                                 | Link                               |
+| ------------------ | ----------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| **ArtistTrackarr** | Tracker for new and upcoming albums and EPs, using MusicBrainz and optionally Spotify.                      | [Details](services/artisttrackarr) |
+| **Audiobookshelf** | Server for audiobooks and podcasts, with playback progress synced across devices.                           | [Details](services/audiobookshelf) |
+| **Bazarr**         | Subtitle downloader for movies and series managed by Radarr and Sonarr.                                     | [Details](services/bazarr)         |
+| **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync.                                               | [Details](services/booklore)       |
+| **Configarr**      | Config sync that applies TRaSH Guides and YAML settings to Radarr, Sonarr, and related apps. | [Details](services/configarr)      |
+| **FreshRSS**       | Feed reader for RSS and Atom, with themes, extensions, and no separate database server.                     | [Details](services/freshrss)       |
+| **Hytale**         | Hytale game server that players reach over your Tailnet.                                                    | [Details](services/hytale)         |
+| **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                                | [Details](services/immich)         |
+| **Jellyfin**       | Media server that organizes and streams your movies, series, and music.                                     | [Details](services/jellyfin)       |
+| **Kavita**         | Digital library for comics, manga, and books, with progress synced across devices.                          | [Details](services/kavita)         |
+| **MeTube**         | Web UI for yt-dlp that downloads videos and audio from YouTube and other sites.                             | [Details](services/metube)         |
+| **Minecraft**      | Minecraft Java Edition server that players reach over your Tailnet.                                         | [Details](services/minecraft)      |
+| **Miniflux**       | Feed reader for RSS, Atom, and JSON feeds.                                                                  | [Details](services/miniflux)       |
+| **Navidrome**      | Music server that streams your collection to its web player and Subsonic-compatible apps.                   | [Details](services/navidrome)      |
+| **Picard**         | MusicBrainz tag editor that writes tags and cover art, used in your browser.                                | [Details](services/picard)         |
+| **Plex**           | Media server for your video, music, and photo libraries.                                                    | [Details](services/plex)           |
+| **Posterizarr**    | Poster, background, and title card generator for Plex, Jellyfin, and Emby libraries.                        | [Details](services/posterizarr)    |
+| **Prowlarr**       | Indexer manager for Usenet and torrent trackers, used by apps such as Radarr and Sonarr.                                      | [Details](services/prowlarr)       |
+| **qBittorrent**    | BitTorrent client with a web interface.                                                                     | [Details](services/qbittorrent)    |
+| **Radarr**         | Movie manager that searches Usenet and BitTorrent and sorts files into your library.                        | [Details](services/radarr)         |
+| **Recyclarr**      | Sync tool for TRaSH Guides quality profiles and custom formats in Radarr and Sonarr.                        | [Details](services/recyclarr)      |
+| **Seerr**          | Request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.             | [Details](services/seerr)          |
+| **Slink**          | Image hosting platform that shares uploads through links.                                                   | [Details](services/slink)          |
+| **Sonarr**         | Series manager that searches Usenet and BitTorrent for new episodes.                                        | [Details](services/sonarr)         |
+| **Swing Music**    | Music player and streaming server for your local audio files.                                               | [Details](services/swingmx)        |
+| **Tautulli**       | Monitoring tool for Plex Media Server, with viewing history, statistics, and notifications.                 | [Details](services/tautulli)       |
 
-### 💼 Productivity and collaboration
+### Productivity and collaboration
 
-| 💼 Service              | 📝 Description                                                                                                        | 🔗 Link                           |
-| ----------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| 💰 **Actual Budget**    | A self-hosted personal finance and budgeting app focused on privacy and full data ownership.                          | [Details](services/actual-budget) |
-| 🧠 **AFFiNE**           | A self-hosted workspace for documents, whiteboards, and databases.                                                    | [Details](services/affine)        |
-| ⚓ **Anchor**           | An offline-first, self-hosted note-taking app with sync, attachments, sharing, and optional OIDC authentication.      | [Details](services/anchor)        |
-| 📄 **BentoPDF**         | A privacy-first PDF toolkit that merges, splits, compresses, converts, and edits PDFs in the browser.                 | [Details](services/bentopdf)      |
-| ✂️ **ClipCascade**      | A self-hosted server that syncs your clipboard across devices with end-to-end encryption.                             | [Details](services/clipcascade)   |
-| 🗂️ **Copyparty**        | A self-hosted file server with accelerated resumable uploads.                                                         | [Details](services/copyparty)     |
-| 📚 **Docmost**          | A self-hosted, real-time collaborative wiki with rich editing, diagrams, permissions, and full-text search.           | [Details](services/docmost)       |
-| ✅ **Donetick**         | A self-hosted task and chore manager for households and small groups.                                                 | [Details](services/donetick)      |
-| ✅ **DumbDo**           | A self-hosted, minimalistic task manager for simple to-do lists.                                                      | [Details](services/dumbdo)        |
-| ✅ **Eigenfocus**       | A self-hosted project and task manager with boards and time tracking.                                                 | [Details](services/eigenfocus)    |
-| 🗂️ **EspoCRM**          | A self-hosted CRM for sales, support, and marketing.                                                                  | [Details](services/espocrm)       |
-| 📝 **Excalidraw**       | A virtual whiteboard for sketching hand-drawn style diagrams.                                                         | [Details](services/excalidraw)    |
-| 📝 **flatnotes**        | A simple, self-hosted note-taking app using Markdown files.                                                           | [Details](services/flatnotes)     |
-| 👨🏼‍💻 **Forgejo**      | A community-driven, self-hosted Git service.                                                                          | [Details](services/forgejo)       |
-| 📋 **Formbricks**       | A self-hosted, open-source platform for collecting user feedback, surveys, and NPS.                                   | [Details](services/formbricks)    |
-| ✍️ **Ghost**            | An open-source publishing platform for blogs and newsletters.                                                         | [Details](services/ghost)         |
-| 👨🏼‍💻 **Gitea**        | A lightweight, self-hosted Git service with repository hosting, pull requests, and issue tracking.                    | [Details](services/gitea)         |
-| 🧑‍🧑‍🧒‍🧒 **Gramps Web** | A web-based genealogy platform for browsing and editing family trees together.                                        | [Details](services/grampsweb)     |
-| 🔖 **Haptic**           | A local-first, open-source Markdown note editor.                                                                      | [Details](services/haptic)        |
-| 🌿 **Isley**            | A self-hosted cannabis grow journal for tracking plants and managing grow data.                                       | [Details](services/isley)         |
-| 🗂️ **Kaneo**            | A self-hosted project management tool with boards and tasks, focused on simplicity.                                   | [Details](services/kaneo)         |
-| 🗒️ **Karakeep**         | A self-hosted bookmark manager that archives links, notes, and images, with full-text search and optional AI tagging. | [Details](services/karakeep)      |
-| 🧠 **LanguageTool**     | An open-source grammar, style, and spell checker server for many languages.                                           | [Details](services/languagetool)  |
-| 🔖 **linkding**         | A self-hosted bookmark manager to save and organize links.                                                            | [Details](services/linkding)      |
-| 📥 **Mattermost**       | A self-hosted collaborative workflow and communication tool.                                                          | [Details](services/mattermost)    |
-| 📝 **Memos**            | A lightweight, self-hosted Markdown note-taking app for quick notes on a timeline.                                    | [Details](services/memos)         |
-| 📝 **Nanote**           | A lightweight, self-hosted note-taking app with Markdown support.                                                     | [Details](services/nanote)        |
-| 📂 **NextExplorer**     | A self-hosted file explorer for managing mounted directories.                                                         | [Details](services/next-explorer) |
-| 🤖 **Open WebUI**       | A self-hosted AI platform with a ChatGPT-style interface for local and cloud-based models.                            | [Details](services/open-webui)    |
-| 📚 **Paperless-ngx**    | An open-source document management system that transforms physical documents into a searchable archive.               | [Details](services/paperless)     |
-| 🔗 **Pingvin Share**    | **PROJECT ARCHIVED** A self-hosted file sharing platform.                                                             | [Details](services/pingvin-share) |
-| 📅 **Radicale**         | A lightweight CalDAV and CardDAV server for self-hosted calendar, to-do, and contact sync.                            | [Details](services/radicale)      |
-| 🔄 **Resilio Sync**     | A peer-to-peer tool that syncs folders directly between your devices.                                                 | [Details](services/resilio-sync)  |
-| 📁 **Seafile**          | A self-hosted file syncing and collaboration platform with file sharing, versioning, and team library support.        | [Details](services/seafile)       |
-| 🗂️ **Stirling-PDF**     | A web application for managing and editing PDF files.                                                                 | [Details](services/stirlingpdf)   |
-| 🏦 **SubTrackr**        | A self-hosted web app to track subscriptions, renewal dates, costs, and payment methods.                              | [Details](services/subtrackr)     |
-| 💰 **Sure**             | A self-hosted personal finance and budgeting app with optional AI insights.                                           | [Details](services/sure)          |
-| 🗃️ **Vaultwarden**      | An unofficial Bitwarden server implementation written in Rust.                                                        | [Details](services/vaultwarden)   |
-| ✅ **Vikunja**          | A self-hosted to-do and project management app with lists, boards, and reminders.                                     | [Details](services/vikunja)       |
-| 💸 **Wallos**           | A self-hosted tracker for recurring subscriptions and expenses, with multi-currency support.                          | [Details](services/wallos)        |
-| 📚 **XWiki**            | A wiki platform for documentation and knowledge management, with structured pages and extensions.                     | [Details](services/xwiki)         |
+| Service           | Description                                                                               | Link                              |
+| ----------------- | ----------------------------------------------------------------------------------------- | --------------------------------- |
+| **Actual Budget** | Personal finance and budgeting app for tracking accounts and spending.                    | [Details](services/actual-budget) |
+| **AFFiNE**        | Workspace for documents, whiteboards, and databases.                                      | [Details](services/affine)        |
+| **Anchor**        | Note-taking app that works offline and syncs notes when you are back online.              | [Details](services/anchor)        |
+| **BentoPDF**      | PDF toolkit that merges, splits, compresses, converts, and edits PDFs in your browser.    | [Details](services/bentopdf)      |
+| **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.              | [Details](services/clipcascade)   |
+| **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                           | [Details](services/copyparty)     |
+| **Docmost**       | Team wiki with real-time collaborative editing, diagrams, comments, and permissions.      | [Details](services/docmost)       |
+| **Donetick**      | Task and chore manager for households and small groups.                                   | [Details](services/donetick)      |
+| **DumbDo**        | To-do list app that keeps its lists in one file, with no database.                        | [Details](services/dumbdo)        |
+| **Eigenfocus**    | Project and task manager with boards, time tracking, and focus tools.                     | [Details](services/eigenfocus)    |
+| **EspoCRM**       | CRM for sales, support, and marketing.                                                    | [Details](services/espocrm)       |
+| **Excalidraw**    | Virtual whiteboard for sketching diagrams in a hand-drawn style.                          | [Details](services/excalidraw)    |
+| **File Browser**  | Archived. Web file manager for one folder on your server, with no further security fixes. | [Details](services/filebrowser)   |
+| **flatnotes**     | Note-taking app that stores notes as plain Markdown files, with no database.              | [Details](services/flatnotes)     |
+| **Formbricks**    | Survey and feedback platform for websites, apps, and links.                               | [Details](services/formbricks)    |
+| **Ghost**         | Publishing platform for blogs and newsletters.                                            | [Details](services/ghost)         |
+| **Gokapi**        | File sharing server with links that expire after a set number of downloads or days.       | [Details](services/gokapi)        |
+| **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                         | [Details](services/grampsweb)     |
+| **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                  | [Details](services/haptic)        |
+| **Isley**         | Cannabis grow journal for logging plants, watering, feeding, and harvests.                | [Details](services/isley)         |
+| **Kaneo**         | Project management tool with boards and tasks.                                            | [Details](services/kaneo)         |
+| **Karakeep**      | Bookmark manager that archives links, notes, and images, with full-text search.           | [Details](services/karakeep)      |
+| **LanguageTool**  | Grammar, style, and spelling checker server for many languages.                           | [Details](services/languagetool)  |
+| **linkding**      | Bookmark manager to save, tag, and search links, with a browser extension.                | [Details](services/linkding)      |
+| **Mattermost**    | Team chat platform with channels, direct messages, and integrations.                      | [Details](services/mattermost)    |
+| **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                            | [Details](services/memos)         |
+| **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                           | [Details](services/nanote)        |
+| **NextExplorer**  | File explorer for browsing, uploading, and editing files in a mounted folder.             | [Details](services/next-explorer) |
+| **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                   | [Details](services/open-webui)    |
+| **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.          | [Details](services/paperless)     |
+| **Pingvin Share** | Archived. File sharing platform with links that can expire.                               | [Details](services/pingvin-share) |
+| **Radicale**      | CalDAV and CardDAV server that syncs calendars, to-do lists, and contacts.                | [Details](services/radicale)      |
+| **Resilio Sync**  | Peer-to-peer tool that syncs folders between your devices, without a central server.      | [Details](services/resilio-sync)  |
+| **Seafile**       | File sync and sharing platform that stores files in libraries.                            | [Details](services/seafile)       |
+| **Stirling-PDF**  | PDF toolbox for merging, splitting, converting, compressing, signing, and editing.        | [Details](services/stirlingpdf)   |
+| **SubTrackr**     | Web app for tracking subscriptions, renewal dates, and costs.                             | [Details](services/subtrackr)     |
+| **Sure**          | Personal finance app for accounts, investments, and net worth, with optional AI features. | [Details](services/sure)          |
+| **Vikunja**       | To-do and project management app with lists, boards, Gantt charts, and reminders.         | [Details](services/vikunja)       |
+| **Wallos**        | Tracker for recurring subscriptions and expenses, with multi-currency support.            | [Details](services/wallos)        |
+| **XWiki**         | Wiki platform for documentation and knowledge management, with extensions.                | [Details](services/xwiki)         |
 
-### 📊 Dashboards and visualization
+### Dashboards and visualization
 
-| 📊 Service                | 📝 Description                                                                                                 | 🔗 Link                                |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| 🧭 **Glance**             | A lightweight, customizable dashboard that puts your feeds, such as RSS, weather, and markets, on one page.    | [Details](services/glance)             |
-| 🖥️ **Homarr**             | A customizable dashboard for your self-hosted services, with drag-and-drop configuration and app integrations. | [Details](services/homarr)             |
-| 🏠 **Homepage**           | A highly customizable application dashboard with Docker and service integrations.                              | [Details](services/homepage)           |
-| 🖼️ **NewWallpaperWhoDis** | A self-hosted wallpaper server that rotates your collection on browsers, tablets, smart TVs, and dashboards.   | [Details](services/newwallpaperwhodis) |
+| Service                | Description                                                                              | Link                                   |
+| ---------------------- | ---------------------------------------------------------------------------------------- | -------------------------------------- |
+| **Glance**             | Dashboard that puts feeds, such as RSS, weather, and markets, on one page.               | [Details](services/glance)             |
+| **Homarr**             | Dashboard for your services that shows live information from many apps.                  | [Details](services/homarr)             |
+| **Homepage**           | Dashboard for your services and bookmarks, with live data from apps and Docker.          | [Details](services/homepage)           |
+| **NewWallpaperWhoDis** | Wallpaper server that rotates your collection on browsers, tablets, TVs, and dashboards. | [Details](services/newwallpaperwhodis) |
 
-<a id="development-tools"></a>
+### Development tools
 
-### 🛠️ Development tools
+| Service       | Description                                                                             | Link                          |
+| ------------- | --------------------------------------------------------------------------------------- | ----------------------------- |
+| **Arcane**    | Web UI to manage Docker containers, images, networks, volumes, and Compose projects.    | [Details](services/arcane)    |
+| **Coder**     | Platform that provisions development environments from Terraform templates.             | [Details](services/coder)     |
+| **CyberChef** | Web app for encoding, decoding, encrypting, compressing, and analyzing data.            | [Details](services/cyberchef) |
+| **Dockge**    | Web interface to manage Docker Compose stacks.                                          | [Details](services/dockge)    |
+| **Dockhand**  | Web interface to manage Docker containers and Compose stacks on local and remote hosts. | [Details](services/dockhand)  |
+| **Dozzle**    | Real-time log viewer for Docker containers.                                             | [Details](services/dozzle)    |
+| **Forgejo**   | Community-governed Git service with pull requests, issues, packages, and CI.            | [Details](services/forgejo)   |
+| **FossFLOW**  | Tool for drawing isometric infrastructure diagrams.                                     | [Details](services/fossflow)  |
+| **Gitea**     | Git service with repositories, pull requests, issues, packages, and CI.                 | [Details](services/gitea)     |
+| **GitSave**   | Backup tool for your Git repositories, run on a schedule.                               | [Details](services/gitsave)   |
+| **IT-Tools**  | Online tools for developers and IT staff, such as converters and generators.            | [Details](services/it-tools)  |
+| **Mailpit**   | Email testing tool that captures outgoing mail over SMTP for viewing and debugging.     | [Details](services/mailpit)   |
+| **Node-RED**  | Low-code, flow-based tool for wiring devices, APIs, and online services together.       | [Details](services/nodered)   |
+| **Ollama**    | Local runtime for open large language models, with an OpenAI-compatible API.            | [Details](services/ollama)    |
+| **Portainer** | Web interface to manage Docker containers, images, volumes, and networks.               | [Details](services/portainer) |
+| **SearXNG**   | Metasearch engine that combines results from many search engines without tracking.      | [Details](services/searxng)   |
 
-| 🛠️ Service          | 📝 Description                                                                                                   | 🔗 Link                         |
-| ------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 🧰 **Arcane**       | A self-hosted web UI to manage Docker containers, images, networks, volumes, and Compose projects.               | [Details](services/arcane)      |
-| 🛠️ **Coder**        | A self-hosted platform for development environments that you define as Terraform templates.                      | [Details](services/coder)       |
-| 🔧 **CyberChef**    | A web app for encryption, encoding, compression, and data analysis.                                              | [Details](services/cyberchef)   |
-| 🐳 **Dockge**       | A lightweight, self-hosted Docker Compose stack manager with a web UI.                                           | [Details](services/dockge)      |
-| 🐳 **Dockhand**     | A lightweight Docker management UI for containers and Compose stacks on local and remote hosts.                  | [Details](services/dockhand)    |
-| 🖥️ **Dozzle**       | A real-time log viewer for Docker containers.                                                                    | [Details](services/dozzle)      |
-| 📁 **File Browser** | **PROJECT ARCHIVED** A web file manager for one folder on your server. Upstream gives no further security fixes. | [Details](services/filebrowser) |
-| 🔁 **FossFLOW**     | A self-hosted tool to draw isometric infrastructure diagrams.                                                    | [Details](services/fossflow)    |
-| 🖥️ **GitSave**      | A self-hosted service that backs up your Git repositories from GitHub, GitLab, and others on a schedule.         | [Details](services/gitsave)     |
-| 🖥️ **Gokapi**       | A lightweight self-hosted file sharing platform.                                                                 | [Details](services/gokapi)      |
-| 🖥️ **IT-Tools**     | A collection of handy online tools for developers and sysadmins.                                                 | [Details](services/it-tools)    |
-| 📧 **Mailpit**      | A self-hosted email testing tool for capturing, viewing, and debugging outgoing emails during development.       | [Details](services/mailpit)     |
-| 🖥️ **Node-RED**     | A flow-based development tool for visual programming.                                                            | [Details](services/nodered)     |
-| 🧠 **Ollama**       | A self-hosted solution for running open large language models (LLMs) locally with an OpenAI-compatible API.      | [Details](services/ollama)      |
-| 🖥️ **Portainer**    | A lightweight management UI which allows you to easily manage your Docker environments.                          | [Details](services/portainer)   |
-| 🔍 **SearXNG**      | A free internet metasearch engine which aggregates results from various search services.                         | [Details](services/searxng)     |
+### Monitoring and analytics
 
-### 📈 Monitoring and analytics
+| Service                | Description                                                                           | Link                                  |
+| ---------------------- | ------------------------------------------------------------------------------------- | ------------------------------------- |
+| **Beszel Agent**       | Agent that sends system and Docker stats to a Beszel hub.                             | [Details](services/beszel-agent)      |
+| **Beszel Hub**         | Server monitor with history, Docker stats, and alerts.                                | [Details](services/beszel-hub)        |
+| **changedetection.io** | Monitor that watches web pages and notifies you when their content changes.           | [Details](services/changedetection)   |
+| **Portracker**         | Port tracker that discovers the services on your systems and maps the ports they use. | [Details](services/portracker)        |
+| **Speedtest Tracker**  | Scheduled internet speed tests, with results charted over time.                       | [Details](services/speedtest-tracker) |
+| **Umami**              | Web analytics that uses no cookies and collects no personal data.                     | [Details](services/umami)             |
+| **Uptime Kuma**        | Monitor for websites and services that alerts you when they go down.                  | [Details](services/uptime-kuma)       |
 
-| 📈 Service                | 📝 Description                                                                                         | 🔗 Link                               |
-| ------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| 🛰️ **Beszel Agent**       | An agent that collects system and Docker stats and reports them to a Beszel Hub.                       | [Details](services/beszel-agent)      |
-| 📉 **Beszel Hub**         | A lightweight server monitoring hub with historical data, Docker stats, and alerts.                    | [Details](services/beszel-hub)        |
-| 🖥️ **changedetection.io** | A tool for monitoring website changes.                                                                 | [Details](services/changedetection)   |
-| 🔎 **Portracker**         | A self-hosted tool that discovers the services on your systems and maps the ports they use.            | [Details](services/portracker)        |
-| 🚀 **Speedtest Tracker**  | A self-hosted tool to monitor and log internet speed tests with detailed visualizations.               | [Details](services/speedtest-tracker) |
-| 📊 **Umami**              | An open-source web analytics platform that respects user privacy.                                      | [Details](services/umami)             |
-| 📊 **Uptime Kuma**        | A self-hosted monitoring tool that checks your websites and services and alerts you when they go down. | [Details](services/uptime-kuma)       |
+### Smart home
 
-### 🏠 Smart home
+| Service            | Description                                                               | Link                               |
+| ------------------ | ------------------------------------------------------------------------- | ---------------------------------- |
+| **Frigate**        | Network video recorder with real-time AI object detection for IP cameras. | [Details](services/frigate)        |
+| **Home Assistant** | Home automation platform for controlling smart devices.                   | [Details](services/home-assistant) |
 
-| 🏠 Service            | 📝 Description                                                                                  | 🔗 Link                            |
-| --------------------- | ----------------------------------------------------------------------------------------------- | ---------------------------------- |
-| 🎥 **Frigate**        | A self-hosted NVR with real-time AI object detection for IP cameras and local video monitoring. | [Details](services/frigate)        |
-| 🏡 **Home Assistant** | An open-source home automation platform for controlling smart devices.                          | [Details](services/home-assistant) |
+### Utilities
 
-### 📱 Utilities
+| Service        | Description                                                                                  | Link                            |
+| -------------- | -------------------------------------------------------------------------------------------- | ------------------------------- |
+| **ConvertX**   | Web file converter for documents, images, audio, video, and many other formats.              | [Details](services/convertx)    |
+| **Gotify**     | Server to send and receive notifications in real time over HTTP.                             | [Details](services/gotify)      |
+| **Hemmelig**   | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry. | [Details](services/hemmelig)    |
+| **Homebox**    | Home inventory for items, with location, quantity, warranty, and purchase details.           | [Details](services/homebox)     |
+| **LubeLogger** | Tracker for vehicle maintenance and fuel use, with reminders for upcoming services.          | [Details](services/lube-logger) |
+| **Mini QR**    | Web app to create, style, and scan QR codes.                                                 | [Details](services/miniqr)      |
+| **ntfy**       | HTTP-based pub/sub service that sends push notifications to phones and browsers.             | [Details](services/ntfy)        |
+| **Tracktor**   | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.     | [Details](services/tracktor)    |
+| **Transmute**  | Converter and compressor for images, video, audio, and documents, with a web UI and API.     | [Details](services/transmute)   |
 
-| 📱 Service        | 📝 Description                                                                                              | 🔗 Link                         |
-| ----------------- | ----------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| 🔁 **ConvertX**   | A self-hosted online file converter for documents, images, audio, video, and over a thousand other formats. | [Details](services/convertx)    |
-| 🔔 **Gotify**     | A simple server for sending and receiving messages in real-time.                                            | [Details](services/gotify)      |
-| 🔐 **Hemmelig**   | **PROJECT ARCHIVED** A self-hosted, zero-knowledge encrypted secret sharing platform with expiring secrets. | [Details](services/hemmelig)    |
-| 📦 **Homebox**    | A self-hosted home inventory and asset management system.                                                   | [Details](services/homebox)     |
-| 🚗 **LubeLogger** | A self-hosted vehicle maintenance and fuel mileage tracker.                                                 | [Details](services/lube-logger) |
-| 📱 **Mini QR**    | A self-hosted app to create, style, and scan QR codes.                                                      | [Details](services/miniqr)      |
-| 📣 **ntfy**       | A simple HTTP-based pub/sub notification service for sending push notifications.                            | [Details](services/ntfy)        |
-| 🚗 **Tracktor**   | A self-hosted app to track your vehicles' fuel use, maintenance, insurance, and documents.                  | [Details](services/tracktor)    |
-| 🔁 **Transmute**  | A self-hosted file converter and compressor for images, video, audio, and documents, with a web UI and API. | [Details](services/transmute)   |
+### Food and wellness
 
-<a id="food-wellness"></a>
-
-### 🍽️ Food & wellness
-
-| 🍽️ Service             | 📝 Description                                                                                            | 🔗 Link                        |
-| ---------------------- | --------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| 🥘 **KitchenOwl**      | A self-hosted grocery list and recipe manager with meal planning and expense tracking for households.     | [Details](services/kitchenowl) |
-| 🥘 **Mealie**          | A self-hosted recipe manager and meal planner with features like shopping lists, scaling, and importing.  | [Details](services/mealie)     |
-| 🥘 **Tandoor Recipes** | A self-hosted recipe manager and meal planner with shopping lists, nutrition tracking, and recipe import. | [Details](services/tandoor)    |
+| Service             | Description                                                                         | Link                           |
+| ------------------- | ----------------------------------------------------------------------------------- | ------------------------------ |
+| **KitchenOwl**      | Grocery list and recipe manager for households, with meal planning and expenses.    | [Details](services/kitchenowl) |
+| **Mealie**          | Recipe manager and meal planner with shopping lists and imports from web addresses. | [Details](services/mealie)     |
+| **Tandoor Recipes** | Recipe manager and meal planner with shopping lists.                                | [Details](services/tandoor)    |
 
 ## Update a stack
 
@@ -319,7 +321,7 @@ From Tailscale:
 
 ## Contributors
 
-A huge thank you to all our contributors! ScaleTail wouldn't be what it is today without your time, effort, and ideas!
+Thank you to everyone who has contributed to ScaleTail.
 
 <a href="https://github.com/tailscale-dev/ScaleTail/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=tailscale-dev/ScaleTail" alt="ScaleTail contributors" />
@@ -329,7 +331,7 @@ Made with [contrib.rocks](https://contrib.rocks).
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidance on adding services with the [template](templates/service-template/) to keep Tailscale-sidecar setups consistent.
+To add or update a service, follow [CONTRIBUTING.md](CONTRIBUTING.md) and start from the [service template](templates/service-template/).
 
 ## Star history
 
