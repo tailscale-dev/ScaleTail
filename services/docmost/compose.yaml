@@ -79,6 +79,7 @@ services:
     image: postgres:16-alpine
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-database # Name for local container management
+    command: ["postgres", "-c", "listen_addresses=localhost"] # Listen on localhost only, so the Tailnet cannot reach the database
     environment:
       POSTGRES_DB: docmost
       POSTGRES_USER: docmost
@@ -97,6 +98,7 @@ services:
     image: redis:7.2-alpine
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-redis # Name for local container management
+    command: ["redis-server", "--bind", "127.0.0.1", "-::1"] # Listen on localhost only, so the Tailnet cannot reach Redis
     healthcheck:
       test: ["CMD", "redis-cli", "ping"] # Check if Redis responds
       interval: 10s # How often to perform the check

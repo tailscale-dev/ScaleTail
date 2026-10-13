@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      - TS_ACCEPT_DNS=true # MagicDNS enabled
+      - TS_ACCEPT_DNS=true # MagicDNS resolves Tailnet names for web and worker, for example an OIDC provider on your Tailnet. See README.
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve

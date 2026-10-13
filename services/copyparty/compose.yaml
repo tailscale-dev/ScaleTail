@@ -14,7 +14,7 @@ configs:
       rproxy: -1
 
       [accounts]
-      admin:changeme
+      admin:${COPYPARTY_PASSWORD:?Set COPYPARTY_PASSWORD in .env}
 
       [/]
       /w
