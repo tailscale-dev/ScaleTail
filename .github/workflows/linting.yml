@@ -4,21 +4,9 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      # - 'README.md'
-      - 'LICENSE'
-      - '.gitignore'
-      - '.gitattributes'
-      - '.editorconfig'
   pull_request:
     branches:
       - main
-    paths-ignore:
-      # - 'README.md'
-      - 'LICENSE'
-      - '.gitignore'
-      - '.gitattributes'
-      - '.editorconfig'
 
 permissions:
   contents: read
@@ -34,6 +22,20 @@ jobs:
     steps:
       - name: Clone this repo
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      # Dependabot bumps the action's SHA but not the version input. Fail until
+      # both name the same rumdl version.
+      - name: Check that the rumdl version matches the pinned action
+        run: |
+          f=.github/workflows/linting.yml
+          action=$(grep -oE 'rvben/rumdl@[0-9a-f]{40} # v[0-9.]+' "$f" | sed 's/.*# v//')
+          input=$(grep -oE 'version: "[0-9.]+"' "$f" | grep -oE '[0-9.]+')
+          if [ -z "$action" ] || [ "$action" != "$input" ]; then
+            echo "::error file=$f::rvben/rumdl is pinned to v${action:-?} but installs rumdl ${input:-?}. Set version: \"${action}\"."
+            exit 1
+          fi
 
       - name: Lint Markdown
         uses: rvben/rumdl@9c4cc2a2ebe176de68e1788106e25af8a9bd3899 # v0.2.78
