@@ -27,8 +27,7 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 
 ## Deviations from the standard setup
 
-- **Extra containers.** The stack runs a `db` container with MariaDB and a `redis` container with Redis, as in the upstream Compose example. Wallabag reaches them by their Compose service names over the Docker network, and neither is reachable from your Tailnet. Redis serves the optional asynchronous import of articles, and keeps no data on disk.
-- **Image health check.** The Wallabag image defines its own health check, so `compose.yaml` does not override it.
+- **Extra containers.** The stack runs a `db` container with MariaDB and a `redis` container with Redis, as in the upstream Compose example. Wallabag reaches them by their Compose service names over the Docker network, and neither is reachable from your Tailnet. Redis serves the optional asynchronous import of articles. The stack does not persist its data.
 - **Base address.** `SYMFONY__ENV__DOMAIN_NAME` in `compose.yaml` is the Tailnet address of the service. Wallabag uses it for the links it generates. If you change `SERVICE` or `TAILNET_NAME`, the address changes with them.
 
 ## First run
