@@ -1,5 +1,5 @@
 <!-- rumdl-disable MD041 -->
-<!-- Title format: "Service: what changed". Examples: "Dockhand: new service" or "Changedetection: fix port mapping". -->
+<!-- Title format: "Service: what changes", as in CONTRIBUTING.md. Examples: "Dockhand: new service" or "Changedetection: fix port mapping". -->
 
 ## Description
 <!-- Briefly describe what changed. -->
@@ -12,10 +12,10 @@
 ## Verification
 <!-- Tick what you ran. For each check you skipped, say why, for example "no auth key available". Add logs, command output, or screenshots if useful. -->
 
-- [ ] `docker compose config --quiet` from each changed service directory
+- [ ] `docker compose config --quiet` from each changed service directory, with dummy values for required variables
 - [ ] The stack started, Tailscale is healthy, and the service is reachable through the Tailnet
 - [ ] The main function of the service works, and its data survives a restart
-- [ ] `rumdl check --config .markdownlint.yml <changed Markdown files>` and `git diff --check`
+- [ ] `rumdl check --config .markdownlint.yml .` on the whole repository, and `git diff --check`
 
 ## Impact on existing users
 <!-- Say what users of an existing stack must do after they pull this change, such as moving data, renaming a volume, or setting a new variable. Use "None" if not applicable. -->

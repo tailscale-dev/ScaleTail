@@ -17,7 +17,7 @@ This stack runs Pocket ID with a Tailscale sidecar, as described in [the standar
 
 - **Enable HTTPS certificates.** HTTPS certificates must be [enabled for your Tailnet](https://console.tailscale.com/admin/dns) (**DNS** > **HTTPS Certificates**). Passkeys only work over HTTPS.
 - **Set `APP_URL` in `.env`.** Use the address of the web interface, `https://pocket-id.<tailnet>.ts.net`. Pocket ID uses it for its OIDC issuer, its endpoints, and passkeys, and it does not start with the sample value.
-- **Set `ENCRYPTION_KEY` in `.env`.** Generate the key with `openssl rand -base64 32`.
+- **Set `ENCRYPTION_KEY` in `.env`.** Generate the key with `openssl rand -base64 32`. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 
@@ -36,6 +36,10 @@ Open `https://pocket-id.<tailnet>.ts.net/setup` to create the administrator acco
 - **Rename an existing deployment.** The data folder is `./<SERVICE>-data`, so a new `SERVICE` value starts Pocket ID with an empty folder. Run `docker compose down`, change `SERVICE` and `APP_URL`, rename the folder (for example `mv pocket-id-data id-data`), and run `docker compose up -d`. Tailscale renames the existing device from the stored state, so you need no new auth key. A device that you renamed by hand in the admin console keeps that name.
 - **Custom domains.** Tailscale Serve only serves the `ts.net` name of the device. A custom domain in `APP_URL` needs your own DNS and reverse proxy, which this stack does not include.
 - **Local network access.** The `ports` block stays commented out. If you enable it, the stack publishes plain HTTP on the Docker host, where passkeys do not work.
+
+## Upgrading
+
+Earlier versions of this stack had an empty `ENCRYPTION_KEY` in `.env`, and Compose started the stack without an error. Pocket ID then stopped at start. Compose now stops with an error until you set `ENCRYPTION_KEY`. If you already run the stack with a key, keep the value that you use now, because Pocket ID encrypts its stored data with it. If you use `ENCRYPTION_KEY_FILE`, set `ENCRYPTION_KEY` as well, because Compose still requires it.
 
 ## Links
 

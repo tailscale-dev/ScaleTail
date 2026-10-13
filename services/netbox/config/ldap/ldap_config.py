@@ -1,3 +1,4 @@
+# Copied from netbox-docker (https://github.com/netbox-community/netbox-docker, Apache-2.0).
 from importlib import import_module
 from os import environ
 

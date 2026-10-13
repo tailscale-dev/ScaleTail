@@ -42,6 +42,7 @@ This stack runs Mailpit with a Tailscale sidecar, as described in [the standard 
 
 ## Deviations from the standard setup
 
+- **Service name.** The application service is called `mailpit`, not `application`.
 - **Published SMTP port.** The `ports` block is active. It publishes TCP port `25` of the Docker host and forwards it to port `1025` of Mailpit, so that mail servers on the internet can deliver messages. The web interface stays on your Tailnet.
 - **Recipient filter.** `MP_SMTP_ALLOWED_RECIPIENTS` only accepts mail for the recipients that match `MAIL_DOMAIN_REGEX`.
 - **Retention.** `compose.yaml` passes the limits from `.env` to Mailpit, which deletes messages beyond them.

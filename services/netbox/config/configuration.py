@@ -1,3 +1,4 @@
+# Copied from netbox-docker (https://github.com/netbox-community/netbox-docker, Apache-2.0).
 ####
 ## We recommend to not edit this file.
 ## Create separate files to overwrite the settings.

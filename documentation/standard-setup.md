@@ -15,7 +15,7 @@ The application uses `network_mode: service:tailscale` and starts only after the
 
 ## Tailnet access
 
-- **Web interface.** [Tailscale Serve](https://tailscale.com/kb/1312/serve) publishes the web interface at `https://<service>.<tailnet>.ts.net` and forwards it to the internal port of the application. `<service>` is the value of `SERVICE` and `<tailnet>` is your [Tailnet name](https://tailscale.com/kb/1217/tailnet-name).
+- **Web interface.** [Tailscale Serve](https://tailscale.com/kb/1312/serve) publishes the web interface at `https://<service>.<tailnet>.ts.net` and forwards it to the internal port of the application. `<service>` is the value of `SERVICE`, and `<tailnet>.ts.net` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name), for example `tail1234.ts.net`.
 - **Requirements.** Your Tailnet needs [MagicDNS](https://tailscale.com/kb/1081/magicdns) and [HTTPS certificates](https://tailscale.com/kb/1153/enabling-https) enabled. The first request can take up to a minute, because Tailscale requests the certificate at that moment.
 - **Tailnet only.** Tailscale Funnel is disabled, so the service is not reachable from the public internet.
 - **Other ports.** Any other port the application listens on is reachable at the Tailscale IP address of the device, when your Tailnet policy allows it.
@@ -29,8 +29,10 @@ The application uses `network_mode: service:tailscale` and starts only after the
 | `IMAGE_URL`   | Image of the application.                                                                    |
 | `SERVICEPORT` | Port used by the optional `ports` block. The port for Tailscale Serve is set in `compose.yaml`. |
 | `DNS_SERVER`  | DNS server used by the optional `dns` block.                                                 |
-| `TS_AUTHKEY`  | Your Tailscale auth key. Only needed for the first start.                                    |
+| `TS_AUTHKEY`  | Your Tailscale auth key. Used only when the container is not logged in, for example at the first start or after you delete `./ts/state`. |
 | `TZ`          | Time zone, passed to the application when its image supports it.                             |
+
+Some stacks need secrets that you choose. Compose stops with an error that starts with `required variable X is missing a value` until you set them. The service README lists them under "Before you start".
 
 ## Data
 
@@ -38,11 +40,11 @@ All data stays in the service directory, next to `compose.yaml`.
 
 | Path                | Content                                   |
 | ------------------- | ----------------------------------------- |
-| `./config`          | Tailscale configuration files.            |
+| `./config`          | Holds `serve.json`, the Serve configuration. Compose writes it from the `configs` block in `compose.yaml` when it creates the container or starts a stopped one, so change `compose.yaml` instead and apply it with `docker compose up -d --force-recreate`. `docker compose restart` and a plain `docker compose up -d` keep the current file. |
 | `./ts/state`        | Tailscale state, including the device key. |
 | `./<service>-data/` | Data of the application.                  |
 
-Keep `./ts/state` when you recreate the stack. Without it, the device joins your Tailnet again as a new device.
+Keep `./ts/state` when you recreate the stack. Without it, the device needs a valid auth key and joins your Tailnet as a new device.
 
 ## DNS
 

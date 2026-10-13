@@ -16,7 +16,10 @@ This stack runs Vikunja with a Tailscale sidecar, as described in [the standard 
 
 ## Before you start
 
-Set `VIKUNJA_SERVICE_PUBLICURL` in `.env` to the address of the web interface with a slash at the end, `https://vikunja.<tailnet>.ts.net/`.
+Set these values in `.env`:
+
+- **`VIKUNJA_SERVICE_PUBLICURL`.** The address of the web interface with a slash at the end, `https://vikunja.<tailnet>.ts.net/`.
+- **`VIKUNJA_SERVICE_SECRET`.** A long random value that signs the login tokens. Generate one with `openssl rand -hex 32`. Compose stops with an error if it is empty.
 
 ## Deviations from the standard setup
 
@@ -32,6 +35,10 @@ Open the web interface and register the first account.
 ### Configuration file
 
 This directory contains `config.yml`, a sample configuration file with all settings as comments. To use it, edit the file and uncomment the line that mounts it in the `volumes` block of `compose.yaml`.
+
+## Upgrading
+
+Earlier versions of this stack did not set `VIKUNJA_SERVICE_SECRET`, so Vikunja generated a new secret at every start, which ended every login. The stack now requires the secret in `.env`, and Compose stops with an error until you set it. Add a value with `openssl rand -hex 32`. Existing logins end one last time when you start the stack with the secret. After that, a login stays valid across restarts.
 
 ## Links
 
