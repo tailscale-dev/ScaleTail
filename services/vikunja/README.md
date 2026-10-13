@@ -1,6 +1,6 @@
 # Vikunja
 
-[Vikunja](https://vikunja.io) is a to-do and project management application. It has lists, boards, Gantt charts, labels, reminders, and recurring tasks, and you can share projects with others.
+[Vikunja](https://vikunja.io) is a to-do and project app with lists, boards, and Gantt charts.
 
 This stack runs Vikunja with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

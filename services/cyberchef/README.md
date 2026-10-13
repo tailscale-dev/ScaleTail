@@ -1,6 +1,6 @@
 # CyberChef
 
-[CyberChef](https://github.com/gchq/CyberChef) is a web application for encoding, decoding, encrypting, compressing, and analysing data. You combine operations into a recipe by drag and drop.
+[CyberChef](https://github.com/gchq/CyberChef) is a web app for encoding, decoding, encrypting, compressing, and analysing data.
 
 This stack runs CyberChef with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

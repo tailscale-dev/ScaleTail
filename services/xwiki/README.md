@@ -1,6 +1,6 @@
 # XWiki
 
-[XWiki](https://www.xwiki.org) is a wiki platform for documentation and knowledge management. It has structured pages, rights management, and many extensions.
+[XWiki](https://www.xwiki.org) is a wiki for documentation and knowledge management.
 
 This stack runs XWiki with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

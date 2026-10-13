@@ -1,6 +1,6 @@
 # GitSave
 
-[GitSave](https://github.com/TimWitzdam/GitSave) backs up your Git repositories on a schedule. You add the repositories in a web interface and GitSave keeps copies of them on your server.
+[GitSave](https://github.com/TimWitzdam/GitSave) backs up Git repositories on a schedule.
 
 This stack runs GitSave with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

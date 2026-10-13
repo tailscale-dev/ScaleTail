@@ -1,6 +1,6 @@
 # RustDesk Server
 
-[RustDesk](https://rustdesk.com/) is a remote desktop application. This stack runs its own ID and relay server, so that your RustDesk clients find and reach each other without the public servers.
+[RustDesk](https://rustdesk.com/) is a remote desktop application. This stack runs its ID and relay server, so clients can connect without the public servers.
 
 This stack runs RustDesk Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Gramps Web
 
-[Gramps Web](https://www.grampsweb.org/) is a web application to browse and edit your family tree together with others. It works with the data of the Gramps desktop application.
+[Gramps Web](https://www.grampsweb.org/) is a genealogy web app for browsing and editing a family tree together.
 
 This stack runs Gramps Web with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

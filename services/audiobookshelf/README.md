@@ -1,6 +1,6 @@
 # Audiobookshelf
 
-[Audiobookshelf](https://www.audiobookshelf.org/) is a server for your audiobooks and podcasts. It streams them to the web player and the mobile apps and keeps your listening progress in sync.
+[Audiobookshelf](https://www.audiobookshelf.org/) is a server for audiobooks and podcasts, with listening progress synced across devices.
 
 This stack runs Audiobookshelf with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

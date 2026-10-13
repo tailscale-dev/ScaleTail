@@ -1,6 +1,6 @@
 # MeTube
 
-[MeTube](https://github.com/alexta69/metube) is a web interface for `yt-dlp`. It downloads videos and audio from YouTube and many other sites to your server.
+[MeTube](https://github.com/alexta69/metube) is a web interface for yt-dlp that downloads video and audio from YouTube and other sites.
 
 This stack runs MeTube with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

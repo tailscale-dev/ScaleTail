@@ -1,6 +1,6 @@
 # DumbDo
 
-[DumbDo](https://github.com/DumbWareio/DumbDo) is a simple to-do list. It has no accounts and no database, and it stores your lists in one file.
+[DumbDo](https://github.com/DumbWareio/DumbDo) is a to-do list with no accounts or database, stored in one file.
 
 This stack runs DumbDo with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

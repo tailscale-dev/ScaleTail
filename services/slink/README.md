@@ -1,6 +1,6 @@
 # Slink
 
-[Slink](https://github.com/andrii-kryvoviaz/slink) is an image sharing platform. You upload images and share them with a link.
+[Slink](https://github.com/andrii-kryvoviaz/slink) is an image hosting platform that shares uploads through links.
 
 This stack runs Slink with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Gitea
 
-[Gitea](https://about.gitea.com/) is a lightweight Git service that you host yourself. It offers repositories, pull requests, issues, packages, and CI.
+[Gitea](https://about.gitea.com/) is a Git service with repositories, pull requests, issues, packages, and CI.
 
 This stack runs Gitea with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

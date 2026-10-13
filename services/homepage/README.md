@@ -1,6 +1,6 @@
 # Homepage
 
-[Homepage](https://gethomepage.dev/) is a dashboard for your services and bookmarks. It shows live information from many applications and from Docker.
+[Homepage](https://gethomepage.dev/) is a dashboard that you set up in YAML, with bookmarks and live data from applications and Docker.
 
 This stack runs Homepage with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Isley
 
-[Isley](https://github.com/dwot/isley) is a grow journal for home growers. You log your plants, watering, and feeding, follow sensor data from your grow equipment, and keep track of seeds and harvests.
+[Isley](https://github.com/dwot/isley) is a cannabis grow journal for plants, watering, feeding, harvests, and sensor data.
 
 This stack runs Isley with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

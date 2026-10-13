@@ -1,6 +1,6 @@
 # Posterizarr
 
-[Posterizarr](https://github.com/fscorrupt/Posterizarr) creates posters, backgrounds, and title cards for your media library in one style. It reads your library from Plex, Jellyfin, or Emby and downloads the artwork from several sources.
+[Posterizarr](https://github.com/fscorrupt/Posterizarr) creates posters, backgrounds, and title cards for Plex, Jellyfin, and Emby libraries.
 
 This stack runs Posterizarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

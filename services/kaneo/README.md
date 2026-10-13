@@ -1,6 +1,6 @@
 # Kaneo
 
-[Kaneo](https://kaneo.app/) is a project management tool with boards, tasks, and a clean interface. It is an open-source alternative to tools such as Trello and Linear.
+[Kaneo](https://kaneo.app/) is a project tracker with boards and tasks, an alternative to Trello and Linear.
 
 This stack runs Kaneo with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

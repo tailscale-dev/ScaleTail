@@ -1,6 +1,6 @@
 # Donetick
 
-[Donetick](https://github.com/donetick/donetick) is a task and chore manager for households and small groups. You create tasks, assign them, set a schedule, and track who did what.
+[Donetick](https://github.com/donetick/donetick) is a task and chore manager for households and small groups.
 
 This stack runs Donetick with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Tailscale App Connector
 
-A Tailscale [app connector](https://tailscale.com/docs/features/app-connectors/how-to/setup) routes Tailnet traffic for selected applications through itself. Users and devices reach these applications by domain name instead of by IP address.
+A Tailscale [app connector](https://tailscale.com/docs/features/app-connectors/how-to/setup) routes Tailnet traffic for chosen domains through this host, so devices reach those applications by name.
 
 This stack runs only the Tailscale container from [the standard setup](../../documentation/standard-setup.md), configured as an app connector.
 

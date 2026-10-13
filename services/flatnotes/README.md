@@ -1,6 +1,6 @@
 # flatnotes
 
-[flatnotes](https://github.com/dullage/flatnotes) is a note-taking application that stores your notes as plain Markdown files. It has tags, full-text search, and no database.
+[flatnotes](https://github.com/dullage/flatnotes) stores notes as Markdown files in a folder, with no database.
 
 This stack runs flatnotes with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

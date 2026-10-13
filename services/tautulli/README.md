@@ -1,6 +1,6 @@
 # Tautulli
 
-[Tautulli](https://tautulli.com/) monitors your Plex Media Server. It shows who watches what, keeps a history and statistics, and sends notifications.
+[Tautulli](https://tautulli.com/) monitors a Plex Media Server, with viewing history, statistics, and notifications.
 
 This stack runs Tautulli with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

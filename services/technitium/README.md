@@ -1,6 +1,6 @@
 # Technitium DNS Server
 
-[Technitium DNS Server](https://technitium.com/dns/) is a DNS server for your network. It resolves names itself or through forwarders, blocks advertisements, and hosts your own DNS zones.
+[Technitium DNS Server](https://technitium.com/dns/) is an authoritative and recursive DNS server with ad blocking and your own zones.
 
 This stack runs Technitium DNS Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

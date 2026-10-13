@@ -1,6 +1,6 @@
 # AdGuard Home Sync
 
-[AdGuard Home Sync](https://github.com/bakito/adguardhome-sync) copies the configuration of one AdGuard Home instance to one or more replicas, including filters, rewrites, clients, and DNS settings.
+[AdGuard Home Sync](https://github.com/bakito/adguardhome-sync) synchronises one AdGuard Home configuration to other instances.
 
 This stack runs AdGuard Home Sync with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

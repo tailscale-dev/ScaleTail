@@ -1,8 +1,8 @@
 # Mailpit
 
-[Mailpit](https://mailpit.axllent.org/) captures email and shows it in a web interface. It accepts messages over SMTP, stores them locally, and lets you inspect the content, headers, source, and attachments without mailbox accounts.
+[Mailpit](https://mailpit.axllent.org/) is an email testing tool that captures SMTP messages and shows them in a web interface.
 
-This stack accepts mail for every address at one domain, as a catch-all inbox. Mailpit does not send or relay the captured mail.
+This stack accepts mail for every address at one domain, as a catch-all inbox, and does not relay it.
 
 This stack runs Mailpit with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

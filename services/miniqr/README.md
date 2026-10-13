@@ -1,6 +1,6 @@
 # Mini QR
 
-[Mini QR](https://github.com/lyqht/mini-qr) creates and scans QR codes in your browser. You style the code with colours, shapes, and a logo and export it as an image.
+[Mini QR](https://github.com/lyqht/mini-qr) creates, styles, and scans QR codes in the browser.
 
 This stack runs Mini QR with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Dockge
 
-[Dockge](https://github.com/louislam/dockge) is a web interface to manage Docker Compose stacks. You create, edit, start, and update your `compose.yaml` files in the browser.
+[Dockge](https://github.com/louislam/dockge) is a web interface to manage Docker Compose stacks.
 
 This stack runs Dockge with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

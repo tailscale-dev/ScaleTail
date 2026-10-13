@@ -1,6 +1,6 @@
 # BentoPDF
 
-[BentoPDF](https://github.com/alam00000/bentopdf) is a toolkit for PDF files. You merge, split, compress, convert, and edit PDF files in your browser, and the files do not leave your device.
+[BentoPDF](https://github.com/alam00000/bentopdf) is a client-side PDF toolkit. Files are processed in the browser and are not uploaded.
 
 This stack runs BentoPDF with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Copyparty
 
-[Copyparty](https://github.com/9001/copyparty) is a file server. You upload, download, and share the files of a folder in your browser, and it also offers protocols such as WebDAV.
+[Copyparty](https://github.com/9001/copyparty) is a file server with resumable uploads, browser access, and WebDAV.
 
 This stack runs Copyparty with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Tracktor
 
-[Tracktor](https://github.com/javedh-dev/tracktor) manages your vehicles. You track fuel use, maintenance, insurance, and documents with their renewal dates.
+[Tracktor](https://github.com/javedh-dev/tracktor) tracks vehicle fuel, maintenance, insurance, and documents.
 
 Tracktor is under active development and can have breaking changes. Back up your data before you update.
 

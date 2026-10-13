@@ -1,6 +1,6 @@
 # Paperless-ngx
 
-[Paperless-ngx](https://docs.paperless-ngx.com/) is a document management system. It turns your scans and files into a searchable archive with text recognition, tags, and correspondents.
+[Paperless-ngx](https://docs.paperless-ngx.com/) is a document management system that turns scans and files into a searchable archive.
 
 This stack runs Paperless-ngx with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

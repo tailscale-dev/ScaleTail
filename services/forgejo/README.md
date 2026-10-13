@@ -1,6 +1,6 @@
 # Forgejo
 
-[Forgejo](https://forgejo.org/) is a Git service that you host yourself. It offers repositories, pull requests, issues, packages, and CI, and a community governs its development.
+[Forgejo](https://forgejo.org/) is a community-governed Git forge, forked from Gitea.
 
 This stack runs Forgejo with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

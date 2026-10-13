@@ -1,6 +1,6 @@
 # Ghost
 
-[Ghost](https://ghost.org/) is a publishing platform for blogs, newsletters, and online publications.
+[Ghost](https://ghost.org/) is a publishing platform for blogs and newsletters.
 
 This stack runs Ghost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

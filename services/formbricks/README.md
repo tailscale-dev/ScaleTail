@@ -1,6 +1,6 @@
 # Formbricks
 
-[Formbricks](https://formbricks.com/) is a survey and feedback platform. You build surveys, show them in your website, app, or by link, and analyse the answers on your own server.
+[Formbricks](https://formbricks.com/) is a survey and feedback platform for websites, apps, and links.
 
 This stack runs Formbricks with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

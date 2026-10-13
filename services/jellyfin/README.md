@@ -1,6 +1,6 @@
 # Jellyfin
 
-[Jellyfin](https://jellyfin.org/) is a media server. It organises your movies, series, and music and streams them to your browser, television, and mobile devices.
+[Jellyfin](https://jellyfin.org/) is a media server that organises and streams your movies, series, and music.
 
 This stack runs Jellyfin with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

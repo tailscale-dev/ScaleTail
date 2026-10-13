@@ -1,6 +1,6 @@
 # Transmute
 
-[Transmute](https://github.com/transmute-app/transmute) converts and compresses files, such as images, video, audio, and documents. It has a web interface and an API.
+[Transmute](https://github.com/transmute-app/transmute) converts and compresses images, video, audio, and documents, with a web interface and an API.
 
 This stack runs Transmute with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
