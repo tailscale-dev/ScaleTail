@@ -59,7 +59,7 @@ services:
       #- PUID=1000
       #- PGID=1000
       - TZ=${TZ}
-      - KASM_PORT=4443 # Kasm web port in the shared network namespace. Not 443, which Tailscale Serve uses. Keep it equal to the Serve port; changing it needs a new Kasm install
+      - KASM_PORT=4443 # Kasm web port in the shared network namespace. Not 443, which Tailscale Serve uses. Keep it equal to the Serve port. The wizard applies it only when it installs or upgrades Kasm
       - DOCKER_HUB_USERNAME=${DOCKER_HUB_USERNAME} # Optional: Docker Hub login, to avoid pull rate limits
       - DOCKER_HUB_PASSWORD=${DOCKER_HUB_PASSWORD} # Optional: Docker Hub password or access token
     volumes:

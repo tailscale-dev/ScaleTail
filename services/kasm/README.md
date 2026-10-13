@@ -6,13 +6,13 @@ This stack runs Kasm Workspaces with a Tailscale sidecar, as described in [the s
 
 ## At a glance
 
-| Item           | Value                                                       |
-| -------------- | ----------------------------------------------------------- |
-| Web interface  | `https://kasm.<tailnet>.ts.net`                             |
-| Service port   | `4443` (HTTPS with a self-signed certificate)               |
+| Item           | Value                                                                |
+| -------------- | -------------------------------------------------------------------- |
+| Web interface  | `https://kasm.<tailnet>.ts.net`                                      |
+| Service port   | `4443` (HTTPS with a self-signed certificate)                        |
 | Install wizard | `https://<Tailscale IP>:3000` (HTTPS with a self-signed certificate) |
-| Image          | `kasmweb/workspaces:1.19.0`                                 |
-| Data           | `./kasm-data/opt/`                                          |
+| Image          | `kasmweb/workspaces:1.19.0`                                          |
+| Data           | `./kasm-data/opt/`                                                   |
 
 ## Before you start
 
@@ -23,7 +23,7 @@ This stack runs Kasm Workspaces with a Tailscale sidecar, as described in [the s
 ## Deviations from the standard setup
 
 - **Privileged container.** Kasm runs its own Docker daemon inside the container (Docker-in-Docker) to start the services and the workspaces, so the `application` service has `privileged: true`.
-- **Port `4443`, not `443`.** Tailscale Serve listens on port `443` of the Tailscale IP address, and Kasm cannot also publish `443` in the shared network namespace: the install fails with `failed to bind host port 0.0.0.0:443/tcp: address already in use`. `KASM_PORT` is `4443`, and Serve forwards to it. Kasm stores the port when you run the install wizard, so changing it later means a new install.
+- **Port `4443`, not `443`.** Tailscale Serve listens on port `443` of the Tailscale IP address, and Kasm cannot also publish `443` in the shared network namespace: the install fails with `failed to bind host port 0.0.0.0:443/tcp: address already in use`. `KASM_PORT` is `4443`, and Serve forwards to it. The install wizard passes `KASM_PORT` to the Kasm installer and upgrader, so a new value takes effect only with a new install or an upgrade.
 - **Serve forwards to HTTPS.** Kasm serves its web interface on `4443` with a self-signed certificate. Tailscale Serve forwards to it with `https+insecure`.
 - **Extra ports.** Port `4443` (Kasm directly, with the self-signed certificate) and port `3000` (install wizard) are reachable on the Tailscale IP address of the device, when your Tailnet policy allows it. Uncomment the `ports` lines to publish them on your local network.
 - **Health check.** The check calls the Kasm API on port `4443`, which does not listen until you finish the install wizard. The container is `starting` for 10 minutes, and `unhealthy` after that until the install is complete.
@@ -42,7 +42,7 @@ The "Web URL" link on the wizard dashboard points to port `4443`. Use the Tailsc
 
 ## Troubleshooting
 
-- **The install fails with `address already in use`.** Something else uses the Kasm port in the shared network namespace, for example when `KASM_PORT` is `443`. Use a different port, stop the stack, delete `./kasm-data/opt/`, and run the install wizard again.
+- **The install fails with `address already in use`.** Something else uses the Kasm port in the shared network namespace, for example when `KASM_PORT` is `443`. Use a different port in `compose.yaml` (`KASM_PORT` and the Serve configuration), stop the stack, delete `./kasm-data/opt/`, and run the install wizard again.
 - **The wizard says that Docker is still loading.** Refresh the page after a minute.
 
 ## Links
