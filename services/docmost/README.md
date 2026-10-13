@@ -26,7 +26,7 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 
 ## Deviations from the standard setup
 
-- **Extra containers.** The stack runs `db` (PostgreSQL) and `redis`. Both use the network of the `tailscale` container as well, so Docmost reaches them at `localhost`. PostgreSQL and Redis therefore also listen on ports `5432` and `6379` of the Tailscale IP address of the device.
+- **Extra containers.** The stack runs `db` (PostgreSQL) and `redis`. Both use the network of the `tailscale` container as well, so Docmost reaches them at `localhost`. PostgreSQL and Redis listen only on the loopback address of the device, so other devices on your Tailnet cannot reach them.
 - **Application address.** `APP_URL` in `compose.yaml` is `http://localhost:3000`. Docmost uses this value for the links that it generates, for example in emails. Change it to `https://docmost.<tailnet>.ts.net` if you use such links.
 
 ## First run
@@ -36,6 +36,8 @@ Open the web interface. Docmost shows its setup page, where you create your work
 ## Upgrading
 
 If your `compose.yaml` contained the secret and the database password before, set `APP_SECRET` and `DB_PASSWORD` in `.env` to those same values.
+
+Earlier versions listened on all addresses of the device, so PostgreSQL and Redis were reachable from your Tailnet. This version makes them listen on localhost only. Your data stays in place. Run `docker compose up -d` to recreate the `db` and `redis` containers. Any tool that connects to the database or to Redis from another device stops working.
 
 ## Links
 
