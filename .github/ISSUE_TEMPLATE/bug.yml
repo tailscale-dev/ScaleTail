@@ -14,18 +14,6 @@ body:
         **Before you start:**
         Please check if the issue has already been reported or completed by searching [existing bugs](https://github.com/tailscale-dev/ScaleTail/issues?q=label%3Abug).
 
-  - type: checkboxes
-    id: preflight
-    attributes:
-      label: Before you report
-      options:
-        - label: I searched the existing issues and did not find this bug.
-          required: true
-        - label: I pulled the latest ScaleTail (`git pull`) and the problem still occurs.
-          required: true
-        - label: I read the README of the service and the [standard setup](https://github.com/tailscale-dev/ScaleTail/blob/main/documentation/standard-setup.md).
-          required: true
-
   - type: input
     id: service
     attributes:
