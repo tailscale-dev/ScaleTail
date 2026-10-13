@@ -22,7 +22,7 @@ Nothing beyond the [Quick Start](../../README.md#quick-start).
 ## Deviations from the standard setup
 
 - **Two application containers.** The `application` container runs the ID server `hbbs`, and the `hbbr` container runs the relay server. Both use the network of the `tailscale` container.
-- **No web interface.** The clients connect directly to the ports of the device on your Tailnet. The Tailscale Serve configuration from the template has no use here.
+- **No Tailscale Serve.** RustDesk has no web interface. The clients connect directly to the ports of the device on your Tailnet, so the stack has no Serve configuration.
 - **Relay setting.** `ALWAYS_USE_RELAY` in `.env` is `N`. Set it to `Y` to send all connections through the relay server.
 
 ## First run

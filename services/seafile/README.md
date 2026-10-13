@@ -30,7 +30,7 @@ MariaDB and Seafile apply the database passwords only at the first start.
 
 ## Deviations from the standard setup
 
-- **Service names.** The application service is called `seafile`, not `application`, and its container has no fixed name.
+- **Service names.** The application service is called `seafile`, not `application`, and its container is named `app-seafile`.
 - **Extra containers.** The stack runs `db` (MariaDB) and `memcached`. They use the default Compose network, and Seafile reaches them by their service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve these names.
 - **Images are set in `.env`.** The stack does not use `IMAGE_URL`. `SEAFILE_IMAGE`, `SEAFILE_DB_IMAGE`, and `SEAFILE_MEMCACHED_IMAGE` select the images. Keep the Memcached image on a Debian-based tag, because its health check needs `perl`, which Alpine tags lack.
 - **Small deployment.** The stack is meant for a handful of users. It leaves out the SeaDoc, Collabora, and notification servers, and it uses Memcached instead of Redis.

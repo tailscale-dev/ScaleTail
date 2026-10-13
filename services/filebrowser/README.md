@@ -2,6 +2,8 @@
 
 [File Browser](https://filebrowser.org/) is a file manager for the browser. You upload, download, preview, rename, edit, and share the files of one folder on your server.
 
+Upstream has archived the project. It gets no further releases and no security fixes, and upstream lists known unaddressed security issues in its README. The command runner has been off by default since File Browser v2.33.8. Keep it off, and do not enable Tailscale Funnel for this stack.
+
 This stack runs File Browser with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
@@ -40,5 +42,5 @@ The log line with the password looks like this:
 
 ## Links
 
-- [File Browser documentation](https://filebrowser.org/)
+- [File Browser documentation](https://github.com/filebrowser/filebrowser/tree/master/docs)
 - [File Browser source code](https://github.com/filebrowser/filebrowser)

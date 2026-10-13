@@ -35,10 +35,9 @@ services:
     cap_add:
       - net_admin # Tailscale requirement
     #ports:
-    #  - ${HTTP_PORT}:${HTTP_PORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
-    #  - ${HTTPS_PORT}:${HTTPS_PORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
-    #  - ${CALLS_PORT}:${CALLS_PORT}/udp
-    #  - ${CALLS_PORT}:${CALLS_PORT}/tcp
+    #  - 0.0.0.0:${SERVICEPORT}:8065 # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
+    #  - ${CALLS_PORT}:${CALLS_PORT}/udp # Mattermost Calls media - only needed when you use Calls
+    #  - ${CALLS_PORT}:${CALLS_PORT}/tcp # Mattermost Calls media - only needed when you use Calls
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
     #dns:
     #  - ${DNS_SERVER}

@@ -78,6 +78,7 @@ services:
     image: postgres:16-alpine
     network_mode: service:tailscale
     container_name: app-${SERVICE}-database
+    command: ["postgres", "-c", "listen_addresses=localhost"] # Listen on localhost only, so the Tailnet cannot reach the database
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_USER: ${POSTGRES_USER}
