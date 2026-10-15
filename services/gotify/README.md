@@ -46,7 +46,7 @@ The stack uses the "local instance" mode of iGotify, so Gotify stays reachable o
 
 1. Start the stack as usual and install the [iGotify app](https://apps.apple.com/app/igotify/id6473452512) on a device that is connected to your Tailnet.
 2. In the app, enter `https://gotify.<tailnet>.ts.net`, turn on the Local Instance toggle, and log in with your Gotify account. The app then shows three values: the Gotify URL, the Gotify client token, and the SecNtfy token.
-3. In `.env`, set `COMPOSE_PROFILES=igotify`, and fill in `GOTIFY_CLIENT_TOKENS` and `SECNTFY_TOKENS` with the values from the app. Set `GOTIFY_URLS=http://127.0.0.1:80` instead of the URL that the app shows: the iGotify container shares the network of the Tailscale sidecar and cannot resolve the MagicDNS name, but it reaches Gotify on the loopback address. The three values go together: if one is missing, the connection fails.
+3. In `.env`, set `COMPOSE_PROFILES=igotify`, and fill in `GOTIFY_CLIENT_TOKENS` and `SECNTFY_TOKENS` with the values from the app. Keep `GOTIFY_URLS=http://127.0.0.1:80` instead of the URL that the app shows: the iGotify container shares the network of the Tailscale sidecar and cannot resolve the MagicDNS name, but it reaches Gotify on the loopback address. The three values go together: if one is missing, the connection fails.
 4. Apply the change with `docker compose up -d`.
 
 The two tokens are secrets, so keep them out of anything you publish. Keep `COMPOSE_PROFILES=igotify` in `.env` as long as you use iGotify: without it, `docker compose down` and `docker compose pull` skip the `igotify` container.

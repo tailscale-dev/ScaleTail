@@ -71,7 +71,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE}-igotify # Name for local container management
     environment:
-      - GOTIFY_URLS=${GOTIFY_URLS:-}
+      - GOTIFY_URLS=${GOTIFY_URLS:-http://127.0.0.1:80} # Gotify on the loopback address of the shared network
       - GOTIFY_CLIENT_TOKENS=${GOTIFY_CLIENT_TOKENS:-}
       - SECNTFY_TOKENS=${SECNTFY_TOKENS:-}
       - TZ=${TZ}
