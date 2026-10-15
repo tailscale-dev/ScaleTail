@@ -22,7 +22,7 @@ services:
       - TS_USERSPACE=false
       - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
       - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
-      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
+      - TS_ACCEPT_DNS=true # OpenCloud fetches its own Tailnet address (OC_URL) from inside the container to check sign-ins, so it must resolve MagicDNS names. No other container is reached by its Compose service name.
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve

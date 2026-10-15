@@ -33,6 +33,7 @@ sudo chown -R 1000:1000 opencloud-data
 - **Start command.** The container runs `opencloud init`, then `opencloud server`. The first command creates the config, with random secrets, in `./opencloud-data/config`. It reports `config file already exists` at every later start, which is expected and ignored.
 - **Plain HTTP behind Serve.** `PROXY_TLS=false` makes OpenCloud listen on plain HTTP at port `9200`, because Tailscale Serve terminates TLS. `OC_INSECURE=false` answers the question of `opencloud init` about disabling certificate checks.
 - **Public address.** OpenCloud must know its public address and reach it from inside the container. `OC_URL` is built from `SERVICE` and `TAILNET_NAME`, so keep both in line with the name of the Tailnet device.
+- **MagicDNS on.** `TS_ACCEPT_DNS=true` is set, because OpenCloud resolves its own Tailnet address to check sign-ins, and Docker's DNS cannot resolve MagicDNS names. The stack has no other container that would need Docker's DNS.
 - **Built-in identity provider.** The stack uses the identity provider and user directory that OpenCloud includes. It does not start Collabora, Tika search, antivirus, Radicale, or Keycloak, which the [upstream compose project](https://github.com/opencloud-eu/opencloud-compose) offers as add-ons.
 
 ## First run
