@@ -63,7 +63,6 @@ services:
       - SYMFONY__ENV__DATABASE_USER=wallabag
       - SYMFONY__ENV__DATABASE_PASSWORD=${DATABASE_PASSWORD:?Set DATABASE_PASSWORD in .env}
       - SYMFONY__ENV__DATABASE_CHARSET=utf8mb4
-      - SYMFONY__ENV__REDIS_HOST=redis
       # The entrypoint uses the root password to create the database and the user on the first start.
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
     volumes:
@@ -72,8 +71,6 @@ services:
       tailscale:
         condition: service_healthy
       db:
-        condition: service_healthy
-      redis:
         condition: service_healthy
     # Healthcheck: defined by the image (curl on http://localhost/api/info), so this file does not override it.
     restart: always
@@ -92,16 +89,4 @@ services:
       timeout: 5s # Time to wait for the check to succeed
       retries: 5 # Number of retries before marking as unhealthy
       start_period: 30s # Time to wait before starting health checks
-    restart: always
-
-  # Cache for asynchronous imports
-  redis:
-    image: redis:8-alpine
-    container_name: app-${SERVICE}-redis # Name for local container management
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"] # Check if Redis answers
-      interval: 10s # How often to perform the check
-      timeout: 5s # Time to wait for the check to succeed
-      retries: 5 # Number of retries before marking as unhealthy
-      start_period: 10s # Time to wait before starting health checks
     restart: always
