@@ -135,6 +135,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Seerr**          | Request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.      | [Details](services/seerr)          |
 | **Slink**          | Image hosting platform that shares uploads through links.                                            | [Details](services/slink)          |
 | **Sonarr**         | Series manager that searches Usenet and BitTorrent for new episodes.                                 | [Details](services/sonarr)         |
+| **Storyteller**    | Platform for reading ebooks with synced audiobook narration.                                         | [Details](services/storyteller)    |
 | **Swing Music**    | Music player and streaming server for your local audio files.                                        | [Details](services/swingmx)        |
 | **Tautulli**       | Monitoring tool for Plex Media Server, with viewing history, statistics, and notifications.          | [Details](services/tautulli)       |
 
