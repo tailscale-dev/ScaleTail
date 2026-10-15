@@ -250,7 +250,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 | Service             | Description                                                                         | Link                           |
 | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------ |
-| **Clean Slate**     | Calorie tracker for logging food, recipes, and exercise without judgment.           | [Details](services/cleanslate) |
+| **Clean Slate**     | Calorie tracker for food, recipes, and exercise.                                    | [Details](services/cleanslate) |
 | **KitchenOwl**      | Grocery list and recipe manager for households, with meal planning and expenses.    | [Details](services/kitchenowl) |
 | **Mealie**          | Recipe manager and meal planner with shopping lists and imports from web addresses. | [Details](services/mealie)     |
 | **Tandoor Recipes** | Recipe manager and meal planner with shopping lists.                                | [Details](services/tandoor)    |

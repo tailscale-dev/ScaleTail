@@ -9,6 +9,8 @@ configs:
           {"Proxy":"http://127.0.0.1:3001/auth"},
           "/v1/":
           {"Proxy":"http://127.0.0.1:8080/v1/"},
+          "/v1alpha1/":
+          {"Proxy":"http://127.0.0.1:8080/v1alpha1/"},
           "/v2/":
           {"Proxy":"http://127.0.0.1:8080/v2/"},
           "/console":
