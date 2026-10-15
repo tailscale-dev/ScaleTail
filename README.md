@@ -241,7 +241,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Gotify**     | Push notification server that shows messages from your scripts in its web interface and Android app. | [Details](services/gotify)      |
 | **Hemmelig**   | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)    |
 | **Homebox**    | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)     |
-| **Kasm**       | Platform that streams desktops, browsers, and apps to your browser, each in its own container.       | [Details](services/kasm)        |
+| **Kasm**       | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)        |
 | **LubeLogger** | Tracker for vehicle maintenance and fuel use, with reminders for upcoming services.                  | [Details](services/lube-logger) |
 | **Mini QR**    | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)      |
 | **ntfy**       | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)        |
