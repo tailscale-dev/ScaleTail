@@ -1,6 +1,6 @@
 # Dockhand
 
-[Dockhand](https://github.com/Finsys/dockhand) is a web interface for Docker on local and remote hosts. Home and non-commercial use is free; an organisation's production use needs a commercial licence.
+[Dockhand](https://github.com/Finsys/dockhand) is a web interface for Docker on local and remote hosts. Home and non-commercial use is free; production use by a business or public body needs a commercial licence.
 
 This stack runs Dockhand with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

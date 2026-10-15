@@ -1,6 +1,6 @@
 # Bazarr
 
-[Bazarr](https://www.bazarr.media/) downloads and manages subtitles for movies and series in Sonarr and Radarr.
+[Bazarr](https://www.bazarr.media/) downloads and manages subtitles for movies and series in Radarr and Sonarr.
 
 This stack runs Bazarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

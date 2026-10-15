@@ -1,6 +1,6 @@
 # Beszel Agent
 
-[Beszel](https://beszel.dev/) is a server monitoring platform. This service is the agent, which sends one system's statistics and Docker stats to a [Beszel hub](../beszel-hub/).
+[Beszel](https://beszel.dev/) is a server monitoring platform. This service is the agent, which collects the statistics of one system and its Docker containers for a [Beszel hub](../beszel-hub/).
 
 This stack runs Beszel Agent with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # FossFLOW
 
-[FossFLOW](https://hub.docker.com/r/stnsmith/fossflow) draws isometric infrastructure diagrams. It only visualises a diagram and does not run it.
+[FossFLOW](https://hub.docker.com/r/stnsmith/fossflow) draws isometric infrastructure diagrams. It only visualises a flow and does not run it.
 
 The original repository is no longer on GitHub. [Abrar74774/FossFLOW](https://github.com/Abrar74774/FossFLOW) continues it.
 

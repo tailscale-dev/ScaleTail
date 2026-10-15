@@ -113,7 +113,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | ------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **ArtistTrackarr** | Tracker for new albums, EPs, singles, and compilations from Spotify.                                 | [Details](services/artisttrackarr) |
 | **Audiobookshelf** | Server for audiobooks and podcasts, with playback progress synced across devices.                    | [Details](services/audiobookshelf) |
-| **Bazarr**         | Subtitle manager for movies and series in Sonarr and Radarr.                                         | [Details](services/bazarr)         |
+| **Bazarr**         | Subtitle manager for movies and series in Radarr and Sonarr.                                         | [Details](services/bazarr)         |
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync. In maintenance mode.                   | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](services/freshrss)       |
@@ -124,7 +124,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **MeTube**         | Web UI for yt-dlp that downloads videos and audio from YouTube and other sites.                      | [Details](services/metube)         |
 | **Minecraft**      | Minecraft Java Edition server that players reach over your Tailnet.                                  | [Details](services/minecraft)      |
 | **Miniflux**       | Minimalist feed reader for RSS, Atom, and JSON feeds, with a PostgreSQL database.                    | [Details](services/miniflux)       |
-| **Navidrome**      | Music server that streams a collection to its web player and OpenSubsonic apps.                      | [Details](services/navidrome)      |
+| **Navidrome**      | Music server that streams your collection to its web player and Subsonic-compatible apps.            | [Details](services/navidrome)      |
 | **Picard**         | MusicBrainz tag editor that writes tags and cover art, used in your browser.                         | [Details](services/picard)         |
 | **Plex**           | Media server that streams your movies, series, and music to Plex apps; needs a Plex account.         | [Details](services/plex)           |
 | **Posterizarr**    | Poster, background, and title card generator for Plex, Jellyfin, and Emby libraries.                 | [Details](services/posterizarr)    |
@@ -145,7 +145,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Actual Budget** | Personal finance app for budgeting.                                                            | [Details](services/actual-budget) |
 | **AFFiNE**        | Workspace for documents, whiteboards, and databases.                                           | [Details](services/affine)        |
 | **Anchor**        | Note-taking app that works offline and syncs notes when you are back online.                   | [Details](services/anchor)        |
-| **BentoPDF**      | Client-side PDF toolkit for the browser.                                                       | [Details](services/bentopdf)      |
+| **BentoPDF**      | PDF toolkit that works in your browser, without uploading files.                               | [Details](services/bentopdf)      |
 | **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.                   | [Details](services/clipcascade)   |
 | **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                                | [Details](services/copyparty)     |
 | **Docmost**       | Team wiki with real-time collaborative editing.                                                | [Details](services/docmost)       |
@@ -158,7 +158,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **flatnotes**     | Note-taking app that stores notes as plain Markdown files, with no database.                   | [Details](services/flatnotes)     |
 | **Formbricks**    | Survey and feedback platform for websites, apps, and links.                                    | [Details](services/formbricks)    |
 | **Ghost**         | Publishing platform for blogs and newsletters.                                                 | [Details](services/ghost)         |
-| **Gokapi**        | File sharing server with no public uploads and expiring links.                                 | [Details](services/gokapi)        |
+| **Gokapi**        | File sharing server with links that expire after a number of downloads or days.                | [Details](services/gokapi)        |
 | **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                              | [Details](services/grampsweb)     |
 | **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                       | [Details](services/haptic)        |
 | **Isley**         | Cannabis grow journal for plants, watering, feeding, harvests, and sensors.                    | [Details](services/isley)         |

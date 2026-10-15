@@ -1,6 +1,6 @@
 # Hemmelig
 
-[Hemmelig](https://github.com/HemmeligOrg/Hemmelig.app) shares a secret by an encrypted link that is deleted after it is read or when it expires.
+[Hemmelig](https://github.com/HemmeligOrg/Hemmelig.app) shares secrets by encrypted link and deletes each secret after it is read or when it expires.
 
 The upstream repository is archived, so the project gets no further updates.
 

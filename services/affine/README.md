@@ -1,6 +1,6 @@
 # AFFiNE
 
-[AFFiNE](https://affine.pro/) is a workspace for documents, whiteboards, and databases. The editor is MIT-licensed; the self-hosted backend is source-available under the Enterprise Edition licence.
+[AFFiNE](https://affine.pro/) is a workspace for documents, whiteboards, and databases.
 
 This stack runs AFFiNE with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

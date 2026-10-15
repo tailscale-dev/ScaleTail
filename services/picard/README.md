@@ -1,6 +1,6 @@
 # MusicBrainz Picard
 
-[MusicBrainz Picard](https://picard.musicbrainz.org/) identifies music files, including by audio fingerprint, and writes tags and cover art. This stack runs the desktop application in the browser.
+[MusicBrainz Picard](https://picard.musicbrainz.org/) identifies music files, including by audio fingerprint, and writes tags and cover art. This stack runs the desktop application in a container and shows it in your browser.
 
 This stack runs MusicBrainz Picard with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
