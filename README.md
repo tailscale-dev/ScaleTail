@@ -253,7 +253,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------ |
 | **KitchenOwl**      | Grocery list and recipe manager for households, with meal planning and expenses.    | [Details](services/kitchenowl) |
 | **Mealie**          | Recipe manager and meal planner with shopping lists and imports from web addresses. | [Details](services/mealie)     |
-| **openGym**         | Gym and body-weight tracker for planning routines and logging workouts.             | [Details](services/opengym)    |
+| **openGym**         | Gym and body-weight tracker for routines and workouts.                              | [Details](services/opengym)    |
 | **Tandoor Recipes** | Recipe manager and meal planner with shopping lists.                                | [Details](services/tandoor)    |
 
 ## Update a stack
