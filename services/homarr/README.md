@@ -1,6 +1,6 @@
 # Homarr
 
-[Homarr](https://homarr.dev/) is a dashboard for your services. It shows your applications on one page and integrates with many of them to display live information.
+[Homarr](https://homarr.dev/) is a dashboard with user accounts that shows live data from the apps you connect.
 
 This stack runs Homarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

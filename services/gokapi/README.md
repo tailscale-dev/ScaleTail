@@ -1,6 +1,6 @@
 # Gokapi
 
-[Gokapi](https://github.com/Forceu/Gokapi) is a file sharing server. You upload a file and share a link that expires after a number of downloads or days.
+[Gokapi](https://github.com/Forceu/Gokapi) is a file sharing server with links that expire after a number of downloads or days.
 
 This stack runs Gokapi with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

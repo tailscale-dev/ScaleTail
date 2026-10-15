@@ -1,6 +1,6 @@
 # Anchor
 
-[Anchor](https://github.com/ZhFahim/anchor) is a note-taking application for the web and mobile devices. It works offline and synchronises your notes when the device is online again.
+[Anchor](https://github.com/ZhFahim/anchor) is an offline-first note-taking app that synchronises when a device is back online.
 
 This stack runs Anchor with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

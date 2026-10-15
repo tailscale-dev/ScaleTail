@@ -1,6 +1,6 @@
 # Traefik
 
-[Traefik](https://traefik.io/traefik/) is a reverse proxy and load balancer. It discovers your containers through Docker and routes requests to them by rules that you set as labels.
+[Traefik](https://traefik.io/traefik/) is a reverse proxy and load balancer that routes requests to Docker containers by label.
 
 This stack runs Traefik with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

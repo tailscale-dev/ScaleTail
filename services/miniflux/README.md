@@ -1,6 +1,6 @@
 # Miniflux
 
-[Miniflux](https://miniflux.app/) is a minimalist feed reader for RSS, Atom, and JSON feeds. It is fast and has a clean interface without distractions.
+[Miniflux](https://miniflux.app/) is a minimalist feed reader for RSS, Atom, and JSON feeds, with a PostgreSQL database.
 
 This stack runs Miniflux with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

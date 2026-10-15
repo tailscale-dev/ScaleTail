@@ -1,6 +1,6 @@
 # Stirling-PDF
 
-[Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) is a toolbox for PDF files. You merge, split, convert, compress, sign, and edit PDF files in your browser, and the files stay on your own server.
+[Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) is a PDF toolbox that runs on the server. The free plan includes the tools for up to five users.
 
 This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

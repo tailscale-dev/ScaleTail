@@ -1,6 +1,6 @@
 # FlareSolverr
 
-[FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) is a proxy server that solves Cloudflare challenges for other applications, such as Prowlarr.
+[FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) is a proxy that solves Cloudflare and DDoS-GUARD challenges for other applications.
 
 This stack runs FlareSolverr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

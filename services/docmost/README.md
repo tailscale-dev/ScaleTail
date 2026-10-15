@@ -1,6 +1,6 @@
 # Docmost
 
-[Docmost](https://docmost.com/) is a wiki and documentation tool for teams. Several people edit a page at the same time, and it supports diagrams, comments, page history, and permissions.
+[Docmost](https://docmost.com/) is a team wiki with real-time collaborative editing.
 
 This stack runs Docmost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # NextExplorer
 
-[NextExplorer](https://github.com/nxzai/NextExplorer) is a file explorer for your server. You browse, upload, download, and edit the files of a folder in your browser.
+[NextExplorer](https://github.com/nxzai/NextExplorer) is a web file manager for the folder you give it.
 
 This stack runs NextExplorer with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

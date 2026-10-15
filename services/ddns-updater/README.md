@@ -1,6 +1,6 @@
 # DDNS Updater
 
-[DDNS Updater](https://github.com/qdm12/ddns-updater) keeps the DNS records of your domains pointed at your current public IP address. It supports many DNS providers and shows the state of each record in a web interface.
+[DDNS Updater](https://github.com/qdm12/ddns-updater) keeps DNS records pointed at your current public IP address.
 
 This stack runs DDNS Updater with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

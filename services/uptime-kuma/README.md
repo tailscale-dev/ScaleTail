@@ -1,6 +1,6 @@
 # Uptime Kuma
 
-[Uptime Kuma](https://github.com/louislam/uptime-kuma) monitors your websites and services. It checks them at an interval, shows their uptime, and sends a notification when one is down.
+[Uptime Kuma](https://github.com/louislam/uptime-kuma) monitors websites and services and notifies you when one is down.
 
 This stack runs Uptime Kuma with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

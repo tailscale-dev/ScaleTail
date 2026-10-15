@@ -1,6 +1,6 @@
 # Pi-hole
 
-[Pi-hole](https://github.com/pi-hole/pi-hole) is a DNS server that blocks advertisements and trackers for every device that uses it.
+[Pi-hole](https://github.com/pi-hole/pi-hole) is a DNS sinkhole that blocks advertisements and trackers for every device that uses it.
 
 This stack runs Pi-hole with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

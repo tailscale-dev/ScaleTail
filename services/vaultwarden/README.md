@@ -1,6 +1,6 @@
 # Vaultwarden
 
-[Vaultwarden](https://github.com/dani-garcia/vaultwarden) is a password manager server that works with the Bitwarden apps and browser extensions.
+[Vaultwarden](https://github.com/dani-garcia/vaultwarden) is an unofficial server for the Bitwarden apps and browser extensions.
 
 This stack runs Vaultwarden with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

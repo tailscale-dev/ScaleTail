@@ -1,6 +1,6 @@
 # KitchenOwl
 
-[KitchenOwl](https://kitchenowl.org/) is a grocery list and recipe manager for households. You share shopping lists, collect recipes, plan your meals, and track expenses together.
+[KitchenOwl](https://kitchenowl.org/) is a grocery list and recipe manager for households, with meal planning and expenses.
 
 This stack runs KitchenOwl with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

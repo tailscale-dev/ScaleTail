@@ -1,6 +1,6 @@
 # IT-Tools
 
-[IT-Tools](https://github.com/CorentinTh/it-tools) is a collection of tools for developers and IT staff, such as converters, encoders, formatters, and generators.
+[IT-Tools](https://github.com/CorentinTh/it-tools) is a collection of online tools for developers and IT staff.
 
 This stack runs IT-Tools with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

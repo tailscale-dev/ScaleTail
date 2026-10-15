@@ -1,6 +1,6 @@
 # Mealie
 
-[Mealie](https://mealie.io/) is a recipe manager and meal planner. You import a recipe from a web address, plan your meals, and build shopping lists.
+[Mealie](https://mealie.io/) is a recipe manager and meal planner, with shopping lists and imports from web addresses.
 
 This stack runs Mealie with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

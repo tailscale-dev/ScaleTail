@@ -1,6 +1,6 @@
 # Joplin Server
 
-[Joplin Server](https://joplinapp.org/) is the sync server for the Joplin note-taking apps. Your notes, notebooks, and attachments stay in sync between your devices without a cloud service.
+[Joplin Server](https://joplinapp.org/) is the sync server for the Joplin note-taking apps. The licence allows personal, non-commercial use only.
 
 This stack runs Joplin Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

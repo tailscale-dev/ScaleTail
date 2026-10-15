@@ -1,6 +1,6 @@
 # Radicale
 
-[Radicale](https://radicale.org/) is a small CalDAV and CardDAV server. It synchronises your calendars, to-do lists, and contacts between your devices.
+[Radicale](https://radicale.org/) is a CalDAV and CardDAV server that synchronises calendars, to-do lists, and contacts.
 
 This stack runs Radicale with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

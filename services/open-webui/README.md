@@ -1,6 +1,6 @@
 # Open WebUI
 
-[Open WebUI](https://openwebui.com/) is a chat interface for AI models. It works with Ollama and with every API that is compatible with OpenAI.
+[Open WebUI](https://openwebui.com/) is a chat interface for AI models, through Ollama or OpenAI-compatible APIs.
 
 This stack runs Open WebUI with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

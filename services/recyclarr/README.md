@@ -1,6 +1,6 @@
 # Recyclarr
 
-[Recyclarr](https://recyclarr.dev/) synchronises the quality profiles and custom formats of the TRaSH Guides to Radarr and Sonarr. You describe the result in a YAML file, and Recyclarr keeps your applications in line with it.
+[Recyclarr](https://recyclarr.dev/) synchronises TRaSH Guides quality profiles and custom formats to Radarr and Sonarr from a YAML file.
 
 This stack runs Recyclarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

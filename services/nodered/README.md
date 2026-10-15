@@ -1,6 +1,6 @@
 # Node-RED
 
-[Node-RED](https://nodered.org/) is a low-code tool for event-driven applications. You connect devices, APIs, and online services by wiring nodes together in a flow editor in your browser.
+[Node-RED](https://nodered.org/) is a low-code, flow-based tool for event-driven applications.
 
 This stack runs Node-RED with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

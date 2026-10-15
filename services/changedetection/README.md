@@ -1,6 +1,6 @@
 # changedetection.io
 
-[changedetection.io](https://github.com/dgtlmoon/changedetection.io) watches web pages and notifies you when their content changes, for example for price drops, restocks, or updated documents.
+[changedetection.io](https://github.com/dgtlmoon/changedetection.io) watches web pages and notifies you when their content changes.
 
 This stack runs changedetection.io with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

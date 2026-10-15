@@ -1,6 +1,6 @@
 # Beszel Hub
 
-[Beszel](https://beszel.dev/) is a lightweight server monitoring platform with historical data, Docker statistics, and alerts. The hub is its web interface. It collects the data from an agent on each system that you monitor.
+[Beszel](https://beszel.dev/) is a server monitoring platform with history, Docker statistics, and alerts. This service is the hub.
 
 This stack runs Beszel Hub with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

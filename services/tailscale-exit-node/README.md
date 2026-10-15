@@ -1,6 +1,6 @@
 # Tailscale Exit Node
 
-A Tailscale [exit node](https://tailscale.com/kb/1103/exit-nodes) routes the internet traffic of other Tailnet devices through itself. Devices that use it reach the internet from the network of the Docker host, for example your home or office.
+A Tailscale [exit node](https://tailscale.com/kb/1103/exit-nodes) routes the internet traffic of other Tailnet devices through this host.
 
 This stack runs only the Tailscale container from [the standard setup](../../documentation/standard-setup.md), configured as an exit node.
 
