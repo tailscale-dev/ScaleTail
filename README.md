@@ -113,7 +113,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | ------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **ArtistTrackarr** | Tracker for new and upcoming albums and EPs, using MusicBrainz and optionally Spotify.               | [Details](services/artisttrackarr) |
 | **Audiobookshelf** | Server for audiobooks and podcasts, with playback progress synced across devices.                    | [Details](services/audiobookshelf) |
-| **AudioMuse-AI**   | Tool that analyzes the sound of your music library and builds playlists for your media server.       | [Details](services/audiomuse-ai)   |
+| **AudioMuse-AI**   | Tool that analyzes your music library and builds playlists for your media server.                    | [Details](services/audiomuse-ai)   |
 | **Bazarr**         | Subtitle downloader for movies and series managed by Radarr and Sonarr.                              | [Details](services/bazarr)         |
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync.                                        | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
