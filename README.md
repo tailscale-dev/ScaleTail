@@ -295,7 +295,10 @@ Your `.env`, the Tailscale state, and the application data now live outside the 
 ```sh
 git -C ScaleTail pull
 diff ScaleTail/services/<service>/compose.yaml ~/stacks/<service>/compose.yaml
+diff ScaleTail/services/<service>/.env ~/stacks/<service>/.env
 ```
+
+The `.env` comparison also lists the values you set yourself. Look for variables that are new upstream, such as a new required secret, and add them to your copy.
 
 Read the "Upgrading" section of the service README before you apply a change.
 
