@@ -38,7 +38,7 @@ Set these values in `.env`. Compose stops with an error if one of them is empty.
 Create a profile in the Hasura console. Clean Slate has no sign-up page.
 
 1. Open `https://cleanslate.<tailnet>.ts.net/console` and enter the value of `HASURA_GRAPHQL_ADMIN_SECRET`.
-2. Go to **Data**, then **public**, then **profiles**, and select **Insert Row**. Select **Save** without changing anything.
+2. Go to **Data**, then **default**, then **public**, then **profiles**, and select **Insert Row**. Select **Save** without changing anything.
 3. Select **Browse Rows** and copy the `apiToken` of the new row. This long token is your password.
 4. Open `https://cleanslate.<tailnet>.ts.net` and log in with the token.
 
