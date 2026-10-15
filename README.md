@@ -22,6 +22,7 @@ ScaleTail is a collection of ready-to-run [Docker Compose](https://docs.docker.c
   - [Utilities](#utilities)
   - [Food and wellness](#food-and-wellness)
 - [Update a stack](#update-a-stack)
+- [Keep your changes out of the clone](#keep-your-changes-out-of-the-clone)
 - [Remove a stack](#remove-a-stack)
 - [Get help](#get-help)
 - [Tailscale Serve and Funnel](#tailscale-serve-and-funnel)
@@ -275,6 +276,47 @@ git stash pop
 If `git stash pop` reports a conflict in `.env`, open the file, keep your values, delete the `<<<<<<<`, `=======`, and `>>>>>>>` lines, then run `git reset` and `git stash drop`.
 
 Before you restart the stack, read the "Upgrading" section of the service README, if it has one.
+
+## Keep your changes out of the clone
+
+This section is optional. The steps in [Quick Start](#quick-start) work as they are. Use one of these options when you run several stacks, or when `git pull` or switching branches runs into your `.env` or into data that the containers wrote as root.
+
+### Run the stack from a copy
+
+Copy the service directory out of the clone, before the first start, and run the stack from the copy:
+
+```sh
+cp -R ScaleTail/services/<service> ~/stacks/<service>
+cd ~/stacks/<service>
+```
+
+Your `.env`, the Tailscale state, and the application data now live outside the clone, so `git pull` in the clone never conflicts with them. A copy no longer follows the repository, so to pick up changes, update the clone and compare the files:
+
+```sh
+git -C ScaleTail pull
+diff ScaleTail/services/<service>/compose.yaml ~/stacks/<service>/compose.yaml
+diff ScaleTail/services/<service>/.env ~/stacks/<service>/.env
+```
+
+The `.env` comparison also lists the values you set yourself. Look for variables that are new upstream, such as a new required secret, and add them to your copy.
+
+Read the "Upgrading" section of the service README before you apply a change.
+
+### Keep your changes in an override file
+
+To stay in the clone, put your changes to `compose.yaml` in a file named `compose.override.yaml` (singular) next to it. Compose reads both files without extra options, and `git pull` never touches an untracked file. Entries in `volumes` and `environment` replace the entry with the same container path or variable name, so an override can also move data out of the clone:
+
+```yaml
+services:
+  tailscale:
+    volumes:
+      - /srv/scaletail/<service>/ts/state:/var/lib/tailscale
+  application:
+    volumes:
+      - /srv/scaletail/<service>/data:/config
+```
+
+Use the container path from the `volumes` of the application in `compose.yaml`. Check the result with `docker compose config`. The override file does not cover `.env`, which is tracked, so keep using `git stash` for it, or run the stack from a copy.
 
 ## Remove a stack
 
