@@ -288,21 +288,37 @@ From the service directory, run `docker compose down --volumes`. To remove the s
 
 ## Tailscale Serve and Funnel
 
-[Tailscale Serve](https://tailscale.com/kb/1312/serve) routes traffic from other devices in your Tailnet to a service on one device. [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) routes traffic from the public internet to that service, so people without Tailscale can reach it.
+Every stack has two containers that share one network: a Tailscale container and the application. [Tailscale Serve](https://tailscale.com/kb/1312/serve) and [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) are two ways to let other people reach the application through the Tailscale container.
 
-Stacks that use Serve keep Funnel off (`"AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}` in `compose.yaml`), so they are reachable from your Tailnet only. Umami has an opt-in public mode; see its README.
+![Diagram with two paths into a ScaleTail stack. Path 1, Serve: a device in your Tailnet opens https://<service>.<tailnet>.ts.net, and Serve in the Tailscale container forwards the request to the application at 127.0.0.1:80. Path 2, Funnel: a visitor on the internet reaches the same Serve through a Funnel relay server run by Tailscale, but only when AllowFunnel is true.](images/tailscale-serve-funnel.svg)
 
-To make a service reachable from the internet:
+### Serve: your Tailnet only
+
+1. A device in your Tailnet opens `https://<service>.<tailnet>.ts.net`. The traffic travels through Tailscale, encrypted by WireGuard.
+2. The Tailscale container receives it on port 443 and ends the HTTPS connection with a certificate for that name.
+3. Serve forwards the request to the application. Both containers share one network namespace, so the application is at `127.0.0.1` and its internal port, for example `127.0.0.1:80`.
+
+Serve is on in every stack that sets `TS_SERVE_CONFIG`. Only devices in your Tailnet can use it, and your Tailnet policy can restrict them further.
+
+### Funnel: the public internet
+
+Funnel is off by default. Stacks that use Serve keep it off with `"AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}` in `compose.yaml`. Umami has an opt-in public mode; see its README.
+
+When you turn Funnel on, a second path opens next to the first:
+
+1. A visitor without Tailscale opens the same address. The name resolves to a Funnel relay server run by Tailscale, not to your machine.
+2. The relay opens a TCP proxy to your Tailscale container. It passes the traffic on and cannot read it, because the HTTPS connection still ends in your container.
+3. From there, the request follows the same Serve route to the application.
+
+The Serve route does not change. Funnel only adds a way in for visitors from outside your Tailnet.
+
+### Turn Funnel on
 
 1. Add `funnel` to `nodeAttrs` in your Tailnet policy file for the device, as described in [Tailscale Funnel](https://tailscale.com/kb/1223/funnel).
 2. In `compose.yaml`, change `false` to `true` in the `AllowFunnel` line.
 3. Recreate the stack with `docker compose up -d --force-recreate`.
 
 Funnel is in beta and listens only on ports 443, 8443, and 10000. It requires MagicDNS and HTTPS certificates, as in the Quick Start. Anyone on the internet can then reach the application, so turn on its login first.
-
-![Diagram of Tailscale Funnel: a client on the public internet reaches a controlled gateway, which exposes one service in the Tailnet, while private services get no access.](images/tailscale-funnel.png)
-
-![Diagram of Tailscale Serve: a Tailnet node reaches a lightweight web service through Serve with private access only. Funnel, shown separately, is the only part that publishes a service to the public internet.](images/tailscale-serve.png)
 
 ## Documentation
 
