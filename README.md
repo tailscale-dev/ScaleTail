@@ -290,7 +290,7 @@ From the service directory, run `docker compose down --volumes`. To remove the s
 
 Every stack has two containers that share one network: a Tailscale container and the application. [Tailscale Serve](https://tailscale.com/kb/1312/serve) and [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) are two ways to let other people reach the application through the Tailscale container.
 
-![Diagram with two paths into a ScaleTail stack. Path 1, Serve: a device in your Tailnet connects to the tailscale container, which proxies to the application container on the Docker host. Path 2, Funnel, off by default: a visitor on the internet connects through a Funnel relay server to the same tailscale container.](images/tailscale-serve-funnel.svg)
+![Diagram with two paths into a ScaleTail stack. Path 1, Serve: a device in your Tailnet opens https://<service>.<tailnet>.ts.net, and Serve in the Tailscale container forwards the request to the application at 127.0.0.1:80. Path 2, Funnel: a visitor on the internet reaches the same Serve through a Funnel relay server run by Tailscale, but only when AllowFunnel is true.](images/tailscale-serve-funnel.svg)
 
 ### Serve: your Tailnet only
 
