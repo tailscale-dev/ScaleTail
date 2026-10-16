@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 600" width="1100" height="600" font-family="Helvetica, Arial, sans-serif" role="img" aria-labelledby="title desc">
+  <title id="title">How Tailscale Serve and Funnel reach a ScaleTail service</title>
+  <desc id="desc">Serve path: a device in your Tailnet connects over WireGuard to the tailscale container, which proxies to the application container in the same network namespace. Funnel path, off by default: a visitor on the internet connects through a Funnel relay server, which forwards the encrypted traffic to the same tailscale container.</desc>
+  <defs>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0969da"/>
+    </marker>
+    <marker id="arrow-orange" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#bc4c00"/>
+    </marker>
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#57606a"/>
+    </marker>
+  </defs>
+
+  <rect width="1100" height="600" rx="12" fill="#ffffff" stroke="#d0d7de"/>
+  <text x="550" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1f2328">How Serve and Funnel reach a ScaleTail service</text>
+
+  <!-- Section labels -->
+  <text x="30" y="112" font-size="16" font-weight="bold" fill="#0969da">1. Serve: always on, Tailnet only</text>
+  <text x="30" y="352" font-size="16" font-weight="bold" fill="#bc4c00">2. Funnel: off by default, public</text>
+
+  <!-- Docker host -->
+  <rect x="600" y="70" width="470" height="500" rx="10" fill="#f6f8fa" stroke="#57606a" stroke-width="2"/>
+  <text x="835" y="98" text-anchor="middle" font-size="16" font-weight="bold" fill="#1f2328">Docker host (your machine)</text>
+
+  <!-- Shared network namespace -->
+  <rect x="612" y="116" width="446" height="414" rx="8" fill="none" stroke="#57606a" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="835" y="518" text-anchor="middle" font-size="13" fill="#57606a">One shared network namespace (network_mode: service:tailscale)</text>
+
+  <!-- Tailscale container -->
+  <rect x="624" y="140" width="200" height="350" rx="8" fill="#ffffff" stroke="#1f2328" stroke-width="2"/>
+  <text x="724" y="168" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">tailscale container</text>
+  <text x="724" y="236" text-anchor="middle" font-size="13" fill="#1f2328">Serve listens on :443</text>
+  <text x="724" y="258" text-anchor="middle" font-size="13" fill="#1f2328">and ends the HTTPS</text>
+  <text x="724" y="280" text-anchor="middle" font-size="12" fill="#57606a">Certificate for</text>
+  <text x="724" y="298" text-anchor="middle" font-size="12" fill="#57606a">&lt;service&gt;.&lt;tailnet&gt;.ts.net</text>
+  <text x="724" y="440" text-anchor="middle" font-size="13" fill="#bc4c00">Funnel: AllowFunnel</text>
+  <text x="724" y="458" text-anchor="middle" font-size="13" fill="#bc4c00">is false until you</text>
+  <text x="724" y="476" text-anchor="middle" font-size="13" fill="#bc4c00">change it to true</text>
+
+  <!-- Application container -->
+  <rect x="900" y="200" width="140" height="150" rx="8" fill="#ffffff" stroke="#1f2328" stroke-width="2"/>
+  <text x="970" y="232" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">app container</text>
+  <text x="970" y="276" text-anchor="middle" font-size="13" fill="#1f2328">Listens on its</text>
+  <text x="970" y="296" text-anchor="middle" font-size="13" fill="#1f2328">internal port,</text>
+  <text x="970" y="316" text-anchor="middle" font-size="13" fill="#1f2328">for example :80</text>
+
+  <!-- Serve proxy arrow inside the host -->
+  <line x1="824" y1="275" x2="898" y2="275" stroke="#0969da" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="861" y="262" text-anchor="middle" font-size="12" fill="#0969da">proxies to</text>
+  <text x="861" y="296" text-anchor="middle" font-size="11" fill="#0969da">127.0.0.1</text>
+  <text x="861" y="310" text-anchor="middle" font-size="11" fill="#0969da">:80</text>
+
+  <!-- Path 1: Tailnet device -->
+  <rect x="30" y="130" width="220" height="100" rx="8" fill="#ddf4ff" stroke="#0969da" stroke-width="2"/>
+  <text x="140" y="168" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">Device in your Tailnet</text>
+  <text x="140" y="192" text-anchor="middle" font-size="13" fill="#1f2328">Laptop, phone, or server</text>
+  <text x="140" y="210" text-anchor="middle" font-size="13" fill="#1f2328">with Tailscale installed</text>
+
+  <line x1="250" y1="180" x2="622" y2="180" stroke="#0969da" stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="436" y="164" text-anchor="middle" font-size="14" font-weight="bold" fill="#0969da">https://&lt;service&gt;.&lt;tailnet&gt;.ts.net</text>
+  <text x="436" y="204" text-anchor="middle" font-size="13" fill="#0969da">Private and encrypted by WireGuard</text>
+
+  <!-- Path 2: public internet -->
+  <rect x="30" y="370" width="220" height="100" rx="8" fill="#fff1e5" stroke="#bc4c00" stroke-width="2"/>
+  <text x="140" y="408" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">Anyone on the internet</text>
+  <text x="140" y="432" text-anchor="middle" font-size="13" fill="#1f2328">A browser or app,</text>
+  <text x="140" y="450" text-anchor="middle" font-size="13" fill="#1f2328">without Tailscale</text>
+
+  <rect x="352" y="370" width="180" height="100" rx="8" fill="#fff1e5" stroke="#bc4c00" stroke-width="2" stroke-dasharray="8 4"/>
+  <text x="442" y="404" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f2328">Funnel relay server</text>
+  <text x="442" y="428" text-anchor="middle" font-size="13" fill="#1f2328">Run by Tailscale.</text>
+  <text x="442" y="446" text-anchor="middle" font-size="13" fill="#1f2328">Cannot read the traffic.</text>
+
+  <line x1="250" y1="420" x2="350" y2="420" stroke="#bc4c00" stroke-width="3" stroke-dasharray="8 4" marker-end="url(#arrow-orange)"/>
+  <text x="300" y="408" text-anchor="middle" font-size="12" fill="#bc4c00">HTTPS</text>
+  <line x1="532" y1="420" x2="622" y2="420" stroke="#bc4c00" stroke-width="3" stroke-dasharray="8 4" marker-end="url(#arrow-orange)"/>
+  <text x="577" y="408" text-anchor="middle" font-size="12" fill="#bc4c00">Encrypted</text>
+  <text x="577" y="442" text-anchor="middle" font-size="12" fill="#bc4c00">TCP proxy</text>
+
+  <!-- Other devices stay private -->
+  <text x="30" y="506" font-size="13" fill="#57606a">Funnel opens only the ports 443, 8443, and 10000 of this one device.</text>
+  <text x="30" y="526" font-size="13" fill="#57606a">Your other devices and stacks stay private unless you turn on Funnel for them too.</text>
+
+  <!-- Legend -->
+  <line x1="30" y1="562" x2="70" y2="562" stroke="#0969da" stroke-width="3"/>
+  <text x="80" y="567" font-size="13" fill="#1f2328">Always open to your Tailnet</text>
+  <line x1="300" y1="562" x2="340" y2="562" stroke="#bc4c00" stroke-width="3" stroke-dasharray="8 4"/>
+  <text x="350" y="567" font-size="13" fill="#1f2328">Open to the internet only after you enable Funnel</text>
+</svg>
