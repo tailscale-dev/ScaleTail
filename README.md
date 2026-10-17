@@ -167,6 +167,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Karakeep**      | Bookmark manager that archives links, notes, and images, with full-text search.            | [Details](services/karakeep)      |
 | **LanguageTool**  | Grammar and spelling checker server for browser extensions, with no web interface.         | [Details](services/languagetool)  |
 | **linkding**      | Bookmark manager to save, tag, and search links, with a browser extension.                 | [Details](services/linkding)      |
+| **Mail Archiver** | Archives incoming mail and makes it searchable from the browser.                           | [Details](services/mail-archiver) |
 | **Mattermost**    | Team chat platform with channels, direct messages, and integrations.                       | [Details](services/mattermost)    |
 | **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                             | [Details](services/memos)         |
 | **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                            | [Details](services/nanote)        |
