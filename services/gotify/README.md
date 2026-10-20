@@ -6,14 +6,14 @@ This stack runs Gotify with a Tailscale sidecar, as described in [the standard s
 
 ## At a glance
 
-| Item          | Value                             |
-| ------------- | --------------------------------- |
-| Web interface | `https://gotify.<tailnet>.ts.net` |
-| Service port  | `80`                              |
-| Image         | `gotify/server`                   |
-| Data          | `./gotify-data/app/data`          |
+| Item          | Value                                                         |
+| ------------- | ------------------------------------------------------------- |
+| Web interface | `https://gotify.<tailnet>.ts.net`                             |
+| Service port  | `80`                                                          |
+| Image         | `gotify/server`                                               |
+| Data          | `./gotify-data/app/data`                                      |
 | iGotify image | `ghcr.io/androidseb25/igotify-notification-assist` (optional) |
-| iGotify data  | `./gotify-data/igotify` (optional) |
+| iGotify data  | `./gotify-data/igotify` (optional)                            |
 
 ## Before you start
 
@@ -29,10 +29,6 @@ Set `GOTIFY_DEFAULTUSER_PASS` in `.env`. It is the password of the user `admin` 
 Open the web interface and log in with username `admin` and the password from `GOTIFY_DEFAULTUSER_PASS`. Gotify uses this value only at the first start, so change the password in the web interface afterwards.
 
 In the Gotify app, use `https://gotify.<tailnet>.ts.net` as the server address. The device must be connected to your Tailnet.
-
-## Upgrading
-
-Earlier versions of this stack set `GOTIFY_DEFAULTUSER_PASS=admin` in `compose.yaml`. The value is now empty in `.env`, and Compose stops with an error until you set it. Gotify reads it only at the first start, so a new value does not change the password of an existing installation. If you still log in as `admin` with the password `admin`, change the password in the web interface.
 
 ## Configuration
 
@@ -52,6 +48,10 @@ The stack uses the "local instance" mode of iGotify, so Gotify stays reachable o
 The two tokens are secrets, so keep them out of anything you publish. Keep `COMPOSE_PROFILES=igotify` in `.env` as long as you use iGotify: without it, `docker compose down` and `docker compose pull` skip the `igotify` container.
 
 To stop using iGotify, run `docker compose --profile igotify down`, empty `COMPOSE_PROFILES` in `.env`, and run `docker compose up -d`. A plain `docker compose down` leaves the `igotify` container behind once the profile is no longer active.
+
+## Upgrading
+
+Earlier versions of this stack set `GOTIFY_DEFAULTUSER_PASS=admin` in `compose.yaml`. The value is now empty in `.env`, and Compose stops with an error until you set it. Gotify reads it only at the first start, so a new value does not change the password of an existing installation. If you still log in as `admin` with the password `admin`, change the password in the web interface.
 
 ## Links
 
