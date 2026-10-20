@@ -6,13 +6,13 @@ This stack runs AudioMuse-AI with a Tailscale sidecar, as described in [the stan
 
 ## At a glance
 
-| Item          | Value                                                       |
-| ------------- | ----------------------------------------------------------- |
-| Web interface | `https://audiomuse-ai.<tailnet>.ts.net`                     |
-| Service port  | `8000`                                                      |
-| Images        | `ghcr.io/neptunehub/audiomuse-ai:3.6.3`                     |
-|               | `postgres:15-alpine`                                        |
-| Data          | `./audiomuse-ai-data/db` (PostgreSQL database)              |
+| Item          | Value                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Web interface | `https://audiomuse-ai.<tailnet>.ts.net`                                                                            |
+| Service port  | `8000`                                                                                                             |
+| Images        | `ghcr.io/neptunehub/audiomuse-ai:3.6.3`                                                                            |
+|               | `postgres:15-alpine`                                                                                               |
+| Data          | `./audiomuse-ai-data/db` (PostgreSQL database)                                                                     |
 |               | `./audiomuse-ai-data/app` and `./audiomuse-ai-data/worker` (temporary audio files, installed plugins, and backups) |
 
 ## Before you start
