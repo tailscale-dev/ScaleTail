@@ -6,14 +6,14 @@ This stack runs Open Notebook with a Tailscale sidecar, as described in [the sta
 
 ## At a glance
 
-| Item          | Value                                      |
-| ------------- | ------------------------------------------ |
-| Web interface | `https://open-notebook.<tailnet>.ts.net`   |
-| Service port  | `8502`                                     |
-| Images        | `lfnovo/open_notebook:v1-latest`           |
-|               | `surrealdb/surrealdb:v2`                   |
+| Item          | Value                                                  |
+| ------------- | ------------------------------------------------------ |
+| Web interface | `https://open-notebook.<tailnet>.ts.net`               |
+| Service port  | `8502`                                                 |
+| Images        | `lfnovo/open_notebook:v1-latest`                       |
+|               | `surrealdb/surrealdb:v2`                               |
 | Data          | `./open-notebook-data/notebook` (uploads and settings) |
-|               | `./open-notebook-data/surreal` (database)  |
+|               | `./open-notebook-data/surreal` (database)              |
 
 ## Before you start
 
