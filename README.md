@@ -117,6 +117,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync. In maintenance mode.                   | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](services/freshrss)       |
+| **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API for mobile clients.          | [Details](services/fusion)         |
 | **Hytale**         | Hytale game server in a community image, for players on your Tailnet.                                | [Details](services/hytale)         |
 | **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                         | [Details](services/immich)         |
 | **Jellyfin**       | Media server that organizes and streams your movies, series, and music.                              | [Details](services/jellyfin)       |
