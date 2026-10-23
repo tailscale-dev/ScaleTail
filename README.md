@@ -22,6 +22,7 @@ ScaleTail is a collection of ready-to-run [Docker Compose](https://docs.docker.c
   - [Utilities](#utilities)
   - [Food and wellness](#food-and-wellness)
 - [Update a stack](#update-a-stack)
+- [Keep your changes out of the clone](#keep-your-changes-out-of-the-clone)
 - [Remove a stack](#remove-a-stack)
 - [Get help](#get-help)
 - [Tailscale Serve and Funnel](#tailscale-serve-and-funnel)
@@ -115,6 +116,9 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Audiobookshelf** | Server for audiobooks and podcasts, with playback progress synced across devices.                    | [Details](services/audiobookshelf) |
 | **Bazarr**         | Subtitle manager for movies and series in Radarr and Sonarr.                                         | [Details](services/bazarr)         |
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync. In maintenance mode.                   | [Details](services/booklore)       |
+| **AudioMuse-AI**   | Tool that analyzes your music library and builds playlists for your media server.                    | [Details](services/audiomuse-ai)   |
+| **Bazarr**         | Subtitle downloader for movies and series managed by Radarr and Sonarr.                              | [Details](services/bazarr)         |
+| **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync.                                        | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](services/freshrss)       |
 | **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API.                             | [Details](services/fusion)         |
@@ -136,6 +140,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Seerr**          | Request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.      | [Details](services/seerr)          |
 | **Slink**          | Image hosting platform that shares uploads through links.                                            | [Details](services/slink)          |
 | **Sonarr**         | Series manager that searches Usenet and BitTorrent for new episodes.                                 | [Details](services/sonarr)         |
+| **Storyteller**    | Platform for reading ebooks with synced audiobook narration.                                         | [Details](services/storyteller)    |
 | **Swing Music**    | Music player and streaming server for your local audio files.                                        | [Details](services/swingmx)        |
 | **Tautulli**       | Monitoring tool for Plex Media Server, with viewing history, statistics, and notifications.          | [Details](services/tautulli)       |
 
@@ -184,6 +189,53 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Vikunja**       | To-do and project app with lists, boards, and Gantt charts.                                    | [Details](services/vikunja)       |
 | **Wallos**        | Subscription tracker with payment reminders and budgets.                                       | [Details](services/wallos)        |
 | **XWiki**         | Wiki for documentation and knowledge management.                                               | [Details](services/xwiki)         |
+| Service           | Description                                                                                | Link                              |
+| ----------------- | ------------------------------------------------------------------------------------------ | --------------------------------- |
+| **Actual Budget** | Personal finance and budgeting app for tracking accounts and spending.                     | [Details](services/actual-budget) |
+| **AFFiNE**        | Open-source alternative to Notion and Miro, for documents, whiteboards, and databases.     | [Details](services/affine)        |
+| **Anchor**        | Note-taking app that works offline and syncs notes when you are back online.               | [Details](services/anchor)        |
+| **BentoPDF**      | PDF toolkit that merges, splits, compresses, converts, and edits PDFs in your browser.     | [Details](services/bentopdf)      |
+| **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.               | [Details](services/clipcascade)   |
+| **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                            | [Details](services/copyparty)     |
+| **Docmost**       | Team wiki with real-time collaborative editing, diagrams, comments, and permissions.       | [Details](services/docmost)       |
+| **Donetick**      | Task and chore manager for households and small groups.                                    | [Details](services/donetick)      |
+| **DumbDo**        | To-do list app that keeps its lists in one file, with no database.                         | [Details](services/dumbdo)        |
+| **Eigenfocus**    | Project and task manager with boards, time tracking, and focus tools.                      | [Details](services/eigenfocus)    |
+| **EspoCRM**       | Customer relationship manager for contacts, companies, and sales opportunities.            | [Details](services/espocrm)       |
+| **Excalidraw**    | Virtual whiteboard for sketching diagrams in a hand-drawn style.                           | [Details](services/excalidraw)    |
+| **File Browser**  | Archived. Web file manager for one folder on your server, with no further security fixes.  | [Details](services/filebrowser)   |
+| **flatnotes**     | Note-taking app that stores notes as plain Markdown files, with no database.               | [Details](services/flatnotes)     |
+| **Formbricks**    | Survey and feedback platform for websites, apps, and links.                                | [Details](services/formbricks)    |
+| **Ghost**         | Publishing platform for blogs and newsletters.                                             | [Details](services/ghost)         |
+| **Gokapi**        | File sharing server with links that expire after a set number of downloads or days.        | [Details](services/gokapi)        |
+| **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                          | [Details](services/grampsweb)     |
+| **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                   | [Details](services/haptic)        |
+| **Isley**         | Cannabis grow journal for logging plants, watering, feeding, and harvests.                 | [Details](services/isley)         |
+| **Joplin Server** | Sync server for the Joplin note-taking apps, with notes kept in a PostgreSQL database.     | [Details](services/joplin)        |
+| **Kaneo**         | Open-source project tracker with boards and tasks, an alternative to Trello and Linear.    | [Details](services/kaneo)         |
+| **Karakeep**      | Bookmark manager that archives links, notes, and images, with full-text search.            | [Details](services/karakeep)      |
+| **LanguageTool**  | Grammar and spelling checker server for browser extensions, with no web interface.         | [Details](services/languagetool)  |
+| **linkding**      | Bookmark manager to save, tag, and search links, with a browser extension.                 | [Details](services/linkding)      |
+| **Mattermost**    | Team chat platform with channels, direct messages, and integrations.                       | [Details](services/mattermost)    |
+| **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                             | [Details](services/memos)         |
+| **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                            | [Details](services/nanote)        |
+| **NextExplorer**  | Web file manager for browsing, uploading, and editing files in one folder on your server.  | [Details](services/next-explorer) |
+| **Open Notebook** | Alternative to NotebookLM for chatting with your sources using AI.                         | [Details](services/open-notebook) |
+| **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                    | [Details](services/open-webui)    |
+| **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
+| **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
+| **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.           | [Details](services/paperless)     |
+| **Pingvin Share** | Archived. File sharing platform with links that can expire.                                | [Details](services/pingvin-share) |
+| **Radicale**      | CalDAV and CardDAV server that syncs calendars, to-do lists, and contacts.                 | [Details](services/radicale)      |
+| **Resilio Sync**  | Peer-to-peer tool that syncs folders between your devices, without a central server.       | [Details](services/resilio-sync)  |
+| **Seafile**       | File sync and sharing platform that stores files in libraries.                             | [Details](services/seafile)       |
+| **Stirling-PDF**  | PDF toolbox for merging, splitting, converting, compressing, signing, and editing.         | [Details](services/stirlingpdf)   |
+| **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.         | [Details](services/subtrackr)     |
+| **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth. | [Details](services/sure)          |
+| **Vikunja**       | To-do and project management app with lists, boards, Gantt charts, and reminders.          | [Details](services/vikunja)       |
+| **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
+| **Wallos**        | Subscription and expense tracker with payment reminders and budget help.                   | [Details](services/wallos)        |
+| **XWiki**         | Wiki platform for documentation and knowledge management, with extensions.                 | [Details](services/xwiki)         |
 
 ### Dashboards and visualization
 
@@ -243,6 +295,8 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Hemmelig**   | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)    |
 | **Homebox**    | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)     |
 | **LubeLogger** | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger) |
+| **Kasm**       | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)        |
+| **LubeLogger** | Tracker for vehicle maintenance and fuel use, with reminders for upcoming services.                  | [Details](services/lube-logger) |
 | **Mini QR**    | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)      |
 | **ntfy**       | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)        |
 | **Tracktor**   | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.             | [Details](services/tracktor)    |
@@ -252,8 +306,10 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 | Service             | Description                                                                         | Link                           |
 | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------ |
+| **Clean Slate**     | Calorie tracker for food, recipes, and exercise.                                    | [Details](services/cleanslate) |
 | **KitchenOwl**      | Grocery list and recipe manager for households, with meal planning and expenses.    | [Details](services/kitchenowl) |
 | **Mealie**          | Recipe manager and meal planner with shopping lists and imports from web addresses. | [Details](services/mealie)     |
+| **openGym**         | Gym and body-weight tracker for routines and workouts.                              | [Details](services/opengym)    |
 | **Tandoor Recipes** | Recipe manager and meal planner with shopping lists.                                | [Details](services/tandoor)    |
 
 ## Update a stack
@@ -276,6 +332,47 @@ git stash pop
 If `git stash pop` reports a conflict in `.env`, open the file, keep your values, delete the `<<<<<<<`, `=======`, and `>>>>>>>` lines, then run `git reset` and `git stash drop`.
 
 Before you restart the stack, read the "Upgrading" section of the service README, if it has one.
+
+## Keep your changes out of the clone
+
+This section is optional. The steps in [Quick Start](#quick-start) work as they are. Use one of these options when you run several stacks, or when `git pull` or switching branches runs into your `.env` or into data that the containers wrote as root.
+
+### Run the stack from a copy
+
+Copy the service directory out of the clone, before the first start, and run the stack from the copy:
+
+```sh
+cp -R ScaleTail/services/<service> ~/stacks/<service>
+cd ~/stacks/<service>
+```
+
+Your `.env`, the Tailscale state, and the application data now live outside the clone, so `git pull` in the clone never conflicts with them. A copy no longer follows the repository, so to pick up changes, update the clone and compare the files:
+
+```sh
+git -C ScaleTail pull
+diff ScaleTail/services/<service>/compose.yaml ~/stacks/<service>/compose.yaml
+diff ScaleTail/services/<service>/.env ~/stacks/<service>/.env
+```
+
+The `.env` comparison also lists the values you set yourself. Look for variables that are new upstream, such as a new required secret, and add them to your copy.
+
+Read the "Upgrading" section of the service README before you apply a change.
+
+### Keep your changes in an override file
+
+To stay in the clone, put your changes to `compose.yaml` in a file named `compose.override.yaml` (singular) next to it. Compose reads both files without extra options, and `git pull` never touches an untracked file. Entries in `volumes` and `environment` replace the entry with the same container path or variable name, so an override can also move data out of the clone:
+
+```yaml
+services:
+  tailscale:
+    volumes:
+      - /srv/scaletail/<service>/ts/state:/var/lib/tailscale
+  application:
+    volumes:
+      - /srv/scaletail/<service>/data:/config
+```
+
+Use the container path from the `volumes` of the application in `compose.yaml`. Check the result with `docker compose config`. The override file does not cover `.env`, which is tracked, so keep using `git stash` for it, or run the stack from a copy.
 
 ## Remove a stack
 
