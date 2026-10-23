@@ -117,6 +117,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync.                                        | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | Feed reader for RSS and Atom, with themes, extensions, and no separate database server.              | [Details](services/freshrss)       |
+| **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API for mobile clients.          | [Details](services/fusion)         |
 | **Hytale**         | Hytale game server in a community image, for players on your Tailnet.                                | [Details](services/hytale)         |
 | **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                         | [Details](services/immich)         |
 | **Jellyfin**       | Media server that organizes and streams your movies, series, and music.                              | [Details](services/jellyfin)       |
@@ -162,6 +163,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                          | [Details](services/grampsweb)     |
 | **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                   | [Details](services/haptic)        |
 | **Isley**         | Cannabis grow journal for logging plants, watering, feeding, and harvests.                 | [Details](services/isley)         |
+| **Joplin Server** | Sync server for the Joplin note-taking apps, with notes kept in a PostgreSQL database.     | [Details](services/joplin)        |
 | **Kaneo**         | Open-source project tracker with boards and tasks, an alternative to Trello and Linear.    | [Details](services/kaneo)         |
 | **Karakeep**      | Bookmark manager that archives links, notes, and images, with full-text search.            | [Details](services/karakeep)      |
 | **LanguageTool**  | Grammar and spelling checker server for browser extensions, with no web interface.         | [Details](services/languagetool)  |
@@ -172,6 +174,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **NextExplorer**  | Web file manager for browsing, uploading, and editing files in one folder on your server.  | [Details](services/next-explorer) |
 | **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                    | [Details](services/open-webui)    |
 | **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
+| **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
 | **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.           | [Details](services/paperless)     |
 | **Pingvin Share** | Archived. File sharing platform with links that can expire.                                | [Details](services/pingvin-share) |
 | **Radicale**      | CalDAV and CardDAV server that syncs calendars, to-do lists, and contacts.                 | [Details](services/radicale)      |
@@ -251,6 +254,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 | Service             | Description                                                                         | Link                           |
 | ------------------- | ----------------------------------------------------------------------------------- | ------------------------------ |
+| **Clean Slate**     | Calorie tracker for food, recipes, and exercise.                                    | [Details](services/cleanslate) |
 | **KitchenOwl**      | Grocery list and recipe manager for households, with meal planning and expenses.    | [Details](services/kitchenowl) |
 | **Mealie**          | Recipe manager and meal planner with shopping lists and imports from web addresses. | [Details](services/mealie)     |
 | **Tandoor Recipes** | Recipe manager and meal planner with shopping lists.                                | [Details](services/tandoor)    |
