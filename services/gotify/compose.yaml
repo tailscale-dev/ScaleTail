@@ -62,3 +62,28 @@ services:
         condition: service_healthy
     # Healthcheck: defined by the image (curl against /health), so this file does not override it.
     restart: always
+
+  # Optional iGotify container: forwards Gotify messages to the iGotify iOS app. Start it with the igotify profile.
+  igotify:
+    profiles:
+      - igotify
+    image: ${IGOTIFY_IMAGE_URL} # Image to be used
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
+    container_name: app-${SERVICE}-igotify # Name for local container management
+    environment:
+      - GOTIFY_URLS=${GOTIFY_URLS:-http://127.0.0.1:80} # Gotify on the loopback address of the shared network
+      - GOTIFY_CLIENT_TOKENS=${GOTIFY_CLIENT_TOKENS:-}
+      - SECNTFY_TOKENS=${SECNTFY_TOKENS:-}
+      - TZ=${TZ}
+    volumes:
+      - ./${SERVICE}-data/igotify:/app/data
+    depends_on:
+      application:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-fs", "http://127.0.0.1:8080/Version"] # The image has no HEALTHCHECK, so call the version endpoint of iGotify
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
+    restart: always
