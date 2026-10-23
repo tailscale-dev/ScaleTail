@@ -1,0 +1,63 @@
+services:
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there, unless it has a default such as ${VAR:-value}.
+  # Tailscale Sidecar Configuration
+  tailscale:
+    image: tailscale/tailscale:latest # Image to be used
+    container_name: tailscale-${SERVICE} # Name for local container management
+    hostname: ${SERVICE} # Name used within your Tailscale environment
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_USERSPACE=false
+      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
+      - TS_AUTH_ONCE=true
+    volumes:
+      - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
+    devices:
+      - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
+    cap_add:
+      - net_admin # Tailscale requirement
+    # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
+    #dns:
+    #  - ${DNS_SERVER}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
+    restart: always
+
+  # Application
+  application:
+    image: ${IMAGE_URL} # Image to be used
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
+    container_name: app-${SERVICE} # Name for local container management
+    environment: # Variables are declared in .env file.
+      - TZ=${TZ}
+      - MODE=${MODE}
+      - SCHEDULE=${SCHEDULE}
+      - PLEX_URL=${PLEX_URL}
+      - PLEX_TOKEN=${PLEX_TOKEN}
+    volumes:
+      - ./${SERVICE}-data/config:/config
+      - type: bind # Plex data folder with the Cache, Metadata, and Plug-in Support folders
+        source: ${PLEX_DATA_DIR}
+        target: /plex
+        bind:
+          create_host_path: false # Fail when the folder is missing, so Docker does not create an empty one
+    depends_on:
+      tailscale:
+        condition: service_healthy
+    # Healthcheck: the image has no HEALTHCHECK, no endpoint, and no pgrep. ImageMaid is the only python3 process
+    # in the container, so check for python3 with pidof.
+    healthcheck:
+      test: ["CMD", "pidof", "python3"] # Check if ImageMaid is running and waiting for its schedule
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always # Without SCHEDULE, ImageMaid runs once and exits, and Docker would start it again at once.
