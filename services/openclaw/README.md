@@ -2,7 +2,7 @@
 
 [OpenClaw](https://openclaw.ai) is a self-hosted personal AI assistant. Its Gateway runs the agents, connects chat channels, and serves the Control UI web interface.
 
-This stack runs OpenClaw with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs OpenClaw with a Tailscale sidecar, as described in [the standard setup](https://github.com/tailscale-dev/ScaleTail/blob/main/documentation/standard-setup.md).
 
 ## At a glance
 
