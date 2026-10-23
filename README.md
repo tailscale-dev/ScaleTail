@@ -113,6 +113,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | ------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **ArtistTrackarr** | Tracker for new and upcoming albums and EPs, using MusicBrainz and optionally Spotify.               | [Details](services/artisttrackarr) |
 | **Audiobookshelf** | Server for audiobooks and podcasts, with playback progress synced across devices.                    | [Details](services/audiobookshelf) |
+| **AudioMuse-AI**   | Tool that analyzes your music library and builds playlists for your media server.                    | [Details](services/audiomuse-ai)   |
 | **Bazarr**         | Subtitle downloader for movies and series managed by Radarr and Sonarr.                              | [Details](services/bazarr)         |
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync.                                        | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
@@ -173,6 +174,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                             | [Details](services/memos)         |
 | **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                            | [Details](services/nanote)        |
 | **NextExplorer**  | Web file manager for browsing, uploading, and editing files in one folder on your server.  | [Details](services/next-explorer) |
+| **Open Notebook** | Alternative to NotebookLM for chatting with your sources using AI.                         | [Details](services/open-notebook) |
 | **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                    | [Details](services/open-webui)    |
 | **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
 | **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
@@ -185,6 +187,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.         | [Details](services/subtrackr)     |
 | **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth. | [Details](services/sure)          |
 | **Vikunja**       | To-do and project management app with lists, boards, Gantt charts, and reminders.          | [Details](services/vikunja)       |
+| **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
 | **Wallos**        | Subscription and expense tracker with payment reminders and budget help.                   | [Details](services/wallos)        |
 | **XWiki**         | Wiki platform for documentation and knowledge management, with extensions.                 | [Details](services/xwiki)         |
 
