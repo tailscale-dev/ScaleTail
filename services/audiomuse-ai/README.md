@@ -2,7 +2,7 @@
 
 [AudioMuse-AI](https://github.com/NeptuneHub/AudioMuse-AI) analyzes the audio of your music library and builds similar-song lists and playlists from the sound of each track. It works with Navidrome, Jellyfin, Emby, Lyrion, and Plex, and needs a media server that already holds your music.
 
-This stack runs AudioMuse-AI with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs AudioMuse-AI with a Tailscale sidecar, as described in [the standard setup](https://github.com/tailscale-dev/ScaleTail/blob/main/documentation/standard-setup.md).
 
 ## At a glance
 
