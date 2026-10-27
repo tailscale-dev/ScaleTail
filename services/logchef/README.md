@@ -24,6 +24,8 @@ mkdir -p logchef-data/app
 sudo chown 1000:1000 logchef-data/app
 ```
 
+The folder is named after `SERVICE`, so use `<SERVICE>-data/app` if you changed it. Create it before the first start. Docker otherwise creates it as root, and the application container then stops with `unable to open database file (14)`.
+
 Set these in `.env`. Compose stops with an error such as `required variable API_TOKEN_SECRET is missing a value` until you do:
 
 - `API_TOKEN_SECRET`: hashes the API tokens. At least 32 characters. Generate it with `openssl rand -hex 32`.
