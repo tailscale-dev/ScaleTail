@@ -229,6 +229,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Beszel Agent**       | Agent that sends system and Docker stats to a Beszel hub.                             | [Details](services/beszel-agent)      |
 | **Beszel Hub**         | Server monitor with history, Docker stats, and alerts.                                | [Details](services/beszel-hub)        |
 | **changedetection.io** | Monitor that watches web pages and notifies you when their content changes.           | [Details](services/changedetection)   |
+| **Logchef**            | Log analytics interface for logs that already live in ClickHouse or VictoriaLogs.     | [Details](services/logchef)           |
 | **Portracker**         | Port tracker that discovers the services on your systems and maps the ports they use. | [Details](services/portracker)        |
 | **Speedtest Tracker**  | Tool that runs scheduled internet speed tests and charts the results over time.       | [Details](services/speedtest-tracker) |
 | **Umami**              | Web analytics that uses no cookies and collects no personal data.                     | [Details](services/umami)             |
