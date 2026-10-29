@@ -152,6 +152,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **BentoPDF**      | PDF toolkit that works in your browser, without uploading files.                               | [Details](services/bentopdf)      |
 | **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.                   | [Details](services/clipcascade)   |
 | **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                                | [Details](services/copyparty)     |
+| **Cozy**          | Personal cloud (now Twake Workplace) for files, photos, notes, and contacts.                   | [Details](services/cozy)          |
 | **Docmost**       | Team wiki with real-time collaborative editing.                                                | [Details](services/docmost)       |
 | **Donetick**      | Task and chore manager for households and small groups.                                        | [Details](services/donetick)      |
 | **DumbDo**        | To-do list app that keeps its lists in one file, with no database.                             | [Details](services/dumbdo)        |
