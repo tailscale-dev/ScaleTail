@@ -1,6 +1,6 @@
 # Sonarr
 
-[Sonarr](https://github.com/Sonarr/Sonarr) manages your series collection. It searches Usenet and BitTorrent sources for new episodes, sends them to your download client, and sorts the files into your library.
+[Sonarr](https://github.com/Sonarr/Sonarr) is a series manager that searches Usenet and BitTorrent for new episodes and sorts them into your library.
 
 This stack runs Sonarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

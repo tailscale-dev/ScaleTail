@@ -1,6 +1,6 @@
 # Tandoor Recipes
 
-[Tandoor Recipes](https://tandoor.dev/) manages your recipes. It also plans your meals and builds your shopping lists.
+[Tandoor Recipes](https://tandoor.dev/) is a recipe manager with meal planning and shopping lists.
 
 This stack runs Tandoor Recipes with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

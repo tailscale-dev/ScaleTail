@@ -1,6 +1,6 @@
 # Haptic
 
-[Haptic](https://github.com/chroxify/haptic) is a local-first editor for your Markdown notes. The web version keeps your notes in the browser.
+[Haptic](https://github.com/chroxify/haptic) is a Markdown editor that keeps notes in the browser, not on the server.
 
 This stack runs Haptic with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

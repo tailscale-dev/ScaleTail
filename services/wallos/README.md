@@ -1,6 +1,6 @@
 # Wallos
 
-[Wallos](https://github.com/ellite/Wallos) tracks your subscriptions. It shows your recurring expenses, reminds you of payments, and helps you to manage your budget.
+[Wallos](https://github.com/ellite/Wallos) tracks subscriptions, with payment reminders and budgets.
 
 This stack runs Wallos with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

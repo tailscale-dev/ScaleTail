@@ -1,6 +1,6 @@
 # ConvertX
 
-[ConvertX](https://github.com/C4illin/ConvertX) is a file converter that runs in your browser. It converts documents, images, audio, video, and many other formats on your own server.
+[ConvertX](https://github.com/C4illin/ConvertX) converts documents, images, audio, and video on the server. It supports more than a thousand formats.
 
 This stack runs ConvertX with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

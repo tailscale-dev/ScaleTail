@@ -1,6 +1,6 @@
 # BookLore
 
-[BookLore](https://github.com/booklore-app/booklore) manages your book collection and lets you read it in the browser. It supports several users and many book formats, and it synchronises with Kobo and KOReader devices.
+[BookLore](https://github.com/booklore-app/booklore) is a book manager and browser reader, with Kobo and KOReader sync. Active development has moved to BookOrbit, and BookLore is in maintenance mode.
 
 This stack runs BookLore with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # FreshRSS
 
-[FreshRSS](https://freshrss.org/) is an RSS and Atom feed reader that you host yourself. It supports themes and extensions, and its Google Reader and Fever compatible API lets mobile and desktop clients synchronise with your server.
+[FreshRSS](https://freshrss.org/) is an RSS and Atom feed reader. This stack uses SQLite, so there is no separate database server.
 
 This stack runs FreshRSS with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

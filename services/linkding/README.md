@@ -1,6 +1,6 @@
 # linkding
 
-[linkding](https://linkding.link/) is a bookmark manager. You save, tag, and search your links, and a browser extension adds bookmarks with one click.
+[linkding](https://linkding.link/) is a bookmark manager to save, tag, and search links.
 
 This stack runs linkding with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

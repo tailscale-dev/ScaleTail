@@ -1,6 +1,6 @@
 # Seafile
 
-[Seafile Community Edition](https://www.seafile.com/en/product/seafile_on_premise/) is a file synchronisation and sharing platform. You store your files in libraries, synchronise them with the desktop and mobile clients, and share them with others.
+[Seafile Community Edition](https://www.seafile.com/en/product/seafile_on_premise/) is a file synchronisation and sharing platform that stores files in libraries.
 
 This stack runs Seafile with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

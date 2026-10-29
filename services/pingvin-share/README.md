@@ -1,8 +1,8 @@
 # Pingvin Share
 
-[Pingvin Share](https://github.com/stonith404/pingvin-share) is a file sharing platform. You upload files and share them with a link that can expire.
+[Pingvin Share](https://github.com/stonith404/pingvin-share) is a file sharing platform with links that can expire.
 
-Upstream archived the project on June 29, 2025, so it gets no further updates. Its author points to the maintained fork Pingvin Share X.
+Upstream archived the project on June 29, 2025. Its author points to the maintained fork Pingvin Share X.
 
 This stack runs Pingvin Share with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

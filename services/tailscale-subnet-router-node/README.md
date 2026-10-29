@@ -1,6 +1,6 @@
 # Tailscale Subnet Router
 
-A Tailscale [subnet router](https://tailscale.com/docs/features/subnet-routers) gives your Tailnet access to devices that cannot run Tailscale themselves. It forwards traffic between your Tailnet and a local network, such as your home or office network.
+A Tailscale [subnet router](https://tailscale.com/docs/features/subnet-routers) gives your Tailnet access to a local network whose devices cannot run Tailscale.
 
 This stack runs only the Tailscale container from [the standard setup](../../documentation/standard-setup.md), configured as a subnet router.
 

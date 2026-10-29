@@ -1,6 +1,6 @@
 # Hytale Server
 
-This stack runs a [Hytale](https://hytale.com/) game server with the community image [`deinfreu/hytale-server`](https://deinfreu.github.io/hytale-server-container/installation/container_installation/). Players connect to it over your Tailnet.
+This stack runs a [Hytale](https://hytale.com/) game server with the community image [`deinfreu/hytale-server`](https://deinfreu.github.io/hytale-server-container/installation/container_installation/). A Hytale game licence is required.
 
 This stack runs Hytale Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

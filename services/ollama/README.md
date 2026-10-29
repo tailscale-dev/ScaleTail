@@ -1,6 +1,6 @@
 # Ollama
 
-[Ollama](https://ollama.com) runs large language models on your own hardware, such as Llama, Mistral, and Gemma. It offers an API that is compatible with the OpenAI client format.
+[Ollama](https://ollama.com) runs large language models on your own hardware and offers an OpenAI-compatible API.
 
 This stack runs Ollama with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

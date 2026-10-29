@@ -1,6 +1,6 @@
 # Pocket ID
 
-[Pocket ID](https://pocket-id.org/) is a simple OpenID Connect (OIDC) provider. Users sign in to your services with passkeys instead of passwords, which gives the services on your Tailnet a single sign-on.
+[Pocket ID](https://pocket-id.org/) is an OpenID Connect provider that signs users in with passkeys instead of passwords.
 
 This stack runs Pocket ID with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

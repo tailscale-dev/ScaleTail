@@ -1,6 +1,6 @@
 # Configarr
 
-[Configarr](https://github.com/raydak-labs/configarr) keeps the settings of Radarr, Sonarr, and related applications in sync with YAML files. It applies custom formats and quality profiles, for example from the TRaSH Guides.
+[Configarr](https://github.com/raydak-labs/configarr) applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.
 
 This stack runs Configarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Radarr
 
-[Radarr](https://github.com/Radarr/Radarr) manages your movie collection. It searches Usenet and BitTorrent sources for the movies you want, sends them to your download client, and sorts the files into your library.
+[Radarr](https://github.com/Radarr/Radarr) is a movie manager that searches Usenet and BitTorrent and sorts downloads into your library.
 
 This stack runs Radarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

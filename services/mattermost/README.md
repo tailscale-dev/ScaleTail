@@ -1,6 +1,6 @@
 # Mattermost
 
-[Mattermost](https://mattermost.com/) is a collaboration platform for teams, with channels, direct messages, file sharing, and integrations. It is an open-source alternative to Slack.
+[Mattermost](https://mattermost.com/) is a team chat platform with channels, direct messages, and integrations.
 
 This stack runs Mattermost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

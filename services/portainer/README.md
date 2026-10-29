@@ -1,6 +1,6 @@
 # Portainer
 
-[Portainer](https://www.portainer.io/) is a web interface to manage Docker. You start, stop, inspect, and update the containers, images, volumes, and networks of the Docker host.
+[Portainer](https://www.portainer.io/) is a web interface to manage Docker containers, images, volumes, and networks.
 
 This stack runs Portainer with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

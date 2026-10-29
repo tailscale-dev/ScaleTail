@@ -1,6 +1,6 @@
 # Gotify
 
-[Gotify](https://gotify.net/) is a server to send and receive notifications. Your scripts and applications post a message over HTTP, and the web interface and the Android app show it in real time.
+[Gotify](https://gotify.net/) is a push notification server. Scripts post over HTTP, and the web interface and Android app show the messages.
 
 This stack runs Gotify with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

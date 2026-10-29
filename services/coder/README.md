@@ -1,6 +1,6 @@
 # Coder
 
-[Coder](https://coder.com/) provisions development environments on your own infrastructure. You define a workspace as a Terraform template and open it in your browser or your local editor.
+[Coder](https://coder.com/) provisions development environments and AI coding agents from Terraform templates.
 
 This stack runs Coder with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

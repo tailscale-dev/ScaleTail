@@ -1,6 +1,6 @@
 # LubeLogger
 
-[LubeLogger](https://lubelogger.com/) tracks the maintenance and fuel use of your vehicles. You log services, repairs, and fill-ups and get reminders for the next ones.
+[LubeLogger](https://lubelogger.com/) tracks vehicle maintenance and fuel use.
 
 This stack runs LubeLogger with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Karakeep
 
-[Karakeep](https://karakeep.app/) is a bookmark manager for links, notes, and images. It archives the pages that you save, searches their full text, and can tag them automatically with AI.
+[Karakeep](https://karakeep.app/) is a bookmark manager that archives links, notes, and images, with full-text search and AI tagging.
 
 This stack runs Karakeep with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

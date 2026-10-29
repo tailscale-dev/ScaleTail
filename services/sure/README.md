@@ -1,6 +1,6 @@
 # Sure
 
-[Sure](https://sure.am) is a personal finance application and a community fork of the archived Maybe Finance project. You track bank accounts, investments, and crypto holdings and follow your net worth, with support for several currencies.
+[Sure](https://sure.am) is a community fork of the archived Maybe Finance app, for accounts, investments, and net worth.
 
 This stack runs Sure with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # NetBox
 
-[NetBox](https://netboxlabs.com/oss/netbox/) is the source of truth for your network. You document your IP addresses, racks, devices, connections, and circuits in it.
+[NetBox](https://netboxlabs.com/oss/netbox/) is a source of truth for IP addresses, racks, devices, connections, and circuits.
 
 This stack runs NetBox with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

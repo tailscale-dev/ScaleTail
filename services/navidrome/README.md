@@ -1,6 +1,6 @@
 # Navidrome
 
-[Navidrome](https://www.navidrome.org/) is a music server. It streams your own music collection to its web player and to the many apps that support the Subsonic API.
+[Navidrome](https://www.navidrome.org/) is a music server that streams your collection to its web player and to Subsonic-compatible apps.
 
 This stack runs Navidrome with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

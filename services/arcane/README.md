@@ -1,6 +1,6 @@
 # Arcane
 
-[Arcane](https://getarcane.app/) is a web interface to manage Docker. You manage containers, images, networks, volumes, and Compose projects without the command line.
+[Arcane](https://getarcane.app/) is a web interface to manage Docker containers, images, networks, volumes, and Compose projects.
 
 This stack runs Arcane with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

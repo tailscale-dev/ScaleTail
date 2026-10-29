@@ -1,6 +1,6 @@
 # Actual Budget
 
-[Actual Budget](https://actualbudget.org/) is a personal finance app for budgeting. You track your accounts and spending and plan your budget, and your data stays on your own server.
+[Actual Budget](https://actualbudget.org/) is a personal finance app for budgeting.
 
 This stack runs Actual Budget with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

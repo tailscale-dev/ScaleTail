@@ -1,6 +1,6 @@
 # Immich
 
-[Immich](https://immich.app/) is a self-hosted photo and video library. It backs up the media from your mobile devices and lets you browse, search, and share it.
+[Immich](https://immich.app/) is a photo and video library that backs up mobile media, with search and sharing.
 
 This stack runs Immich with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

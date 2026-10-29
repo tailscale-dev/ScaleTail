@@ -1,6 +1,6 @@
 # MusicBrainz Picard
 
-[MusicBrainz Picard](https://picard.musicbrainz.org/) is the tag editor of MusicBrainz. It identifies your music files, also by their audio fingerprint, and writes the correct tags and cover art. This stack runs the desktop application in a container and shows it in your browser.
+[MusicBrainz Picard](https://picard.musicbrainz.org/) identifies music files, including by audio fingerprint, and writes tags and cover art. This stack runs the desktop application in a container and shows it in your browser.
 
 This stack runs MusicBrainz Picard with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

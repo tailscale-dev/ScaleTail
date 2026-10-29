@@ -1,8 +1,8 @@
 # FossFLOW
 
-[FossFLOW](https://hub.docker.com/r/stnsmith/fossflow) is a tool to draw isometric diagrams, for example of infrastructure and workflows. It only visualises a flow and does not run it.
+[FossFLOW](https://hub.docker.com/r/stnsmith/fossflow) draws isometric infrastructure diagrams. It only visualises a flow and does not run it.
 
-The original repository of the project is no longer available on GitHub. [Abrar74774/FossFLOW](https://github.com/Abrar74774/FossFLOW) continues it.
+The original repository is no longer on GitHub. [Abrar74774/FossFLOW](https://github.com/Abrar74774/FossFLOW) continues it.
 
 This stack runs FossFLOW with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

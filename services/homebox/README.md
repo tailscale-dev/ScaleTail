@@ -1,6 +1,6 @@
 # Homebox
 
-[Homebox](https://homebox.software/) is an inventory for your home. You record your items with their location, quantity, warranty, and purchase details.
+[Homebox](https://homebox.software/) is a home inventory for items, with their location, quantity, warranty, and purchase details.
 
 This stack runs Homebox with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

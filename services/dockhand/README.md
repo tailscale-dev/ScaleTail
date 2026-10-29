@@ -1,6 +1,6 @@
 # Dockhand
 
-[Dockhand](https://github.com/Finsys/dockhand) is a web interface to manage Docker. You manage containers, images, volumes, networks, and Compose stacks on local and remote Docker hosts.
+[Dockhand](https://github.com/Finsys/dockhand) is a web interface for Docker on local and remote hosts. Home and non-commercial use is free; production use by a business or public body needs a commercial licence.
 
 This stack runs Dockhand with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

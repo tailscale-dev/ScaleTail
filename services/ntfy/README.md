@@ -1,6 +1,6 @@
 # ntfy
 
-[ntfy](https://ntfy.sh/) is a notification service. Scripts and applications publish messages to a topic with a simple HTTP request, and your phone or browser receives them.
+[ntfy](https://ntfy.sh/) is an HTTP notification service that delivers messages to phones and browsers.
 
 This stack runs ntfy with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

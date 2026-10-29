@@ -1,6 +1,6 @@
 # ArtistTrackarr
 
-[ArtistTrackarr](https://github.com/crypt0rr/ArtistTrackarr) watches MusicBrainz and, optionally, Spotify for new albums and EPs of the artists that your household follows. It sends notifications for announcements and release days.
+[ArtistTrackarr](https://github.com/crypt0rr/ArtistTrackarr) tracks new and upcoming albums, EPs, singles, and compilations from Spotify, and uses MusicBrainz for artist identity.
 
 This stack runs ArtistTrackarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

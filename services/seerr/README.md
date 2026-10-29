@@ -1,6 +1,6 @@
 # Seerr
 
-[Seerr](https://github.com/seerr-team/seerr) is a request manager for your media library. Users search for movies and series and request them, and Seerr passes approved requests to Radarr and Sonarr. It works with Plex, Jellyfin, and Emby.
+[Seerr](https://github.com/seerr-team/seerr) is a request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.
 
 This stack runs Seerr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

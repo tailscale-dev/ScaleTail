@@ -1,6 +1,6 @@
 # SubTrackr
 
-[SubTrackr](https://github.com/bscott/subtrackr) tracks your subscriptions. It shows what you pay per month and per year and when each subscription renews.
+[SubTrackr](https://github.com/bscott/subtrackr) tracks subscriptions, with monthly and yearly totals and renewal dates.
 
 This stack runs SubTrackr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

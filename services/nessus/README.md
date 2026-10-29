@@ -1,8 +1,8 @@
 # Nessus
 
-[Nessus](https://www.tenable.com/products/nessus) is a vulnerability scanner. It scans the systems in your network and reports vulnerabilities, configuration errors, and compliance issues.
+[Nessus](https://www.tenable.com/products/nessus) is a vulnerability scanner from Tenable.
 
-[Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) is a free license for personal use. It covers up to 5 IP addresses, has a 30-day license, gets plugin updates 30 days late, and cannot export reports. Check the page for the current terms.
+[Nessus Essentials](https://www.tenable.com/products/nessus/nessus-essentials) is a free non-commercial license for up to 5 IP addresses. It lasts 30 days, gets plugin updates 30 days late, cannot export reports, and does not keep scan data after it expires. Check the page for the current terms.
 
 This stack runs Nessus with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

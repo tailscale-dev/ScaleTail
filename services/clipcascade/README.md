@@ -1,6 +1,6 @@
 # ClipCascade
 
-[ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) synchronises the clipboard between your devices. What you copy on one device is available on the others.
+[ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) synchronises the clipboard across devices, with end-to-end encryption.
 
 This stack runs ClipCascade with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 

@@ -1,6 +1,6 @@
 # Swing Music
 
-[Swing Music](https://swingmx.com/) is a music player and streaming server for your own audio files, with a web interface that resembles the commercial streaming services.
+[Swing Music](https://swingmx.com/) is a music streaming server for your own audio files.
 
 This stack runs Swing Music with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
