@@ -45,7 +45,7 @@ services:
     volumes:
       - ./${SERVICE}-data/config:/config
       - type: bind # Plex data folder with the Cache, Metadata, and Plug-in Support folders
-        source: ${PLEX_DATA_DIR}
+        source: ${PLEX_DATA_DIR:?Set PLEX_DATA_DIR in .env to the Plex data folder, the one that contains Cache, Metadata, and Plug-in Support}
         target: /plex
         bind:
           create_host_path: false # Fail when the folder is missing, so Docker does not create an empty one

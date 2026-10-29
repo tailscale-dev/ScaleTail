@@ -17,7 +17,7 @@ This stack runs ImageMaid with a Tailscale sidecar, as described in [the standar
 
 ImageMaid changes files in the Plex data folder, so it must run on the host that holds that folder.
 
-- **Plex data folder.** `PLEX_DATA_DIR` in `.env` must point to the folder of your Plex server that contains `Cache`, `Metadata`, and `Plug-in Support`. The default is the folder of the [Plex stack](../plex/README.md) in this repository. Change it when Plex runs elsewhere. Compose stops with an error when the folder does not exist.
+- **Plex data folder.** Set `PLEX_DATA_DIR` in `.env` to the folder of your Plex server that contains `Cache`, `Metadata`, and `Plug-in Support`. It has no default, and Compose stops with an error until you set it. `.env` lists the folder of the [Plex stack](../plex/README.md) in this repository and the usual paths of other installs. Compose also stops when the folder does not exist, but it cannot tell whether the folder is the right one, so check the path yourself before you start.
 - **Schedule.** Keep `SCHEDULE` set in `.env`. When it is empty, ImageMaid runs once and exits, and `restart: always` then starts it again at once, over and over.
 - **Mode.** `MODE=report` only lists the images that ImageMaid would remove. Check the list in the log, then set `MODE=move` to move them to an `ImageMaid Restore` folder, which you can restore. `MODE=remove` deletes them for good.
 - **Plex access.** ImageMaid needs the Plex database to know which images are in use. Set `PLEX_URL` and `PLEX_TOKEN` to download it through the Plex API, or leave both empty to copy it from `PLEX_DATA_DIR`. Upstream recommends restarting Plex and keeping it idle before a copy.
