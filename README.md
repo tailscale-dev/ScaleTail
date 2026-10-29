@@ -114,11 +114,9 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | ------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | **ArtistTrackarr** | Tracker for new albums, EPs, singles, and compilations from Spotify.                                 | [Details](services/artisttrackarr) |
 | **Audiobookshelf** | Server for audiobooks and podcasts, with playback progress synced across devices.                    | [Details](services/audiobookshelf) |
+| **AudioMuse-AI**   | Tool that analyzes your music library and builds playlists for your media server.                    | [Details](services/audiomuse-ai)   |
 | **Bazarr**         | Subtitle manager for movies and series in Radarr and Sonarr.                                         | [Details](services/bazarr)         |
 | **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync. In maintenance mode.                   | [Details](services/booklore)       |
-| **AudioMuse-AI**   | Tool that analyzes your music library and builds playlists for your media server.                    | [Details](services/audiomuse-ai)   |
-| **Bazarr**         | Subtitle downloader for movies and series managed by Radarr and Sonarr.                              | [Details](services/bazarr)         |
-| **BookLore**       | Book manager and browser reader, with Kobo and KOReader sync.                                        | [Details](services/booklore)       |
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](services/freshrss)       |
 | **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API.                             | [Details](services/fusion)         |
@@ -154,6 +152,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **BentoPDF**      | PDF toolkit that works in your browser, without uploading files.                               | [Details](services/bentopdf)      |
 | **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.                   | [Details](services/clipcascade)   |
 | **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                                | [Details](services/copyparty)     |
+| **Cozy**          | Personal cloud (now Twake Workplace) for files, photos, notes, and contacts.                   | [Details](services/cozy)          |
 | **Docmost**       | Team wiki with real-time collaborative editing.                                                | [Details](services/docmost)       |
 | **Donetick**      | Task and chore manager for households and small groups.                                        | [Details](services/donetick)      |
 | **DumbDo**        | To-do list app that keeps its lists in one file, with no database.                             | [Details](services/dumbdo)        |
@@ -177,7 +176,10 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                                 | [Details](services/memos)         |
 | **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                                | [Details](services/nanote)        |
 | **NextExplorer**  | Web file manager for one folder on your server.                                                | [Details](services/next-explorer) |
+| **Open Notebook** | Alternative to NotebookLM for chatting with your sources using AI.                         | [Details](services/open-notebook) |
 | **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                        | [Details](services/open-webui)    |
+| **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
+| **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
 | **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.               | [Details](services/paperless)     |
 | **Pingvin Share** | Archived. File sharing platform with links that can expire.                                    | [Details](services/pingvin-share) |
 | **Radicale**      | CalDAV and CardDAV server that syncs calendars, to-do lists, and contacts.                     | [Details](services/radicale)      |
@@ -187,56 +189,9 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.             | [Details](services/subtrackr)     |
 | **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth.     | [Details](services/sure)          |
 | **Vikunja**       | To-do and project app with lists, boards, and Gantt charts.                                    | [Details](services/vikunja)       |
+| **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
 | **Wallos**        | Subscription tracker with payment reminders and budgets.                                       | [Details](services/wallos)        |
 | **XWiki**         | Wiki for documentation and knowledge management.                                               | [Details](services/xwiki)         |
-| Service           | Description                                                                                | Link                              |
-| ----------------- | ------------------------------------------------------------------------------------------ | --------------------------------- |
-| **Actual Budget** | Personal finance and budgeting app for tracking accounts and spending.                     | [Details](services/actual-budget) |
-| **AFFiNE**        | Open-source alternative to Notion and Miro, for documents, whiteboards, and databases.     | [Details](services/affine)        |
-| **Anchor**        | Note-taking app that works offline and syncs notes when you are back online.               | [Details](services/anchor)        |
-| **BentoPDF**      | PDF toolkit that merges, splits, compresses, converts, and edits PDFs in your browser.     | [Details](services/bentopdf)      |
-| **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.               | [Details](services/clipcascade)   |
-| **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                            | [Details](services/copyparty)     |
-| **Cozy**          | Personal cloud (now Twake Workplace) for files, photos, notes, and contacts.               | [Details](services/cozy)          |
-| **Docmost**       | Team wiki with real-time collaborative editing, diagrams, comments, and permissions.       | [Details](services/docmost)       |
-| **Donetick**      | Task and chore manager for households and small groups.                                    | [Details](services/donetick)      |
-| **DumbDo**        | To-do list app that keeps its lists in one file, with no database.                         | [Details](services/dumbdo)        |
-| **Eigenfocus**    | Project and task manager with boards, time tracking, and focus tools.                      | [Details](services/eigenfocus)    |
-| **EspoCRM**       | Customer relationship manager for contacts, companies, and sales opportunities.            | [Details](services/espocrm)       |
-| **Excalidraw**    | Virtual whiteboard for sketching diagrams in a hand-drawn style.                           | [Details](services/excalidraw)    |
-| **File Browser**  | Archived. Web file manager for one folder on your server, with no further security fixes.  | [Details](services/filebrowser)   |
-| **flatnotes**     | Note-taking app that stores notes as plain Markdown files, with no database.               | [Details](services/flatnotes)     |
-| **Formbricks**    | Survey and feedback platform for websites, apps, and links.                                | [Details](services/formbricks)    |
-| **Ghost**         | Publishing platform for blogs and newsletters.                                             | [Details](services/ghost)         |
-| **Gokapi**        | File sharing server with links that expire after a set number of downloads or days.        | [Details](services/gokapi)        |
-| **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                          | [Details](services/grampsweb)     |
-| **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                   | [Details](services/haptic)        |
-| **Isley**         | Cannabis grow journal for logging plants, watering, feeding, and harvests.                 | [Details](services/isley)         |
-| **Joplin Server** | Sync server for the Joplin note-taking apps, with notes kept in a PostgreSQL database.     | [Details](services/joplin)        |
-| **Kaneo**         | Open-source project tracker with boards and tasks, an alternative to Trello and Linear.    | [Details](services/kaneo)         |
-| **Karakeep**      | Bookmark manager that archives links, notes, and images, with full-text search.            | [Details](services/karakeep)      |
-| **LanguageTool**  | Grammar and spelling checker server for browser extensions, with no web interface.         | [Details](services/languagetool)  |
-| **linkding**      | Bookmark manager to save, tag, and search links, with a browser extension.                 | [Details](services/linkding)      |
-| **Mattermost**    | Team chat platform with channels, direct messages, and integrations.                       | [Details](services/mattermost)    |
-| **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                             | [Details](services/memos)         |
-| **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                            | [Details](services/nanote)        |
-| **NextExplorer**  | Web file manager for browsing, uploading, and editing files in one folder on your server.  | [Details](services/next-explorer) |
-| **Open Notebook** | Alternative to NotebookLM for chatting with your sources using AI.                         | [Details](services/open-notebook) |
-| **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                    | [Details](services/open-webui)    |
-| **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
-| **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
-| **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.           | [Details](services/paperless)     |
-| **Pingvin Share** | Archived. File sharing platform with links that can expire.                                | [Details](services/pingvin-share) |
-| **Radicale**      | CalDAV and CardDAV server that syncs calendars, to-do lists, and contacts.                 | [Details](services/radicale)      |
-| **Resilio Sync**  | Peer-to-peer tool that syncs folders between your devices, without a central server.       | [Details](services/resilio-sync)  |
-| **Seafile**       | File sync and sharing platform that stores files in libraries.                             | [Details](services/seafile)       |
-| **Stirling-PDF**  | PDF toolbox for merging, splitting, converting, compressing, signing, and editing.         | [Details](services/stirlingpdf)   |
-| **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.         | [Details](services/subtrackr)     |
-| **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth. | [Details](services/sure)          |
-| **Vikunja**       | To-do and project management app with lists, boards, Gantt charts, and reminders.          | [Details](services/vikunja)       |
-| **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
-| **Wallos**        | Subscription and expense tracker with payment reminders and budget help.                   | [Details](services/wallos)        |
-| **XWiki**         | Wiki platform for documentation and knowledge management, with extensions.                 | [Details](services/xwiki)         |
 
 ### Dashboards and visualization
 
@@ -295,9 +250,8 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Gotify**     | Push notification server that shows messages from your scripts in its web interface and Android app. | [Details](services/gotify)      |
 | **Hemmelig**   | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)    |
 | **Homebox**    | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)     |
-| **LubeLogger** | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger) |
 | **Kasm**       | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)        |
-| **LubeLogger** | Tracker for vehicle maintenance and fuel use, with reminders for upcoming services.                  | [Details](services/lube-logger) |
+| **LubeLogger** | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger) |
 | **Mini QR**    | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)      |
 | **ntfy**       | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)        |
 | **Tracktor**   | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.             | [Details](services/tracktor)    |
