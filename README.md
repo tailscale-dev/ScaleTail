@@ -300,7 +300,26 @@ cp -R ScaleTail/services/<service> ~/stacks/<service>
 cd ~/stacks/<service>
 ```
 
-Your `.env`, the Tailscale state, and the application data now live outside the clone, so `git pull` in the clone never conflicts with them. A copy no longer follows the repository, so to pick up changes, update the clone and compare the files:
+Your `.env`, the Tailscale state, and the application data now live outside the clone, so `git pull` in the clone never conflicts with them. A copy no longer follows the repository, so to pick up changes, run the update script from the clone. It compares your copy with the latest version in the repository and keeps your changes:
+
+```sh
+ScaleTail/scripts/update-stack.sh ~/stacks/<service>
+ScaleTail/scripts/update-stack.sh --apply ~/stacks/<service>
+```
+
+The first command only reports what would change and writes nothing. It exits with status 1 when updates are available. The second command writes the changes. Before it changes a file, it copies the file to a `.scaletail-backup-<time>` folder in your copy. It then writes a `.scaletail` file that records the version of the repository your copy is based on. Keep that file, unless the script tells you to remove it: the script uses it to merge your changes with the next update.
+
+- The script fetches `origin/main` and reads the files with git. It does not pull or change the clone, and a folder inside the clone is refused. Use `--ref` and `--no-fetch` to choose another version or to work offline.
+- It only touches the files that the repository tracks for the service. The Tailscale state, the data folders, and your own files stay as they are. A file that was removed from the repository is reported, not deleted.
+- When your edit and the new version change the same lines, the script leaves your file as it is and writes the merge with conflict markers to `<file>.upstream-merge`. Merge the file by hand, delete the `.upstream-merge` file, and follow the next step that the script prints.
+- When the script cannot tell which version your copy is based on, it only adds the variables that your `.env` lacks, and reports the files that differ. `--force` replaces those files, after it makes the backup. Pass `--base <commit>` when you know the commit.
+- It never prints the values in `.env`, only the names of variables, so you can paste the output into an issue.
+- It stops and warns when `SERVICE` changes, because that renames the Tailnet device, the containers, and the data folders. It prints the "Upgrading" section of the service README when that section changed.
+- It never starts, stops, or restarts containers. When it is done, read the "Upgrading" section of the service README, then run `docker compose pull` and `docker compose up -d` from your copy.
+
+Run `ScaleTail/scripts/update-stack.sh --help` for all options and exit codes.
+
+To compare the files yourself, update the clone and diff them:
 
 ```sh
 git -C ScaleTail pull

@@ -7,7 +7,8 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 - [CONTRIBUTING.md](CONTRIBUTING.md): how to add, update, verify, and submit a service. Follow it.
 - [templates/service-template/](templates/service-template/): the starting point for every service. Its comments explain each setting.
 - [documentation/standard-setup.md](documentation/standard-setup.md): the shared setup. A service README lists only what differs, under "Deviations from the standard setup".
-- [.github/workflows/](.github/workflows/): the Compose validation and Markdown lint that CI runs.
+- [scripts/](scripts/): `update-stack.sh` updates a stack that a user copied out of the clone, and `test-update-stack.sh` tests it. Keep both bash 3.2 and BSD compatible, because users run them on macOS.
+- [.github/workflows/](.github/workflows/): the Compose validation, Markdown lint, and script tests that CI runs.
 
 ## Before you edit
 
@@ -49,6 +50,13 @@ git diff --check origin/main
 ```
 
 Without `uv`, download that version from the [rumdl releases](https://github.com/rvben/rumdl/releases) and run `rumdl check --config .markdownlint.yml .`.
+
+When you change `scripts/`, run the same checks as CI from the repository root:
+
+```sh
+shellcheck scripts/*.sh
+bash scripts/test-update-stack.sh
+```
 
 Lint the whole tree, because renaming a service breaks a link in the root `README.md`. `git diff --check origin/main` also covers staged and committed changes, but not untracked files, so stage new files first. In a fork, compare with the `main` branch of this repository instead, for example `upstream/main`.
 
