@@ -7,7 +7,7 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 - [CONTRIBUTING.md](CONTRIBUTING.md): how to add, update, verify, and submit a service. Follow it.
 - [templates/service-template/](templates/service-template/): the starting point for every service. Its comments explain each setting.
 - [documentation/standard-setup.md](documentation/standard-setup.md): the shared setup. A service README lists only what differs, under "Deviations from the standard setup".
-- [scripts/](scripts/): `update-stack.sh` updates a stack that a user copied out of the clone, and `test-update-stack.sh` tests it. Keep both bash 3.2 and BSD compatible, because users run them on macOS.
+- [scripts/](scripts/): `update-stack.sh` updates a stack that a user copied out of the clone, and `test-update-stack.sh` tests it. They target bash and the GNU tools of Linux distributions.
 - [.github/workflows/](.github/workflows/): the Compose validation, Markdown lint, and script tests that CI runs.
 
 ## Before you edit
