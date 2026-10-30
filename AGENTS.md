@@ -66,5 +66,5 @@ Report the checks you ran. State any checks that credentials, hardware, permissi
 
 ## Pull requests
 
-- Title the pull request `Service: what changes`, such as `Umami: new service`. For several services, list them or use `All services:`. For other areas, use `CI:`, `Docs:`, or `Template:`.
+- Title the pull request `Service: what changes`, such as `Umami: new service`. For several services, list them or use `All services:`. For other areas, use `CI:`, `Docs:`, `Scripts:`, or `Template:`.
 - Fill in the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Maintainers apply the labels.
