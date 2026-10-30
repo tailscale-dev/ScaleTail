@@ -210,6 +210,6 @@ Then confirm:
 
 Title the pull request `Service: what changes`, such as `Umami: new service`.
 For several services, list them or use `All services:`. For other areas, use
-`CI:`, `Docs:`, or `Template:`. Fill in the pull request template, and report
-the checks you ran and any checks you could not run. Maintainers apply the
-labels.
+`CI:`, `Docs:`, `Scripts:`, or `Template:`. Fill in the pull request template,
+and report the checks you ran and any checks you could not run. Maintainers
+apply the labels.

@@ -301,7 +301,32 @@ cp -R ScaleTail/services/<service> ~/stacks/<service>
 cd ~/stacks/<service>
 ```
 
-Your `.env`, the Tailscale state, and the application data now live outside the clone, so `git pull` in the clone never conflicts with them. A copy no longer follows the repository, so to pick up changes, update the clone and compare the files:
+Your `.env`, the Tailscale state, and the application data now live outside the clone, so `git pull` in the clone never conflicts with them. A copy no longer follows the repository. To pick up changes, run the update script. It downloads the latest version of the service from GitHub, so the clone does not need to be up to date, and it runs on Linux with `bash`, `curl` or `wget`, `tar`, and `git`:
+
+```sh
+ScaleTail/scripts/update-stack.sh ~/stacks/<service>
+ScaleTail/scripts/update-stack.sh --apply ~/stacks/<service>
+```
+
+Without a clone, download the script once and run it with `bash`:
+
+```sh
+curl -fsSLo ~/stacks/update-stack.sh https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/scripts/update-stack.sh
+bash ~/stacks/update-stack.sh ~/stacks/<service>
+```
+
+The first command only reports what would change, and exits with status 1 when updates are available. The second command writes the changes to `compose.yaml` and `.env`. It copies each file that changes to `.scaletail/backup-<time>/` first, and saves the upstream versions of both files in `.scaletail/`.
+
+- The next run merges your files with the changes made upstream since that saved version, so your own edits stay. Keep the `.scaletail` folder.
+- When your edit and an upstream change touch the same lines, the file gets conflict markers (`<<<<<<<` to `>>>>>>>`). Resolve them by hand before you start the stack. The script refuses to run while they remain.
+- The first run has no saved version to compare with. It adds the variables that your `.env` lacks and replaces `compose.yaml` with the upstream version. It shows the diff first, and keeps your old file in the backup, so copy your own edits back once.
+- It never prints the values in `.env`, only the names of variables. It does print diffs of `compose.yaml`.
+- It stops when `SERVICE` changes upstream, because that renames the Tailnet device, the containers, and the data folders. Read the "Upgrading" section of the service README, which the script prints, and run it again with `--force`.
+- It never starts, stops, or restarts containers. When it is done, run `docker compose pull` and `docker compose up -d` from your copy.
+
+Run `ScaleTail/scripts/update-stack.sh --help` for all options.
+
+To compare the files yourself, update the clone and diff them:
 
 ```sh
 git -C ScaleTail pull

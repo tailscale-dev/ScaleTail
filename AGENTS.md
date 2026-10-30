@@ -7,7 +7,8 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 - [CONTRIBUTING.md](CONTRIBUTING.md): how to add, update, verify, and submit a service. Follow it.
 - [templates/service-template/](templates/service-template/): the starting point for every service. Its comments explain each setting.
 - [documentation/standard-setup.md](documentation/standard-setup.md): the shared setup. A service README lists only what differs, under "Deviations from the standard setup".
-- [.github/workflows/](.github/workflows/): the Compose validation and Markdown lint that CI runs.
+- [scripts/](scripts/): `update-stack.sh` updates a stack that a user copied out of the clone, and `test-update-stack.sh` tests it. They target bash and the GNU tools of Linux distributions.
+- [.github/workflows/](.github/workflows/): the Compose validation, Markdown lint, and script tests that CI runs.
 
 ## Before you edit
 
@@ -50,6 +51,13 @@ git diff --check origin/main
 
 Without `uv`, download that version from the [rumdl releases](https://github.com/rvben/rumdl/releases) and run `rumdl check --config .markdownlint.yml .`.
 
+When you change `scripts/`, run the same checks as CI from the repository root:
+
+```sh
+shellcheck scripts/*.sh
+bash scripts/test-update-stack.sh
+```
+
 Lint the whole tree, because renaming a service breaks a link in the root `README.md`. `git diff --check origin/main` also covers staged and committed changes, but not untracked files, so stage new files first. In a fork, compare with the `main` branch of this repository instead, for example `upstream/main`.
 
 When you have an auth key, start the copied stack and test its main function through the Tailnet. Run each health check command in its container with `docker exec`.
@@ -58,5 +66,5 @@ Report the checks you ran. State any checks that credentials, hardware, permissi
 
 ## Pull requests
 
-- Title the pull request `Service: what changes`, such as `Umami: new service`. For several services, list them or use `All services:`. For other areas, use `CI:`, `Docs:`, or `Template:`.
+- Title the pull request `Service: what changes`, such as `Umami: new service`. For several services, list them or use `All services:`. For other areas, use `CI:`, `Docs:`, `Scripts:`, or `Template:`.
 - Fill in the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Maintainers apply the labels.
