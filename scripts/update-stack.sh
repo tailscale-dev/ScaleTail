@@ -72,6 +72,7 @@ done
 [ "${#dirs[@]}" -gt 0 ] || dirs=(.)
 [ -z "$SERVICE_OPT" ] || [ "${#dirs[@]}" -eq 1 ] || die "--service only works with one DIR"
 for d in "${dirs[@]}"; do
+  [ -f "$d/compose.yaml" ] || [ ! -f "$d/compose.yml" ] || die "$d has compose.yml: rename it to compose.yaml first, as upstream did"
   [ -f "$d/compose.yaml" ] || die "$d has no compose.yaml: it is not a stack folder"
 done
 command -v git >/dev/null || die "git is needed to merge files: install it"

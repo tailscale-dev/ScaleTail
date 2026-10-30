@@ -307,7 +307,12 @@ ScaleTail/scripts/update-stack.sh ~/stacks/<service>
 ScaleTail/scripts/update-stack.sh --apply ~/stacks/<service>
 ```
 
-Without a clone, download the script once with `curl -fsSLO https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/scripts/update-stack.sh`, and run it with `bash update-stack.sh` from the stack folder.
+Without a clone, download the script once and run it with `bash`:
+
+```sh
+curl -fsSLo ~/stacks/update-stack.sh https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/scripts/update-stack.sh
+bash ~/stacks/update-stack.sh ~/stacks/<service>
+```
 
 The first command only reports what would change, and exits with status 1 when updates are available. The second command writes the changes to `compose.yaml` and `.env`. It copies each file that changes to `.scaletail/backup-<time>/` first, and saves the upstream versions of both files in `.scaletail/`.
 
