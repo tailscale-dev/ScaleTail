@@ -40,7 +40,7 @@ jobs:
       - name: Lint Markdown
         uses: rvben/rumdl@19006897519812a2fdc508314b34738e5c281233 # v0.3.0
         with:
-          version: "0.2.78" # Keep in line with the pinned action above
+          version: "0.3.0" # Keep in line with the pinned action above
           path: "."
           config: ".markdownlint.yml"
           report-type: annotations
