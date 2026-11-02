@@ -319,8 +319,8 @@ The first command only reports what would change, and exits with status 1 when u
 
 - The next run merges your files with the changes made upstream since that saved version, so your own edits stay. Keep the `.scaletail` folder.
 - When your edit and an upstream change touch the same lines, the file gets conflict markers (`<<<<<<<` to `>>>>>>>`). Resolve them by hand before you start the stack. The script refuses to run while they remain.
-- The first run has no saved version to compare with. It adds the variables that your `.env` lacks and replaces `compose.yaml` with the upstream version. It prints a short overview of the settings that differ, and keeps your old file in the backup, so copy your own edits back once.
-- It never prints the values in `.env`, only the names of variables. The overview of `compose.yaml` lists changed settings. Comment edits are one line.
+- The first run has no saved version to compare with. It adds the variables that your `.env` lacks and replaces `compose.yaml` with the upstream version. It says whether settings differ or only comments, and keeps your old file in the backup. It prints the `diff` command that compares the two, so copy your own edits back once.
+- It never prints the contents of `compose.yaml` or `.env`, only the names of variables.
 - It stops when `SERVICE` changes upstream, because that renames the Tailnet device, the containers, and the data folders. Read the "Upgrading" section of the service README, which the script prints, and run it again with `--force`.
 - It never starts, stops, or restarts containers. When it is done, run `docker compose pull` and `docker compose up -d` from your copy.
 

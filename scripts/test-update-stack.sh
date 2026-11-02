@@ -26,7 +26,7 @@ run() {
   shift
   RC=0
   OUT=$(cd "$dir" && bash "$SCRIPT" "$@" 2>&1) || RC=$?
-  if grep -qF "$SECRET" <<<"$OUT"; then fail "the output contains a value from .env"; fi
+  if grep -qF "$SECRET" <<<"$OUT"; then fail "the output contains a secret value"; fi
 }
 
 # Publish version $1 of services/demo as the upstream archive.
@@ -157,63 +157,32 @@ check has <(echo "$OUT") "does not exist upstream"
 run "$STACK" --service demo
 check [ "$RC" -eq 0 ]
 
-case_ "compose changes are a short overview, not a diff"
+case_ "a first update names what differs in compose.yaml, and prints none of it"
 publish 1
 copy demo
-sed -i 's/tailscale:latest/tailscale:stable/' "$STACK/compose.yaml"
-echo '# my note' >>"$STACK/compose.yaml"
-run "$STACK"
-check [ "$RC" -eq 1 ]
-check has <(echo "$OUT") "image: tailscale/tailscale:stable -> image: tailscale/tailscale:latest"
-check has <(echo "$OUT") "comments updated"
-if grep -qF -- '--- your copy' <<<"$OUT"; then fail "overview printed a diff header"; fi
-if grep -qE '(^|[[:space:]])@@' <<<"$OUT"; then fail "overview printed a diff hunk"; fi
-
-case_ "a comment-only compose change is one line"
-publish 1
-copy demo
-echo '# my note' >>"$STACK/compose.yaml"
-run "$STACK"
-check [ "$RC" -eq 1 ]
-check has <(echo "$OUT") "comments only"
-if grep -qF -- '# my note' <<<"$OUT"; then fail "a comment was printed"; fi
-
-case_ "a line that only moved is not listed twice"
-publish 1
-copy demo
-cat >"$STACK/compose.yaml" <<'YAML'
-services:
-  application:
-    environment:
-      - TZ=UTC
-    healthcheck:
-      test: ["CMD", "true"]
-    restart: always
-YAML
-cat >"$ROOT/repo/ScaleTail-main/services/demo/compose.yaml" <<'YAML'
-services:
-  application:
-    environment:
-      - TZ=${TZ}
-    restart: always
-YAML
-tar -czf "$ROOT/repo.tar.gz" -C "$ROOT/repo" ScaleTail-main
-run "$STACK"
-check [ "$RC" -eq 1 ]
-check has <(echo "$OUT") 'TZ=UTC -> TZ=${TZ}'
-check has <(echo "$OUT") 'removed: healthcheck:'
-check has <(echo "$OUT") 'removed: test: ["CMD", "true"]'
-if grep -qF -- 'restart: always' <<<"$OUT"; then fail "a shifted line was listed"; fi
-
-case_ "a long compose overview stops after a few lines"
-publish 1
-copy demo
-for i in $(seq 1 30); do printf '      - EXTRA_%s=1\n' "$i" >>"$STACK/compose.yaml"; done
+# Old stacks set the auth key in compose.yaml.
+sed -i "s|container_name: tailscale-\${SERVICE}|&\\n    environment:\\n      - TS_AUTHKEY=$SECRET|" "$STACK/compose.yaml"
 publish 2
 run "$STACK"
 check [ "$RC" -eq 1 ]
-check has <(echo "$OUT") "and more. Your whole file is kept in the backup."
-if grep -qF -- 'EXTRA_30' <<<"$OUT"; then fail "the overview listed every line"; fi
+check has <(echo "$OUT") "settings differ"
+if grep -qE '^ *(---|\+\+\+|@@) ' <<<"$OUT"; then fail "the output contains a diff"; fi
+run "$STACK" --apply
+check [ "$RC" -eq 0 ]
+check has <(echo "$OUT") "compare: diff .scaletail/backup-"
+check has "$STACK"/.scaletail/backup-*/compose.yaml "$SECRET"
+
+case_ "a first update with only comment changes says so"
+publish 1
+copy demo
+sed -i 's/^services:$/services: # my note/' "$STACK/compose.yaml"
+echo '# my other note' >>"$STACK/compose.yaml"
+run "$STACK"
+check [ "$RC" -eq 1 ]
+check has <(echo "$OUT") "only comments or spacing differ"
+if grep -qF -- 'my ' <<<"$OUT"; then fail "a comment was printed"; fi
+run "$STACK" --apply
+if grep -qF -- 'compare:' <<<"$OUT"; then fail "a comment-only update asked for a compare"; fi
 
 case_ "a folder without compose.yaml is an error"
 run "$ROOT"
