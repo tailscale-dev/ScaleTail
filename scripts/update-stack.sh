@@ -36,12 +36,14 @@ How it works:
 
   On the first run there is no saved copy, so the script cannot tell your
   changes from upstream changes. It then adds the variables that your .env
-  lacks, and replaces compose.yaml with the upstream version. It shows the diff
-  first, and --apply keeps your old compose.yaml in the backup: copy your own
-  edits back once, and later runs merge them.
+  lacks, and replaces compose.yaml with the upstream version. It prints a
+  short overview of the settings that differ, and --apply keeps your old
+  compose.yaml in the backup: copy your own edits back once, and later runs
+  merge them.
 
-  The script never prints values from .env, only names of variables. It does
-  print diffs of compose.yaml. It does not touch other files, such as the
+  The script never prints values from .env, only names of variables. The
+  overview of compose.yaml lists changed settings, not a line-by-line diff.
+  Comment edits are one line. It does not touch other files, such as the
   Tailscale state and the data folders.
 
 Exit status: 0 up to date or updated, 1 updates available, a conflict, or a
@@ -120,6 +122,129 @@ env_append() {
 
 service_line() { grep '^SERVICE=' "$1" 2>/dev/null | tail -n 1; }
 
+# Drop comments and blank lines so an overview lists settings, not wording.
+strip_settings() {
+  sed -E 's/[[:space:]]+#.*$//; s/[[:space:]]+$//; /^[[:space:]]*#/d; /^[[:space:]]*$/d' "$1"
+}
+
+# Print each comment: a full-line comment, or the trailing " # ..." of a line.
+comment_lines() {
+  awk '{
+    s = $0
+    sub(/[[:space:]]+$/, "", s)
+    if (s ~ /^[[:space:]]*#/) { sub(/^[[:space:]]*/, "", s); print s; next }
+    if (match(s, /[[:space:]]#/)) print substr(s, RSTART + 1)
+  }' "$1"
+}
+
+comments_differ() {
+  ! cmp -s <(comment_lines "$1") <(comment_lines "$2")
+}
+
+# Print how compose file $1 differs from $2. One line per changed setting.
+# Comment edits are a single line, not a diff.
+compose_overview() {
+  local na nb nd line
+  na=$(mktemp -p "$TMP")
+  nb=$(mktemp -p "$TMP")
+  nd=$(mktemp -p "$TMP")
+  strip_settings "$1" >"$na"
+  strip_settings "$2" >"$nb"
+  if cmp -s "$na" "$nb"; then
+    if comments_differ "$1" "$2"; then
+      printf '                comments only\n'
+    else
+      printf '                formatting only\n'
+    fi
+    rm -f "$na" "$nb" "$nd"
+    return
+  fi
+  diff -U0 "$na" "$nb" >"$nd" || true
+  awk '
+    function trim(s) { sub(/^[[:space:]]+/, "", s); sub(/[[:space:]]+$/, "", s); return s }
+    function tidy(s) { sub(/^- /, "", s); return s }
+    # "TZ" from "TZ=UTC", "image" from "image: foo". Empty when the line is a
+    # path or some other value, so those are paired by position instead.
+    function key(s,    t) {
+      t = tidy(s)
+      if (match(t, /^[A-Za-z_][A-Za-z0-9_]*=/)) return substr(t, 1, RLENGTH - 1)
+      if (match(t, /^[A-Za-z_][A-Za-z0-9_]*:/)) return substr(t, 1, RLENGTH - 1)
+      return ""
+    }
+    function emit(s) {
+      shown++
+      if (shown <= 12) print s
+      else overflow = 1
+    }
+    function flush(   i, j, k, lhs, rhs, rn, an, rn2, an2) {
+      delete used
+      delete mused
+      for (i = 1; i <= nm; i++) {
+        k = key(m[i])
+        if (k == "") continue
+        for (j = 1; j <= np; j++) {
+          if (used[j] || key(p[j]) != k) continue
+          used[j] = 1
+          mused[i] = 1
+          lhs = tidy(m[i])
+          rhs = tidy(p[j])
+          if (lhs != rhs) emit(lhs " -> " rhs)
+          break
+        }
+      }
+      rn = an = 0
+      for (i = 1; i <= nm; i++) if (!mused[i]) olds[++rn] = tidy(m[i])
+      for (j = 1; j <= np; j++) if (!used[j]) news[++an] = tidy(p[j])
+      # Drop a line that is in both sides. It only moved.
+      delete seen
+      for (j = 1; j <= an; j++) seen[news[j]]++
+      rn2 = 0
+      for (i = 1; i <= rn; i++) {
+        if (seen[olds[i]] > 0) { seen[olds[i]]--; continue }
+        kepto[++rn2] = olds[i]
+      }
+      delete seen
+      for (i = 1; i <= rn; i++) seen[olds[i]]++
+      an2 = 0
+      for (j = 1; j <= an; j++) {
+        if (seen[news[j]] > 0) { seen[news[j]]--; continue }
+        keptn[++an2] = news[j]
+      }
+      if (rn2 == an2) {
+        for (i = 1; i <= rn2; i++) if (kepto[i] != keptn[i]) emit(kepto[i] " -> " keptn[i])
+      } else {
+        for (i = 1; i <= rn2; i++) emit("removed: " kepto[i])
+        for (j = 1; j <= an2; j++) emit("added: " keptn[j])
+      }
+      nm = np = 0
+      delete used
+      delete mused
+      delete seen
+      delete olds
+      delete news
+      delete kepto
+      delete keptn
+    }
+    NR == 1 && /^---/ { next }
+    NR == 2 && /^\+\+\+/ { next }
+    /^@@/ { flush(); next }
+    /^-/ { m[++nm] = trim(substr($0, 2)); next }
+    /^\+/ { p[++np] = trim(substr($0, 2)); next }
+    END { flush(); if (overflow) print "and more. Your whole file is kept in the backup." }
+  ' "$nd" >"$na.out"
+  if [ -s "$na.out" ]; then
+    while IFS= read -r line; do
+      printf '                %s\n' "$line"
+    done <"$na.out"
+  else
+    printf '                formatting only\n'
+  fi
+  if comments_differ "$1" "$2"; then
+    printf '                comments updated\n'
+  fi
+  rm -f "$na" "$nb" "$nd" "$na.out"
+}
+
 update_stack() {
   local dir=$1 name up w f mine base new rc status="up to date" changed=0 conflict=0 s backup=""
   name=${SERVICE_OPT:-$(basename "$(cd "$dir" && pwd -P)")}
@@ -184,8 +309,9 @@ update_stack() {
       fi
     else
       cp "$up/$f" "$new"
-      printf '  %-13s replace  (first update: your version goes to the backup, copy your edits back from there)\n' "$f"
-      diff -u -L "your copy" -L upstream "$mine" "$up/$f" | sed 's/^/      /' || true
+      printf '  %-13s replace\n' "$f"
+      printf '                Your version goes to the backup. Copy your edits back from there.\n'
+      compose_overview "$mine" "$up/$f"
     fi
     if [ "$f" = .env ] && [ -f "$mine" ] && [ -f "$new" ]; then
       s=$(env_changes "$mine" "$new")
