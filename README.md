@@ -58,7 +58,7 @@ You need:
    cd ScaleTail/services/<service>
    ```
 
-   Replace `<service>` with the directory from the **Details** link in [Available configurations](#available-configurations), for example `uptime-kuma`.
+   Replace `<service>` with the service's directory name, the last part of its **Details** link in [Available configurations](#available-configurations), for example `uptime-kuma`.
 
 3. **Read the service README.** "Before you start" lists what the service needs beyond these steps, such as secrets to generate. Until you set them, Compose stops with an error such as `required variable DB_PASSWORD is missing a value`.
 

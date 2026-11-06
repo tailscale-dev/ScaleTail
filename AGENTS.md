@@ -25,8 +25,8 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 
 ## Links in Markdown
 
-- Link to files and folders of this repository with a path from the repository root, such as `[the standard setup](/documentation/standard-setup.md)`. Never use `../`, `./`, or a github.com `blob/main` URL of this repository. Use full `https://` URLs only outside the repository and in `.github/`. [CONTRIBUTING.md](/CONTRIBUTING.md) has the details.
-- Run the Markdown lint under "Verification": it fails on a link to a missing file or heading.
+- Link to files and folders of this repository with a path from the repository root, such as `[the standard setup](/documentation/standard-setup.md)`. Never use a relative path such as `../`, `./`, or `README.md`, or a github.com `blob/` or `tree/` URL of this repository. Use full `https://` URLs only outside the repository and in `.github/`. [Links in Markdown](/CONTRIBUTING.md#links-in-markdown) has the details.
+- Run the Markdown lint under "Verification" on the whole tree, not on single files: rumdl checks links to headings in other files only then. Also run `python3 .github/scripts/check-link-style.py`, which CI runs to enforce the link style.
 
 ## Secrets and local data
 
