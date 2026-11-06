@@ -2,7 +2,7 @@
 
 [Audiobookshelf](https://www.audiobookshelf.org/) is a server for audiobooks and podcasts, with listening progress synced across devices.
 
-This stack runs Audiobookshelf with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Audiobookshelf with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

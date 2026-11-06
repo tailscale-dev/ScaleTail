@@ -2,7 +2,7 @@
 
 [Portracker](https://github.com/mostafa-wahied/portracker) discovers the services on your systems and shows which ports they use, so that you have a live map of your ports.
 
-This stack runs Portracker with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Portracker with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Portracker with a Tailscale sidecar, as described in [the standa
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

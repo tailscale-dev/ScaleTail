@@ -2,7 +2,7 @@
 
 [Bazarr](https://www.bazarr.media/) downloads and manages subtitles for movies and series in Radarr and Sonarr.
 
-This stack runs Bazarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Bazarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -31,7 +31,7 @@ Bazarr has no login by default. Open the web interface and go to **Settings**:
 2. Under **Languages**, choose your subtitle languages and create a language profile.
 3. Under **Providers**, enable the subtitle providers you want to use.
 
-To reach Sonarr or Radarr in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+To reach Sonarr or Radarr in another stack, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
 
 ## Links
 

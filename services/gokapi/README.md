@@ -2,7 +2,7 @@
 
 [Gokapi](https://github.com/Forceu/Gokapi) is a file sharing server with links that expire after a number of downloads or days.
 
-This stack runs Gokapi with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Gokapi with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs Gokapi with a Tailscale sidecar, as described in [the standard s
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

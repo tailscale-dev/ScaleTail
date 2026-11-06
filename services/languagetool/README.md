@@ -2,7 +2,7 @@
 
 [LanguageTool](https://languagetool.org) checks grammar, style, and spelling in many languages. This stack runs its server, which the LanguageTool browser extensions and other clients can use in place of the public service.
 
-This stack runs LanguageTool with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs LanguageTool with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs LanguageTool with a Tailscale sidecar, as described in [the stan
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

@@ -4,7 +4,7 @@
 
 Upstream has archived the project. It gets no further releases or security fixes, and its README lists known unaddressed security issues. The command runner has been off by default since v2.33.8. Keep it off, and do not enable Tailscale Funnel for this stack.
 
-This stack runs File Browser with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs File Browser with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -38,7 +38,7 @@ To manage an existing folder, point the `/srv` volume in `compose.yaml` at it. F
 
 The log line with the password looks like this:
 
-![Initial admin password in the log](images/initial-admin-password-in-logs.png)
+![Initial admin password in the log](/services/filebrowser/images/initial-admin-password-in-logs.png)
 
 ## Links
 

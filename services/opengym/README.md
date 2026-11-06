@@ -2,7 +2,7 @@
 
 [openGym](https://opengym.ch/) is a self-hosted gym and body-weight tracker. You plan routines, log workouts, and follow your progress, and your data stays on your own server.
 
-This stack runs openGym with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md). openGym has no Tailscale support of its own, and neither of its images contains `tailscale` or `tailscaled`.
+This stack runs openGym with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md). openGym has no Tailscale support of its own, and neither of its images contains `tailscale` or `tailscaled`.
 
 ## At a glance
 

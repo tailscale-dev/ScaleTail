@@ -2,7 +2,7 @@
 
 [OpenCloud](https://opencloud.eu) is a self-hosted file sync and sharing platform, a fork of ownCloud Infinite Scale. You store files in personal and shared spaces, share them with links, and synchronise them with the desktop and mobile clients.
 
-This stack runs OpenCloud with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs OpenCloud with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

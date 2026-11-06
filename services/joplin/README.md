@@ -2,7 +2,7 @@
 
 [Joplin Server](https://joplinapp.org/) is the sync server for the Joplin note-taking apps. The licence allows personal, non-commercial use only.
 
-This stack runs Joplin Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Joplin Server with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

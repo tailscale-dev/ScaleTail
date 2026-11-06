@@ -2,7 +2,7 @@
 
 [GitSave](https://github.com/TimWitzdam/GitSave) backs up Git repositories on a schedule.
 
-This stack runs GitSave with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs GitSave with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

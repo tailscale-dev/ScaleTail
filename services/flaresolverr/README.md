@@ -2,7 +2,7 @@
 
 [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) is a proxy that solves Cloudflare and DDoS-GUARD challenges for other applications.
 
-This stack runs FlareSolverr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs FlareSolverr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs FlareSolverr with a Tailscale sidecar, as described in [the stan
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 
@@ -26,7 +26,7 @@ Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## First run
 
-Nothing to set up in FlareSolverr itself. Enter its address in the application that uses it. From another stack in this repository, use `http://<Tailscale IP address of flaresolverr>:8191`. See the [DNS section of the standard setup](../../documentation/standard-setup.md#dns) for the use of names.
+Nothing to set up in FlareSolverr itself. Enter its address in the application that uses it. From another stack in this repository, use `http://<Tailscale IP address of flaresolverr>:8191`. See the [DNS section of the standard setup](/documentation/standard-setup.md#dns) for the use of names.
 
 ## Links
 

@@ -2,7 +2,7 @@
 
 [Immich](https://immich.app/) is a photo and video library that backs up mobile media, with search and sharing.
 
-This stack runs Immich with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Immich with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

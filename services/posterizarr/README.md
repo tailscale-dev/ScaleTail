@@ -2,7 +2,7 @@
 
 [Posterizarr](https://github.com/fscorrupt/Posterizarr) creates posters, backgrounds, and title cards for Plex, Jellyfin, and Emby libraries.
 
-This stack runs Posterizarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Posterizarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -32,7 +32,7 @@ sudo chown -R 1000:1000 posterizarr-data
 
 ## First run
 
-Posterizarr has no login by default. Open the web interface and enter the details of your media server and your API keys in the configuration. To reach a media server in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+Posterizarr has no login by default. Open the web interface and enter the details of your media server and your API keys in the configuration. To reach a media server in another stack, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
 
 ## Links
 

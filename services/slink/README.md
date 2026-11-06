@@ -2,7 +2,7 @@
 
 [Slink](https://github.com/andrii-kryvoviaz/slink) is an image hosting platform that shares uploads through links.
 
-This stack runs Slink with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Slink with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

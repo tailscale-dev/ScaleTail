@@ -2,7 +2,7 @@
 
 [Nanote](https://github.com/omarmir/nanote) stores notes as Markdown files in folders.
 
-This stack runs Nanote with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Nanote with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

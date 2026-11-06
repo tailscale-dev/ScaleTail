@@ -2,7 +2,7 @@
 
 This stack runs a [Minecraft Java Edition](https://www.minecraft.net/) server with the [`itzg/minecraft-server`](https://docker-minecraft-server.readthedocs.io) image, which supports Vanilla, Paper, Fabric, Forge, and other server types.
 
-This stack runs Minecraft Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Minecraft Server with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

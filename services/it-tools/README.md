@@ -2,7 +2,7 @@
 
 [IT-Tools](https://github.com/CorentinTh/it-tools) is a collection of online tools for developers and IT staff.
 
-This stack runs IT-Tools with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs IT-Tools with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs IT-Tools with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

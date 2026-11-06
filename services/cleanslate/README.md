@@ -2,7 +2,7 @@
 
 [Clean Slate](https://github.com/successible/cleanslate) is a calorie tracker that logs food, recipes, and exercise without judgment. It works in any browser and signs you in with a long personal token instead of a username and password.
 
-This stack runs Clean Slate with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Clean Slate with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

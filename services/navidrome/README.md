@@ -2,7 +2,7 @@
 
 [Navidrome](https://www.navidrome.org/) is a music server that streams your collection to its web player and to Subsonic-compatible apps.
 
-This stack runs Navidrome with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Navidrome with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

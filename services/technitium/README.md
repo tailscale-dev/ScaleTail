@@ -2,7 +2,7 @@
 
 [Technitium DNS Server](https://technitium.com/dns/) is an authoritative and recursive DNS server with ad blocking and your own zones.
 
-This stack runs Technitium DNS Server with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Technitium DNS Server with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -17,7 +17,7 @@ This stack runs Technitium DNS Server with a Tailscale sidecar, as described in 
 ## Before you start
 
 - **Set the administrator password.** Set `ADMIN_PASSWORD` in `.env`. It is empty, and Compose stops with an error until you set it. Technitium reads it only at the first start.
-- **Free port 53.** The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](../../documentation/free-up-port-53.md).
+- **Free port 53.** The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](/documentation/free-up-port-53.md).
 - **Choose the forwarders.** `DNS_SERVER1` and `DNS_SERVER2` in `.env` set the DNS servers that Technitium forwards to.
 
 ## Deviations from the standard setup

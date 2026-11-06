@@ -2,7 +2,7 @@
 
 [ArtistTrackarr](https://github.com/crypt0rr/ArtistTrackarr) tracks new and upcoming albums, EPs, singles, and compilations from Spotify, and uses MusicBrainz for artist identity.
 
-This stack runs ArtistTrackarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs ArtistTrackarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

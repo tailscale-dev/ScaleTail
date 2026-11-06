@@ -2,7 +2,7 @@
 
 [Kaneo](https://kaneo.app/) is a project tracker with boards and tasks, an alternative to Trello and Linear.
 
-This stack runs Kaneo with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Kaneo with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

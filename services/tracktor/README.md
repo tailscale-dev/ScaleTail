@@ -4,7 +4,7 @@
 
 Tracktor is under active development and can have breaking changes. Back up your data before you update.
 
-This stack runs Tracktor with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Tracktor with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

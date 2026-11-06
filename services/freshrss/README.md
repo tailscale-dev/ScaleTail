@@ -2,7 +2,7 @@
 
 [FreshRSS](https://freshrss.org/) is an RSS and Atom feed reader. This stack uses SQLite, so there is no separate database server.
 
-This stack runs FreshRSS with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs FreshRSS with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

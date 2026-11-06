@@ -2,7 +2,7 @@
 
 [Storyteller](https://storyteller-platform.dev/) is a self-hosted platform for creating and reading ebooks with synced narration. It aligns audiobooks and ebooks that you already own, so that you can read, listen, or do both.
 
-This stack runs Storyteller with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Storyteller with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

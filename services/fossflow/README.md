@@ -4,7 +4,7 @@
 
 The original repository is no longer on GitHub. [Abrar74774/FossFLOW](https://github.com/Abrar74774/FossFLOW) continues it.
 
-This stack runs FossFLOW with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs FossFLOW with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

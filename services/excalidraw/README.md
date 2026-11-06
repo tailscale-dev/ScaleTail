@@ -2,7 +2,7 @@
 
 [Excalidraw](https://github.com/excalidraw/excalidraw) is a virtual whiteboard for diagrams and sketches with a hand-drawn look.
 
-This stack runs Excalidraw with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Excalidraw with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Excalidraw with a Tailscale sidecar, as described in [the standa
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

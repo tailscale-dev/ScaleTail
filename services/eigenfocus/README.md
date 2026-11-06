@@ -2,7 +2,7 @@
 
 [Eigenfocus](https://eigenfocus.com/) is a project and task manager with boards, time tracking, and focus tools.
 
-This stack runs Eigenfocus with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Eigenfocus with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Eigenfocus with a Tailscale sidecar, as described in [the standa
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

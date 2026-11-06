@@ -2,7 +2,7 @@
 
 [Radarr](https://github.com/Radarr/Radarr) is a movie manager that searches Usenet and BitTorrent and sorts downloads into your library.
 
-This stack runs Radarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Radarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

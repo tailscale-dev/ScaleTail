@@ -2,7 +2,7 @@
 
 [Gotify](https://gotify.net/) is a push notification server. Scripts post over HTTP, and the web interface and Android app show the messages.
 
-This stack runs Gotify with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Gotify with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

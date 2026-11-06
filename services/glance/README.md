@@ -2,7 +2,7 @@
 
 [Glance](https://github.com/glanceapp/glance) is a dashboard that puts feeds such as RSS, weather, and markets on one page.
 
-This stack runs Glance with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Glance with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

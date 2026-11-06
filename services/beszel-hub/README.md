@@ -2,7 +2,7 @@
 
 [Beszel](https://beszel.dev/) is a server monitoring platform with history, Docker statistics, and alerts. This service is the hub.
 
-This stack runs Beszel Hub with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Beszel Hub with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Beszel Hub with a Tailscale sidecar, as described in [the standa
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 
@@ -25,7 +25,7 @@ None.
 
 1. Open the web interface and create the first account.
 2. Select **Add System**. The dialog shows the public key that an agent needs.
-3. Start an agent on each system that you want to monitor, for example with the [Beszel Agent stack](../beszel-agent/), and add it in the same dialog.
+3. Start an agent on each system that you want to monitor, for example with the [Beszel Agent stack](/services/beszel-agent/), and add it in the same dialog.
 
 ## Links
 

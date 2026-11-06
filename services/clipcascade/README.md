@@ -2,7 +2,7 @@
 
 [ClipCascade](https://github.com/Sathvik-Rao/ClipCascade) synchronises the clipboard across devices, with end-to-end encryption.
 
-This stack runs ClipCascade with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs ClipCascade with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs ClipCascade with a Tailscale sidecar, as described in [the stand
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

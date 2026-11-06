@@ -2,7 +2,7 @@
 
 [Recyclarr](https://recyclarr.dev/) synchronises TRaSH Guides quality profiles and custom formats to Radarr and Sonarr from a YAML file.
 
-This stack runs Recyclarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Recyclarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -30,7 +30,7 @@ sudo chown -R 1000:1000 recyclarr-data
 ## First run
 
 1. Start the stack once. Recyclarr creates `recyclarr.yml` in `./recyclarr-data/config`.
-2. Add the address and API key of Radarr and Sonarr to that file, and choose the profiles to synchronise. To reach an application in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+2. Add the address and API key of Radarr and Sonarr to that file, and choose the profiles to synchronise. To reach an application in another stack, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
 3. Restart the stack. The container then synchronises once a day. To run a sync right away:
 
    ```bash

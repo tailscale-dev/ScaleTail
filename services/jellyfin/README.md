@@ -2,7 +2,7 @@
 
 [Jellyfin](https://jellyfin.org/) is a media server that organises and streams your movies, series, and music.
 
-This stack runs Jellyfin with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Jellyfin with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

@@ -37,6 +37,17 @@ jobs:
             exit 1
           fi
 
+      # rumdl checks that each link target exists. This step enforces the link
+      # style of CONTRIBUTING.md: paths from the repository root, not ../ or
+      # github.com/.../blob/main. Files in .github/ keep full URLs.
+      - name: Check the link style
+        run: |
+          pattern='\]\((\.\.?/|[A-Za-z0-9_-][^:)[:space:]]*\))|tailscale-dev/ScaleTail/(blob|tree)/main'
+          if git ls-files -z '*.md' ':!.github/*' | xargs -0 grep -n -E "$pattern"; then
+            echo "::error::Link to repository files with a path from the repository root, such as /documentation/standard-setup.md. See CONTRIBUTING.md, 'Link in Markdown'."
+            exit 1
+          fi
+
       - name: Lint Markdown
         uses: rvben/rumdl@19006897519812a2fdc508314b34738e5c281233 # v0.3.0
         with:

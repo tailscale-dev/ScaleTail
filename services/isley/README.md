@@ -2,7 +2,7 @@
 
 [Isley](https://github.com/dwot/isley) is a cannabis grow journal for plants, watering, feeding, harvests, and sensor data.
 
-This stack runs Isley with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Isley with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs Isley with a Tailscale sidecar, as described in [the standard se
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

@@ -2,7 +2,7 @@
 
 [AdGuard Home Sync](https://github.com/bakito/adguardhome-sync) synchronises one AdGuard Home configuration to other instances.
 
-This stack runs AdGuard Home Sync with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs AdGuard Home Sync with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -25,7 +25,7 @@ Set the passwords in `.env`:
 
 - **`ORIGIN_PASSWORD` and `REPLICA1_PASSWORD`.** The passwords of the two instances. Compose stops with an error if one of them is empty.
 
-To reach an AdGuard Home instance on your Tailnet, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+To reach an AdGuard Home instance on your Tailnet, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
 
 ## Deviations from the standard setup
 

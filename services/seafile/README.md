@@ -2,7 +2,7 @@
 
 [Seafile Community Edition](https://www.seafile.com/en/product/seafile_on_premise/) is a file synchronisation and sharing platform that stores files in libraries.
 
-This stack runs Seafile with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Seafile with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
