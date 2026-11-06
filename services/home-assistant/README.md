@@ -2,7 +2,7 @@
 
 [Home Assistant](https://www.home-assistant.io/) is a home automation platform for local control of smart devices.
 
-This stack runs Home Assistant with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Home Assistant with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Home Assistant with a Tailscale sidecar, as described in [the st
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

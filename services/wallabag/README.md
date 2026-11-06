@@ -2,7 +2,7 @@
 
 [Wallabag](https://wallabag.org/) is a read-it-later app. It saves web pages as clean articles that you can tag, annotate, and read later, from the web interface, the mobile apps, or a browser extension.
 
-This stack runs Wallabag with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Wallabag with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

@@ -2,7 +2,7 @@
 
 [Fusion](https://github.com/0x2E/fusion) is a lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API for apps such as Reeder and Unread.
 
-This stack runs Fusion with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Fusion with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

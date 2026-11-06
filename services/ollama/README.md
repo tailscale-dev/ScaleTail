@@ -2,7 +2,7 @@
 
 [Ollama](https://ollama.com) runs large language models on your own hardware and offers an OpenAI-compatible API.
 
-This stack runs Ollama with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Ollama with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -20,7 +20,7 @@ Make sure that the disk has enough free space for the models that you want to us
 
 ## Deviations from the standard setup
 
-- **No web interface.** Tailscale Serve publishes the API of Ollama. Use a client such as [Open WebUI](../open-webui/) for a chat interface.
+- **No web interface.** Tailscale Serve publishes the API of Ollama. Use a client such as [Open WebUI](/services/open-webui/) for a chat interface.
 - **Models stay loaded.** `OLLAMA_KEEP_ALIVE=24h` keeps a model in memory for 24 hours after its last use.
 - **No authentication.** The API has no login. Everyone who can reach the device on your Tailnet can use your models.
 - **Time zone.** `compose.yaml` does not pass `TZ` to the container.

@@ -2,7 +2,7 @@
 
 [BentoPDF](https://github.com/alam00000/bentopdf) is a client-side PDF toolkit. Files are processed in the browser and are not uploaded.
 
-This stack runs BentoPDF with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs BentoPDF with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs BentoPDF with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

@@ -2,7 +2,7 @@
 
 [Homarr](https://homarr.dev/) is a dashboard with user accounts that shows live data from the apps you connect.
 
-This stack runs Homarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Homarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

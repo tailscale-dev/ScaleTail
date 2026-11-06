@@ -2,7 +2,7 @@
 
 [Kavita](https://www.kavitareader.com/) is a digital library for comics, manga, and books, with reading progress synced across devices.
 
-This stack runs Kavita with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Kavita with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

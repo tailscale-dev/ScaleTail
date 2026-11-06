@@ -2,7 +2,7 @@
 
 [Configarr](https://github.com/raydak-labs/configarr) applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.
 
-This stack runs Configarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Configarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Configarr with a Tailscale sidecar, as described in [the standar
 
 ## Before you start
 
-Create `config.yml` and `secrets.yml` in `./configarr-data/config`. The [Configarr documentation](https://configarr.de/docs/intro) describes both files. To reach Radarr or Sonarr in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+Create `config.yml` and `secrets.yml` in `./configarr-data/config`. The [Configarr documentation](https://configarr.de/docs/intro) describes both files. To reach Radarr or Sonarr in another stack, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
 
 ## Deviations from the standard setup
 

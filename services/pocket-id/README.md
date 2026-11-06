@@ -2,7 +2,7 @@
 
 [Pocket ID](https://pocket-id.org/) is an OpenID Connect provider that signs users in with passkeys instead of passwords.
 
-This stack runs Pocket ID with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Pocket ID with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

@@ -2,7 +2,7 @@
 
 [linkding](https://linkding.link/) is a bookmark manager to save, tag, and search links.
 
-This stack runs linkding with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs linkding with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

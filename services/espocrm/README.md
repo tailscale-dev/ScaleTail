@@ -2,7 +2,7 @@
 
 [EspoCRM](https://www.espocrm.com/) is a customer relationship manager for contacts, companies, and sales opportunities.
 
-This stack runs EspoCRM with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs EspoCRM with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

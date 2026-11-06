@@ -2,7 +2,7 @@
 
 [Vikunja](https://vikunja.io) is a to-do and project app with lists, boards, and Gantt charts.
 
-This stack runs Vikunja with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Vikunja with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

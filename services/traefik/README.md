@@ -2,7 +2,7 @@
 
 [Traefik](https://traefik.io/traefik/) is a reverse proxy and load balancer that routes requests to Docker containers by label.
 
-This stack runs Traefik with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Traefik with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs Traefik with a Tailscale sidecar, as described in [the standard 
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 

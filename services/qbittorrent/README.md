@@ -2,7 +2,7 @@
 
 [qBittorrent](https://www.qbittorrent.org/) is a BitTorrent client with a web interface.
 
-This stack runs qBittorrent with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs qBittorrent with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

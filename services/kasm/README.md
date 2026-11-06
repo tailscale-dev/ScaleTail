@@ -2,7 +2,7 @@
 
 [Kasm Workspaces](https://www.kasm.com/community-edition) streams desktops, browsers, and applications to your web browser, each in its own container. This stack runs the Community Edition from the all-in-one image that Kasm publishes.
 
-This stack runs Kasm Workspaces with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md). The image does not contain Tailscale, so the sidecar is what puts Kasm on your Tailnet.
+This stack runs Kasm Workspaces with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md). The image does not contain Tailscale, so the sidecar is what puts Kasm on your Tailnet.
 
 ## At a glance
 

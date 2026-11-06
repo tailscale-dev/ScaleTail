@@ -2,7 +2,7 @@
 
 [AFFiNE](https://affine.pro/) is a workspace for documents, whiteboards, and databases.
 
-This stack runs AFFiNE with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs AFFiNE with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

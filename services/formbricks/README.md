@@ -2,7 +2,7 @@
 
 [Formbricks](https://formbricks.com/) is a survey and feedback platform for websites, apps, and links.
 
-This stack runs Formbricks with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Formbricks with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

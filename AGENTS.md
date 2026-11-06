@@ -4,10 +4,10 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 
 ## Where the rules live
 
-- [CONTRIBUTING.md](CONTRIBUTING.md): how to add, update, verify, and submit a service. Follow it.
-- [templates/service-template/](templates/service-template/): the starting point for every service. Its comments explain each setting.
-- [documentation/standard-setup.md](documentation/standard-setup.md): the shared setup. A service README lists only what differs, under "Deviations from the standard setup".
-- [.github/workflows/](.github/workflows/): the Compose validation and Markdown lint that CI runs.
+- [CONTRIBUTING.md](/CONTRIBUTING.md): how to add, update, verify, and submit a service. Follow it.
+- [templates/service-template/](/templates/service-template/): the starting point for every service. Its comments explain each setting.
+- [documentation/standard-setup.md](/documentation/standard-setup.md): the shared setup. A service README lists only what differs, under "Deviations from the standard setup".
+- [.github/workflows/](/.github/workflows/): the Compose validation and Markdown lint that CI runs.
 
 ## Before you edit
 
@@ -22,6 +22,11 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 - Add, rename, or remove a service: the `services/<name>/` directory and its row in the root `README.md`. Insert a new row in alphabetical order by the bold name, and leave the other rows alone.
 - Make existing users act, such as with a new required secret, a moved volume, or a changed `SERVICE`: add an "Upgrading" section to the service README. `SERVICE` also names the Tailnet device, the containers, and most data folders.
 - Change the template: also update `documentation/standard-setup.md` and `CONTRIBUTING.md` where they describe the same setting. Validate it from `templates/service-template/` with `SERVICE=dummy IMAGE_URL=dummy docker compose config --quiet`, because the template leaves both values empty.
+
+## Links in Markdown
+
+- Link to files and folders of this repository with a path from the repository root, such as `[the standard setup](/documentation/standard-setup.md)`. Never use a relative path such as `../`, `./`, or `README.md`, or a github.com `blob/` or `tree/` URL of this repository. Use full `https://` URLs only outside the repository and in `.github/`. [Links in Markdown](/CONTRIBUTING.md#links-in-markdown) has the details.
+- Run the Markdown lint under "Verification" on the whole tree, not on single files: rumdl checks links to headings in other files only then. Also run `python3 .github/scripts/check-link-style.py`, which CI runs to enforce the link style.
 
 ## Secrets and local data
 
@@ -59,4 +64,4 @@ Report the checks you ran. State any checks that credentials, hardware, permissi
 ## Pull requests
 
 - Title the pull request `Service: what changes`, such as `Umami: new service`. For several services, list them or use `All services:`. For other areas, use `CI:`, `Docs:`, or `Template:`.
-- Fill in the [pull request template](.github/PULL_REQUEST_TEMPLATE.md). Maintainers apply the labels.
+- Fill in the [pull request template](/.github/PULL_REQUEST_TEMPLATE.md). Maintainers apply the labels.

@@ -2,7 +2,7 @@
 
 [Open WebUI](https://openwebui.com/) is a chat interface for AI models, through Ollama or OpenAI-compatible APIs.
 
-This stack runs Open WebUI with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Open WebUI with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -20,7 +20,7 @@ Set these values in `.env`:
 - **`WEBUI_SECRET_KEY`.** A long random value that Open WebUI uses to sign the login tokens.
 - **`OLLAMA_BASE_URL`.** The address of your Ollama instance:
   - On the Docker host: `http://host.docker.internal:11434`. A native Ollama listens only on `127.0.0.1` by default, which containers cannot reach. Set `OLLAMA_HOST=0.0.0.0:11434` for it. This makes Ollama reachable on every network of the host, so limit access with a firewall.
-  - In the [Ollama stack](../ollama/) of this repository: `http://<Tailscale IP address of ollama>:11434`. That stack runs on its own Tailnet device and does not publish port `11434` on the Docker host.
+  - In the [Ollama stack](/services/ollama/) of this repository: `http://<Tailscale IP address of ollama>:11434`. That stack runs on its own Tailnet device and does not publish port `11434` on the Docker host.
   - On a machine in your local network: `http://<local-ip>:11434`
   - On another Tailnet device: `http://<Tailscale IP address>:11434`
   - Leave it empty to add another provider, such as OpenAI, in the web interface later.
@@ -44,4 +44,4 @@ After you add models to Ollama, refresh the model list in Open WebUI under **Set
 
 - [Open WebUI documentation](https://docs.openwebui.com/)
 - [Open WebUI source code](https://github.com/open-webui/open-webui)
-- [Ollama stack in this repository](../ollama/)
+- [Ollama stack in this repository](/services/ollama/)

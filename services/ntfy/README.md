@@ -2,7 +2,7 @@
 
 [ntfy](https://ntfy.sh/) is an HTTP notification service that delivers messages to phones and browsers.
 
-This stack runs ntfy with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs ntfy with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 

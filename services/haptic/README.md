@@ -2,7 +2,7 @@
 
 [Haptic](https://github.com/chroxify/haptic) is a Markdown editor that keeps notes in the browser, not on the server.
 
-This stack runs Haptic with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs Haptic with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Haptic with a Tailscale sidecar, as described in [the standard s
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](/README.md#quick-start).
 
 ## Deviations from the standard setup
 
