@@ -174,7 +174,7 @@ branch and fork, and they stay valid when the file that holds the link moves.
 - Files in `.github/` are the exception. They also appear in pull request and
   issue forms, where `/` paths do not resolve, so they use full URLs.
 - CI fails on a link to a missing file or heading, and on the forms above.
-  Links in code spans and code blocks are not checked, so you can show an
+  Links in code spans and fenced code blocks are not checked, so you can show an
   example. Run the check locally with
   `python3 .github/scripts/check-link-style.py`.
 

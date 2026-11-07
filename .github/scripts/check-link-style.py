@@ -3,7 +3,7 @@
 
 Links to repository files must be paths from the repository root, such as
 /documentation/standard-setup.md: no ./, ../ or other relative paths, and no
-github.com blob/tree URLs of this repository. Code spans and code blocks are
+github.com blob/tree URLs of this repository. Code spans and fenced code blocks are
 skipped. Files in .github/ keep full URLs and are not checked.
 
 Usage: check-link-style.py [FILE...]  (default: all tracked Markdown files)
