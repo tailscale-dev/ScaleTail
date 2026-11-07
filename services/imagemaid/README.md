@@ -2,7 +2,7 @@
 
 [ImageMaid](https://github.com/Kometa-Team/ImageMaid) removes unused poster and background images from the metadata folder of a Plex server, for example after you stop using Kometa overlays. It can also clean the photo transcoder cache, empty the trash, clean bundles, and optimize the database.
 
-This stack runs ImageMaid with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs ImageMaid with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
 
 ## At a glance
 
@@ -17,7 +17,7 @@ This stack runs ImageMaid with a Tailscale sidecar, as described in [the standar
 
 ImageMaid changes files in the Plex data folder, so it must run on the host that holds that folder.
 
-- **Plex data folder.** Set `PLEX_DATA_DIR` in `.env` to the folder of your Plex server that contains `Cache`, `Metadata`, and `Plug-in Support`. It has no default, and Compose stops with an error until you set it. `.env` lists the folder of the [Plex stack](../plex/README.md) in this repository and the usual paths of other installs. Compose also stops when the folder does not exist, but it cannot tell whether the folder is the right one, so check the path yourself before you start.
+- **Plex data folder.** Set `PLEX_DATA_DIR` in `.env` to the folder of your Plex server that contains `Cache`, `Metadata`, and `Plug-in Support`. It has no default, and Compose stops with an error until you set it. `.env` lists the folder of the [Plex stack](/services/plex/README.md) in this repository and the usual paths of other installs. Compose also stops when the folder does not exist, but it cannot tell whether the folder is the right one, so check the path yourself before you start.
 - **Schedule.** Keep `SCHEDULE` set in `.env`. When it is empty, ImageMaid runs once and exits, and `restart: always` then starts it again at once, over and over.
 - **Mode.** `MODE=report` only lists the images that ImageMaid would remove. Check the list in the log, then set `MODE=move` to move them to an `ImageMaid Restore` folder, which you can restore. `MODE=remove` deletes them for good.
 - **Plex access.** ImageMaid needs the Plex database to know which images are in use. Set `PLEX_URL` and `PLEX_TOKEN` to download it through the Plex API, or leave both empty to copy it from `PLEX_DATA_DIR`. Upstream recommends restarting Plex and keeping it idle before a copy.
@@ -37,7 +37,7 @@ ImageMaid changes files in the Plex data folder, so it must run on the host that
    docker compose logs application
    ```
 
-2. To reach Plex over your Tailnet, for example the Plex stack of this repository, set `PLEX_URL` to the Tailscale IP address of the Plex device, such as `http://100.64.0.1:32400`. To use its MagicDNS name instead, uncomment `TS_ACCEPT_DNS=true` in `compose.yaml`, as described in the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
+2. To reach Plex over your Tailnet, for example the Plex stack of this repository, set `PLEX_URL` to the Tailscale IP address of the Plex device, such as `http://100.64.0.1:32400`. To use its MagicDNS name instead, uncomment `TS_ACCEPT_DNS=true` in `compose.yaml`, as described in the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
 3. To run ImageMaid right away, in the mode set in `.env`:
 
    ```bash
