@@ -121,6 +121,7 @@ Every stack starts from the same [standard setup](/documentation/standard-setup.
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](/services/freshrss)       |
 | **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API.                             | [Details](/services/fusion)         |
 | **Hytale**         | Hytale game server in a community image, for players on your Tailnet.                                | [Details](/services/hytale)         |
+| **ImageMaid**      | Cleaner that removes unused poster and background images from the Plex metadata folder.              | [Details](/services/imagemaid)      |
 | **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                         | [Details](/services/immich)         |
 | **Jellyfin**       | Media server that organizes and streams your movies, series, and music.                              | [Details](/services/jellyfin)       |
 | **Kavita**         | Digital library for comics, manga, and books, with progress synced across devices.                   | [Details](/services/kavita)         |
@@ -152,6 +153,7 @@ Every stack starts from the same [standard setup](/documentation/standard-setup.
 | **BentoPDF**      | PDF toolkit that works in your browser, without uploading files.                               | [Details](/services/bentopdf)      |
 | **ClipCascade**   | Server that syncs your clipboard across devices, with end-to-end encryption.                   | [Details](/services/clipcascade)   |
 | **Copyparty**     | File server with resumable uploads, browser access, and WebDAV.                                | [Details](/services/copyparty)     |
+| **Cozy**          | Personal cloud (now Twake Workplace) for files, photos, notes, and contacts.                   | [Details](/services/cozy)          |
 | **Docmost**       | Team wiki with real-time collaborative editing.                                                | [Details](/services/docmost)       |
 | **Donetick**      | Task and chore manager for households and small groups.                                        | [Details](/services/donetick)      |
 | **DumbDo**        | To-do list app that keeps its lists in one file, with no database.                             | [Details](/services/dumbdo)        |
