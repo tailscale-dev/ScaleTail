@@ -20,7 +20,7 @@ TARGETS = [
     # [text](target "title"); text with spaces, such as the template's
     # placeholders, is not a link.
     re.compile(r"""\]\(\s*([^\s)<]+)(?=\s*\)|\s+["'(])"""),
-    re.compile(r"^ {0,3}\[[^\]]+\]:\s*<?([^\s>]+)"),  # [ref]: target
+    re.compile(r"^ {0,3}\[(?!\^)[^\]]+\]:\s*<?([^\s>]+)"),  # [ref]: target, not [^footnote]:
     re.compile(r"""\b(?:href|src)\s*=\s*["']([^"']+)"""),  # HTML
 ]
 SCHEME = re.compile(r"^[A-Za-z][A-Za-z0-9+.-]*:")
