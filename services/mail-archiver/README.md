@@ -1,4 +1,4 @@
-# MAIL ARCHIVER
+# Mail Archiver
 
 [Mail Archiver](https://mail-archiver.org/) is an open-source, self-hosted email archiver. It collects mail from IMAP accounts, Microsoft 365, and imported files, and offers full-text search across message metadata and content. Pairing it with Tailscale keeps your email archive off the public internet and reachable only from devices on your Tailnet.
 
@@ -19,18 +19,18 @@ Go through the [Quick Start](../../README.md#quick-start).
 
 In addition:
 
-- Set `TS_AUTHKEY`, `APP_PW`, and `DB_PW` in `.env`. Only APP_PW and DB_PW are required and Compose stops with an error until they are set. TS_AUTHKEY is only needed for the first start.
+- Set `TS_AUTHKEY`, `APP_PW`, and `DB_PW` in `.env`. Only `APP_PW` and `DB_PW` are required, and Compose stops with an error until they are set. `TS_AUTHKEY` is only needed for the first start.
 - Use only letters and digits in `DB_PW`. The password is inserted into the database connection string, so characters such as `;` or `=` break it.
 - PostgreSQL applies `DB_USER` and `DB_PW` only when it creates the database on the first start. Changing them later in `.env` does not change the existing database user.
 - `APP_USER` and `APP_PW` define the first admin account. Log in with them after the first start.
 
 ## Deviations from the standard setup
 
-The stack adds a `db` service (`app-mail-archiver-db`) running PostgreSQL. Mail Archiver keeps its data in a database, so it cannot run as a single container. The database listens on localhost only, at `127.0.0.1`. The database is not exposed outside the stack.
+The stack adds a `db` service (container `app-mail-archiver-db`) that runs PostgreSQL, because Mail Archiver keeps its data in a database. The `db` service shares the network namespace of the sidecar, so Mail Archiver reaches it at `127.0.0.1`, and PostgreSQL listens on localhost only.
 
 ## First run
 
-The first run can take a few seconds while Tailscale issues the certificate. Open the web interface and log in with the initial credentials, a password change will be forced for added security.
+The first run can take a few seconds while Tailscale issues the certificate. Open the web interface and log in with `APP_USER` and `APP_PW`. Mail Archiver then asks you to change the password. The new one needs at least 10 characters, with an uppercase letter, a lowercase letter, a digit, and a special character.
 
 ## Links
 
