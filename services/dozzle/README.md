@@ -11,7 +11,7 @@ This stack runs Dozzle with a Tailscale sidecar, as described in [the standard s
 | Web interface | `https://dozzle.<tailnet>.ts.net` |
 | Service port  | `8080`                            |
 | Image         | `amir20/dozzle`                   |
-| Data          | `./dozzle-data/dozzle-data`       |
+| Data          | `./dozzle-data/`                  |
 
 ## Before you start
 
@@ -31,12 +31,24 @@ Dozzle has no login by default. Open the web interface to see the containers of 
 
 Dozzle can ask for a username and password with its `simple` provider. See [Dozzle authentication](https://dozzle.dev/guide/authentication).
 
-1. Copy the example file to the folder that Dozzle reads as `/data`: `cp dozzle-data/users.yml dozzle-data/dozzle-data/users.yml`.
-2. Replace the example user in `dozzle-data/dozzle-data/users.yml` with your own. The comment at the top of the file shows the command that creates a user.
-3. Add `- DOZZLE_AUTH_PROVIDER=simple` to the `environment` of the `application` service in `compose.yaml`.
-4. Run `docker compose up -d --force-recreate`.
+1. Replace the example user in `dozzle-data/users.yml` with your own. The comment at the top of the file shows the command that creates a user. Dozzle reads this file as `/data/users.yml`.
+2. Add `- DOZZLE_AUTH_PROVIDER=simple` to the `environment` of the `application` service in `compose.yaml`.
+3. Run `docker compose up -d --force-recreate`.
 
-Dozzle ignores the example in `dozzle-data/users.yml` itself.
+Without `DOZZLE_AUTH_PROVIDER=simple`, Dozzle ignores `users.yml`. With it, Dozzle stops at startup with `invalid password hash` as long as the example user is in the file.
+
+## Upgrading
+
+Earlier versions of this stack mounted `./dozzle-data/dozzle-data` as `/data`, one level below the example `users.yml`. The stack now mounts `./dozzle-data`. If you created files in `dozzle-data/dozzle-data/`, such as your own `users.yml`, move them up one level before you start the new version:
+
+```bash
+docker compose down
+mv dozzle-data/dozzle-data/* dozzle-data/
+rmdir dozzle-data/dozzle-data
+docker compose up -d
+```
+
+If `dozzle-data/dozzle-data/` is empty, skip the `mv` command. Your `users.yml` replaces the example, so `git status` shows the file as changed. If you change `SERVICE`, use the folder name `${SERVICE}-data` in these commands.
 
 ## Links
 
