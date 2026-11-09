@@ -1,0 +1,25 @@
+# Gatus configuration. Add the endpoints that Gatus should check below.
+# All options: https://github.com/TwiN/gatus#configuration
+# Gatus reloads this file when you save it. Check the log for errors after each change.
+
+storage:
+  type: sqlite # Keep the results and uptime history across restarts
+  path: /data/data.db
+
+endpoints:
+  - name: Gatus
+    group: Self
+    url: "http://127.0.0.1:8080/health" # Gatus checks itself
+    interval: 1m
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].status == UP"
+
+  # Example: a web service on another device in your Tailnet, by its Tailscale IP address
+  #- name: Example service
+  #  group: Tailnet
+  #  url: "http://100.64.0.1:8080/"
+  #  interval: 5m
+  #  conditions:
+  #    - "[STATUS] == 200"
+  #    - "[RESPONSE_TIME] < 1000"
