@@ -29,7 +29,14 @@ Dozzle has no login by default. Open the web interface to see the containers of 
 
 ### Require a login
 
-Dozzle can ask for a username and password. See [Dozzle authentication](https://dozzle.dev/guide/authentication) for the `simple` provider and its `users.yml` file. The file `dozzle-data/users.yml` in this directory is an example of that format.
+Dozzle can ask for a username and password with its `simple` provider. See [Dozzle authentication](https://dozzle.dev/guide/authentication).
+
+1. Copy the example file to the folder that Dozzle reads as `/data`: `cp dozzle-data/users.yml dozzle-data/dozzle-data/users.yml`.
+2. Replace the example user in `dozzle-data/dozzle-data/users.yml` with your own. The comment at the top of the file shows the command that creates a user.
+3. Add `- DOZZLE_AUTH_PROVIDER=simple` to the `environment` of the `application` service in `compose.yaml`.
+4. Run `docker compose up -d --force-recreate`.
+
+Dozzle ignores the example in `dozzle-data/users.yml` itself.
 
 ## Links
 
