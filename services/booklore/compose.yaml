@@ -68,6 +68,7 @@ services:
         condition: service_healthy
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:6060/api/v1/healthcheck"] # Check if the service is responding
       interval: 1m # How often to perform the check

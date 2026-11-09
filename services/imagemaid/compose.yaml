@@ -52,6 +52,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: the image has no HEALTHCHECK, no endpoint, and no pgrep. ImageMaid is the only python3 process
     # in the container, so check for python3 with pidof.
     healthcheck:

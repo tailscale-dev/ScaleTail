@@ -46,6 +46,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: none needed. Configarr runs one sync and exits.
     restart: "no" # Configarr runs one sync and exits. Schedule repeated runs externally, for example with cron.
 

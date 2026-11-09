@@ -80,5 +80,6 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: defined by the image (curl against /api/version, with a 300s start period), so this file does not override it.
     restart: always

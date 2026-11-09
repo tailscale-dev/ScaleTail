@@ -47,6 +47,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "pgrep", "-x", "supercronic"] # Check if the cron scheduler is running
       interval: 1m # How often to perform the check

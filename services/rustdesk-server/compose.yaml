@@ -49,6 +49,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       hbbr:
         condition: service_started
     # Healthcheck: none possible. The image contains only the hbbs and hbbr binaries, with no shell, HTTP client, or health command.
