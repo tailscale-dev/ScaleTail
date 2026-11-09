@@ -199,6 +199,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 | Service                | Description                                                                                 | Link                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------- |
+| **Dashy**              | Dashboard with status checks, widgets, and an editor in the web interface.                  | [Details](services/dashy)              |
 | **Glance**             | Dashboard that puts feeds, such as RSS, weather, and markets, on one page.                  | [Details](services/glance)             |
 | **Homarr**             | Dashboard with user accounts that shows live data from the apps you connect.                | [Details](services/homarr)             |
 | **Homepage**           | Dashboard that you set up in YAML files, with bookmarks and live data from apps and Docker. | [Details](services/homepage)           |
