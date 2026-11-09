@@ -224,6 +224,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Ollama**    | Runtime for large language models, with an OpenAI-compatible API and no login.          | [Details](services/ollama)    |
 | **Portainer** | Web interface to manage Docker containers, images, volumes, and networks.               | [Details](services/portainer) |
 | **SearXNG**   | Metasearch engine that combines results from many search services without tracking.     | [Details](services/searxng)   |
+| **Semaphore** | Web interface to run Ansible playbooks, Terraform, and scripts, with schedules.         | [Details](services/semaphore) |
 
 ### Monitoring and analytics
 
