@@ -15,7 +15,7 @@
 - [ ] `docker compose config --quiet` from each changed service directory, with dummy values for required variables
 - [ ] The stack started, Tailscale is healthy, and the service is reachable through the Tailnet
 - [ ] The main function of the service works, and its data survives a restart
-- [ ] `rumdl check --config .markdownlint.yml .` on the whole repository, and `git diff --check`
+- [ ] `rumdl check --config .markdownlint.yml .` on the whole repository, and `git diff --check origin/main`
 
 ## Impact on existing users
 <!-- Say what users of an existing stack must do after they pull this change, such as moving data, renaming a volume, or setting a new variable. Use "None" if not applicable. -->
