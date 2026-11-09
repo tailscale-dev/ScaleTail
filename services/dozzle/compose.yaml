@@ -55,7 +55,7 @@ services:
     environment:
       - TZ=${TZ}
     volumes:
-      - ./${SERVICE}-data:/data # users.yml for the login, and the session secret
+      - ./${SERVICE}-data/data:/data
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
       tailscale:
