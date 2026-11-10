@@ -39,11 +39,11 @@ Without `DOZZLE_AUTH_PROVIDER=simple`, Dozzle ignores `users.yml`. With it, Dozz
 
 ## Upgrading
 
-Earlier versions of this stack mounted `./dozzle-data/dozzle-data` as `/data`, but kept the example `users.yml` one level higher, where Dozzle did not read it. The stack now mounts `./dozzle-data/data`, and the example is in that folder. If you created files in `dozzle-data/dozzle-data/`, such as your own `users.yml`, move them to the new folder before you start the new version:
+Earlier versions of this stack mounted `./dozzle-data/dozzle-data` as `/data`, but kept the example `users.yml` one level higher, where Dozzle did not read it. The stack now mounts `./dozzle-data/data`, and the example is in that folder. If you created files in `dozzle-data/dozzle-data/`, such as your own `users.yml`, move them to the new folder before you start the new version. Docker created that folder, and Dozzle wrote the files in it, as `root`, so `mv` needs `sudo`:
 
 ```bash
 docker compose down
-mv dozzle-data/dozzle-data/* dozzle-data/data/
+sudo mv dozzle-data/dozzle-data/* dozzle-data/data/
 rmdir dozzle-data/dozzle-data
 docker compose up -d
 ```
