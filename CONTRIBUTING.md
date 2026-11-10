@@ -114,7 +114,7 @@ do not have to fix the rest of a stack that you touch.
      create, and required host groups or devices. List every required secret
      and say that Compose stops with an error until it is set.
    - **Deviations from the standard setup.** List every difference from
-     [the standard setup](/documentation/standard-setup.md) and give the
+     [the standard setup](documentation/standard-setup.md) and give the
      reason. Examples are extra containers, published host ports, a changed
      or removed Serve configuration, DNS settings, and added capabilities.
    - **First run.** Describe what the user does after the first start, such
@@ -133,7 +133,7 @@ do not have to fix the rest of a stack that you touch.
    - **Troubleshooting.** Known errors and their solutions.
    - **Upgrading.** Required when a change makes existing users act, such as a
      new required secret, a moved data folder, or a changed `SERVICE`. Say what
-     to do, as in [FossFLOW](/services/fossflow/README.md#upgrading).
+     to do, as in [FossFLOW](services/fossflow/README.md#upgrading).
 
    State only what you confirmed in the Compose file, the upstream
    documentation, or a running stack. Put guidance that applies to more than
@@ -158,25 +158,6 @@ do not have to fix the rest of a stack that you touch.
   `.env` values may refer to them.
 
 Preserve valid service-specific exceptions.
-
-## Links in Markdown
-
-Link to a file or folder of this repository with a path that starts at the
-repository root, with a leading `/`, such as
-`[the standard setup](/documentation/standard-setup.md)` or
-`[Plex](/services/plex/README.md#upgrading)`. GitHub resolves these on every
-branch and fork, and they stay valid when the file that holds the link moves.
-
-- Do not use relative paths such as `../`, `./`, or `README.md`, and do not
-  link to the repository on github.com with a `blob/` or `tree/` URL.
-- Use a full `https://` URL for everything outside this repository, such as
-  the upstream documentation.
-- Files in `.github/` are the exception. They also appear in pull request and
-  issue forms, where `/` paths do not resolve, so they use full URLs.
-- CI fails on a link to a missing file or heading, and on the forms above.
-  Links in code spans and fenced code blocks are not checked, so you can show an
-  example. Run the check locally with
-  `python3 .github/scripts/check-link-style.py`.
 
 ## Verify your change
 

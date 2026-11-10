@@ -4,7 +4,7 @@
 
 This stack accepts mail for every address at one domain, as a catch-all inbox, and does not relay it.
 
-This stack runs Mailpit with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Mailpit with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

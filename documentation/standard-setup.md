@@ -1,6 +1,6 @@
 # The standard ScaleTail setup
 
-Every service in this repository starts from the same [template](/templates/service-template/). This page describes that shared setup once. The README of a service only lists what differs, under the heading "Deviations from the standard setup".
+Every service in this repository starts from the same [template](../templates/service-template/). This page describes that shared setup once. The README of a service only lists what differs, under the heading "Deviations from the standard setup".
 
 ## Containers
 

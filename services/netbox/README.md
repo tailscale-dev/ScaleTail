@@ -2,7 +2,7 @@
 
 [NetBox](https://netboxlabs.com/oss/netbox/) is a source of truth for IP addresses, racks, devices, connections, and circuits.
 
-This stack runs NetBox with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs NetBox with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

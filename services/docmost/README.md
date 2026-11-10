@@ -2,7 +2,7 @@
 
 [Docmost](https://docmost.com/) is a team wiki with real-time collaborative editing.
 
-This stack runs Docmost with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Docmost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

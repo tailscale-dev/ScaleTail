@@ -2,7 +2,7 @@
 
 [Stirling-PDF](https://github.com/Stirling-Tools/Stirling-PDF) is a PDF toolbox that runs on the server. The free plan includes the tools for up to five users.
 
-This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the stan
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

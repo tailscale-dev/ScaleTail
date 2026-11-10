@@ -2,7 +2,7 @@
 
 [Node-RED](https://nodered.org/) is a low-code, flow-based tool for event-driven applications.
 
-This stack runs Node-RED with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Node-RED with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

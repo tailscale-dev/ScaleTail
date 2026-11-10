@@ -2,7 +2,7 @@
 
 [Speedtest Tracker](https://docs.speedtest-tracker.dev/) runs scheduled internet speed tests and charts the results.
 
-This stack runs Speedtest Tracker with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Speedtest Tracker with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

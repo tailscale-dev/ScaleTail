@@ -1,1 +1,2 @@
-{ "default": true, "MD013": false, "MD033": false, "MD057": { "absolute-links": "relative_to_roots" } }
+{ "default": true, "MD013": false, "MD033": false }
+

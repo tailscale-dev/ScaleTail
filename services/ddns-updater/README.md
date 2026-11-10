@@ -2,7 +2,7 @@
 
 [DDNS Updater](https://github.com/qdm12/ddns-updater) keeps DNS records pointed at your current public IP address.
 
-This stack runs DDNS Updater with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs DDNS Updater with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

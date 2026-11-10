@@ -4,7 +4,7 @@
 
 Upstream archived the project on June 29, 2025. Its author points to the maintained fork Pingvin Share X.
 
-This stack runs Pingvin Share with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Pingvin Share with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -18,7 +18,7 @@ This stack runs Pingvin Share with a Tailscale sidecar, as described in [the sta
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

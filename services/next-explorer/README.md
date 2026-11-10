@@ -2,7 +2,7 @@
 
 [NextExplorer](https://github.com/nxzai/NextExplorer) is a web file manager for the folder you give it.
 
-This stack runs NextExplorer with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs NextExplorer with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

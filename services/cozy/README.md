@@ -2,7 +2,7 @@
 
 [Cozy](https://cozy.io/) (now Twake Workplace) is a self-hosted personal cloud with apps for files, photos, notes, and contacts. The `cozy-stack` server runs the apps, and each app has its own address.
 
-This stack runs Cozy with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md). Because Cozy serves every app on its own host name, it adds one extra Tailnet device per app.
+This stack runs Cozy with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md). Because Cozy serves every app on its own host name, it adds one extra Tailnet device per app.
 
 ## At a glance
 

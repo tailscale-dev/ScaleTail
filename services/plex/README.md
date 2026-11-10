@@ -2,7 +2,7 @@
 
 [Plex Media Server](https://www.plex.tv/) organises your movies, series, and music and streams them to the Plex apps on your devices.
 
-This stack runs Plex with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Plex with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

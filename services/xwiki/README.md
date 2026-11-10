@@ -2,7 +2,7 @@
 
 [XWiki](https://www.xwiki.org) is a wiki for documentation and knowledge management.
 
-This stack runs XWiki with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs XWiki with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

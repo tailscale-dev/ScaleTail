@@ -2,7 +2,7 @@
 
 [SERVICE](LINK TO THE UPSTREAM PROJECT) EXPLAIN WHAT THE SERVICE DOES IN ONE OR TWO SENTENCES.
 
-This stack runs SERVICE with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs SERVICE with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs SERVICE with a Tailscale sidecar, as described in [the standard 
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

@@ -2,7 +2,7 @@
 
 [Caddy](https://caddyserver.com/) is a web server and reverse proxy with automatic HTTPS. In this stack, it serves or proxies your own sites on your Tailnet.
 
-This stack runs Caddy with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Caddy with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

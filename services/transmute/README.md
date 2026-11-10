@@ -2,7 +2,7 @@
 
 [Transmute](https://github.com/transmute-app/transmute) converts and compresses images, video, audio, and documents, with a web interface and an API.
 
-This stack runs Transmute with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Transmute with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Transmute with a Tailscale sidecar, as described in [the standar
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

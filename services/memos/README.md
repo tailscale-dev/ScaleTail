@@ -2,7 +2,7 @@
 
 [Memos](https://usememos.com/) is a note-taking app for short Markdown notes, shown on a timeline.
 
-This stack runs Memos with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Memos with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

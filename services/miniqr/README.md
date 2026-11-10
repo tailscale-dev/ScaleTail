@@ -2,7 +2,7 @@
 
 [Mini QR](https://github.com/lyqht/mini-qr) creates, styles, and scans QR codes in the browser.
 
-This stack runs Mini QR with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Mini QR with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Mini QR with a Tailscale sidecar, as described in [the standard 
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

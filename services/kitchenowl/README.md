@@ -2,7 +2,7 @@
 
 [KitchenOwl](https://kitchenowl.org/) is a grocery list and recipe manager for households, with meal planning and expenses.
 
-This stack runs KitchenOwl with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs KitchenOwl with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -32,7 +32,7 @@ In the KitchenOwl apps, use `https://kitchenowl.<tailnet>.ts.net` as the server 
 
 ### OpenID Connect
 
-KitchenOwl can use an OpenID Connect provider for the login, such as Authentik, Authelia, Keycloak, or [Pocket ID](/services/pocket-id/).
+KitchenOwl can use an OpenID Connect provider for the login, such as Authentik, Authelia, Keycloak, or [Pocket ID](../pocket-id/).
 
 1. Set `FRONT_URL` in `.env` to the exact address of the web interface, and fill in `OIDC_ISSUER`, `OIDC_CLIENT_ID`, and `OIDC_CLIENT_SECRET`.
 2. Uncomment the matching lines in the `environment` block of `compose.yaml`.

@@ -2,7 +2,7 @@
 
 [Actual Budget](https://actualbudget.org/) is a personal finance app for budgeting.
 
-This stack runs Actual Budget with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Actual Budget with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Actual Budget with a Tailscale sidecar, as described in [the sta
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

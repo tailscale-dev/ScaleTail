@@ -2,7 +2,7 @@
 
 [Frigate](https://frigate.video/) is a network video recorder with real-time AI object detection for IP cameras, using an optional GPU or accelerator.
 
-This stack runs Frigate with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Frigate with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

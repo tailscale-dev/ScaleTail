@@ -2,7 +2,7 @@
 
 [Gitea](https://about.gitea.com/) is a Git service with repositories, pull requests, issues, packages, and CI.
 
-This stack runs Gitea with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Gitea with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs Gitea with a Tailscale sidecar, as described in [the standard se
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

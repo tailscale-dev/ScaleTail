@@ -2,7 +2,7 @@
 
 [Seerr](https://github.com/seerr-team/seerr) is a request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.
 
-This stack runs Seerr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Seerr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -28,7 +28,7 @@ sudo chown -R 1000:1000 seerr-data
 
 ## First run
 
-Open the web interface and follow the setup. You choose your media server, sign in with it, and add Radarr and Sonarr. To reach an application in another stack, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
+Open the web interface and follow the setup. You choose your media server, sign in with it, and add Radarr and Sonarr. To reach an application in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
 
 ## Links
 

@@ -2,7 +2,7 @@
 
 [LubeLogger](https://lubelogger.com/) tracks vehicle maintenance and fuel use.
 
-This stack runs LubeLogger with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs LubeLogger with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

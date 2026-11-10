@@ -2,7 +2,7 @@
 
 [CyberChef](https://github.com/gchq/CyberChef) is a web app for encoding, decoding, encrypting, compressing, and analysing data.
 
-This stack runs CyberChef with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs CyberChef with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs CyberChef with a Tailscale sidecar, as described in [the standar
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

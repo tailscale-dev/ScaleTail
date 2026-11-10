@@ -2,7 +2,7 @@
 
 A Tailscale [exit node](https://tailscale.com/kb/1103/exit-nodes) routes the internet traffic of other Tailnet devices through this host.
 
-This stack runs only the Tailscale container from [the standard setup](/documentation/standard-setup.md), configured as an exit node.
+This stack runs only the Tailscale container from [the standard setup](../../documentation/standard-setup.md), configured as an exit node.
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs only the Tailscale container from [the standard setup](/document
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

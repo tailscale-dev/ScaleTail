@@ -2,7 +2,7 @@
 
 [Uptime Kuma](https://github.com/louislam/uptime-kuma) monitors websites and services and notifies you when one is down.
 
-This stack runs Uptime Kuma with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Uptime Kuma with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Uptime Kuma with a Tailscale sidecar, as described in [the stand
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
@@ -25,7 +25,7 @@ Nothing beyond the [Quick Start](/README.md#quick-start).
 
 1. Open the web interface. Uptime Kuma first asks which database to use. SQLite needs no further settings.
 2. Create the administrator account.
-3. Add your first monitor. To monitor a service in another stack, see the [DNS section of the standard setup](/documentation/standard-setup.md#dns).
+3. Add your first monitor. To monitor a service in another stack, see the [DNS section of the standard setup](../../documentation/standard-setup.md#dns).
 
 ## Links
 

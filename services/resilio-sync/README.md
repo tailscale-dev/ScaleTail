@@ -2,7 +2,7 @@
 
 [Resilio Sync](https://www.resilio.com/sync/) synchronises folders directly between your devices, without a central server.
 
-This stack runs Resilio Sync with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Resilio Sync with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

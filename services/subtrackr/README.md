@@ -2,7 +2,7 @@
 
 [SubTrackr](https://github.com/bscott/subtrackr) tracks subscriptions, with monthly and yearly totals and renewal dates.
 
-This stack runs SubTrackr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs SubTrackr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs SubTrackr with a Tailscale sidecar, as described in [the standar
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

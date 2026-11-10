@@ -2,7 +2,7 @@
 
 [Mattermost](https://mattermost.com/) is a team chat platform with channels, direct messages, and integrations.
 
-This stack runs Mattermost with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Mattermost with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

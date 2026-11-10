@@ -2,7 +2,7 @@
 
 [Copyparty](https://github.com/9001/copyparty) is a file server with resumable uploads, browser access, and WebDAV.
 
-This stack runs Copyparty with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Copyparty with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

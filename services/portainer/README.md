@@ -2,7 +2,7 @@
 
 [Portainer](https://www.portainer.io/) is a web interface to manage Docker containers, images, volumes, and networks.
 
-This stack runs Portainer with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Portainer with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Portainer with a Tailscale sidecar, as described in [the standar
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

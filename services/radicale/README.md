@@ -2,7 +2,7 @@
 
 [Radicale](https://radicale.org/) is a CalDAV and CardDAV server that synchronises calendars, to-do lists, and contacts.
 
-This stack runs Radicale with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Radicale with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

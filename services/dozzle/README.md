@@ -2,7 +2,7 @@
 
 [Dozzle](https://dozzle.dev/) is a web interface to follow the logs of your Docker containers in real time.
 
-This stack runs Dozzle with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Dozzle with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs Dozzle with a Tailscale sidecar, as described in [the standard s
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

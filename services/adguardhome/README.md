@@ -2,7 +2,7 @@
 
 [AdGuard Home](https://github.com/AdguardTeam/AdGuardHome) is a DNS server that blocks advertisements and trackers for every device that uses it.
 
-This stack runs AdGuard Home with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs AdGuard Home with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -18,7 +18,7 @@ This stack runs AdGuard Home with a Tailscale sidecar, as described in [the stan
 
 ## Before you start
 
-The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](/documentation/free-up-port-53.md).
+The stack publishes port `53` on the Docker host. On a host that runs `systemd-resolved`, this port is in use. See [Free up port 53 on the Docker host](../../documentation/free-up-port-53.md).
 
 ## Deviations from the standard setup
 

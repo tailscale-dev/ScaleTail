@@ -2,7 +2,7 @@
 
 [Arcane](https://getarcane.app/) is a web interface to manage Docker containers, images, networks, volumes, and Compose projects.
 
-This stack runs Arcane with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Arcane with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

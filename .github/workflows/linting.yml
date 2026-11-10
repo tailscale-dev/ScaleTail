@@ -37,12 +37,6 @@ jobs:
             exit 1
           fi
 
-      # rumdl checks that each link target exists. This step enforces the link
-      # style of CONTRIBUTING.md: paths from the repository root, not relative
-      # paths or github.com blob/tree URLs. Files in .github/ keep full URLs.
-      - name: Check the link style
-        run: python3 .github/scripts/check-link-style.py
-
       - name: Lint Markdown
         uses: rvben/rumdl@19006897519812a2fdc508314b34738e5c281233 # v0.3.0
         with:

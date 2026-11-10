@@ -4,7 +4,7 @@
 
 The upstream repository is archived, so the project gets no further updates.
 
-This stack runs Hemmelig with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Hemmelig with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

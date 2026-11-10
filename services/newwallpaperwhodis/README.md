@@ -2,7 +2,7 @@
 
 [NewWallpaperWhoDis](https://newwallpaperwhodis.web.app/) is a wallpaper server that rotates a folder of images on browsers, tablets, TVs, and dashboards.
 
-This stack runs NewWallpaperWhoDis with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs NewWallpaperWhoDis with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs NewWallpaperWhoDis with a Tailscale sidecar, as described in [th
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

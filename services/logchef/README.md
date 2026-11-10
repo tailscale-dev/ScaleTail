@@ -2,7 +2,7 @@
 
 [Logchef](https://logchef.app) is a log analytics interface for logs that already live in ClickHouse or VictoriaLogs. It queries them with its own LogchefQL syntax or with SQL, and keeps its teams, sources and saved queries in a local SQLite file.
 
-This stack runs Logchef with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Logchef with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

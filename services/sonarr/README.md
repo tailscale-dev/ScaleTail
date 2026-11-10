@@ -2,7 +2,7 @@
 
 [Sonarr](https://github.com/Sonarr/Sonarr) is a series manager that searches Usenet and BitTorrent for new episodes and sorts them into your library.
 
-This stack runs Sonarr with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Sonarr with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

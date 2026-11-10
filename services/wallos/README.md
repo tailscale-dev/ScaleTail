@@ -2,7 +2,7 @@
 
 [Wallos](https://github.com/ellite/Wallos) tracks subscriptions, with payment reminders and budgets.
 
-This stack runs Wallos with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Wallos with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -16,7 +16,7 @@ This stack runs Wallos with a Tailscale sidecar, as described in [the standard s
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

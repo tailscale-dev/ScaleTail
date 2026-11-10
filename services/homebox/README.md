@@ -2,7 +2,7 @@
 
 [Homebox](https://homebox.software/) is a home inventory for items, with their location, quantity, warranty, and purchase details.
 
-This stack runs Homebox with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Homebox with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

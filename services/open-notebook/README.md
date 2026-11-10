@@ -2,7 +2,7 @@
 
 [Open Notebook](https://www.open-notebook.ai/) is an open-source, self-hosted alternative to Google's NotebookLM. You collect sources such as web pages, PDFs, and text in notebooks, then chat with them, search them, and generate notes and podcasts with the AI provider of your choice.
 
-This stack runs Open Notebook with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md). The image does not include Tailscale, so the sidecar gives it Tailnet access.
+This stack runs Open Notebook with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md). The image does not include Tailscale, so the sidecar gives it Tailnet access.
 
 ## At a glance
 

@@ -2,7 +2,7 @@
 
 [SearXNG](https://github.com/searxng/searxng) is a metasearch engine that combines results from many search services and does not track or profile its users.
 
-This stack runs SearXNG with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs SearXNG with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

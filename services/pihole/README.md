@@ -2,7 +2,7 @@
 
 [Pi-hole](https://github.com/pi-hole/pi-hole) is a DNS sinkhole that blocks advertisements and trackers for every device that uses it.
 
-This stack runs Pi-hole with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Pi-hole with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -17,7 +17,7 @@ This stack runs Pi-hole with a Tailscale sidecar, as described in [the standard 
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
@@ -62,7 +62,7 @@ Uncomment the `ports:` line of the `tailscale` service in `compose.yaml` and add
 
 Pi-hole also needs the **Permit all origins** setting for this, because the queries arrive through Docker's bridge network.
 
-On a host that runs `systemd-resolved`, port `53` is already in use. See [Free up port 53 on the Docker host](/documentation/free-up-port-53.md).
+On a host that runs `systemd-resolved`, port `53` is already in use. See [Free up port 53 on the Docker host](../../documentation/free-up-port-53.md).
 
 ## Links
 

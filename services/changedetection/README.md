@@ -2,7 +2,7 @@
 
 [changedetection.io](https://github.com/dgtlmoon/changedetection.io) watches web pages and notifies you when their content changes.
 
-This stack runs changedetection.io with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs changedetection.io with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs changedetection.io with a Tailscale sidecar, as described in [th
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 

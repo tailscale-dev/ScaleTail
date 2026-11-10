@@ -2,7 +2,7 @@
 
 [Umami](https://umami.is/) is a web analytics platform that uses no cookies and collects no personal data.
 
-This stack runs Umami with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Umami with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 

@@ -2,7 +2,7 @@
 
 [Gramps Web](https://www.grampsweb.org/) is a genealogy web app for browsing and editing a family tree together.
 
-This stack runs Gramps Web with a Tailscale sidecar, as described in [the standard setup](/documentation/standard-setup.md).
+This stack runs Gramps Web with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
@@ -20,7 +20,7 @@ This stack runs Gramps Web with a Tailscale sidecar, as described in [the standa
 
 ## Before you start
 
-Nothing beyond the [Quick Start](/README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
