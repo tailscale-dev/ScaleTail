@@ -172,6 +172,9 @@ services:
   redis:
     image: redis:8-alpine
     container_name: app-${SERVICE}-redis # Name for local container management
+    # Logs each write to an append-only file and syncs it every second. With the default snapshots only,
+    # a crash could lose queued jobs, such as emails that still have to be sent.
+    command: ["redis-server", "--appendonly", "yes", "--appendfsync", "everysec"]
     volumes:
       - ./${SERVICE}-data/redis:/data
     healthcheck:

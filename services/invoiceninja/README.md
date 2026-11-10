@@ -38,11 +38,11 @@ sudo chown 999:999 invoiceninja-data/storage
 ## Deviations from the standard setup
 
 - **Image.** The stack uses the official Octane image, in which FrankenPHP serves the web interface on port `80`. The older `invoiceninja/invoiceninja` image is deprecated. The official Debian image runs PHP-FPM and needs a separate nginx container.
-- **Extra containers.** Three more containers run the same image, and two run its dependencies. Only the application uses the network of the `tailscale` container. The others use the default Compose network, and none is reachable from your Tailnet. Keep `TS_ACCEPT_DNS` disabled, because the containers find each other by their Compose service names.
+- **Extra containers.** Two more containers run the same image, and two run its dependencies. Only the application uses the network of the `tailscale` container. The others use the default Compose network, and none is reachable from your Tailnet. Keep `TS_ACCEPT_DNS` disabled, because the containers find each other by their Compose service names.
   - `worker` (`app-invoiceninja-worker`) runs the job queue, which sends emails and runs background jobs. The upstream Compose file runs two workers. This stack runs one, because a container with a fixed name cannot have replicas.
   - `scheduler` (`app-invoiceninja-scheduler`) runs recurring invoices, reminders, and other scheduled tasks.
   - `db` (`app-invoiceninja-db`) runs MySQL.
-  - `redis` (`app-invoiceninja-redis`) runs Redis, for the cache, the sessions, and the job queue.
+  - `redis` (`app-invoiceninja-redis`) runs Redis, for the cache, the sessions, and the job queue. It logs each write to an append-only file, which the upstream Compose file does not, so a crash loses at most about one second of queued jobs.
 - **Scheduler command.** The scheduler runs `php artisan schedule:work`, not the FrankenPHP command of the upstream Compose file. Through FrankenPHP, every scheduled task fails with `unknown command "artisan" for "frankenphp"`, see [invoiceninja/dockerfiles#902](https://github.com/invoiceninja/dockerfiles/issues/902).
 - **Health checks.** The worker and the scheduler check their own process with `pgrep`, because the health check of the image calls the web server, which runs only in the application container.
 - **Settings.** `compose.yaml` passes the settings of Invoice Ninja to each container. The upstream Compose file reads the whole `.env` instead, which would also give the containers your Tailscale auth key and the root password of the database.
@@ -56,6 +56,7 @@ Open the web interface and log in with `IN_USER_EMAIL` and `IN_PASSWORD` from `.
 ## Configuration
 
 - **Email.** By default, `MAIL_MAILER=log` writes each email to `./invoiceninja-data/storage/logs/laravel.log` instead of sending it. To send emails, set `MAIL_MAILER=smtp`, and set `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_ENCRYPTION`, `MAIL_FROM_ADDRESS`, and `MAIL_FROM_NAME` in `.env`. Then run `docker compose up -d` to recreate the containers.
+- **Clients outside your Tailnet.** The web interface and the client portal are reachable only on your Tailnet. By default, an email to a client links to the client portal, so a client who is not on your Tailnet cannot open the invoice or pay it online. To send the invoice itself, enable "Attach PDF" under Settings > Email Settings in the web interface. Payment gateways and email providers cannot reach Invoice Ninja with webhooks either, so features that depend on them, such as payment updates from a gateway, do not work.
 
 ## Links
 
