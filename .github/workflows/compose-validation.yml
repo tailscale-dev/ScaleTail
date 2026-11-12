@@ -37,8 +37,11 @@ jobs:
       # ("The X variable is not set") is an error, and so is a required
       # variable that .env does not list or a Serve configuration that is not
       # valid JSON. Compose leaves a config that no service uses out of its
-      # output, so a second pass without interpolation reads those.
+      # output, so a second pass without interpolation reads those. This step
+      # also runs when the service list check above fails, so that one run
+      # reports both.
       - name: Run docker compose config
+        if: ${{ !cancelled() }}
         shell: bash
         run: |
           docker compose version
