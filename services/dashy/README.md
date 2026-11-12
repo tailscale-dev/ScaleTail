@@ -34,7 +34,7 @@ Nothing to set up. Open the web interface. To add your services, edit `./dashy-d
 ## Configuration
 
 - **Your services.** See [Configuring](https://dashy.to/docs/configuring) for the options, and [Widgets](https://dashy.to/docs/widgets) and [Status indicators](https://dashy.to/docs/status-indicators) for live data.
-- **Who can edit.** Without [authentication](https://dashy.to/docs/authentication), everyone who can open the dashboard can also change and save its configuration. Set up authentication, or restrict access to the device in your Tailnet policy.
+- **Who can edit.** Without [authentication](https://dashy.to/docs/authentication), everyone who can open the dashboard can also change and save its configuration. A list of users under `appConfig.auth.users` only adds a login page. Saving stays open until you also add `- ENABLE_HTTP_AUTH=true` to the `environment` list of the `application` service, or use a login that the server checks, such as OIDC. You can also restrict access to the device in your Tailnet policy.
 
 ## Links
 
