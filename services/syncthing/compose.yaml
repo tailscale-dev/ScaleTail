@@ -60,7 +60,7 @@ services:
       - PGID=${PGID} # Group that owns the synced files
       - TZ=${TZ}
     volumes:
-      - ./${SERVICE}-data:/var/syncthing # Syncthing configuration in ./config and the default folder in ./Sync
+      - ./${SERVICE}-data:/var/syncthing # Syncthing configuration, in the config subfolder, and the folders you sync
     depends_on:
       tailscale:
         condition: service_healthy
