@@ -56,13 +56,13 @@ services:
       - TZ=${TZ}
       - SEMAPHORE_DB_DIALECT=sqlite # Store everything in one SQLite file, so the stack needs no database container
       - SEMAPHORE_ACCESS_KEY_ENCRYPTION=${SEMAPHORE_ACCESS_KEY_ENCRYPTION:?Set SEMAPHORE_ACCESS_KEY_ENCRYPTION in .env} # Encrypts the stored SSH keys and passwords. Never change it.
-      # The variables below are used only at the first start, when Semaphore writes ./config/config.json and creates the admin account.
+      # The variables below are used only at the first start, when Semaphore writes config.json to the config folder below and creates the admin account.
       - SEMAPHORE_ADMIN=${SEMAPHORE_ADMIN}
       - SEMAPHORE_ADMIN_NAME=${SEMAPHORE_ADMIN_NAME}
       - SEMAPHORE_ADMIN_EMAIL=${SEMAPHORE_ADMIN_EMAIL}
       - SEMAPHORE_ADMIN_PASSWORD=${SEMAPHORE_ADMIN_PASSWORD:?Set SEMAPHORE_ADMIN_PASSWORD in .env}
     volumes:
-      - ./${SERVICE}-data/config:/etc/semaphore # config.json, with the encryption key for stored secrets. Must be writable by user 1001.
+      - ./${SERVICE}-data/config:/etc/semaphore # config.json. Must be writable by user 1001.
       - ./${SERVICE}-data/data:/var/lib/semaphore # SQLite database. Must be writable by user 1001.
     depends_on:
       tailscale:
