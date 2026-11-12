@@ -23,7 +23,7 @@ This stack runs LibreTranslate with a Tailscale sidecar, as described in [the st
    sudo chown 1032 libretranslate-data/models
    ```
 
-2. Choose the languages in `LT_LOAD_ONLY` in `.env`. The default, `en,de,fr,es`, downloads about 900 MB of models. When `LT_LOAD_ONLY` is empty, LibreTranslate downloads every language it supports, which takes several gigabytes.
+2. Choose the languages in `LT_LOAD_ONLY` in `.env`. The default, `en,de,fr,es`, downloads about 900 MB of models. Do not leave `LT_LOAD_ONLY` empty: LibreTranslate then downloads no models, logs `Unavailable language codes`, and does not start. To download every language it supports, which takes several gigabytes, remove the `LT_LOAD_ONLY` line from the `environment` list of the `application` service in `compose.yaml`.
 
 ## Deviations from the standard setup
 
@@ -31,7 +31,7 @@ None.
 
 ## First run
 
-1. Start the stack. At the first start, LibreTranslate downloads the models for the languages in `LT_LOAD_ONLY`, and the web interface is not available until it has finished. With the default languages this took about 10 minutes in testing. The container reports healthy during the download, so follow the progress in the log:
+1. Start the stack. At the first start, LibreTranslate downloads the models for the languages in `LT_LOAD_ONLY`, and the web interface is not available until it has finished. With the default languages this took about 10 minutes in testing. The container reports healthy during the download, and the log shows nothing until the download has finished, so wait for the log to continue:
 
    ```bash
    docker compose logs -f application
@@ -50,7 +50,7 @@ None.
   ```
 
 - **More languages.** LibreTranslate downloads models by itself only when it has none. To add languages later, add their codes to `LT_LOAD_ONLY`, add `- LT_UPDATE_MODELS=true` to the `environment` list of the `application` service, and run `docker compose up -d`. Remove the line again when the download has finished, so that LibreTranslate does not check for model updates at every start.
-- **Other settings.** LibreTranslate reads every command-line option from an `LT_` environment variable, such as `LT_REQ_LIMIT` and `LT_API_KEYS`. Add them to the `environment` list of the `application` service. See [Arguments](https://docs.libretranslate.com/guides/installation/#arguments).
+- **Other settings.** LibreTranslate reads every command-line option from an `LT_` environment variable, such as `LT_REQ_LIMIT` and `LT_CHAR_LIMIT`. Add them to the `environment` list of the `application` service. See [Arguments](https://docs.libretranslate.com/guides/installation/#arguments).
 
 ## Links
 

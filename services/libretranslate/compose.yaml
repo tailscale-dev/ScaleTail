@@ -65,5 +65,5 @@ services:
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
-      start_period: 5m # Time to wait before starting health checks. The first start downloads the language models.
+      start_period: 30s # Time to wait before starting health checks
     restart: always
