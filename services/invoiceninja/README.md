@@ -51,7 +51,7 @@ sudo chown 999:999 invoiceninja-data/storage
 
 ## First run
 
-Open the web interface and log in with `IN_USER_EMAIL` and `IN_PASSWORD` from `.env`.
+Open the web interface and log in with `IN_USER_EMAIL` and `IN_PASSWORD` from `.env`. Then change the password in the web interface. The first password stays in `.env`, because Compose needs both values at every start, although Invoice Ninja reads them only at the first.
 
 ## Configuration
 
