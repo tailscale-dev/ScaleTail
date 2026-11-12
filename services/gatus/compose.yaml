@@ -54,8 +54,9 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment: # Variables are declared in .env file.
       - TZ=${TZ}
+      - GATUS_CONFIG_PATH=/config # Read every YAML file in the config folder, so that your endpoints can live in a file of your own
     volumes:
-      - ./${SERVICE}-data/config:/config # config.yaml with the endpoints to check. Mount the folder, not the file, so that Gatus sees your changes.
+      - ./${SERVICE}-data/config:/config # config.yaml and your own YAML files with the endpoints to check
       - ./${SERVICE}-data/data:/data # SQLite database with the results
     depends_on:
       tailscale:

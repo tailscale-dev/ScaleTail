@@ -1,6 +1,7 @@
-# Gatus configuration. Add the endpoints that Gatus should check below.
+# Starter configuration of Gatus. The repository tracks this file, so leave it as it is.
+# Put your own endpoints in a file of your own in this folder, such as endpoints.yaml.
+# Gatus reads every YAML file in this folder and merges them.
 # All options: https://github.com/TwiN/gatus#configuration
-# Gatus reloads this file when you save it. Check the log for errors after each change.
 
 storage:
   type: sqlite # Keep the results and uptime history across restarts
@@ -15,7 +16,7 @@ endpoints:
       - "[STATUS] == 200"
       - "[BODY].status == UP"
 
-  # Example: a web service on another device in your Tailnet, by its Tailscale IP address
+  # Example for your own file: a web service on another device in your Tailnet, by its Tailscale IP address
   #- name: Example service
   #  group: Tailnet
   #  url: "http://100.64.0.1:8080/"
