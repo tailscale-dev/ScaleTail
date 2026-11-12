@@ -11,7 +11,7 @@ Each stack runs two containers that share one network namespace.
 | `tailscale`     | `tailscale-<service>`   | Joins your Tailnet as a device named after `SERVICE` in `.env`.       |
 | `application`   | `app-<service>`         | Runs the service and uses the network of the `tailscale` container.   |
 
-The application uses `network_mode: service:tailscale` and starts only after the `tailscale` container reports healthy. When Compose restarts the `tailscale` container, such as with `docker compose restart`, it also restarts the application, because the application must join the new network of the container. If the `tailscale` container stops on its own and Docker restarts it, Compose is not involved, and the application keeps the old network. Run `docker compose restart application` to reconnect it.
+The application uses `network_mode: service:tailscale` and starts only after the `tailscale` container reports healthy. When Compose restarts the `tailscale` container, such as with `docker compose restart`, it also restarts the application, because the application must join the new network of the container. If the `tailscale` container stops on its own and Docker restarts it, Compose is not involved, and the application keeps the old network. Run `docker compose restart` to reconnect every container of the stack.
 
 ## Tailnet access
 
