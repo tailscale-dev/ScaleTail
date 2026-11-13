@@ -1,0 +1,30 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/Lissy93/dashy/master/src/utils/config/ConfigSchema.json
+---
+# Dashy configuration. Edit this file, or use the editor in the web interface, which saves to this file.
+# All options: https://dashy.to/docs/configuring
+
+# Page meta info, like heading, footer text and nav links
+pageInfo:
+  title: Dashy
+  description: Welcome to your new dashboard!
+  navLinks:
+    - title: Documentation
+      path: https://dashy.to/docs
+
+# Optional app settings and configuration
+appConfig:
+  theme: colorful
+
+# Main content - An array of sections, each containing an array of items
+sections:
+  - name: Getting Started
+    icon: fas fa-rocket
+    items:
+      - title: Docs
+        description: Configuring & Usage Documentation
+        icon: far fa-book
+        url: https://dashy.to/docs
+      - title: GitHub
+        description: Source Code, Issues and Pull Requests
+        icon: si-github
+        url: https://github.com/lissy93/dashy
