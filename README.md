@@ -210,24 +210,25 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 ### Development tools
 
-| Service       | Description                                                                             | Link                          |
-| ------------- | --------------------------------------------------------------------------------------- | ----------------------------- |
-| **Arcane**    | Web UI to manage Docker containers, images, networks, volumes, and Compose projects.    | [Details](services/arcane)    |
-| **Coder**     | Platform for development environments and AI coding agents, from Terraform.             | [Details](services/coder)     |
-| **CyberChef** | Web app for encoding, decoding, encrypting, compressing, and analyzing data.            | [Details](services/cyberchef) |
-| **Dockge**    | Web interface to manage Docker Compose stacks.                                          | [Details](services/dockge)    |
-| **Dockhand**  | Docker manager for local and remote hosts, free for home use.                           | [Details](services/dockhand)  |
-| **Dozzle**    | Real-time log viewer for Docker containers.                                             | [Details](services/dozzle)    |
-| **Forgejo**   | Community-governed fork of Gitea.                                                       | [Details](services/forgejo)   |
-| **FossFLOW**  | Tool for drawing isometric infrastructure diagrams.                                     | [Details](services/fossflow)  |
-| **Gitea**     | Git service with repositories, pull requests, issues, packages, and CI.                 | [Details](services/gitea)     |
-| **GitSave**   | Backup tool for your Git repositories, run on a schedule.                               | [Details](services/gitsave)   |
-| **IT-Tools**  | Online tools for developers and IT staff, such as converters and generators.            | [Details](services/it-tools)  |
-| **Mailpit**   | Email testing tool that captures outgoing mail over SMTP for viewing and debugging.     | [Details](services/mailpit)   |
-| **Node-RED**  | Low-code, flow-based tool for event-driven applications.                                | [Details](services/nodered)   |
-| **Ollama**    | Runtime for large language models, with an OpenAI-compatible API and no login.          | [Details](services/ollama)    |
-| **Portainer** | Web interface to manage Docker containers, images, volumes, and networks.               | [Details](services/portainer) |
-| **SearXNG**   | Metasearch engine that combines results from many search services without tracking.     | [Details](services/searxng)   |
+| Service          | Description                                                                             | Link                          |
+| ---------------- | --------------------------------------------------------------------------------------- | ----------------------------- |
+| **Arcane**       | Web UI to manage Docker containers, images, networks, volumes, and Compose projects.    | [Details](services/arcane)    |
+| **Coder**        | Platform for development environments and AI coding agents, from Terraform.             | [Details](services/coder)     |
+| **CyberChef**    | Web app for encoding, decoding, encrypting, compressing, and analyzing data.            | [Details](services/cyberchef) |
+| **Dockge**       | Web interface to manage Docker Compose stacks.                                          | [Details](services/dockge)    |
+| **Dockhand**     | Docker manager for local and remote hosts, free for home use.                           | [Details](services/dockhand)  |
+| **Dozzle**       | Real-time log viewer for Docker containers.                                             | [Details](services/dozzle)    |
+| **Forgejo**      | Community-governed fork of Gitea.                                                       | [Details](services/forgejo)   |
+| **FossFLOW**     | Tool for drawing isometric infrastructure diagrams.                                     | [Details](services/fossflow)  |
+| **Gitea**        | Git service with repositories, pull requests, issues, packages, and CI.                 | [Details](services/gitea)     |
+| **GitSave**      | Backup tool for your Git repositories, run on a schedule.                               | [Details](services/gitsave)   |
+| **IT-Tools**     | Online tools for developers and IT staff, such as converters and generators.            | [Details](services/it-tools)  |
+| **Mailpit**      | Email testing tool that captures outgoing mail over SMTP for viewing and debugging.     | [Details](services/mailpit)   |
+| **Node-RED**     | Low-code, flow-based tool for event-driven applications.                                | [Details](services/nodered)   |
+| **Ollama**       | Runtime for large language models, with an OpenAI-compatible API and no login.          | [Details](services/ollama)    |
+| **Portainer**    | Web interface to manage Docker containers, images, volumes, and networks.               | [Details](services/portainer) |
+| **SearXNG**      | Metasearch engine that combines results from many search services without tracking.     | [Details](services/searxng)   |
+| **Semaphore UI** | Web interface to run Ansible playbooks, Terraform, and scripts, with schedules.         | [Details](services/semaphore) |
 
 ### Monitoring and analytics
 
