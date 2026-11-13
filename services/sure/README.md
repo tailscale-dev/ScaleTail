@@ -12,7 +12,7 @@ This stack runs Sure with a Tailscale sidecar, as described in [the standard set
 | Service port  | `3000`                                                     |
 | Images        | `ghcr.io/we-promise/sure:stable`                           |
 |               | `postgres:16`                                              |
-|               | `redis`                                                    |
+|               | `redis:8`                                                  |
 |               | `prodrigestivill/postgres-backup-local` (optional backups) |
 | Data          | `./app-storage` (uploaded files)                           |
 |               | `./postgres-data` (PostgreSQL database)                    |
