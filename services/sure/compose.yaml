@@ -164,7 +164,7 @@ services:
       - sure_net
 
   redis:
-    image: redis:latest
+    image: redis:8
     container_name: app-${SERVICE}-redis
     restart: always
     volumes:
