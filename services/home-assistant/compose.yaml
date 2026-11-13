@@ -64,6 +64,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: "curl --fail http://localhost:8123/ || exit 1" # Check if the service is responding
       interval: 1m # How often to perform the check

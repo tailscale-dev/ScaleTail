@@ -62,6 +62,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:1970/', timeout=5)"] # Check if the service is responding; the image has no wget, curl, or pgrep
       interval: 1m # How often to perform the check

@@ -65,6 +65,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "php", "-f", "./cli/health.php"] # Ships with the image; requires the API to stay enabled
       interval: 1m # How often to perform the check

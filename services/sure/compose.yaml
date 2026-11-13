@@ -79,6 +79,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       db:
         condition: service_healthy
       redis:
@@ -101,6 +102,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       db:
         condition: service_healthy
       redis:

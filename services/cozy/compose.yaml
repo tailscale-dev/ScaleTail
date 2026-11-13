@@ -155,6 +155,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       couchdb:
         condition: service_healthy
     healthcheck:

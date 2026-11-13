@@ -53,6 +53,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:2019/config/"] # Check if Caddy's admin API responds; it does not depend on the Tailnet hostname
       interval: 1m # How often to perform the check

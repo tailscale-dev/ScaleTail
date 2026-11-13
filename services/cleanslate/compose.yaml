@@ -69,6 +69,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # The image defines no HEALTHCHECK, so check the web server with the wget that ships with busybox.
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:3000/"] # Check if the web server is responding
@@ -94,6 +95,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       database:
         condition: service_healthy
     # The image defines no HEALTHCHECK, so call the Hasura health endpoint with the curl that ships with the image.
