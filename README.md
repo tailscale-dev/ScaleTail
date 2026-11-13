@@ -191,6 +191,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Stirling-PDF**  | PDF toolbox that runs on the server. The free plan covers five users.                          | [Details](services/stirlingpdf)   |
 | **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.             | [Details](services/subtrackr)     |
 | **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth.     | [Details](services/sure)          |
+| **Syncthing**     | Peer-to-peer tool that keeps folders in sync between your devices.                             | [Details](services/syncthing)     |
 | **Vikunja**       | To-do and project app with lists, boards, and Gantt charts.                                    | [Details](services/vikunja)       |
 | **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
 | **Wallos**        | Subscription tracker with payment reminders and budgets.                                       | [Details](services/wallos)        |
