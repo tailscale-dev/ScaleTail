@@ -106,7 +106,7 @@ services:
         condition: service_healthy
 
   redis:
-    image: redis # Image to be used
+    image: redis:8 # Image to be used
     container_name: app-${SERVICE}-redis # Name for local container management
     healthcheck:
       test: [ 'CMD', 'redis-cli', '--raw', 'incr', 'ping' ] # Check if Redis responds

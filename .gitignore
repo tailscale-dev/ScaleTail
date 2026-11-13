@@ -53,6 +53,11 @@ services/*/compose.override.yaml
 
 # Tracked files inside a data folder. The rules above ignore such a file, so add
 # an exception for it here, as for Donetick and Dozzle.
+!services/dashy/dashy-data/
+services/dashy/dashy-data/*
+!services/dashy/dashy-data/user-data/
+services/dashy/dashy-data/user-data/*
+!services/dashy/dashy-data/user-data/conf.yml
 !services/donetick/donetick-data/
 services/donetick/donetick-data/*
 !services/donetick/donetick-data/config/

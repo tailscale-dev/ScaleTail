@@ -167,6 +167,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Gokapi**        | File sharing server with links that expire after a number of downloads or days.                | [Details](services/gokapi)        |
 | **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                              | [Details](services/grampsweb)     |
 | **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                       | [Details](services/haptic)        |
+| **Invoice Ninja** | Invoicing app for quotes, invoices, expenses, and payments.                                    | [Details](services/invoiceninja)  |
 | **Isley**         | Cannabis grow journal for plants, watering, feeding, harvests, and sensors.                    | [Details](services/isley)         |
 | **Joplin Server** | Sync server for the Joplin note-taking apps, for personal non-commercial use.                  | [Details](services/joplin)        |
 | **Kaneo**         | Open-source project tracker with boards and tasks, an alternative to Trello and Linear.        | [Details](services/kaneo)         |
@@ -190,6 +191,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Stirling-PDF**  | PDF toolbox that runs on the server. The free plan covers five users.                          | [Details](services/stirlingpdf)   |
 | **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.             | [Details](services/subtrackr)     |
 | **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth.     | [Details](services/sure)          |
+| **Syncthing**     | Peer-to-peer tool that keeps folders in sync between your devices.                             | [Details](services/syncthing)     |
 | **Vikunja**       | To-do and project app with lists, boards, and Gantt charts.                                    | [Details](services/vikunja)       |
 | **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
 | **Wallos**        | Subscription tracker with payment reminders and budgets.                                       | [Details](services/wallos)        |
@@ -199,31 +201,34 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 | Service                | Description                                                                                 | Link                                   |
 | ---------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------- |
+| **Dashy**              | Dashboard with status checks, widgets, and an editor in the web interface.                  | [Details](services/dashy)              |
 | **Glance**             | Dashboard that puts feeds, such as RSS, weather, and markets, on one page.                  | [Details](services/glance)             |
 | **Homarr**             | Dashboard with user accounts that shows live data from the apps you connect.                | [Details](services/homarr)             |
 | **Homepage**           | Dashboard that you set up in YAML files, with bookmarks and live data from apps and Docker. | [Details](services/homepage)           |
+| **Homer**              | Static start page for your services, set up in one YAML file.                               | [Details](services/homer)              |
 | **NewWallpaperWhoDis** | Wallpaper server that rotates your collection on browsers, tablets, TVs, and dashboards.    | [Details](services/newwallpaperwhodis) |
 
 ### Development tools
 
-| Service       | Description                                                                             | Link                          |
-| ------------- | --------------------------------------------------------------------------------------- | ----------------------------- |
-| **Arcane**    | Web UI to manage Docker containers, images, networks, volumes, and Compose projects.    | [Details](services/arcane)    |
-| **Coder**     | Platform for development environments and AI coding agents, from Terraform.             | [Details](services/coder)     |
-| **CyberChef** | Web app for encoding, decoding, encrypting, compressing, and analyzing data.            | [Details](services/cyberchef) |
-| **Dockge**    | Web interface to manage Docker Compose stacks.                                          | [Details](services/dockge)    |
-| **Dockhand**  | Docker manager for local and remote hosts, free for home use.                           | [Details](services/dockhand)  |
-| **Dozzle**    | Real-time log viewer for Docker containers.                                             | [Details](services/dozzle)    |
-| **Forgejo**   | Community-governed fork of Gitea.                                                       | [Details](services/forgejo)   |
-| **FossFLOW**  | Tool for drawing isometric infrastructure diagrams.                                     | [Details](services/fossflow)  |
-| **Gitea**     | Git service with repositories, pull requests, issues, packages, and CI.                 | [Details](services/gitea)     |
-| **GitSave**   | Backup tool for your Git repositories, run on a schedule.                               | [Details](services/gitsave)   |
-| **IT-Tools**  | Online tools for developers and IT staff, such as converters and generators.            | [Details](services/it-tools)  |
-| **Mailpit**   | Email testing tool that captures outgoing mail over SMTP for viewing and debugging.     | [Details](services/mailpit)   |
-| **Node-RED**  | Low-code, flow-based tool for event-driven applications.                                | [Details](services/nodered)   |
-| **Ollama**    | Runtime for large language models, with an OpenAI-compatible API and no login.          | [Details](services/ollama)    |
-| **Portainer** | Web interface to manage Docker containers, images, volumes, and networks.               | [Details](services/portainer) |
-| **SearXNG**   | Metasearch engine that combines results from many search services without tracking.     | [Details](services/searxng)   |
+| Service          | Description                                                                             | Link                          |
+| ---------------- | --------------------------------------------------------------------------------------- | ----------------------------- |
+| **Arcane**       | Web UI to manage Docker containers, images, networks, volumes, and Compose projects.    | [Details](services/arcane)    |
+| **Coder**        | Platform for development environments and AI coding agents, from Terraform.             | [Details](services/coder)     |
+| **CyberChef**    | Web app for encoding, decoding, encrypting, compressing, and analyzing data.            | [Details](services/cyberchef) |
+| **Dockge**       | Web interface to manage Docker Compose stacks.                                          | [Details](services/dockge)    |
+| **Dockhand**     | Docker manager for local and remote hosts, free for home use.                           | [Details](services/dockhand)  |
+| **Dozzle**       | Real-time log viewer for Docker containers.                                             | [Details](services/dozzle)    |
+| **Forgejo**      | Community-governed fork of Gitea.                                                       | [Details](services/forgejo)   |
+| **FossFLOW**     | Tool for drawing isometric infrastructure diagrams.                                     | [Details](services/fossflow)  |
+| **Gitea**        | Git service with repositories, pull requests, issues, packages, and CI.                 | [Details](services/gitea)     |
+| **GitSave**      | Backup tool for your Git repositories, run on a schedule.                               | [Details](services/gitsave)   |
+| **IT-Tools**     | Online tools for developers and IT staff, such as converters and generators.            | [Details](services/it-tools)  |
+| **Mailpit**      | Email testing tool that captures outgoing mail over SMTP for viewing and debugging.     | [Details](services/mailpit)   |
+| **Node-RED**     | Low-code, flow-based tool for event-driven applications.                                | [Details](services/nodered)   |
+| **Ollama**       | Runtime for large language models, with an OpenAI-compatible API and no login.          | [Details](services/ollama)    |
+| **Portainer**    | Web interface to manage Docker containers, images, volumes, and networks.               | [Details](services/portainer) |
+| **SearXNG**      | Metasearch engine that combines results from many search services without tracking.     | [Details](services/searxng)   |
+| **Semaphore UI** | Web interface to run Ansible playbooks, Terraform, and scripts, with schedules.         | [Details](services/semaphore) |
 
 ### Monitoring and analytics
 
@@ -249,18 +254,19 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 ### Utilities
 
-| Service        | Description                                                                                          | Link                            |
-| -------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------- |
-| **ConvertX**   | Web file converter for more than a thousand formats.                                                 | [Details](services/convertx)    |
-| **Gotify**     | Push notification server that shows messages from your scripts in its web interface and Android app. | [Details](services/gotify)      |
-| **Hemmelig**   | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)    |
-| **Homebox**    | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)     |
-| **Kasm**       | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)        |
-| **LubeLogger** | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger) |
-| **Mini QR**    | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)      |
-| **ntfy**       | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)        |
-| **Tracktor**   | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.             | [Details](services/tracktor)    |
-| **Transmute**  | Converter and compressor for images, video, audio, and documents, with a web UI and API.             | [Details](services/transmute)   |
+| Service            | Description                                                                                          | Link                               |
+| ------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| **ConvertX**       | Web file converter for more than a thousand formats.                                                 | [Details](services/convertx)       |
+| **Gotify**         | Push notification server that shows messages from your scripts in its web interface and Android app. | [Details](services/gotify)         |
+| **Hemmelig**       | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)       |
+| **Homebox**        | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)        |
+| **Kasm**           | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)           |
+| **LibreTranslate** | Machine translation service with a web interface and an API, running on your own server.             | [Details](services/libretranslate) |
+| **LubeLogger**     | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger)    |
+| **Mini QR**        | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)         |
+| **ntfy**           | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)           |
+| **Tracktor**       | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.             | [Details](services/tracktor)       |
+| **Transmute**      | Converter and compressor for images, video, audio, and documents, with a web UI and API.             | [Details](services/transmute)      |
 
 ### Food and wellness
 
