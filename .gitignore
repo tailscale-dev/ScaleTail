@@ -60,7 +60,9 @@ services/donetick/donetick-data/config/*
 !services/donetick/donetick-data/config/selfhosted.yaml
 !services/dozzle/dozzle-data/
 services/dozzle/dozzle-data/*
-!services/dozzle/dozzle-data/users.yml
+!services/dozzle/dozzle-data/data/
+services/dozzle/dozzle-data/data/*
+!services/dozzle/dozzle-data/data/users.yml
 
 # Data folders that do not follow the <service>-data pattern
 services/affine/postgres/
