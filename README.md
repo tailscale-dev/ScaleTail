@@ -254,18 +254,19 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 
 ### Utilities
 
-| Service        | Description                                                                                          | Link                            |
-| -------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------- |
-| **ConvertX**   | Web file converter for more than a thousand formats.                                                 | [Details](services/convertx)    |
-| **Gotify**     | Push notification server that shows messages from your scripts in its web interface and Android app. | [Details](services/gotify)      |
-| **Hemmelig**   | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)    |
-| **Homebox**    | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)     |
-| **Kasm**       | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)        |
-| **LubeLogger** | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger) |
-| **Mini QR**    | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)      |
-| **ntfy**       | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)        |
-| **Tracktor**   | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.             | [Details](services/tracktor)    |
-| **Transmute**  | Converter and compressor for images, video, audio, and documents, with a web UI and API.             | [Details](services/transmute)   |
+| Service            | Description                                                                                          | Link                               |
+| ------------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| **ConvertX**       | Web file converter for more than a thousand formats.                                                 | [Details](services/convertx)       |
+| **Gotify**         | Push notification server that shows messages from your scripts in its web interface and Android app. | [Details](services/gotify)         |
+| **Hemmelig**       | Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.         | [Details](services/hemmelig)       |
+| **Homebox**        | Home inventory for items, with location, quantity, warranty, and purchase details.                   | [Details](services/homebox)        |
+| **Kasm**           | Platform that streams desktops and apps to your browser, each in a container.                        | [Details](services/kasm)           |
+| **LibreTranslate** | Machine translation service with a web interface and an API, running on your own server.             | [Details](services/libretranslate) |
+| **LubeLogger**     | Tracker for vehicle maintenance and fuel use.                                                        | [Details](services/lube-logger)    |
+| **Mini QR**        | Web app to create, style, and scan QR codes.                                                         | [Details](services/miniqr)         |
+| **ntfy**           | Notification service that lets scripts and apps push messages to phones and browsers over HTTP.      | [Details](services/ntfy)           |
+| **Tracktor**       | Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.             | [Details](services/tracktor)       |
+| **Transmute**      | Converter and compressor for images, video, audio, and documents, with a web UI and API.             | [Details](services/transmute)      |
 
 ### Food and wellness
 
