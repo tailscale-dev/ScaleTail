@@ -167,6 +167,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Gokapi**        | File sharing server with links that expire after a number of downloads or days.                | [Details](services/gokapi)        |
 | **Gramps Web**    | Genealogy web app for browsing and editing family trees together.                              | [Details](services/grampsweb)     |
 | **Haptic**        | Markdown note editor that keeps notes in the browser, not on the server.                       | [Details](services/haptic)        |
+| **Invoice Ninja** | Invoicing app for quotes, invoices, expenses, and payments.                                    | [Details](services/invoiceninja)  |
 | **Isley**         | Cannabis grow journal for plants, watering, feeding, harvests, and sensors.                    | [Details](services/isley)         |
 | **Joplin Server** | Sync server for the Joplin note-taking apps, for personal non-commercial use.                  | [Details](services/joplin)        |
 | **Kaneo**         | Open-source project tracker with boards and tasks, an alternative to Trello and Linear.        | [Details](services/kaneo)         |
@@ -190,6 +191,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Stirling-PDF**  | PDF toolbox that runs on the server. The free plan covers five users.                          | [Details](services/stirlingpdf)   |
 | **SubTrackr**     | Subscription tracker that shows monthly and yearly costs and when each one renews.             | [Details](services/subtrackr)     |
 | **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth.     | [Details](services/sure)          |
+| **Syncthing**     | Peer-to-peer tool that keeps folders in sync between your devices.                             | [Details](services/syncthing)     |
 | **Vikunja**       | To-do and project app with lists, boards, and Gantt charts.                                    | [Details](services/vikunja)       |
 | **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
 | **Wallos**        | Subscription tracker with payment reminders and budgets.                                       | [Details](services/wallos)        |
@@ -203,6 +205,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Glance**             | Dashboard that puts feeds, such as RSS, weather, and markets, on one page.                  | [Details](services/glance)             |
 | **Homarr**             | Dashboard with user accounts that shows live data from the apps you connect.                | [Details](services/homarr)             |
 | **Homepage**           | Dashboard that you set up in YAML files, with bookmarks and live data from apps and Docker. | [Details](services/homepage)           |
+| **Homer**              | Static start page for your services, set up in one YAML file.                               | [Details](services/homer)              |
 | **NewWallpaperWhoDis** | Wallpaper server that rotates your collection on browsers, tablets, TVs, and dashboards.    | [Details](services/newwallpaperwhodis) |
 
 ### Development tools
