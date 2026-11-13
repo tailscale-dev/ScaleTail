@@ -19,7 +19,7 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 
 ## Files that change together
 
-- Add, rename, or remove a service: the `services/<name>/` directory and its row in the root `README.md`. Insert a new row in alphabetical order by the bold name, and leave the other rows alone.
+- Add, rename, or remove a service: the `services/<name>/` directory and its row in the root `README.md`. Insert a new row in alphabetical order by the bold name, ignoring case and with a space before any letter, and leave the other rows alone.
 - Make existing users act, such as with a new required secret, a moved volume, or a changed `SERVICE`: add an "Upgrading" section to the service README. `SERVICE` also names the Tailnet device, the containers, and most data folders.
 - Change the template: also update `documentation/standard-setup.md` and `CONTRIBUTING.md` where they describe the same setting. Validate it from `templates/service-template/` with `SERVICE=dummy IMAGE_URL=dummy docker compose config --quiet`, because the template leaves both values empty.
 
