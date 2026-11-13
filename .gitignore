@@ -8,7 +8,8 @@
 .LSOverride
 
 # Icon: the custom folder icon file that macOS creates
-Icon[]
+Icon[
+]
 
 # Thumbnails
 ._*
@@ -48,6 +49,9 @@ services/*/*-storage/
 services/*/*-db/
 services/*/*-database/
 
+# Your own changes to a stack, as in "Keep your changes in an override file" in README.md
+services/*/compose.override.yaml
+
 # Tracked files inside a data folder. The rules above ignore such a file, so add
 # an exception for it here, as for Donetick and Dozzle.
 !services/donetick/donetick-data/
@@ -57,12 +61,9 @@ services/donetick/donetick-data/config/*
 !services/donetick/donetick-data/config/selfhosted.yaml
 !services/dozzle/dozzle-data/
 services/dozzle/dozzle-data/*
-!services/dozzle/dozzle-data/users.yml
-!services/gatus/gatus-data/
-services/gatus/gatus-data/*
-!services/gatus/gatus-data/config/
-services/gatus/gatus-data/config/*
-!services/gatus/gatus-data/config/config.yaml
+!services/dozzle/dozzle-data/data/
+services/dozzle/dozzle-data/data/*
+!services/dozzle/dozzle-data/data/users.yml
 
 # Data folders that do not follow the <service>-data pattern
 services/affine/postgres/
