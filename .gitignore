@@ -8,8 +8,7 @@
 .LSOverride
 
 # Icon: the custom folder icon file that macOS creates
-Icon[
-]
+Icon[]
 
 # Thumbnails
 ._*
