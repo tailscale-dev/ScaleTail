@@ -64,5 +64,6 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: defined by the image (curl to /rest/noauth/health on port 8384), so this file does not override it.
     restart: always
