@@ -143,7 +143,8 @@ do not have to fix the rest of a stack that you touch.
 
 7. Add the service to the correct category in the root `README.md`.
 
-   Insert the row in alphabetical order of the bold name, ignoring case.
+   Insert the row in alphabetical order of the bold name, ignoring case. A
+   space sorts before a letter, so "Open WebUI" comes before "OpenClaw".
 
 ## Update a service
 
