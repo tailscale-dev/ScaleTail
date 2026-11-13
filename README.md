@@ -204,6 +204,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Glance**             | Dashboard that puts feeds, such as RSS, weather, and markets, on one page.                  | [Details](services/glance)             |
 | **Homarr**             | Dashboard with user accounts that shows live data from the apps you connect.                | [Details](services/homarr)             |
 | **Homepage**           | Dashboard that you set up in YAML files, with bookmarks and live data from apps and Docker. | [Details](services/homepage)           |
+| **Homer**              | Static start page for your services, set up in one YAML file.                               | [Details](services/homer)              |
 | **NewWallpaperWhoDis** | Wallpaper server that rotates your collection on browsers, tablets, TVs, and dashboards.    | [Details](services/newwallpaperwhodis) |
 
 ### Development tools
