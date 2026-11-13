@@ -12,7 +12,7 @@ This stack runs AFFiNE with a Tailscale sidecar, as described in [the standard s
 | Service port  | `3010`                              |
 | Images        | `ghcr.io/toeverything/affine`       |
 |               | `pgvector/pgvector:pg16`            |
-|               | `redis`                             |
+|               | `redis:8`                           |
 | Data          | `./affine-storage` (uploaded files) |
 |               | `./affine-config` (configuration)   |
 |               | `./postgres` (PostgreSQL database)  |
