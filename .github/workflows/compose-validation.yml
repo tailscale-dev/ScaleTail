@@ -97,3 +97,15 @@ jobs:
             fi
           done
           exit $status
+
+      # Line 11 of .gitignore is "Icon[<CR>]", with a carriage-return byte
+      # between the brackets. Editors often turn it into a newline, which
+      # breaks the rule without any visible change in the diff.
+      - name: Check the Icon rule in .gitignore
+        if: ${{ !cancelled() }}
+        shell: bash
+        run: |
+          if ! grep -qP '^Icon\[\r\]$' .gitignore; then
+            echo "::error file=.gitignore,line=11::The Icon rule lost its carriage return. Line 11 must be Icon[<CR>], as one line. Restore the file with: git checkout origin/main -- .gitignore, then add your change again without saving the file in an editor that rewrites line endings."
+            exit 1
+          fi
