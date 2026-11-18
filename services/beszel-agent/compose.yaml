@@ -46,6 +46,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ['CMD', '/agent', 'health'] # Check if Beszel Agent is running and accessible
       interval: 1m # How often to perform the check

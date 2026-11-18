@@ -76,6 +76,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
 
     # enabling mimalloc by replacing "NOPE" with "2" will make some stuff twice as fast, but everything will use twice as much ram:
     environment:

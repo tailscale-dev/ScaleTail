@@ -65,6 +65,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "ollama", "list"] # Check if the Ollama API responds; the image has no wget or curl
       interval: 1m # How often to perform the check

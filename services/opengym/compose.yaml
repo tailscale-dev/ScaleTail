@@ -60,6 +60,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       api:
         condition: service_started # Not service_healthy: the image checks its health only after a five-minute interval, which would hold the web server back that long
     # Healthcheck: defined by the image (wget against the port in NGINX_PORT), so this file does not override it.
@@ -89,5 +90,6 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: defined by the image (wget against /api/health), so this file does not override it.
     restart: always

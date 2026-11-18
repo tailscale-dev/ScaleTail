@@ -68,5 +68,6 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: defined by the image (wget against /api/oidc/enabled), so this file does not override it.
     restart: always

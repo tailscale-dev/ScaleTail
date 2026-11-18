@@ -43,7 +43,9 @@ do not have to fix the rest of a stack that you touch.
    - Name the containers `tailscale-${SERVICE}` and `app-${SERVICE}`, unless the
      stack documents a deviation under "Deviations from the standard setup".
    - Keep `network_mode: service:tailscale` on the application.
-   - Keep the application's health-based dependency on `tailscale`.
+   - Keep the application's health-based dependency on `tailscale`, with
+     `restart: true`. Every other container that depends on `tailscale` and
+     uses its network needs `restart: true` too.
    - Add all required persistent volumes.
    - Add required devices and capabilities explicitly.
    - When the stack needs another Compose service key or container name, more

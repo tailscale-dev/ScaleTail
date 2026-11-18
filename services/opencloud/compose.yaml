@@ -66,6 +66,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: the image defines none, so this file calls the health endpoint of the OpenCloud proxy (debug port 9205, loopback only).
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:9205/healthz"] # Check if the OpenCloud proxy is healthy

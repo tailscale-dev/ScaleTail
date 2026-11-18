@@ -67,6 +67,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       db:
         condition: service_healthy
     healthcheck:
@@ -96,6 +97,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
       db:
         condition: service_healthy
     # The image has no HEALTHCHECK, and the worker has no endpoint. Check the queue worker process, with a fixed pattern because the process name is python.

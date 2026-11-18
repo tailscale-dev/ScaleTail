@@ -61,6 +61,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "python3", "-c", "import ssl, urllib.request; urllib.request.urlopen('https://127.0.0.1:8834/server/status', context=ssl._create_unverified_context(), timeout=5)"] # Check if the service is responding; Nessus serves a self-signed certificate
       interval: 1m # How often to perform the check

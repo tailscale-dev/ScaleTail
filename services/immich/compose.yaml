@@ -69,6 +69,7 @@ services:
         condition: service_healthy
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: defined by the image (immich-healthcheck), so this file does not override it.
     restart: always
 

@@ -63,6 +63,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: use the first option the image supports, and test it inside the running container.
     # 1. The image defines its own HEALTHCHECK: remove this block and replace it with
     #    "# Healthcheck: defined by the image (<command, or what it checks>), so this file does not override it."

@@ -69,6 +69,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
       test: ["CMD", "/opt/go/adguardhome-sync", "healthcheck"] # Built-in check against the API server; the image has no shell or HTTP client
       interval: 1m # How often to perform the check

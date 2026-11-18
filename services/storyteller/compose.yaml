@@ -63,6 +63,7 @@ services:
     depends_on:
       tailscale:
         condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     # Healthcheck: the image defines no HEALTHCHECK, so call the web interface with wget, which the image ships.
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8001/"] # Check if the service is responding
