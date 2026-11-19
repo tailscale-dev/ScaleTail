@@ -56,7 +56,7 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
-      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY:?Set WEBUI_SECRET_KEY in .env}
       - TZ=${TZ}
     volumes:
       - ./${SERVICE}-data:/app/backend/data
