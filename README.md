@@ -213,6 +213,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | Service          | Description                                                                             | Link                          |
 | ---------------- | --------------------------------------------------------------------------------------- | ----------------------------- |
 | **Arcane**       | Web UI to manage Docker containers, images, networks, volumes, and Compose projects.    | [Details](services/arcane)    |
+| **Arcane Agent** | Agent that lets an Arcane manager manage Docker on another host.                        | [Details](services/arcane-agent) |
 | **Coder**        | Platform for development environments and AI coding agents, from Terraform.             | [Details](services/coder)     |
 | **CyberChef**    | Web app for encoding, decoding, encrypting, compressing, and analyzing data.            | [Details](services/cyberchef) |
 | **Dockge**       | Web interface to manage Docker Compose stacks.                                          | [Details](services/dockge)    |
