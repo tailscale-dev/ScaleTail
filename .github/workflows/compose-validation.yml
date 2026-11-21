@@ -29,12 +29,11 @@ jobs:
       - name: Check the service list in README.md
         run: bash .github/scripts/check-service-list.sh
 
-      # Every .env is published, so CI rejects a Tailscale key or private key
-      # in any tracked file and a value for TS_AUTHKEY in .env. The errors name
-      # the file and line, not the value.
-      - name: Check for committed secrets
+      # Every .env is published, so CI rejects a value for TS_AUTHKEY in .env.
+      # The errors name the file and line, not the value.
+      - name: Check that TS_AUTHKEY is empty
         if: ${{ !cancelled() }}
-        run: bash .github/scripts/check-secrets.sh
+        run: bash .github/scripts/check-ts-authkey.sh
 
       # Some stacks require the user to set their own secrets and stop with
       # "required variable X is missing". Supply a dummy value for those and

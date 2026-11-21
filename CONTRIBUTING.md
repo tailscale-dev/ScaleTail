@@ -37,9 +37,8 @@ do not have to fix the rest of a stack that you touch.
    `# Required: signs the sessions. Generate it with: openssl rand -hex 32`.
    Keep `TS_AUTHKEY` and optional secrets without `:?`.
 
-   CI fails when a tracked file holds a Tailscale key or a private key, or
-   when `TS_AUTHKEY` has a value in `.env`. A key that you pushed is public,
-   even after you remove it, so revoke it in the
+   CI fails when `TS_AUTHKEY` has a value in `.env`. A key that you pushed is
+   public, even after you remove it, so revoke it in the
    [Tailscale admin console](https://login.tailscale.com/admin/settings/keys).
 
 3. Adapt `compose.yaml`.
