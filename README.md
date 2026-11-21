@@ -134,6 +134,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Posterizarr**    | Poster, background, and title card generator for Plex, Jellyfin, and Emby libraries.                 | [Details](services/posterizarr)    |
 | **Prowlarr**       | Indexer manager for Usenet and torrent trackers, used by apps such as Radarr and Sonarr.             | [Details](services/prowlarr)       |
 | **qBittorrent**    | BitTorrent client with a web interface.                                                              | [Details](services/qbittorrent)    |
+| **qui**            | Web interface for qBittorrent that manages several instances, with automations and cross-seed.       | [Details](services/qui)            |
 | **Radarr**         | Movie manager that searches Usenet and BitTorrent and sorts files into your library.                 | [Details](services/radarr)         |
 | **Recyclarr**      | Tool that applies TRaSH Guides quality profiles from a YAML file to Radarr and Sonarr on a schedule. | [Details](services/recyclarr)      |
 | **Seerr**          | Request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.      | [Details](services/seerr)          |
