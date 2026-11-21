@@ -53,14 +53,12 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
-      - APP_URL=https://arcane.${TAILNET_NAME}.ts.net
+      - ARCANE_APP_URL=https://${SERVICE}.${TAILNET_NAME}.ts.net
       - PUID=1000
       - PGID=1000
-      - ENCRYPTION_KEY=${ENCRYPTION_KEY:?Set ENCRYPTION_KEY in .env}
-      - JWT_SECRET=${JWT_SECRET:?Set JWT_SECRET in .env}
-      - LOG_LEVEL=info # Optional
-      - LOG_JSON=false # Optional
-      - OIDC_ENABLED=false # Optional
+      - ARCANE_ENCRYPTION_KEY=${ENCRYPTION_KEY:?Set ENCRYPTION_KEY in .env}
+      - ARCANE_LOG_LEVEL=info # Optional
+      - ARCANE_LOG_JSON=false # Optional
       - TZ=${TZ}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
@@ -71,7 +69,7 @@ services:
         condition: service_healthy
         restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3552/", "-s", "-o", "/dev/null"] # Check if the service is responding
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:3552/api/health"] # Check if the service is responding
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
