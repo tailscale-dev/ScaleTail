@@ -2,7 +2,7 @@
 
 [qui](https://getqui.com/) is a web interface for qBittorrent. One qui manages several qBittorrent instances, with automations and cross-seed.
 
-This stack runs qui with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md). qui has no built-in Tailscale support, and its image contains no `tailscale` or `tailscaled`. The stack does not include qBittorrent. Run qBittorrent with the [qBittorrent stack](../qbittorrent) or elsewhere, and keep its own web interface.
+This stack runs qui with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md). qui has no built-in Tailscale support, and its image contains no `tailscale` or `tailscaled`. The stack does not include qBittorrent. Run qBittorrent with the [qBittorrent stack](../qbittorrent) or elsewhere. Its own web interface keeps working next to qui.
 
 ## At a glance
 
@@ -15,7 +15,7 @@ This stack runs qui with a Tailscale sidecar, as described in [the standard setu
 
 ## Before you start
 
-- **qBittorrent.** qui needs a running qBittorrent with its web interface turned on, and a permanent password for it. The temporary password of the LinuxServer.io image changes at every start, so qui loses the connection after a restart.
+- **qBittorrent.** qui needs a running qBittorrent with its web interface turned on, and your own password for it. Until you set one, qBittorrent generates a new temporary password at every start, and qui loses the connection after the next restart.
 - **Network path.** qui must reach the web interface of qBittorrent. When qBittorrent runs in the [qBittorrent stack](../qbittorrent), use the Tailscale IP address of that device, such as `http://<tailscale-ip>:8080`. Your Tailnet policy must allow the qui device to reach that device on port `8080`.
 
 ## Deviations from the standard setup
