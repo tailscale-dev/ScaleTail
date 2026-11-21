@@ -8,29 +8,32 @@ configs:
       "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
 
 services:
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there, unless it has a default such as ${VAR:-value}.
+  # Tailscale Sidecar Configuration
   tailscale:
-    image: tailscale/tailscale:latest
-    container_name: tailscale-${SERVICE}
-    hostname: ${SERVICE}
+    image: tailscale/tailscale:latest # Image to be used
+    container_name: tailscale-${SERVICE} # Name for local container management
+    hostname: ${SERVICE} # Name used within your Tailscale environment
     environment:
       - TS_AUTHKEY=${TS_AUTHKEY}
       - TS_STATE_DIR=/var/lib/tailscale
-      - TS_SERVE_CONFIG=/config/serve.json
+      - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
       - TS_USERSPACE=false
-      - TS_ENABLE_HEALTH_CHECK=true
-      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234
-      #- TS_ACCEPT_DNS=true
+      - TS_ENABLE_HEALTH_CHECK=true        # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234 # The <addr>:<port> for the healthz endpoint
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
       - TS_AUTH_ONCE=true
     configs:
       - source: ts-serve
         target: /config/serve.json
     volumes:
-      - ./config:/config
-      - ./ts/state:/var/lib/tailscale
+      - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
+      - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
     devices:
-      - /dev/net/tun:/dev/net/tun
+      - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
     cap_add:
-      - net_admin
+      - net_admin # Tailscale requirement
     #ports:
     #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
     # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
@@ -38,50 +41,73 @@ services:
     #  - ${DNS_SERVER}
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
-      interval: 1m
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
     restart: always
 
+  # Application
   application:
     image: ${IMAGE_URL} # Image to be used
-    network_mode: service:tailscale
-    container_name: app-${SERVICE}
-    env_file:
-      - .env
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
+    container_name: app-${SERVICE} # Name for local container management
+    environment:
+      # Set PUID and PGID only for images that read them, such as LinuxServer.io images. Many images ignore them.
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=${TZ}
+      - OXICLOUD_SERVER_HOST=0.0.0.0
+      - OXICLOUD_DB_CONNECTION_STRING=postgres://oxicloud:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/oxicloud
+      - OXICLOUD_BASE_URL=https://${SERVICE}.${TAILNET_NAME:?Set TAILNET_NAME in .env}.ts.net
+      - OXICLOUD_TRUST_PROXY_CIDR=127.0.0.1/32
+      #- EXAMPLE_VAR=${EXAMPLE_VAR}
     volumes:
-      - storage_data:/app/storage
+      - ./${SERVICE}-data/storage:/app/storage
     depends_on:
       tailscale:
         condition: service_healthy
         restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
+    # Healthcheck: use the first option the image supports, and test it inside the running container.
+    # 1. The image defines its own HEALTHCHECK: remove this block and replace it with
+    #    "# Healthcheck: defined by the image (<command, or what it checks>), so this file does not override it."
+    #    Override it only when it does not work with this stack, and say why in a comment.
+    # 2. An application endpoint, called with a client the image ships (wget, curl, python3, or node).
+    # 3. A health command that ships with the image, such as `/app/binary healthcheck`.
+    # 4. A fixed process name, with `pidof <name>` or `pgrep -x <name>`, when the container has no endpoint
+    #    or the image has no HTTP client. `pgrep -x` matches at most 15 characters of the name.
+    #    When the process name is generic, such as python, use `pgrep -f <fixed pattern>`.
+    # 5. The image has no shell, HTTP client, or health command (for example Portainer and RustDesk):
+    #    no check is possible. Remove this block and replace it with
+    #    "# Healthcheck: none possible. The image contains only <binary>, with no shell, HTTP client, or health command."
+    # A container that runs once and exits needs no check. Remove this block and replace it with
+    # "# Healthcheck: none needed. <reason>."
+    # Database: check over TCP (for example pg_isready -h 127.0.0.1), because the first-start server accepts only socket connections.
+    #    A database image's own HEALTHCHECK still comes first - when it connects over the socket, say so in the comment.
+    #    When another service depends on the database, let it wait with `condition: service_healthy`.
+    # Avoid `pgrep -f` with the service name: it breaks when SERVICE is renamed, and many images do not include pgrep.
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:8086/ready || exit 1"]
-      interval: 30s
-      timeout: 5s
-      start_period: 30s
-      retries: 3
+      test: ["CMD", "wget, "--spider", "-q", "http://127.0.0.1:8086/ready"] # Check if the service is responding
+      interval: 30s # How often to perform the check
+      timeout: 5s # Time to wait for the check to succeed
+      start_period: 30s # Number of retries before marking as unhealthy
+      retries: 3 # Time to wait before starting health checks
     restart: always
 
   postgres:
-    image: postgres:18.2-alpine3.23
+    image: postgres:18-alpine # Image to be used
     container_name: app-${SERVICE}-db
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+      POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: ${POSTGRES_DB:-oxicloud}
     volumes:
-      - pg_data:/var/lib/postgresql/
+      - ./${SERVICE}-data/postgres:/var/lib/postgresql
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres}"]
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "oxicloud", "-d", "oxicloud"] # check database is ready
       interval: 5s
       timeout: 5s
       retries: 5
-
-volumes:
-  pg_data:
-  storage_data:

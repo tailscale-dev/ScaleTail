@@ -1,6 +1,6 @@
-# SERVICE
+# OxiCloud
 
-[OxiCloud](https://atalayalabs.github.io/OxiCloud/) A fast self-hosted cloud for people who want files, calendars, contacts, and office editing without dragging a heavy stack behind them.
+[OxiCloud](https://atalayalabs.github.io/OxiCloud/) A fast self-hosted cloud for files, calendars, contacts, with WebDAV, CalDAV and CardDAV access. 
 
 This stack runs Oxicloud with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
@@ -15,17 +15,22 @@ This stack runs Oxicloud with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
+Add values for the mandatory variables : TAILNET_NAME and POSTRGES_PASSWORD in .env file. Otherwise Compose will stop.
 Nothing beyond the [Quick Start](../../README.md#quick-start).
 
 ## Deviations from the standard setup
 
-Additional container for postgres DB.
+* Additional postgres container for OxiCloud database
+* The public adress is built with TAILNET_NAME
+* Set OXICLOUD_TRUST_PROXY_CIDR to 127.0.0.1/32 in compose.yaml
+* Heath check overriden 
+* no WOPI office addon
 
 ## First run
 
-Open the web interface and follow the setup.
+OxiCloud shows a setup page to create the first admin account, which stays available until an admin exists.
 
 ## Links
 
-- [SERVICE documentation](https://github.com/AtalayaLabs/OxiCloud)
-- [SERVICE source code](https://github.com/AtalayaLabs/OxiCloud)
+- [OxiCloud documentation](https://github.com/AtalayaLabs/OxiCloud)
+- [OxiCloud source code](https://github.com/AtalayaLabs/OxiCloud)
