@@ -1,8 +1,8 @@
 # OxiCloud
 
-[OxiCloud](https://atalayalabs.github.io/OxiCloud/) A fast self-hosted cloud for files, calendars, contacts, with WebDAV, CalDAV and CardDAV access. 
+[OxiCloud](https://atalayalabs.github.io/OxiCloud/) is a self-hosted cloud for files, calendars, and contacts, with WebDAV, CalDAV, and CardDAV access.
 
-This stack runs Oxicloud with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
+This stack runs OxiCloud with a Tailscale sidecar, as described in [the standard setup](../../documentation/standard-setup.md).
 
 ## At a glance
 
