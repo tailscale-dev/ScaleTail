@@ -32,5 +32,5 @@ OxiCloud shows a setup page to create the first admin account, which stays avail
 
 ## Links
 
-- [OxiCloud documentation](https://github.com/AtalayaLabs/OxiCloud)
+- [OxiCloud documentation](https://atalayalabs.github.io/OxiCloud/)
 - [OxiCloud source code](https://github.com/AtalayaLabs/OxiCloud)
