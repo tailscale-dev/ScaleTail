@@ -24,7 +24,8 @@ for dir in services/*/ templates/service-template/; do
     | $s | to_entries[] | .key as $name | .value as $svc
     | ($svc.network_mode // "") | select(startswith("service:")) | ltrimstr("service:") as $x
     | ($svc.depends_on[$x] // {}) as $dep
-    | (if ($s[$x].healthcheck // {disable: true}).disable == true
+    | ($s[$x].healthcheck // {disable: true}) as $hc
+    | (if $hc.disable == true or $hc.test[0] == "NONE"
         then "\($x) has no health check, but \($name) uses its network. Keep the health check of \($x)." else empty end),
       (if $dep.restart != true
         then "\($name) uses the network of \($x). Add depends_on: \($x): restart: true to \($name)." else empty end),
