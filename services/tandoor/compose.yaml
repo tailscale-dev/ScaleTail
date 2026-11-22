@@ -53,6 +53,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
     environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       - TZ=${TZ}
       - TANDOOR_PORT=${SERVICEPORT}
       - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}

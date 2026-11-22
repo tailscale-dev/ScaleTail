@@ -28,7 +28,7 @@ Set these values in `.env`:
 - **Service name.** The application service is called `web`, not `application`, and its container is `app-karakeep-web`.
 - **Extra containers.** The stack runs `chrome`, a headless browser that fetches the pages, and `meilisearch` for the search. They use the default Compose network, and Karakeep reaches them by their service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve these names.
 - **Images are set in `compose.yaml`.** The stack does not use `IMAGE_URL`. `KARAKEEP_VERSION` in `.env` selects the version of the Karakeep image.
-- **The containers read the whole `.env` file.** The `web` and `meilisearch` containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in their environment.
+- **The containers read the whole `.env` file.** The `web` and `meilisearch` containers load `.env` through `env_file`. Every variable in that file is therefore present in their environment, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for them, because only the `tailscale` container uses the auth key.
 
 ## First run
 

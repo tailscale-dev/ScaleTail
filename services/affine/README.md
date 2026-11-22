@@ -29,7 +29,7 @@ Set these values in `.env`:
 - **Extra containers.** The stack runs `postgres`, `redis`, and `affine_migration`. The migration container prepares the database and then exits. All three use the default Compose network, and AFFiNE reaches them by their service name through Docker's DNS. Keep `TS_ACCEPT_DNS` disabled, because MagicDNS cannot resolve these names.
 - **Image version.** `AFFINE_REVISION` in `.env` selects the version of the AFFiNE image.
 - **Data folders.** The data is in `./affine-storage`, `./affine-config`, and `./postgres`, not in a `./affine-data` folder.
-- **The containers read the whole `.env` file.** The `application` and `affine_migration` containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in their environment.
+- **The containers read the whole `.env` file.** The `application` and `affine_migration` containers load `.env` through `env_file`. Every variable in that file is therefore present in their environment, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for them, because only the `tailscale` container uses the auth key.
 
 ## First run
 
