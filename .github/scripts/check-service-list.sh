@@ -9,10 +9,13 @@ set -euo pipefail
 
 status=0
 heading_order='At a glance\|Before you start\|Deviations from the standard setup\|First run(\|Configuration)?(\|Troubleshooting)?(\|Upgrading)?\|Links'
+# The rows of the service list start with "| **". Links to a stack elsewhere
+# in README.md do not count as rows.
+links=$(grep -E '^\| \*\*' README.md | grep -oE '\]\(/?services/[^)/]+/?\)' | sed -E 's#^\]\(/?services/##; s#/?\)$##')
 for dir in services/*/; do
   name=${dir#services/}
   name=${name%/}
-  if ! grep -qE "\]\(/?services/${name}/?\)" README.md; then
+  if ! grep -qxF "$name" <<<"$links"; then
     echo "::error file=README.md::services/${name} has no row in README.md"
     status=1
   fi
@@ -23,7 +26,13 @@ for dir in services/*/; do
     fi
   done
   if [ -f "${dir}README.md" ]; then
-    headings=$(awk '/^```/ { fence = !fence } !fence && /^## / { sub(/^## /, ""); print }' "${dir}README.md" | paste -sd '|' -)
+    # Skip fenced code blocks: ``` or ~~~, indented by up to three spaces.
+    headings=$(awk '
+      { line = $0; sub(/^ ? ? ?/, "", line) }
+      fence != "" { if (line ~ ("^" fence char "*[ \t]*$")) fence = ""; next }
+      match(line, /^(```+|~~~+)/) { fence = substr(line, 1, RLENGTH); char = substr(fence, 1, 1); next }
+      /^## / { sub(/^## /, ""); print }
+    ' "${dir}README.md" | paste -sd '|' -)
     if ! grep -qxE "$heading_order" <<<"$headings"; then
       echo "::error file=${dir}README.md::The level-two headings must be those of templates/service-template/README.md, in order, with only Configuration, Troubleshooting, and Upgrading added before Links. Found: ${headings//|/, }"
       status=1
@@ -31,7 +40,6 @@ for dir in services/*/; do
   fi
 done
 
-links=$(grep -oE '\]\(/?services/[^)/]+/?\)' README.md | sed -E 's#^\]\(/?services/##; s#/?\)$##')
 while IFS= read -r name; do
   if [ ! -d "services/${name}" ]; then
     echo "::error file=README.md::README.md has a row for services/${name}, which does not exist"
