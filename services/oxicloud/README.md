@@ -6,12 +6,12 @@ This stack runs Oxicloud with a Tailscale sidecar, as described in [the standard
 
 ## At a glance
 
-| Item          | Value                              |
-| ------------- | ---------------------------------- |
+| Item          | Value                               |
+| ------------- | ----------------------------------- |
 | Web interface | `https://oxicloud.<tailnet>.ts.net` |
-| Service port  | `8086`                             |
-| Image         | `diocrafts/oxicloud:latest`        |
-| Data          | `./oxicloud-data/`                 |
+| Service port  | `8086`                              |
+| Image         | `diocrafts/oxicloud:latest`         |
+| Data          | `./oxicloud-data/storage/` (files), `./oxicloud-data/postgres/` (database) |
 
 ## Before you start
 
