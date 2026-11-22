@@ -89,11 +89,11 @@ services:
       postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget, "--spider", "-q", "http://127.0.0.1:8086/ready"] # Check if the service is responding
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8086/ready"] # Check if the service and its database are responding
       interval: 30s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
-      start_period: 30s # Number of retries before marking as unhealthy
-      retries: 3 # Time to wait before starting health checks
+      start_period: 30s # Time to wait before starting health checks
+      retries: 3 # Number of retries before marking as unhealthy
     restart: always
 
   postgres:
