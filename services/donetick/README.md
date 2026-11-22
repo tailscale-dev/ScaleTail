@@ -32,19 +32,27 @@ Open the web interface and sign up to create the first account.
 
 ## Upgrading
 
-Earlier versions of this stack shipped `donetick-data/config/selfhosted.yaml` in the repository, and you replaced its JWT secret yourself. The repository no longer tracks the file, and your copy stays in place and keeps working.
+Earlier versions of this stack shipped `donetick-data/config/selfhosted.yaml` in the repository, and you replaced its JWT secret yourself. The repository no longer tracks the file. Your copy stays in place and keeps working, and Git ignores it after the update.
 
-When you update with `git pull` and changed the file without a commit, Git refuses to pull. Move your copy aside first, then put it back:
+If you changed the file without a commit, `git pull` refuses to run, and `git stash pop` reports a conflict for the file. Before you update, move your copy to a private folder outside the clone, and restore the tracked file:
 
 ```bash
-mv donetick-data/config/selfhosted.yaml selfhosted.yaml.bak
+backup=$(mktemp -d)
+mv donetick-data/config/selfhosted.yaml "$backup/"
 git checkout -- donetick-data/config/selfhosted.yaml
-git pull
-mkdir -p donetick-data/config
-mv selfhosted.yaml.bak donetick-data/config/selfhosted.yaml
 ```
 
-When you committed your change, Git reports a conflict for the file instead. Keep your copy and finish the pull with `git rm --cached donetick-data/config/selfhosted.yaml`, then `git commit --no-edit`.
+Then update as described in [Update a stack](../../README.md#update-a-stack), and put your copy back from the same shell:
+
+```bash
+mkdir -p donetick-data/config
+mv "$backup/selfhosted.yaml" donetick-data/config/
+rmdir "$backup"
+```
+
+If `git stash pop` already reported the conflict, Git left your copy in place. Fix any conflict in `.env` first, then run `git reset` and `git stash drop`.
+
+If you committed your change, Git reports a conflict for the file when you pull. Keep your copy and finish the pull with `git rm --cached donetick-data/config/selfhosted.yaml`, then `git commit --no-edit`. If you pushed or shared that commit, others can read the secrets in it. Set a new random `jwt.secret`, for example from `openssl rand -base64 32`, which signs everyone out. Also replace the email, OAuth, Telegram, and Pushover credentials that you set in the file.
 
 ## Links
 
