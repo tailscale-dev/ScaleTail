@@ -10,7 +10,7 @@ This stack runs Nanote with a Tailscale sidecar, as described in [the standard s
 | ------------- | ---------------------------------------------- |
 | Web interface | `https://nanote.<tailnet>.ts.net`              |
 | Service port  | `3000`                                         |
-| Image         | `omarmir/nanote`                               |
+| Image         | `omarmir/nanote:latest`                               |
 | Data          | `./nanote-data` (your notes as Markdown files) |
 
 ## Before you start

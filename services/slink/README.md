@@ -10,7 +10,7 @@ This stack runs Slink with a Tailscale sidecar, as described in [the standard se
 | ------------- | ------------------------------------------ |
 | Web interface | `https://slink.<tailnet>.ts.net`           |
 | Service port  | `3000`                                     |
-| Image         | `anirdev/slink`                            |
+| Image         | `anirdev/slink:latest`                            |
 | Data          | `./slink-data/var/data` (application data) |
 |               | `./slink-data/images` (uploaded images)    |
 

@@ -10,7 +10,7 @@ This stack runs Dozzle with a Tailscale sidecar, as described in [the standard s
 | ------------- | --------------------------------- |
 | Web interface | `https://dozzle.<tailnet>.ts.net` |
 | Service port  | `8080`                            |
-| Image         | `amir20/dozzle`                   |
+| Image         | `amir20/dozzle:latest`                   |
 | Data          | `./dozzle-data/data/`             |
 
 ## Before you start

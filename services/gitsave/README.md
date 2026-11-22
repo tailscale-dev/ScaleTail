@@ -10,7 +10,7 @@ This stack runs GitSave with a Tailscale sidecar, as described in [the standard 
 | ------------- | ------------------------------------------------------- |
 | Web interface | `https://gitsave.<tailnet>.ts.net`                      |
 | Service port  | `3000`                                                  |
-| Image         | `timwitzdam/gitsave`                                    |
+| Image         | `timwitzdam/gitsave:latest`                                    |
 | Data          | `./gitsave-data/gitsave` (database)                     |
 |               | `./gitsave-data/backups` (backups of your repositories) |
 

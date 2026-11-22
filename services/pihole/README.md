@@ -11,7 +11,7 @@ This stack runs Pi-hole with a Tailscale sidecar, as described in [the standard 
 | Web interface | `https://pihole.<tailnet>.ts.net/admin`                         |
 | Service port  | `80`                                                            |
 | DNS           | Port `53` (TCP and UDP) on the Tailscale IP address of `pihole` |
-| Image         | `pihole/pihole`                                                 |
+| Image         | `pihole/pihole:latest`                                                 |
 | Data          | `./pihole-data/etc-pihole` (settings and databases)             |
 |               | `./pihole-data/etc-dnsmasq.d` (custom dnsmasq configuration)    |
 

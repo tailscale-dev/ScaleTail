@@ -10,7 +10,7 @@ This stack runs SearXNG with a Tailscale sidecar, as described in [the standard 
 | ------------- | ------------------------------------------- |
 | Web interface | `https://searxng.<tailnet>.ts.net`          |
 | Service port  | `8080`                                      |
-| Images        | `docker.io/searxng/searxng`                 |
+| Images        | `docker.io/searxng/searxng:latest`                 |
 |               | `docker.io/valkey/valkey:8-alpine`          |
 | Data          | `./searxng` (configuration, `settings.yml`) |
 |               | Docker volume `valkey-data2` (Valkey data)  |

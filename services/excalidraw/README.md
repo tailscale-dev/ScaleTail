@@ -10,7 +10,7 @@ This stack runs Excalidraw with a Tailscale sidecar, as described in [the standa
 | ------------- | ------------------------------------- |
 | Web interface | `https://excalidraw.<tailnet>.ts.net` |
 | Service port  | `80`                                  |
-| Image         | `excalidraw/excalidraw`               |
+| Image         | `excalidraw/excalidraw:latest`               |
 | Data          | None                                  |
 
 ## Before you start

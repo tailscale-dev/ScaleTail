@@ -10,7 +10,7 @@ This stack runs Homarr with a Tailscale sidecar, as described in [the standard s
 | ------------- | --------------------------------- |
 | Web interface | `https://homarr.<tailnet>.ts.net` |
 | Service port  | `7575`                            |
-| Image         | `ghcr.io/homarr-labs/homarr`      |
+| Image         | `ghcr.io/homarr-labs/homarr:latest`      |
 | Data          | `./homarr-data/appdata`           |
 
 ## Before you start

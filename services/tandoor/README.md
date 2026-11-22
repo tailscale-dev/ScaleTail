@@ -10,7 +10,7 @@ This stack runs Tandoor Recipes with a Tailscale sidecar, as described in [the s
 | ------------- | --------------------------------------------------------- |
 | Web interface | `https://tandoor.<tailnet>.ts.net`                        |
 | Service port  | `9001`                                                    |
-| Images        | `vabene1111/recipes`                                      |
+| Images        | `vabene1111/recipes:latest`                                      |
 |               | `postgres:16-alpine`                                      |
 | Data          | `./tandoor-data/mediafiles` (uploaded images and files)   |
 |               | `./tandoor-data/staticfiles` (files of the web interface) |

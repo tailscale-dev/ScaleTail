@@ -11,7 +11,7 @@ This stack runs LanguageTool with a Tailscale sidecar, as described in [the stan
 | Web interface | None                                                |
 | API           | `https://languagetool.<tailnet>.ts.net/v2`          |
 | Service port  | `8010`                                              |
-| Image         | `erikvl87/languagetool`                             |
+| Image         | `erikvl87/languagetool:latest`                             |
 | Data          | `./languagetool-data/ngrams` (optional n-gram data) |
 
 ## Before you start

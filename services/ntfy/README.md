@@ -10,7 +10,7 @@ This stack runs ntfy with a Tailscale sidecar, as described in [the standard set
 | ------------- | ----------------------------------------------- |
 | Web interface | `https://ntfy.<tailnet>.ts.net`                 |
 | Service port  | `80`                                            |
-| Image         | `binwiederhier/ntfy`                            |
+| Image         | `binwiederhier/ntfy:latest`                            |
 | Data          | `./ntfy-data/etc` (configuration, `server.yml`) |
 |               | `./ntfy-data/cache` (message cache)             |
 

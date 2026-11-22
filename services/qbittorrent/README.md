@@ -10,7 +10,7 @@ This stack runs qBittorrent with a Tailscale sidecar, as described in [the stand
 | ------------- | ------------------------------------------- |
 | Web interface | `https://qbittorrent.<tailnet>.ts.net`      |
 | Service port  | `8080`                                      |
-| Image         | `lscr.io/linuxserver/qbittorrent`           |
+| Image         | `lscr.io/linuxserver/qbittorrent:latest`           |
 | Data          | `./qbittorrent-data/config` (configuration) |
 |               | `./qbittorrent-data/downloads` (downloads)  |
 

@@ -10,7 +10,7 @@ This stack runs Jellyfin with a Tailscale sidecar, as described in [the standard
 | ------------- | ------------------------------------------------------------- |
 | Web interface | `https://jellyfin.<tailnet>.ts.net`                           |
 | Service port  | `8096`                                                        |
-| Image         | `lscr.io/linuxserver/jellyfin`                                |
+| Image         | `lscr.io/linuxserver/jellyfin:latest`                                |
 | Data          | `./jellyfin-data/config` (configuration, database, and cache) |
 |               | `./media/movies` (movie library)                              |
 |               | `./media/tvseries` (series library)                           |

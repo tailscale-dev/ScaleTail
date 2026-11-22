@@ -10,7 +10,7 @@ This stack runs NextExplorer with a Tailscale sidecar, as described in [the stan
 | ------------- | ------------------------------------------------------------------------- |
 | Web interface | `https://file-explorer.<tailnet>.ts.net`                                  |
 | Service port  | `3000`                                                                    |
-| Image         | `nxzai/explorer`                                                          |
+| Image         | `nxzai/explorer:latest`                                                          |
 | Data          | `./config` (configuration and database)                                   |
 |               | `./cache` (thumbnails and unfinished uploads)                             |
 |               | The folder from `ACCESS_PATH` (your files, `/mnt/Files` in the container) |

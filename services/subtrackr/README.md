@@ -10,7 +10,7 @@ This stack runs SubTrackr with a Tailscale sidecar, as described in [the standar
 | ------------- | ------------------------------------ |
 | Web interface | `https://subtrackr.<tailnet>.ts.net` |
 | Service port  | `8080`                               |
-| Image         | `ghcr.io/bscott/subtrackr`           |
+| Image         | `ghcr.io/bscott/subtrackr:latest`           |
 | Data          | `./subtrackr-data/data`              |
 
 ## Before you start
