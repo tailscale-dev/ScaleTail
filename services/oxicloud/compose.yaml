@@ -101,9 +101,9 @@ services:
     container_name: app-${SERVICE}-db
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
-      POSTGRES_DB: ${POSTGRES_DB:-oxicloud}
+      POSTGRES_USER: oxicloud
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: oxicloud
     volumes:
       - ./${SERVICE}-data/postgres:/var/lib/postgresql
     healthcheck:
