@@ -44,13 +44,15 @@ After you add models to Ollama, refresh the model list in Open WebUI under **Set
 
 `WEBUI_SECRET_KEY` is now required, and Compose stops with an error until it is set. If you already set it, nothing changes.
 
-If you left it empty, Open WebUI generated a key inside the container, at `/app/backend/.webui_secret_key`, outside the data folder. It made a new key each time the container was recreated, for example after an image update, and everyone had to sign in again. To keep the current sessions, copy that key into `.env` while the old container still runs:
+If you left it empty, Open WebUI generated a key inside the container, at `/app/backend/.webui_secret_key`, outside the data folder. It made a new key each time the container was recreated, for example after an image update, and everyone had to sign in again. To keep the current sessions, copy that key into `.env` while the old container still runs. From the service directory, run:
 
 ```bash
-docker exec app-open-webui cat /app/backend/.webui_secret_key
+WEBUI_SECRET_KEY=dummy docker compose exec -T application cat /app/backend/.webui_secret_key
 ```
 
-Set the output as `WEBUI_SECRET_KEY` in `.env`, then run `docker compose up -d`. You can also set a new key instead. Everyone then signs in again.
+The dummy value only lets Compose read the new `compose.yaml`. It does not change the running container.
+
+Set the output as `WEBUI_SECRET_KEY` in `.env`, then run `docker compose up -d`. You can also set a new key instead. Everyone then signs in again, and Open WebUI can no longer read the OAuth tokens and OAuth client registrations that it encrypted with the old key. Reconnect the tool servers, such as MCP servers, that sign in with OAuth.
 
 ## Links
 
