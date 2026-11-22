@@ -15,8 +15,10 @@ This stack runs OxiCloud with a Tailscale sidecar, as described in [the standard
 
 ## Before you start
 
-Add values for the mandatory variables : TAILNET_NAME and POSTRGES_PASSWORD in .env file. Otherwise Compose will stop.
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Set these values in `.env`. Compose stops with an error until both are set:
+
+- **`TAILNET_NAME`.** Your Tailnet name without `.ts.net`, such as `tail1234`. OxiCloud builds its public address, `https://<SERVICE>.<TAILNET_NAME>.ts.net`, from it and uses that address for share links and secure cookies.
+- **`POSTGRES_PASSWORD`.** The password of the database. Generate it with `openssl rand -hex 32`. PostgreSQL reads it only at the first start, when it creates the database.
 
 ## Deviations from the standard setup
 
