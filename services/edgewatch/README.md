@@ -51,12 +51,13 @@ docker compose exec application edgewatch admin setup-token --config /etc/edgewa
 - **Settings.** Edit `config.yaml` and apply it with `docker compose up -d --force-recreate application`. The [configuration reference](https://edgewatch.offsec.nl/reference/configuration/) describes every setting, such as `retention`, `scanner.target_exclusions`, and `backup`.
 - **Time zone.** The stack passes `TZ` from `.env`, which sets the time zone of the daemon log. The optional `timezone` setting in `config.yaml` also sets it for the web interface and notifications.
 - **Naabu SYN scans.** A Naabu profile with `scan_type: syn` also needs `NET_ADMIN`. Add it to `cap_add` of the `application` service in a `compose.override.yaml`, as upstream's `compose.syn.yaml` does.
+- **Metrics.** Tailscale Serve forwards every path, so when you enable `web.metrics`, every Tailnet device that may reach this one can request `/metrics`, which then only needs the bearer token. Upstream recommends keeping `/metrics` off the proxy. See [health and metrics](https://edgewatch.offsec.nl/deployment/reverse-proxies/#health-and-metrics).
 - **Back up** `./edgewatch-data` as a whole. It holds the database and the generated encryption keys. See [backup and recovery](https://edgewatch.offsec.nl/operations/backup-recovery/).
 
 ## Troubleshooting
 
 - **`mkdir /var/lib/edgewatch/tmp: permission denied`.** `./edgewatch-data` does not belong to root. Stop the stack, then run `sudo chown -R 0:0 ./edgewatch-data` and `sudo chmod 0750 ./edgewatch-data`.
-- **`421 Misdirected Request`.** The address you opened is not in `web.allowed_hosts`. Check the name against `docker exec tailscale-edgewatch tailscale status --json | jq -r .Self.DNSName`, without the final dot, and recreate the container.
+- **`421 Misdirected Request`.** The address you opened is not in `web.allowed_hosts`. Check the name against `docker compose exec tailscale tailscale status --json | jq -r .Self.DNSName`, without the final dot, and recreate the container.
 
 ## Links
 
