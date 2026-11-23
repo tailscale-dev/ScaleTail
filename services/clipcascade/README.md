@@ -10,7 +10,7 @@ This stack runs ClipCascade with a Tailscale sidecar, as described in [the stand
 | ------------- | --------------------------------------------- |
 | Web interface | `https://clipcascade.<tailnet>.ts.net`        |
 | Service port  | `8080`                                        |
-| Image         | `sathvikrao/clipcascade`                      |
+| Image         | `sathvikrao/clipcascade:latest`                      |
 | Data          | `./clipcascade-data/cc_users` (user database) |
 
 ## Before you start

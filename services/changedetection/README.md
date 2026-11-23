@@ -10,7 +10,7 @@ This stack runs changedetection.io with a Tailscale sidecar, as described in [th
 | ------------- | ------------------------------------------ |
 | Web interface | `https://changedetection.<tailnet>.ts.net` |
 | Service port  | `5000`                                     |
-| Image         | `ghcr.io/dgtlmoon/changedetection.io`      |
+| Image         | `ghcr.io/dgtlmoon/changedetection.io:latest`      |
 | Data          | `./changedetection-data/datastore`         |
 
 ## Before you start

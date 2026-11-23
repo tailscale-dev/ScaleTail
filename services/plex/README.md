@@ -10,7 +10,7 @@ This stack runs Plex with a Tailscale sidecar, as described in [the standard set
 | ------------- | ---------------------------------------------------- |
 | Web interface | `https://plex.<tailnet>.ts.net/web`                  |
 | Service port  | `32400`                                              |
-| Image         | `lscr.io/linuxserver/plex`                           |
+| Image         | `lscr.io/linuxserver/plex:latest`                           |
 | Data          | `./plex-data/config` (library database and settings) |
 |               | `./plex-data/media/movies` (movie library)           |
 |               | `./plex-data/media/tvseries` (series library)        |

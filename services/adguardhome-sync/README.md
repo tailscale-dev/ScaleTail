@@ -10,7 +10,7 @@ This stack runs AdGuard Home Sync with a Tailscale sidecar, as described in [the
 | ------------- | ------------------------------------------------------------------------------- |
 | Web interface | None                                                                            |
 | Service port  | `8080` on the Tailscale IP address of `adguardhome-sync` (API of the sync tool) |
-| Image         | `ghcr.io/bakito/adguardhome-sync`                                               |
+| Image         | `ghcr.io/bakito/adguardhome-sync:latest`                                               |
 | Data          | None                                                                            |
 
 ## Before you start

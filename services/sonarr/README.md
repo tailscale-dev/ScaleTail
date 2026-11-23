@@ -10,7 +10,7 @@ This stack runs Sonarr with a Tailscale sidecar, as described in [the standard s
 | ------------- | ------------------------------------------------------------ |
 | Web interface | `https://sonarr.<tailnet>.ts.net`                            |
 | Service port  | `8989`                                                       |
-| Image         | `lscr.io/linuxserver/sonarr`                                 |
+| Image         | `lscr.io/linuxserver/sonarr:latest`                                 |
 | Data          | `./sonarr-data/config` (configuration and database)          |
 |               | `./sonarr-data/media/tvseries` (series library, optional)    |
 |               | `./sonarr-data/downloads` (download client output, optional) |

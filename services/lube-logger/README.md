@@ -10,7 +10,7 @@ This stack runs LubeLogger with a Tailscale sidecar, as described in [the standa
 | ------------- | -------------------------------------------------------------- |
 | Web interface | `https://lubelogger.<tailnet>.ts.net`                          |
 | Service port  | `8080`                                                         |
-| Image         | `ghcr.io/hargata/lubelogger`                                   |
+| Image         | `ghcr.io/hargata/lubelogger:latest`                                   |
 | Data          | `./lubelogger-data/data` (database and documents)              |
 |               | `./lubelogger-data/keys` (keys that protect the login cookies) |
 

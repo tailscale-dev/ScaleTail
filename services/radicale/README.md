@@ -10,7 +10,7 @@ This stack runs Radicale with a Tailscale sidecar, as described in [the standard
 | ------------- | ------------------------------------------------------ |
 | Web interface | `https://radicale.<tailnet>.ts.net`                    |
 | Service port  | `5232`                                                 |
-| Image         | `tomsquest/docker-radicale`                            |
+| Image         | `tomsquest/docker-radicale:latest`                            |
 | Data          | `./radicale-data/app/data` (calendars and contacts)    |
 |               | `./radicale-data/config/radicale.conf` (configuration) |
 |               | `./radicale-data/users` (users and password hashes)    |

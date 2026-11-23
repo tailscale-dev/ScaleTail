@@ -10,7 +10,7 @@ This stack runs EspoCRM with a Tailscale sidecar, as described in [the standard 
 | ------------- | --------------------------------------------------------------------------- |
 | Web interface | `https://espocrm.<tailnet>.ts.net`                                          |
 | Service port  | `80`                                                                        |
-| Images        | `espocrm/espocrm`                                                           |
+| Images        | `espocrm/espocrm:latest`                                                           |
 |               | `mariadb:12.2`                                                              |
 | Data          | `./espocrm-data/data` (application data)                                    |
 |               | `./espocrm-data/custom` and `./espocrm-data/client/custom` (customisations) |

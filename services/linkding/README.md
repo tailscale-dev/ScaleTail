@@ -10,7 +10,7 @@ This stack runs linkding with a Tailscale sidecar, as described in [the standard
 | ------------- | ----------------------------------- |
 | Web interface | `https://linkding.<tailnet>.ts.net` |
 | Service port  | `9090`                              |
-| Image         | `sissbruecker/linkding`             |
+| Image         | `sissbruecker/linkding:latest`             |
 | Data          | `./linkding-data/data`              |
 
 ## Before you start

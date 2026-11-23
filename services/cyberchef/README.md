@@ -10,7 +10,7 @@ This stack runs CyberChef with a Tailscale sidecar, as described in [the standar
 | ------------- | ------------------------------------ |
 | Web interface | `https://cyberchef.<tailnet>.ts.net` |
 | Service port  | `8080`                               |
-| Image         | `ghcr.io/gchq/cyberchef`             |
+| Image         | `ghcr.io/gchq/cyberchef:latest`             |
 | Data          | None                                 |
 
 ## Before you start

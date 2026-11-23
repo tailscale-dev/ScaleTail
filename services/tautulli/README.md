@@ -10,7 +10,7 @@ This stack runs Tautulli with a Tailscale sidecar, as described in [the standard
 | ------------- | ----------------------------------- |
 | Web interface | `https://tautulli.<tailnet>.ts.net` |
 | Service port  | `8181`                              |
-| Image         | `lscr.io/linuxserver/tautulli`      |
+| Image         | `lscr.io/linuxserver/tautulli:latest`      |
 | Data          | `./tautulli-data/app/config`        |
 
 ## Before you start

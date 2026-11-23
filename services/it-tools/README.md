@@ -10,7 +10,7 @@ This stack runs IT-Tools with a Tailscale sidecar, as described in [the standard
 | ------------- | ----------------------------------- |
 | Web interface | `https://it-tools.<tailnet>.ts.net` |
 | Service port  | `80`                                |
-| Image         | `corentinth/it-tools`               |
+| Image         | `corentinth/it-tools:latest`               |
 | Data          | None                                |
 
 ## Before you start

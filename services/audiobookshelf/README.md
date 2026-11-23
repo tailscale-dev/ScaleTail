@@ -10,7 +10,7 @@ This stack runs Audiobookshelf with a Tailscale sidecar, as described in [the st
 | ------------- | ----------------------------------------------------------------- |
 | Web interface | `https://audiobookshelf.<tailnet>.ts.net`                         |
 | Service port  | `80`                                                              |
-| Image         | `ghcr.io/advplyr/audiobookshelf`                                  |
+| Image         | `ghcr.io/advplyr/audiobookshelf:latest`                                  |
 | Data          | `./audiobookshelf-data/app/config` (configuration and database)   |
 |               | `./audiobookshelf-data/app/metadata` (covers, cache, and backups) |
 |               | `./audiobookshelf-data/app/audiobooks` (audiobook library)        |

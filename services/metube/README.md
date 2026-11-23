@@ -10,7 +10,7 @@ This stack runs MeTube with a Tailscale sidecar, as described in [the standard s
 | ------------- | --------------------------------- |
 | Web interface | `https://metube.<tailnet>.ts.net` |
 | Service port  | `8081`                            |
-| Image         | `ghcr.io/alexta69/metube`         |
+| Image         | `ghcr.io/alexta69/metube:latest`         |
 | Data          | `./downloads`                     |
 
 ## Before you start

@@ -10,7 +10,7 @@ This stack runs Isley with a Tailscale sidecar, as described in [the standard se
 | ------------- | ---------------------------------------------- |
 | Web interface | `https://isley.<tailnet>.ts.net`               |
 | Service port  | `8080`                                         |
-| Image         | `dwot/isley`                                   |
+| Image         | `dwot/isley:latest`                                   |
 | Data          | `./isley-data/isley-db` (database)             |
 |               | `./isley-data/isley-uploads` (uploaded images) |
 

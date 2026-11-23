@@ -10,7 +10,7 @@ This stack runs Navidrome with a Tailscale sidecar, as described in [the standar
 | ------------- | ------------------------------------------------------------- |
 | Web interface | `https://navidrome.<tailnet>.ts.net`                          |
 | Service port  | `4533`                                                        |
-| Image         | `deluan/navidrome`                                            |
+| Image         | `deluan/navidrome:latest`                                            |
 | Data          | `./navidrome-data/data` (database and cache)                  |
 |               | The folder that you mount at `/music` (your music, read-only) |
 

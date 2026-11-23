@@ -10,7 +10,7 @@ This stack runs Portainer with a Tailscale sidecar, as described in [the standar
 | ------------- | ------------------------------------ |
 | Web interface | `https://portainer.<tailnet>.ts.net` |
 | Service port  | `9000`                               |
-| Image         | `portainer/portainer-ce`             |
+| Image         | `portainer/portainer-ce:latest`             |
 | Data          | `./portainer-data/portainer_data`    |
 
 ## Before you start

@@ -10,7 +10,7 @@ This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the stan
 | ------------- | ----------------------------------------------------------------------- |
 | Web interface | `https://stirlingpdf.<tailnet>.ts.net`                                  |
 | Service port  | `8080`                                                                  |
-| Image         | `frooodle/s-pdf`                                                        |
+| Image         | `frooodle/s-pdf:latest`                                                        |
 | Data          | `./stirlingpdf-data/extraConfigs` (settings and database)               |
 |               | `./stirlingpdf-data/trainingData` (language files for text recognition) |
 
