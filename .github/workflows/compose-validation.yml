@@ -98,6 +98,13 @@ jobs:
           done
           exit $status
 
+      # A container that uses the network of the Tailscale sidecar must
+      # restart with it, and the application must wait until it is healthy.
+      # The step above reports stacks that do not parse.
+      - name: Check the sidecar dependencies
+        if: ${{ !cancelled() }}
+        run: bash .github/scripts/check-sidecar.sh
+
       # Line 11 of .gitignore is "Icon[<CR>]", with a carriage-return byte
       # between the brackets. Editors often turn it into a newline, which
       # breaks the rule without any visible change in the diff.
