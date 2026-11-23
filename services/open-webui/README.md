@@ -17,7 +17,7 @@ This stack runs Open WebUI with a Tailscale sidecar, as described in [the standa
 
 Set these values in `.env`:
 
-- **`WEBUI_SECRET_KEY`.** A long random value that Open WebUI uses to sign the login tokens.
+- **`WEBUI_SECRET_KEY`.** A long random value that Open WebUI uses to sign the login tokens and to encrypt stored OAuth tokens. Generate it with `openssl rand -hex 32`, and keep it when you recreate the stack. Compose stops with an error until it is set.
 - **`OLLAMA_BASE_URL`.** The address of your Ollama instance:
   - On the Docker host: `http://host.docker.internal:11434`. A native Ollama listens only on `127.0.0.1` by default, which containers cannot reach. Set `OLLAMA_HOST=0.0.0.0:11434` for it. This makes Ollama reachable on every network of the host, so limit access with a firewall.
   - In the [Ollama stack](../ollama/) of this repository: `http://<Tailscale IP address of ollama>:11434`. That stack runs on its own Tailnet device and does not publish port `11434` on the Docker host.
@@ -39,6 +39,20 @@ After you add models to Ollama, refresh the model list in Open WebUI under **Set
 
 - **MagicDNS.** Uncomment `TS_ACCEPT_DNS=true` in `compose.yaml` only if Open WebUI must resolve MagicDNS names, such as an Ollama instance that you address by its Tailnet name.
 - **WebSockets.** Open WebUI needs WebSocket connections. Make sure that nothing between your browser and the device blocks them.
+
+## Upgrading
+
+`WEBUI_SECRET_KEY` is now required, and Compose stops with an error until it is set. If you already set it, nothing changes.
+
+If you left it empty, Open WebUI generated a key inside the container, at `/app/backend/.webui_secret_key`, outside the data folder. It made a new key each time the container was recreated, for example after an image update, and everyone had to sign in again. To keep the current sessions, copy that key into `.env` while the old container still runs. From the service directory, run:
+
+```bash
+WEBUI_SECRET_KEY=dummy docker compose exec -T application cat /app/backend/.webui_secret_key
+```
+
+The dummy value only lets Compose read the new `compose.yaml`. It does not change the running container.
+
+Set the output as `WEBUI_SECRET_KEY` in `.env`, then run `docker compose up -d`. You can also set a new key instead. Everyone then signs in again, and Open WebUI can no longer read the OAuth tokens and OAuth client registrations that it encrypted with the old key. Reconnect the tool servers, such as MCP servers, that sign in with OAuth.
 
 ## Links
 
