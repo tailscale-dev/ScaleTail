@@ -40,7 +40,7 @@ services:
     #dns:
     #  - ${DNS_SERVER}
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"]
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
       interval: 1m # How often to perform the check
       timeout: 10s # Time to wait for the check to succeed
       retries: 3 # Number of retries before marking as unhealthy
@@ -52,18 +52,17 @@ services:
     image: ${IMAGE_URL} # Image to be used
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: app-${SERVICE} # Name for local container management
-    environment:
+    environment: # Variables are declared in .env file.
       # Set PUID and PGID only for images that read them, such as LinuxServer.io images. Many images ignore them.
       #- PUID=1000
       #- PGID=1000
       - TZ=${TZ}
-      - OXICLOUD_SERVER_HOST=0.0.0.0
-      - OXICLOUD_DB_CONNECTION_STRING=postgres://oxicloud:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/oxicloud
-      - OXICLOUD_BASE_URL=https://${SERVICE}.${TAILNET_NAME:?Set TAILNET_NAME in .env}.ts.net
-      - OXICLOUD_TRUST_PROXY_CIDR=127.0.0.1/32
-      #- EXAMPLE_VAR=${EXAMPLE_VAR}
+      - OXICLOUD_SERVER_HOST=0.0.0.0 # Listen on all interfaces, so that the optional ports block works too
+      - OXICLOUD_DB_CONNECTION_STRING=postgres://oxicloud:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/oxicloud # Reaches the database by its Compose service name
+      - OXICLOUD_BASE_URL=https://${SERVICE}.${TAILNET_NAME:?Set TAILNET_NAME in .env}.ts.net # Used for share links and secure cookies
+      - OXICLOUD_TRUST_PROXY_CIDR=127.0.0.1/32 # Tailscale Serve connects from the loopback address and sends the client address in X-Forwarded-For
     volumes:
-      - ./${SERVICE}-data/storage:/app/storage
+      - ./${SERVICE}-data/storage:/app/storage # Files, and the generated JWT secret that keeps logins valid across restarts
     depends_on:
       tailscale:
         condition: service_healthy
@@ -76,22 +75,25 @@ services:
       test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:8086/ready"] # Check if the service and its database are responding
       interval: 30s # How often to perform the check
       timeout: 5s # Time to wait for the check to succeed
-      start_period: 30s # Time to wait before starting health checks
       retries: 3 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
     restart: always
 
+  # Database
   postgres:
     image: postgres:18-alpine # Image to be used
-    container_name: app-${SERVICE}-db
-    restart: always
+    container_name: app-${SERVICE}-db # Name for local container management
     environment:
       POSTGRES_USER: oxicloud
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
       POSTGRES_DB: oxicloud
     volumes:
-      - ./${SERVICE}-data/postgres:/var/lib/postgresql
+      - ./${SERVICE}-data/postgres:/var/lib/postgresql # PostgreSQL 18 keeps its data in a versioned folder below this path
+    # Healthcheck: the image defines none. Check over TCP, because the first-start server accepts only socket connections.
     healthcheck:
-      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "oxicloud", "-d", "oxicloud"] # check database is ready
-      interval: 5s
-      timeout: 5s
-      retries: 5
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "oxicloud", "-d", "oxicloud"] # Check if PostgreSQL accepts connections
+      interval: 5s # How often to perform the check
+      timeout: 5s # Time to wait for the check to succeed
+      retries: 5 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always
