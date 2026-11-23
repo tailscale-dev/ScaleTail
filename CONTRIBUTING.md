@@ -64,7 +64,7 @@ do not have to fix the rest of a stack that you touch.
      you pin an exact version, say why in a comment.
    - Keep application data under `./${SERVICE}-data/`, so that `.gitignore`
      covers it. A file that the repository must track inside such a folder
-     needs its own exception in `.gitignore`, as for Donetick and Dozzle.
+     needs its own exception in `.gitignore`, as for Dashy and Dozzle.
 
 4. Set the Serve proxy to the application's internal port.
 

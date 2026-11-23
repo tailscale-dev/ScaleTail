@@ -54,16 +54,17 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     environment:
       - ARCANE_APP_URL=https://${SERVICE}.${TAILNET_NAME}.ts.net
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID:-1000} # User that Arcane runs as and that owns the files it creates - the owner of the stacks folder
+      - PGID=${PGID:-1000} # Group of that user
       - ARCANE_ENCRYPTION_KEY=${ENCRYPTION_KEY:?Set ENCRYPTION_KEY in .env}
+      - ARCANE_PROJECTS_DIRECTORY=${STACKS_DIR} # Arcane finds your stacks here and creates each new project in its own folder
       - ARCANE_LOG_LEVEL=info # Optional
       - ARCANE_LOG_JSON=false # Optional
       - TZ=${TZ}
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./${SERVICE}-data:/app/data
-      - ./opt/dockerdata:/app/data/projects # Optional volume for an existing Docker Compose directory.
+      - ${STACKS_DIR}:${STACKS_DIR} # Same path as on the host, so relative paths such as ./config in a project resolve to its own folder
     depends_on:
       tailscale:
         condition: service_healthy
