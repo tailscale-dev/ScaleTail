@@ -55,6 +55,7 @@ services:
     env_file:
       - .env
     environment:
+      TS_AUTHKEY: "" # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       MEILI_ADDR: http://meilisearch:7700
       NEXTAUTH_SECRET: ${NEXTAUTH_SECRET:?Set NEXTAUTH_SECRET in .env}
       MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}
@@ -107,6 +108,7 @@ services:
     env_file:
       - .env
     environment:
+      TS_AUTHKEY: "" # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       MEILI_NO_ANALYTICS: "true"
       MEILI_MASTER_KEY: ${MEILI_MASTER_KEY:?Set MEILI_MASTER_KEY in .env}
     volumes:

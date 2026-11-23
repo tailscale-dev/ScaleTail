@@ -62,6 +62,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
     env_file:
       - .env
+    environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
     depends_on:
       redis:
         condition: service_healthy
@@ -85,6 +87,8 @@ services:
       - ./${SERVICE}-data/model-cache:/cache
     env_file:
       - .env
+    environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
     # Healthcheck: defined by the image (python3 healthcheck.py), so this file does not override it.
     restart: always
 

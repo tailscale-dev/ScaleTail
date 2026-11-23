@@ -57,6 +57,7 @@ services:
     env_file:
       - .env
     environment:
+      TS_AUTHKEY: "" # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       POSTGRES_PASSWORD: ${DB_PASSWORD:?Set DB_PASSWORD in .env}
       POSTGRES_USER: ${DB_USERNAME}
       POSTGRES_DB: ${DB_DATABASE_NAME}
@@ -78,6 +79,7 @@ services:
     env_file:
       - .env
     environment:
+      TS_AUTHKEY: "" # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       AUTH_SECRET: ${AUTH_SECRET:?Set AUTH_SECRET in .env}
       DATABASE_URL: "postgresql://${DB_USERNAME}:${DB_PASSWORD:?Set DB_PASSWORD in .env}@localhost:${SERVICEPORT_DATABASE}/${DB_DATABASE_NAME}"
     depends_on:
