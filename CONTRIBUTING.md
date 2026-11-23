@@ -54,6 +54,11 @@ do not have to fix the rest of a stack that you touch.
      `app-${SERVICE}-<role>` for extra containers, such as `app-${SERVICE}-db`.
    - Pass `PUID` and `PGID` only when the image reads them, such as LinuxServer.io
      images. Keep `TZ`, as the template does.
+   - Pass variables to a container under `environment`. Avoid `env_file: .env`:
+     it gives the container every variable in `.env`, including `TS_AUTHKEY`.
+     When a container must load `.env`, for example to follow the upstream
+     Compose file, add `TS_AUTHKEY=` to its `environment`, as for Immich, and
+     list the `env_file` under "Deviations from the standard setup".
    - Write the image tag explicitly and use the tag upstream recommends. Pin
      databases, caches, and search engines to a major or major.minor tag. When
      you pin an exact version, say why in a comment.

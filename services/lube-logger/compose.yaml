@@ -54,6 +54,8 @@ services:
     container_name: app-${SERVICE} # Name for local container management
     env_file:
       - .env
+    environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
     volumes:
       - ./${SERVICE}-data/data:/App/data
       - ./${SERVICE}-data/keys:/root/.aspnet/DataProtection-Keys

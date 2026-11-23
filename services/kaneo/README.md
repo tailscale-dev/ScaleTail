@@ -26,7 +26,7 @@ Set these values in `.env`:
 - **Extra container.** The stack runs a `postgres` container. It uses the network of the `tailscale` container as well, so Kaneo reaches it at `localhost`. PostgreSQL listens only on the loopback address of the device, so other devices on your Tailnet cannot reach it.
 - **Serve port from `.env`.** The Tailscale Serve configuration in `compose.yaml` takes its port from `SERVICEPORT`.
 - **Database image.** `IMAGE_URL_DATABASE` in `.env` selects the PostgreSQL image.
-- **The containers read the whole `.env` file.** Both containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in their environment.
+- **The containers read the whole `.env` file.** Both containers load `.env` through `env_file`. Every variable in that file is therefore present in their environment, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for them, because only the `tailscale` container uses the auth key.
 
 ## First run
 

@@ -21,7 +21,7 @@ This stack runs Pocket ID with a Tailscale sidecar, as described in [the standar
 
 ## Deviations from the standard setup
 
-- **The container reads the whole `.env` file.** The `application` container loads `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in its environment.
+- **The container reads the whole `.env` file.** The `application` container loads `.env` through `env_file`. Every variable in that file is therefore present in its environment, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for it, because only the `tailscale` container uses the auth key.
 - **Trusted proxy.** `TRUST_PROXY=true` in `.env` makes Pocket ID accept the client address that Tailscale Serve forwards.
 - **User and group.** `PUID` and `PGID` come from `.env`.
 

@@ -20,7 +20,7 @@ Set `JWT_SECRET_KEY` in `.env` to a long random value, for example from `openssl
 ## Deviations from the standard setup
 
 - **Service name.** The application service is called `kitchenowl`, not `application`.
-- **The container reads the whole `.env` file.** The `kitchenowl` container loads `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in its environment.
+- **The container reads the whole `.env` file.** The `kitchenowl` container loads `.env` through `env_file`. Every variable in that file is therefore present in its environment, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for it, because only the `tailscale` container uses the auth key.
 
 ## First run
 

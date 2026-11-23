@@ -29,7 +29,7 @@ This stack runs Immich with a Tailscale sidecar, as described in [the standard s
 * **Extra containers.** Besides `application`, the stack runs `immich-machine-learning`, `redis` (Valkey), and `database` (Postgres). These three use the default Compose network and not the network of the `tailscale` container. Immich reaches them by their service name through Docker's DNS.
 * **Images are set in `compose.yaml`.** The stack does not use `IMAGE_URL`. `IMMICH_VERSION` in `.env` selects the version of the server and machine learning images.
 * **Keep `TS_ACCEPT_DNS` disabled.** The `application` service shares the DNS configuration of the `tailscale` service. With `TS_ACCEPT_DNS=true`, Tailscale replaces Docker's DNS with MagicDNS, which cannot resolve the `database`, `redis`, and `immich-machine-learning` services. Immich then fails to start with `getaddrinfo ENOTFOUND database`. You can reach Immich over your Tailnet without this setting.
-* **The containers read the whole `.env` file.** As in the upstream Compose file, the Immich containers load `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in the environment of the `application` and `immich-machine-learning` containers.
+* **The containers read the whole `.env` file.** As in the upstream Compose file, the Immich containers load `.env` through `env_file`. Every variable in that file is therefore present in the environment of the `application` and `immich-machine-learning` containers, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for them, because only the `tailscale` container uses the auth key.
 
 ## First run
 
