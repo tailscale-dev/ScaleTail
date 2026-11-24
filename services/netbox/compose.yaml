@@ -50,6 +50,7 @@ services:
     network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
     container_name: ${SERVICE} # Name for local container management
     environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}
       - TZ=${TZ}
     volumes:
@@ -94,6 +95,8 @@ services:
     image: docker.io/postgres:17-alpine
     container_name: ${SERVICE}-postgres
     env_file: ./.env
+    environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
     healthcheck:
       test: pg_isready -h 127.0.0.1 -q -t 2 -d $$POSTGRES_DB -U $$POSTGRES_USER # Check if PostgreSQL accepts connections
       start_period: 20s
@@ -109,6 +112,8 @@ services:
     container_name: ${SERVICE}-redis
     image: docker.io/valkey/valkey:8.1-alpine
     env_file: ./.env
+    environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
     command:
       - sh
       - -c # this is to evaluate the $REDIS_PASSWORD from the env
@@ -126,6 +131,8 @@ services:
     container_name: ${SERVICE}-rediscache
     image: docker.io/valkey/valkey:8.1-alpine
     env_file: ./.env
+    environment:
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
     command:
       - sh
       - -c # this is to evaluate the $REDIS_PASSWORD from the env

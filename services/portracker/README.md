@@ -10,7 +10,7 @@ This stack runs Portracker with a Tailscale sidecar, as described in [the standa
 | ------------- | ------------------------------------- |
 | Web interface | `https://portracker.<tailnet>.ts.net` |
 | Service port  | `4999`                                |
-| Image         | `mostafawahied/portracker`            |
+| Image         | `mostafawahied/portracker:latest`            |
 | Data          | `./portracker-data/data`              |
 
 ## Before you start

@@ -10,7 +10,7 @@ This stack runs Vaultwarden with a Tailscale sidecar, as described in [the stand
 | ------------- | -------------------------------------- |
 | Web interface | `https://vaultwarden.<tailnet>.ts.net` |
 | Service port  | `80`                                   |
-| Image         | `vaultwarden/server`                   |
+| Image         | `vaultwarden/server:latest`                   |
 | Data          | `./vaultwarden-data/vw-data`           |
 
 ## Before you start

@@ -10,7 +10,7 @@ This stack runs DDNS Updater with a Tailscale sidecar, as described in [the stan
 | ------------- | ---------------------------------------------------------------------- |
 | Web interface | `https://ddns-updater.<tailnet>.ts.net`                                |
 | Service port  | `8000`                                                                 |
-| Image         | `qmcgaw/ddns-updater`                                                  |
+| Image         | `qmcgaw/ddns-updater:latest`                                                  |
 | Data          | `./ddns-updater-data/data` (your `config.json` and the update history) |
 
 ## Before you start

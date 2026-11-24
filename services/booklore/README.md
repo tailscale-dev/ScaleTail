@@ -10,7 +10,7 @@ This stack runs BookLore with a Tailscale sidecar, as described in [the standard
 | ------------- | ---------------------------------------------------- |
 | Web interface | `https://booklore.<tailnet>.ts.net`                  |
 | Service port  | `6060`                                               |
-| Images        | `ghcr.io/booklore-app/booklore`                      |
+| Images        | `ghcr.io/booklore-app/booklore:latest`                      |
 |               | `lscr.io/linuxserver/mariadb`                        |
 | Data          | `./data` (application data)                          |
 |               | `./books` (book library, `/books1` in the container) |

@@ -10,7 +10,7 @@ This stack runs Gotify with a Tailscale sidecar, as described in [the standard s
 | ------------- | ------------------------------------------------------------- |
 | Web interface | `https://gotify.<tailnet>.ts.net`                             |
 | Service port  | `80`                                                          |
-| Image         | `gotify/server`                                               |
+| Image         | `gotify/server:latest`                                               |
 | Data          | `./gotify-data/app/data`                                      |
 | iGotify image | `ghcr.io/androidseb25/igotify-notification-assist` (optional) |
 | iGotify data  | `./gotify-data/igotify` (optional)                            |

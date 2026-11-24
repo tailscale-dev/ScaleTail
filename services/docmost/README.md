@@ -10,7 +10,7 @@ This stack runs Docmost with a Tailscale sidecar, as described in [the standard 
 | ------------- | ---------------------------------------------- |
 | Web interface | `https://docmost.<tailnet>.ts.net`             |
 | Service port  | `3000`                                         |
-| Images        | `docmost/docmost`                              |
+| Images        | `docmost/docmost:latest`                              |
 |               | `postgres:16-alpine`                           |
 |               | `redis:7.2-alpine`                             |
 | Data          | `./docmost-data/docmost` (uploaded files)      |

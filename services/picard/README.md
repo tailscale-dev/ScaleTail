@@ -10,7 +10,7 @@ This stack runs MusicBrainz Picard with a Tailscale sidecar, as described in [th
 | ------------- | --------------------------------------------------------------- |
 | Web interface | `https://picard.<tailnet>.ts.net`                               |
 | Service port  | `5800`                                                          |
-| Image         | `mikenye/picard`                                                |
+| Image         | `mikenye/picard:latest`                                                |
 | Data          | `./picard-data/config` (Picard settings)                        |
 |               | `./picard-data/music` (your music, `/storage` in the container) |
 

@@ -10,7 +10,7 @@ This stack runs BentoPDF with a Tailscale sidecar, as described in [the standard
 | ------------- | ----------------------------------- |
 | Web interface | `https://bentopdf.<tailnet>.ts.net` |
 | Service port  | `8080`                              |
-| Image         | `ghcr.io/alam00000/bentopdf`        |
+| Image         | `ghcr.io/alam00000/bentopdf:latest`        |
 | Data          | None                                |
 
 ## Before you start

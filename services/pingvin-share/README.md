@@ -12,7 +12,7 @@ This stack runs Pingvin Share with a Tailscale sidecar, as described in [the sta
 | ------------- | --------------------------------------------------------- |
 | Web interface | `https://pingvin-share.<tailnet>.ts.net`                  |
 | Service port  | `3000`                                                    |
-| Image         | `stonith404/pingvin-share`                                |
+| Image         | `stonith404/pingvin-share:latest`                                |
 | Data          | `./pingvin-share-data/data` (database and uploaded files) |
 |               | `./pingvin-share-data/images` (logo and icons)            |
 

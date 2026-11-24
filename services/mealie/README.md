@@ -10,7 +10,7 @@ This stack runs Mealie with a Tailscale sidecar, as described in [the standard s
 | ------------- | --------------------------------- |
 | Web interface | `https://mealie.<tailnet>.ts.net` |
 | Service port  | `9000`                            |
-| Image         | `ghcr.io/mealie-recipes/mealie`   |
+| Image         | `ghcr.io/mealie-recipes/mealie:latest`   |
 | Data          | `./mealie-data`                   |
 
 ## Before you start

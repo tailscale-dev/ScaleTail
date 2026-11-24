@@ -10,7 +10,7 @@ This stack runs Speedtest Tracker with a Tailscale sidecar, as described in [the
 | ------------- | ------------------------------------------------------- |
 | Web interface | `https://speedtest-tracker.<tailnet>.ts.net`            |
 | Service port  | `8888`                                                  |
-| Image         | `lscr.io/linuxserver/speedtest-tracker`                 |
+| Image         | `lscr.io/linuxserver/speedtest-tracker:latest`                 |
 | Data          | `./speedtest-tracker-data` (configuration and database) |
 |               | `./nginx/default.conf` (web server configuration)       |
 

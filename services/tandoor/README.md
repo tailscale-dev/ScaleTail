@@ -10,7 +10,7 @@ This stack runs Tandoor Recipes with a Tailscale sidecar, as described in [the s
 | ------------- | --------------------------------------------------------- |
 | Web interface | `https://tandoor.<tailnet>.ts.net`                        |
 | Service port  | `9001`                                                    |
-| Images        | `vabene1111/recipes`                                      |
+| Images        | `vabene1111/recipes:latest`                                      |
 |               | `postgres:16-alpine`                                      |
 | Data          | `./tandoor-data/mediafiles` (uploaded images and files)   |
 |               | `./tandoor-data/staticfiles` (files of the web interface) |
@@ -28,7 +28,7 @@ Set these values in `.env`:
 
 - **Extra container.** The stack runs a `database` container with PostgreSQL. It uses the network of the `tailscale` container as well, so Tandoor reaches it at `127.0.0.1`. PostgreSQL listens only on the loopback address of the device, so other devices on your Tailnet cannot reach it.
 - **Service port.** `TANDOOR_PORT` makes Tandoor listen on the port from `SERVICEPORT`, which is `9001`.
-- **The container reads the whole `.env` file.** The `application` container loads `.env` through `env_file`. Every variable in that file, including `TS_AUTHKEY`, is therefore present in its environment.
+- **The container reads the whole `.env` file.** The `application` container loads `.env` through `env_file`. Every variable in that file is therefore present in its environment, except `TS_AUTHKEY`. `compose.yaml` sets it to an empty value for it, because only the `tailscale` container uses the auth key.
 
 ## First run
 

@@ -10,7 +10,7 @@ This stack runs Resilio Sync with a Tailscale sidecar, as described in [the stan
 | ------------- | --------------------------------------------------------------------------- |
 | Web interface | `https://resilio-sync.<tailnet>.ts.net`                                     |
 | Service port  | `8888`                                                                      |
-| Image         | `linuxserver/resilio-sync`                                                  |
+| Image         | `linuxserver/resilio-sync:latest`                                                  |
 | Data          | `./resilio-sync-data/config` (configuration)                                |
 |               | `./resilio-sync-data/data` (synchronised folders, `/sync` in the container) |
 |               | `./resilio-sync-data/downloads` (downloads)                                 |

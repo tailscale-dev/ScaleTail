@@ -10,7 +10,7 @@ This stack runs Wallos with a Tailscale sidecar, as described in [the standard s
 | ------------- | -------------------------------------- |
 | Web interface | `https://wallos.<tailnet>.ts.net`      |
 | Service port  | `80`                                   |
-| Image         | `bellamy/wallos`                       |
+| Image         | `bellamy/wallos:latest`                       |
 | Data          | `./wallos-data/db` (database)          |
 |               | `./wallos-data/logos` (uploaded logos) |
 

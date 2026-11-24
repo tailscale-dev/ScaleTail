@@ -70,6 +70,7 @@ services:
       - .env
     environment:
       # Variables are declared in .env file.
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD:?Set DB_PASSWORD in .env}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false
@@ -95,6 +96,7 @@ services:
       - .env
     environment:
       # Variables are declared in .env file.
+      - TS_AUTHKEY= # Empty: env_file loads all of .env, but only the tailscale container needs the auth key
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD:?Set DB_PASSWORD in .env}@postgres:5432/${DB_DATABASE:-affine}
       - AFFINE_INDEXER_ENABLED=false

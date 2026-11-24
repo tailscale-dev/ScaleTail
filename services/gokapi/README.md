@@ -10,7 +10,7 @@ This stack runs Gokapi with a Tailscale sidecar, as described in [the standard s
 | ------------- | --------------------------------------------- |
 | Web interface | `https://gokapi.<tailnet>.ts.net`             |
 | Service port  | `53842`                                       |
-| Image         | `f0rc3/gokapi`                                |
+| Image         | `f0rc3/gokapi:latest`                                |
 | Data          | `./gokapi-data/gokapi-data` (uploaded files)  |
 |               | `./gokapi-data/gokapi-config` (configuration) |
 

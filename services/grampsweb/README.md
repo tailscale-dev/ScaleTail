@@ -10,7 +10,7 @@ This stack runs Gramps Web with a Tailscale sidecar, as described in [the standa
 | ------------- | ----------------------------------------------------------------------------------------------------------------- |
 | Web interface | `https://grampsweb.<tailnet>.ts.net`                                                                              |
 | Service port  | `5000`                                                                                                            |
-| Images        | `ghcr.io/gramps-project/grampsweb`                                                                                |
+| Images        | `ghcr.io/gramps-project/grampsweb:latest`                                                                                |
 |               | `docker.io/library/redis:7.2.4-alpine`                                                                            |
 | Data          | `./grampsweb-data/gramps_db` (family tree database)                                                               |
 |               | `./grampsweb-data/gramps_media` (media files)                                                                     |
