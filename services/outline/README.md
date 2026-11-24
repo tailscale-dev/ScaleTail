@@ -43,6 +43,7 @@ sudo chown 1001:1001 outline-data/data
 - **Database without TLS.** Outline connects to PostgreSQL over TLS by default. `PGSSLMODE=disable` turns that off, because the database runs in this stack and has no certificate.
 - **Local file storage.** `FILE_STORAGE=local` keeps attachments in `./outline-data/data`. Outline uses S3 by default.
 - **Redis data.** The stack keeps the Redis data in `./outline-data/redis`. The upstream Compose file keeps none.
+- **No usage statistics.** By default, Outline sends a daily report to `updates.getoutline.com` with its version and the number of users, workspaces, collections, and documents. `ENABLE_UPDATES=false` turns that off. Outline then also stops showing the notices about important updates that this service returns.
 
 ## First run
 

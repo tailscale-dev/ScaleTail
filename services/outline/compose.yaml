@@ -66,6 +66,7 @@ services:
       - REDIS_URL=redis://redis:6379
       - FILE_STORAGE=local # Keep attachments in the data folder. The default is S3.
       - FILE_STORAGE_LOCAL_ROOT_DIR=/var/lib/outline/data
+      - ENABLE_UPDATES=false # Do not send the daily usage statistics to the Outline maintainers. The default is true.
       # Optional email delivery, for invites, email sign-in, and notifications. Email stays off while SMTP_HOST is empty.
       - SMTP_HOST=${SMTP_HOST}
       - SMTP_PORT=${SMTP_PORT}
