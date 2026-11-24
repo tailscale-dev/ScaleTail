@@ -181,10 +181,11 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Memos**         | Note-taking app for short Markdown notes, shown on a timeline.                                 | [Details](services/memos)         |
 | **Nanote**        | Note-taking app that stores notes as Markdown files in folders.                                | [Details](services/nanote)        |
 | **NextExplorer**  | Web file manager for one folder on your server.                                                | [Details](services/next-explorer) |
-| **Open Notebook** | Alternative to NotebookLM for chatting with your sources using AI.                         | [Details](services/open-notebook) |
+| **Open Notebook** | Alternative to NotebookLM for chatting with your sources using AI.                             | [Details](services/open-notebook) |
 | **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                        | [Details](services/open-webui)    |
-| **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
-| **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
+| **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                                  | [Details](services/openclaw)      |
+| **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                                | [Details](services/opencloud)     |
+| **Outline**       | Team wiki and knowledge base with real-time collaborative editing.                             | [Details](services/outline)       |
 | **OxiCloud**      | Self-hosted cloud for files, calendars, and contacts, with WebDAV, CalDAV, and CardDAV.        | [Details](services/oxicloud)      |
 | **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.               | [Details](services/paperless)     |
 | **Pingvin Share** | Archived. File sharing platform with links that can expire.                                    | [Details](services/pingvin-share) |
@@ -196,7 +197,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Sure**          | Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth.     | [Details](services/sure)          |
 | **Syncthing**     | Peer-to-peer tool that keeps folders in sync between your devices.                             | [Details](services/syncthing)     |
 | **Vikunja**       | To-do and project app with lists, boards, and Gantt charts.                                    | [Details](services/vikunja)       |
-| **Wallabag**      | Read-it-later app that saves web pages as articles.                                        | [Details](services/wallabag)      |
+| **Wallabag**      | Read-it-later app that saves web pages as articles.                                            | [Details](services/wallabag)      |
 | **Wallos**        | Subscription tracker with payment reminders and budgets.                                       | [Details](services/wallos)        |
 | **XWiki**         | Wiki for documentation and knowledge management.                                               | [Details](services/xwiki)         |
 

@@ -1,0 +1,122 @@
+configs:
+  ts-serve:
+    content: |
+      {"TCP":{"443":{"HTTPS":true}},
+      "Web":{"$${TS_CERT_DOMAIN}:443":
+          {"Handlers":{"/":
+          {"Proxy":"http://127.0.0.1:3000"}}}},
+      "AllowFunnel":{"$${TS_CERT_DOMAIN}:443":false}}
+
+services:
+# Make sure you have updated/checked the .env file with the correct variables.
+# Every variable used in this file must be defined there, unless it has a default such as ${VAR:-value}.
+  # Tailscale Sidecar Configuration
+  tailscale:
+    image: tailscale/tailscale:latest # Image to be used
+    container_name: tailscale-${SERVICE} # Name for local container management
+    hostname: ${SERVICE} # Name used within your Tailscale environment
+    environment:
+      - TS_AUTHKEY=${TS_AUTHKEY}
+      - TS_STATE_DIR=/var/lib/tailscale
+      - TS_SERVE_CONFIG=/config/serve.json # Tailscale Serve configuration to expose the web interface on your local Tailnet - remove this line if not required
+      - TS_USERSPACE=false
+      - TS_ENABLE_HEALTH_CHECK=true              # Enable healthcheck endpoint: "/healthz"
+      - TS_LOCAL_ADDR_PORT=127.0.0.1:41234       # The <addr>:<port> for the healthz endpoint
+      #- TS_ACCEPT_DNS=true # Uncomment only if the service must resolve MagicDNS names - this replaces Docker DNS, so Compose service names no longer resolve
+      - TS_AUTH_ONCE=true
+    configs:
+      - source: ts-serve
+        target: /config/serve.json
+    volumes:
+      - ./config:/config # Config folder used to store Tailscale files - you may need to change the path
+      - ./ts/state:/var/lib/tailscale # Tailscale requirement - you may need to change the path
+    devices:
+      - /dev/net/tun:/dev/net/tun # Network configuration for Tailscale to work
+    cap_add:
+      - net_admin # Tailscale requirement
+    #ports:
+    #  - 0.0.0.0:${SERVICEPORT}:${SERVICEPORT} # Binding the service port to the local network - may be removed if only exposure to your Tailnet is required
+    # If any DNS issues arise, use your preferred DNS provider by uncommenting the config below
+    #dns:
+    #  - ${DNS_SERVER}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:41234/healthz"] # Check Tailscale has a Tailnet IP and is operational
+      interval: 1m # How often to perform the check
+      timeout: 10s # Time to wait for the check to succeed
+      retries: 3 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
+    restart: always
+
+
+  # Application
+  application:
+    image: ${IMAGE_URL} # Image to be used
+    network_mode: service:tailscale # Sidecar configuration to route the service through Tailscale
+    container_name: app-${SERVICE} # Name for local container management
+    environment: # Variables are declared in .env file.
+      # Set PUID and PGID only for images that read them, such as LinuxServer.io images. Many images ignore them.
+      #- PUID=1000
+      #- PGID=1000
+      - TZ=${TZ}
+      - URL=https://${SERVICE}.${TAILNET_NAME:?Set TAILNET_NAME in .env}.ts.net # Address of the web interface, used for links and the live connection of the editor
+      - SECRET_KEY=${SECRET_KEY:?Set SECRET_KEY in .env}
+      - UTILS_SECRET=${UTILS_SECRET:?Set UTILS_SECRET in .env}
+      - DATABASE_URL=postgres://outline:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/outline # Reaches the database by its Compose service name
+      - PGSSLMODE=disable # The database in this stack has no TLS, and Outline requires TLS by default
+      - REDIS_URL=redis://redis:6379
+      - FILE_STORAGE=local # Keep attachments in the data folder. The default is S3.
+      - FILE_STORAGE_LOCAL_ROOT_DIR=/var/lib/outline/data
+      - ENABLE_UPDATES=false # Do not send the daily usage statistics to the Outline maintainers. The default is true.
+      # Optional email delivery, for invites, email sign-in, and notifications. Email stays off while SMTP_HOST is empty.
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_FROM_EMAIL=${SMTP_FROM_EMAIL}
+      - SMTP_SECURE=${SMTP_SECURE}
+    volumes:
+      - ./${SERVICE}-data/data:/var/lib/outline/data # Attachments and images - owned by uid 1001
+    depends_on:
+      tailscale:
+        condition: service_healthy
+        restart: true # Restart this service when Compose restarts the sidecar, whose network it uses
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    # Healthcheck: defined by the image (wget http://localhost:3000/_health, which also checks the database and Redis), so this file does not override it.
+    restart: always
+
+  # Database
+  postgres:
+    image: postgres:18 # Image to be used
+    container_name: app-${SERVICE}-db # Name for local container management
+    environment:
+      - POSTGRES_USER=outline
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      - POSTGRES_DB=outline
+    volumes:
+      - ./${SERVICE}-data/postgres:/var/lib/postgresql # PostgreSQL 18 keeps its data in a versioned folder below this path
+    # Healthcheck: the image defines none. Check over TCP, because the first-start server accepts only socket connections.
+    healthcheck:
+      test: ["CMD", "pg_isready", "-h", "127.0.0.1", "-U", "outline", "-d", "outline"] # Check if PostgreSQL accepts connections
+      interval: 10s # How often to perform the check
+      timeout: 5s # Time to wait for the check to succeed
+      retries: 5 # Number of retries before marking as unhealthy
+      start_period: 30s # Time to wait before starting health checks
+    restart: always
+
+  # Cache and job queue
+  redis:
+    image: redis:8-alpine # Image to be used
+    container_name: app-${SERVICE}-redis # Name for local container management
+    volumes:
+      - ./${SERVICE}-data/redis:/data # Snapshots of the job queue, such as emails that still have to be sent
+    # Healthcheck: the image defines none.
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"] # Check if Redis answers
+      interval: 10s # How often to perform the check
+      timeout: 5s # Time to wait for the check to succeed
+      retries: 5 # Number of retries before marking as unhealthy
+      start_period: 10s # Time to wait before starting health checks
+    restart: always
