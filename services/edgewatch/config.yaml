@@ -1,0 +1,192 @@
+# EdgeWatch configuration for this stack, based on config.example.yaml from
+# https://github.com/crypt0rr/EdgeWatch. All settings are described at
+# https://edgewatch.offsec.nl/reference/configuration/
+# After a change, recreate the container:
+#   docker compose up -d --force-recreate application
+
+database: /var/lib/edgewatch/edgewatch.db
+retention: 90d
+
+# Optional IANA timezone for this deployment. When set, daemon log timestamps,
+# CLI status times, times in notification messages, and every signed-in web
+# console follow it, and new jobs default to it. Omit it to keep UTC in the
+# container and each browser's own timezone in the console. Each job still
+# runs its schedule in its own timezone field.
+# timezone: Europe/Amsterdam
+
+# The administration UI is loopback-only. In this stack, loopback belongs to
+# the network of the Tailscale container, and Tailscale Serve publishes the UI
+# at https://<service>.<tailnet>.ts.net.
+web:
+  listen: 127.0.0.1:8080
+  # Host names accepted when the UI is reached through a reverse proxy or
+  # tunnel. Loopback addresses and localhost are always accepted. Replace
+  # <tailnet> with your Tailnet DNS name, such as tail1234, and edgewatch with
+  # SERVICE from .env if you changed it. EdgeWatch answers any other name with
+  # 421 Misdirected Request.
+  allowed_hosts:
+    - edgewatch.<tailnet>.ts.net
+  # Optional source for a modified or forked build. The Source code links in
+  # the console redirect here; official builds link to their exact Git tag.
+  # Use an HTTPS URL containing the complete corresponding source and build
+  # instructions for the running version.
+  # source_url: https://github.com/your-org/EdgeWatch/tree/your-build-tag
+  # Trust only proxy addresses or networks that directly connect to EdgeWatch.
+  # Only this one client-IP header is read; other forwarding headers are ignored.
+  # The default is x-forwarded-for. Use forwarded only if your proxy controls it,
+  # or none to ignore forwarding headers even when trusted proxies are configured.
+  forwarded_header: x-forwarded-for
+  # Tailscale Serve connects from loopback and sets X-Forwarded-For and
+  # X-Forwarded-Proto.
+  trusted_proxies:
+    - 127.0.0.1/32
+    - ::1/128
+  # The sign-in and anonymous rate limits count an IPv6 client by its network
+  # of this prefix length, so every address of one /64 shares one budget.
+  # Audit records keep the full address. 32 to 128; use 128 to count each
+  # address on its own when unrelated clients share one /64. The default is 64.
+  # ipv6_rate_limit_prefix: 64
+  # Optional separate key for encrypting the TOTP seed. The default is
+  # ./edgewatch-data/auth.key; an explicit file must contain 32 raw bytes or 64 hex
+  # characters, be mode 0600, and be mounted into the container.
+  # auth_key_file: /run/secrets/edgewatch-auth-key
+  # Live-update streams the deployment keeps open (one per open console, at
+  # most four per account), and the most one business unit may hold. With
+  # more than one active unit, each unit gets an equal share of
+  # max_live_streams, at least 4 and at most max_live_streams_per_unit.
+  # max_live_streams: 256
+  # max_live_streams_per_unit: 64
+  # Opt-in Prometheus metrics at GET /metrics, deployment aggregates only.
+  # The token file holds one bearer token of 32 to 1024 printable characters
+  # and must be mode 0400 or 0600; scrapers send it as
+  # "Authorization: Bearer <token>". Keep /metrics off public proxies.
+  # GET /healthz needs no configuration.
+  # metrics:
+  #   enabled: true
+  #   token_file: /run/secrets/edgewatch-metrics-token
+
+scheduler:
+  max_concurrent_scans: 1
+  # Approximate Nmap probes permitted per run unless an administrator enables
+  # high-cost work for a job. Naabu has a separate budget below because its
+  # full-range discovery probes are much lighter than Nmap probes.
+  max_probe_count: 5000000
+  # Naabu 1-65535 discovery budget. The default covers the editor's 256-host
+  # expansion limit (about 16.8M probes) with headroom.
+  max_naabu_probe_count: 20000000
+
+# Structured daemon logs are emitted as JSON on stdout. Other CLI commands
+# write the same log to stderr so their printed result stays on stdout. Use
+# debug while diagnosing a request, or warn/error to reduce routine output.
+# The default is info.
+log:
+  level: info
+
+# In this stack, scans use the network of the Tailscale container and leave
+# the host through Docker's network, not through host networking. Loopback
+# here is the Tailscale container's own. The list below is
+# the default: it refuses loopback and link-local targets, and the IPv4
+# link-local range includes the 169.254.169.254 cloud metadata endpoint. Other
+# metadata endpoints are not excluded by default. Add the ones your provider
+# uses, such as fd00:ec2::254/128 (AWS IPv6 instance metadata) or
+# 100.100.100.200/32 (Alibaba Cloud). An explicit list replaces the defaults.
+# Set target_exclusions: [] only when an administrator has deliberately
+# accepted the risk and needs to monitor the host's own local surface. The
+# list also keeps the notification destinations of business units away from
+# these addresses, and [] allows every address for them too.
+scanner:
+  target_exclusions:
+    - 127.0.0.0/8
+    - 169.254.0.0/16
+    - ::1/128
+    - fe80::/10
+  # Nmap and Naabu use distinct leased UIDs/GIDs from 60000–60063, with only
+  # their raw-packet capabilities. Reserve these host IDs for scanner use; with
+  # rootless Docker or user-namespace remapping, reserve the corresponding
+  # mapped host IDs. auto (the default) keeps the daemon running but refuses
+  # scanner launches if the pool or required seccomp filter is unavailable.
+  # required also refuses daemon startup and direct scan commands; off disables
+  # scanner isolation.
+  sandbox: auto
+  # Landlock limits Nmap and Naabu to the system files a scan reads and the
+  # files EdgeWatch passes to them; only Naabu may also create files, below
+  # /tmp. The scanner seccomp filter is independent of Landlock and remains
+  # required in sandboxed modes; without it scanner launches fail closed.
+  # auto (the default) permits scans without Landlock when identity and seccomp
+  # are enforced; required refuses scanner work without Landlock; off disables
+  # only Landlock. EdgeWatch keeps passed files in tmp/scanner beside the
+  # database, whatever TMPDIR names.
+  landlock: auto
+  # The most addresses the targets of one job may expand to when it scans,
+  # in every unit. A scan keeps every address in the daemon's memory: a /16
+  # (65536, the default) peaked at about 344 MB of compose.yaml's 512 MiB, so
+  # raise it only with matching memory. 1 to 1000000.
+  # max_job_hosts: 65536
+
+# Check the latest stable GitHub release at startup and every three hours.
+# Set enabled: false for offline or privacy-sensitive deployments. A check
+# reveals the host's public IP and EdgeWatch user agent to GitHub.
+updates:
+  enabled: true
+
+# Opening a public host in the console performs an on-demand RDAP lookup.
+# Set enabled: false for isolated or privacy-sensitive deployments. Lookups
+# need direct HTTPS egress and ignore HTTPS_PROXY, so also set enabled: false
+# where only a proxy reaches the internet.
+enrichment:
+  rdap:
+    enabled: true
+
+notifications:
+  # Add notification destinations on the Notifications page of the web
+  # console. They are encrypted with ./edgewatch-data/notification.key. To supply the
+  # key separately (for example as a Docker secret), set this to a file
+  # containing 32 raw bytes or 64 hexadecimal characters, mode 0600.
+  # encryption_key_file: /run/secrets/edgewatch-notification-key
+  #
+  # Deprecated: urls and urls_file. The daemon imports each URL listed here
+  # once as an encrypted destination in the web console and then no longer
+  # uses it; each start warns until you remove both keys. A later release
+  # refuses to start while either is set. A URL file must be a regular,
+  # owner-readable (0400 or 0600) file with one Shoutrrr URL per line; symlinks
+  # and files larger than 1 MiB are rejected at startup.
+  # urls_file: /run/secrets/edgewatch-notification-urls
+  # urls: []
+  #
+  # Notifications are delivered by a short-lived process that runs as the
+  # unprivileged UID 65531 without capabilities, restricted with Landlock.
+  # auto (the default) does so when the container grants SETUID, SETGID and
+  # KILL and that process can read the certificate authorities SSL_CERT_FILE
+  # and SSL_CERT_DIR name; required refuses to start without it; off never
+  # uses it.
+  sandbox: auto
+
+# Optional backups that the daemon takes on a schedule. They are off unless
+# directory is set, an absolute path to an existing directory that EdgeWatch
+# does not create. Each scheduled backup is checked as the backup command
+# checks its output (quick_check, foreign_key_check, and the schema) before it
+# is published as edgewatch-scheduled-YYYYMMDDTHHMMSSZ.db, and the daemon keeps
+# the newest keep of those files, removing older scheduled backups. When an
+# existing database needs a schema upgrade, the daemon also writes and verifies
+# a pre-migration backup there before schema writes begin. Separately from
+# keep, it retains the copy just written, the latest three other copies, and
+# the newest copy for each qualifying (upgrade limit, source schema) pair in
+# the unfinished-upgrade chain. Each limit is considered separately, so a
+# source schema can have multiple protected copies. Retrying a failed upgrade
+# never removes the copy the previous release can open. If the backup cannot be
+# created or verified, migration stops. Without directory, the daemon warns and
+# continues without a backup.
+# schedule is a five-field cron expression in the timezone above, or UTC,
+# without a TZ= prefix; it defaults to "0 3 * * *", and keep to 7 (1 to 1000).
+# edgewatch health and the console report the newest good backup and any
+# failure. A backup holds every business unit's data; keep the directory as
+# private as ./edgewatch-data and copy the backups, with notification.key and
+# auth.key, off the host.
+# backup:
+#   directory: /var/lib/edgewatch/backups
+#   schedule: "0 3 * * *"
+#   keep: 7
+
+# Jobs are created and scheduled from the web interface. YAML jobs from older
+# releases are intentionally not imported; they remain inactive with a
+# startup warning so they can be recreated and reviewed explicitly.
