@@ -184,6 +184,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Open WebUI**    | Chat interface for AI models, through Ollama or OpenAI-compatible APIs.                        | [Details](services/open-webui)    |
 | **OpenClaw**      | Personal AI assistant that connects agents to your chat apps.                              | [Details](services/openclaw)      |
 | **OpenCloud**     | File sync and sharing platform with desktop and mobile clients.                            | [Details](services/opencloud)     |
+| **Outline**       | Team wiki and knowledge base with real-time collaborative editing.                             | [Details](services/outline)       |
 | **OxiCloud**      | Self-hosted cloud for files, calendars, and contacts, with WebDAV, CalDAV, and CardDAV.        | [Details](services/oxicloud)      |
 | **Paperless-ngx** | Document management system that turns scans and files into a searchable archive.               | [Details](services/paperless)     |
 | **Pingvin Share** | Archived. File sharing platform with links that can expire.                                    | [Details](services/pingvin-share) |
