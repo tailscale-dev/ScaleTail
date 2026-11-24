@@ -23,7 +23,7 @@ This stack runs EdgeWatch with a Tailscale sidecar, as described in [the standar
 ## Deviations from the standard setup
 
 - **Configuration file.** EdgeWatch reads its settings from `config.yaml`, which the stack mounts read-only. It is upstream's `config.example.yaml` with `web.allowed_hosts` and `web.trusted_proxies` set for Tailscale Serve, which connects from loopback. Compose cannot write the file from a `configs` block, because the container's root filesystem is read-only.
-- **Scans use the network of the `tailscale` container.** Upstream runs EdgeWatch with host networking. Here, as in every stack, the application shares the network of the sidecar, so scans leave the host through Docker's network and the scanners cannot see the host's own network interfaces. The address `127.0.0.1` is the loopback of the `tailscale` container.
+- **Scans use the network of the `tailscale` container.** Upstream runs EdgeWatch with host networking. Here, as in every stack, the application shares the network of the sidecar. Scans reach the internet through the stack's Docker network, and Tailnet devices when your Tailnet policy allows it. They cannot reach containers on other Docker networks until you attach those networks, as described under "Configuration", and the scanners cannot see the host's own network interfaces. The address `127.0.0.1` is the loopback of the `tailscale` container.
 - **No `ports` block.** EdgeWatch accepts connections on `127.0.0.1` only, so a published host port cannot reach it. Use Tailscale Serve.
 - **Hardening from upstream.** The `application` container drops every capability and adds back `NET_RAW` for Nmap and Naabu, and `SETUID`, `SETGID`, and `KILL`, which EdgeWatch uses to run each scanner and the notification process under its own unprivileged user. It also sets `no-new-privileges`, a read-only root filesystem, and a `/tmp` tmpfs of 128 MB. `TMPDIR` points to the data folder, where Nmap, Naabu, and SQLite write their temporary files.
 - **Limits from upstream.** The container may use 512 MB of memory, which covers a scan of a `/16`. It gets seven minutes to stop, so the daemon can save a large scan, and its log is limited to three files of 10 MB.
@@ -40,7 +40,7 @@ This stack runs EdgeWatch with a Tailscale sidecar, as described in [the standar
 2. Open the web interface and create the first administrator with the token.
 3. Open **Jobs → New job** and follow the guided setup to choose targets, ports, a schedule, and alerts.
 
-If the token expired before you finished, issue a new one:
+If the token expired before you finished, or the log no longer shows it because the container was recreated, issue a new one:
 
 ```sh
 docker compose exec application edgewatch admin setup-token --config /etc/edgewatch/config.yaml --force
@@ -51,6 +51,22 @@ docker compose exec application edgewatch admin setup-token --config /etc/edgewa
 - **Settings.** Edit `config.yaml` and apply it with `docker compose up -d --force-recreate application`. The [configuration reference](https://edgewatch.offsec.nl/reference/configuration/) describes every setting, such as `retention`, `scanner.target_exclusions`, and `backup`.
 - **Time zone.** The stack passes `TZ` from `.env`, which sets the time zone of the daemon log. The optional `timezone` setting in `config.yaml` also sets it for the web interface and notifications.
 - **Naabu SYN scans.** A Naabu profile with `scan_type: syn` also needs `NET_ADMIN`. Add it to `cap_add` of the `application` service in a `compose.override.yaml`, as upstream's `compose.syn.yaml` does.
+- **Other Docker networks.** Docker keeps networks apart, so the scanners cannot reach containers in other stacks. To scan them, attach their networks to the `tailscale` service, for example in a `compose.override.yaml`. The `application` service uses the network of the `tailscale` service and cannot join networks itself.
+
+  ```yaml
+  services:
+    tailscale:
+      networks:
+        - default # Keep the network of this stack
+        - other-stack
+
+  networks:
+    other-stack:
+      name: other-stack_default # The name that docker network ls shows
+      external: true
+  ```
+
+  Then add the containers to a job by name or IP address. The network must exist before this stack starts, and the other stack cannot remove it while this stack is attached. For Tailnet targets, use Tailscale IP addresses: `TS_ACCEPT_DNS=true` would resolve MagicDNS names, but container names would no longer resolve.
 - **Metrics.** Tailscale Serve forwards every path, so when you enable `web.metrics`, every Tailnet device that may reach this one can request `/metrics`, which then only needs the bearer token. Upstream recommends keeping `/metrics` off the proxy. See [health and metrics](https://edgewatch.offsec.nl/deployment/reverse-proxies/#health-and-metrics).
 - **Back up** `./edgewatch-data` as a whole. It holds the database and the generated encryption keys. See [backup and recovery](https://edgewatch.offsec.nl/operations/backup-recovery/).
 
