@@ -95,6 +95,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **AdGuard Home Sync**            | Tool that copies the configuration of one AdGuard Home instance to replicas.            | [Details](services/adguardhome-sync)             |
 | **Caddy**                        | Web server and reverse proxy with automatic HTTPS.                                      | [Details](services/caddy)                        |
 | **DDNS Updater**                 | Updater that keeps DNS records pointed at your current public IP address.               | [Details](services/ddns-updater)                 |
+| **EdgeWatch**                    | Scanner that watches your internet-facing ports and alerts you when they change.        | [Details](services/edgewatch)                    |
 | **FlareSolverr**                 | Proxy that solves Cloudflare and DDoS-GUARD challenges.                                 | [Details](services/flaresolverr)                 |
 | **Nessus**                       | Vulnerability scanner from Tenable, with the limited free Nessus Essentials license.    | [Details](services/nessus)                       |
 | **NetBox**                       | Network documentation tool for IP addresses, racks, devices, connections, and circuits. | [Details](services/netbox)                       |
