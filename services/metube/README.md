@@ -15,7 +15,7 @@ This stack runs MeTube with a Tailscale sidecar, as described in [the standard s
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quickstart).
 
 ## Deviations from the standard setup
 

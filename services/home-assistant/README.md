@@ -15,7 +15,7 @@ This stack runs Home Assistant with a Tailscale sidecar, as described in [the st
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quickstart).
 
 ## Deviations from the standard setup
 

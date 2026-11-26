@@ -5,12 +5,12 @@
 [![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff)](https://www.docker.com/)
 [![Tailscale](https://img.shields.io/badge/Tailscale-cccccc?logo=tailscale&logoColor=fff)](https://tailscale.com/)
 
-ScaleTail is a collection of ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that connect self-hosted applications to your [Tailnet](https://tailscale.com/docs/concepts/tailnet). Each stack runs a Tailscale sidecar container, so the application joins your Tailnet as its own device. Most stacks publish the application at an HTTPS address such as `https://vaultwarden.<tailnet>.ts.net`, reachable from your Tailnet only.
+ScaleTail is a collection of ready-to-run [Docker Compose](https://docs.docker.com/compose) stacks that connect self-hosted applications to your [tailnet](https://tailscale.com/docs/concepts/tailnet). Each stack runs a Tailscale sidecar container, so the application joins your tailnet as its own device. Most stacks publish the application at an HTTPS address such as `https://vaultwarden.<tailnet>.ts.net`, reachable from your tailnet only.
 
 ## Table of contents
 
 - [Featured by Tailscale](#featured-by-tailscale)
-- [Quick Start](#quick-start)
+- [Quickstart](#quickstart)
 - [Available configurations](#available-configurations)
   - [Networking and security](#networking-and-security)
   - [Media and entertainment](#media-and-entertainment)
@@ -38,17 +38,17 @@ In this video from the Tailscale YouTube channel, [Alex](https://github.com/iron
 
 [![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
 
-## Quick Start
+## Quickstart
 
 You need:
 
 - A Linux host with [Docker Engine](https://docs.docker.com/engine/install/), Docker Compose 2.23.1 or later, and [Git](https://git-scm.com/). Check the Compose version with `docker compose version`.
-- [MagicDNS](https://tailscale.com/kb/1081/magicdns) and [HTTPS certificates](https://tailscale.com/kb/1153/enabling-https) enabled for your Tailnet, on the [DNS](https://console.tailscale.com/admin/dns) page of the admin console. Without them, the `https://` address of a stack does not work. With HTTPS enabled, device names appear in public certificate transparency logs.
+- [MagicDNS](https://tailscale.com/docs/features/magicdns) and [HTTPS certificates](https://tailscale.com/docs/how-to/set-up-https-certificates) enabled for your tailnet, on the [DNS](https://console.tailscale.com/admin/dns) page of the admin console. Without them, the `https://` address of a stack does not work. With HTTPS enabled, device names appear in public certificate transparency logs.
 
 1. **Create an auth key** on the [Keys](https://console.tailscale.com/admin/settings/keys) page of the admin console.
 
    - Leave **Ephemeral** off. Tailscale removes an ephemeral device 30 to 60 minutes after it goes offline, for example when you stop the stack.
-   - Turn on **Pre-approved** if your Tailnet uses [device approval](https://tailscale.com/kb/1099/device-approval).
+   - Turn on **Pre-approved** if your tailnet uses [device approval](https://tailscale.com/docs/features/access-control/device-management/device-approval).
    - Turn on **Reusable** to use the key for more than one stack.
 
 2. **Get the stacks and choose a service.**
@@ -73,17 +73,17 @@ You need:
 
    The application starts after the `tailscale` container reports `healthy`. If a container is not running, read the logs with `docker compose logs`.
 
-6. **Open the service.** From a device in your Tailnet, open the address from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`.
+6. **Open the service.** From a device in your tailnet, open the address from "At a glance" in the service README, usually `https://<SERVICE>.<tailnet>.ts.net`.
 
    - `<SERVICE>` is the value of `SERVICE` in `.env`.
-   - `<tailnet>.ts.net` is your [Tailnet DNS name](https://tailscale.com/kb/1217/tailnet-name), for example `tail1234.ts.net`.
+   - `<tailnet>.ts.net` is your [tailnet DNS name](https://tailscale.com/docs/concepts/tailnet-name), for example `tail1234.ts.net`.
    - The first request can take up to a minute, because Tailscale requests the certificate at that moment.
 
    Then follow "First run" in the service README. Some stacks have no web interface, and their service README says how to reach them.
 
 7. **Keep the device connected.** Its node key expires after 180 days by default. To prevent that, disable key expiry for the device on the [Machines](https://console.tailscale.com/admin/machines) page.
 
-Every stack starts from the same [standard setup](documentation/standard-setup.md), which explains the containers, the Tailnet address, the data folders, and the settings in `.env`.
+Every stack starts from the same [standard setup](documentation/standard-setup.md), which explains the containers, the tailnet address, the data folders, and the settings in `.env`.
 
 ## Available configurations
 
@@ -102,9 +102,9 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Pi-hole**                      | DNS sinkhole that blocks ads and trackers for every device that uses it.                | [Details](services/pihole)                       |
 | **Pocket ID**                    | OpenID Connect provider that signs users in to your services with passkeys.             | [Details](services/pocket-id)                    |
 | **RustDesk Server**              | Your own ID and relay server for RustDesk clients, so they skip the public servers.     | [Details](services/rustdesk-server)              |
-| **Tailscale App Connector Node** | App connector that sends Tailnet traffic for chosen domains through this host.          | [Details](services/tailscale-app-connector-node) |
-| **Tailscale Exit Node**          | Exit node that routes the internet traffic of other Tailnet devices through this host.  | [Details](services/tailscale-exit-node)          |
-| **Tailscale Subnet Router Node** | Subnet router that gives your Tailnet access to a local network.                        | [Details](services/tailscale-subnet-router-node) |
+| **Tailscale App Connector Node** | App connector that sends tailnet traffic for chosen domains through this host.          | [Details](services/tailscale-app-connector-node) |
+| **Tailscale Exit Node**          | Exit node that routes the internet traffic of other tailnet devices through this host.  | [Details](services/tailscale-exit-node)          |
+| **Tailscale Subnet Router Node** | Subnet router that gives your tailnet access to a local network.                        | [Details](services/tailscale-subnet-router-node) |
 | **Technitium DNS**               | Authoritative and recursive DNS server with ad blocking and your own zones.             | [Details](services/technitium)                   |
 | **Traefik**                      | Reverse proxy and load balancer that routes requests to Docker containers by label.     | [Details](services/traefik)                      |
 | **Vaultwarden**                  | Unofficial password manager server for the Bitwarden apps and extensions.               | [Details](services/vaultwarden)                  |
@@ -121,13 +121,13 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](services/freshrss)       |
 | **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API.                             | [Details](services/fusion)         |
-| **Hytale**         | Hytale game server in a community image, for players on your Tailnet.                                | [Details](services/hytale)         |
+| **Hytale**         | Hytale game server in a community image, for players on your tailnet.                                | [Details](services/hytale)         |
 | **ImageMaid**      | Cleaner that removes unused poster and background images from the Plex metadata folder.              | [Details](services/imagemaid)      |
 | **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                         | [Details](services/immich)         |
 | **Jellyfin**       | Media server that organizes and streams your movies, series, and music.                              | [Details](services/jellyfin)       |
 | **Kavita**         | Digital library for comics, manga, and books, with progress synced across devices.                   | [Details](services/kavita)         |
 | **MeTube**         | Web UI for yt-dlp that downloads videos and audio from YouTube and other sites.                      | [Details](services/metube)         |
-| **Minecraft**      | Minecraft Java Edition server that players reach over your Tailnet.                                  | [Details](services/minecraft)      |
+| **Minecraft**      | Minecraft Java Edition server that players reach over your tailnet.                                  | [Details](services/minecraft)      |
 | **Miniflux**       | Minimalist feed reader for RSS, Atom, and JSON feeds, with a PostgreSQL database.                    | [Details](services/miniflux)       |
 | **Navidrome**      | Music server that streams your collection to its web player and Subsonic-compatible apps.            | [Details](services/navidrome)      |
 | **Picard**         | MusicBrainz tag editor that writes tags and cover art, used in your browser.                         | [Details](services/picard)         |
@@ -306,7 +306,7 @@ Before you restart the stack, read the "Upgrading" section of the service README
 
 ## Keep your changes out of the clone
 
-This section is optional. The steps in [Quick Start](#quick-start) work as they are. Use one of these options when you run several stacks, or when `git pull` or switching branches runs into your `.env` or into data that the containers wrote as root.
+This section is optional. The steps in [Quickstart](#quickstart) work as they are. Use one of these options when you run several stacks, or when `git pull` or switching branches runs into your `.env` or into data that the containers wrote as root.
 
 ### Run the stack from a copy
 
@@ -357,17 +357,17 @@ From the service directory, run `docker compose down --volumes`. To remove the s
 
 ## Tailscale Serve and Funnel
 
-Every stack has two containers that share one network: a Tailscale container and the application. [Tailscale Serve](https://tailscale.com/kb/1312/serve) and [Tailscale Funnel](https://tailscale.com/kb/1223/funnel) are two ways to let other people reach the application through the Tailscale container.
+Every stack has two containers that share one network: a Tailscale container and the application. [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve) and [Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel) are two ways to let other people reach the application through the Tailscale container.
 
-![Diagram with two paths into a ScaleTail stack. Path 1, Serve: a device in your Tailnet opens https://<service>.<tailnet>.ts.net, and Serve in the Tailscale container forwards the request to the application at 127.0.0.1:80. Path 2, Funnel: a visitor on the internet reaches the same Serve through a Funnel relay server run by Tailscale, but only when AllowFunnel is true.](images/tailscale-serve-funnel.svg)
+![Diagram with two paths into a ScaleTail stack. Path 1, Serve: a device in your tailnet opens https://<service>.<tailnet>.ts.net, and Serve in the Tailscale container forwards the request to the application at 127.0.0.1:80. Path 2, Funnel: a visitor on the internet reaches the same Serve through a Funnel relay server run by Tailscale, but only when AllowFunnel is true.](images/tailscale-serve-funnel.svg)
 
-### Serve: your Tailnet only
+### Serve: your tailnet only
 
-1. A device in your Tailnet opens `https://<service>.<tailnet>.ts.net`. The traffic travels through Tailscale, encrypted by WireGuard.
+1. A device in your tailnet opens `https://<service>.<tailnet>.ts.net`. The traffic travels through Tailscale, encrypted by WireGuard.
 2. The Tailscale container receives it on port 443 and ends the HTTPS connection with a certificate for that name.
 3. Serve forwards the request to the application. Both containers share one network namespace, so the application is at `127.0.0.1` and its internal port, for example `127.0.0.1:80`.
 
-Serve is on in every stack that sets `TS_SERVE_CONFIG`. Only devices in your Tailnet can use it, and your Tailnet policy can restrict them further.
+Serve is on in every stack that sets `TS_SERVE_CONFIG`. Only devices in your tailnet can use it, and your tailnet policy can restrict them further.
 
 ### Funnel: the public internet
 
@@ -379,15 +379,15 @@ When you turn Funnel on, a second path opens next to the first:
 2. The relay opens a TCP proxy to your Tailscale container. It passes the traffic on and cannot read it, because the HTTPS connection still ends in your container.
 3. From there, the request follows the same Serve route to the application.
 
-The Serve route does not change. Funnel only adds a way in for visitors from outside your Tailnet.
+The Serve route does not change. Funnel only adds a way in for visitors from outside your tailnet.
 
 ### Turn Funnel on
 
-1. Add `funnel` to `nodeAttrs` in your Tailnet policy file for the device, as described in [Tailscale Funnel](https://tailscale.com/kb/1223/funnel).
+1. Add `funnel` to `nodeAttrs` in your tailnet policy file for the device, as described in [Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel).
 2. In `compose.yaml`, change `false` to `true` in the `AllowFunnel` line.
 3. Recreate the stack with `docker compose up -d --force-recreate`.
 
-Funnel is in beta and listens only on ports 443, 8443, and 10000. It requires MagicDNS and HTTPS certificates, as in the Quick Start. Anyone on the internet can then reach the application, so turn on its login first.
+Funnel is in beta and listens only on ports 443, 8443, and 10000. It requires MagicDNS and HTTPS certificates, as in the Quickstart. Anyone on the internet can then reach the application, so turn on its login first.
 
 ## Documentation
 
@@ -399,10 +399,10 @@ In this repository:
 
 From Tailscale:
 
-- [Tailscale documentation](https://tailscale.com/kb)
-- [Docker](https://tailscale.com/kb/1282/docker) and its [configuration parameters](https://tailscale.com/docs/features/containers/docker/docker-params)
-- [Tailscale Serve](https://tailscale.com/kb/1312/serve)
-- [Tailscale Funnel](https://tailscale.com/kb/1223/funnel)
+- [Tailscale documentation](https://tailscale.com/docs)
+- [Docker](https://tailscale.com/docs/features/containers/docker) and its [configuration parameters](https://tailscale.com/docs/features/containers/docker/docker-params)
+- [Tailscale Serve](https://tailscale.com/docs/features/tailscale-serve)
+- [Tailscale Funnel](https://tailscale.com/docs/features/tailscale-funnel)
 - [A deep dive into using Tailscale with Docker](https://tailscale.com/blog/docker-tailscale-guide)
 
 ## Contributors

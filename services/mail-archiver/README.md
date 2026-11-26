@@ -15,7 +15,7 @@ This stack runs Mail Archiver with a Tailscale sidecar, as described in [the sta
 
 ## Before you start
 
-Go through the [Quick Start](../../README.md#quick-start).
+Go through the [Quick Start](../../README.md#quickstart).
 
 In addition:
 
