@@ -16,7 +16,7 @@ This stack runs Stirling-PDF with a Tailscale sidecar, as described in [the stan
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quickstart).
 
 ## Deviations from the standard setup
 

@@ -15,7 +15,7 @@ This stack runs only the Tailscale container from [the standard setup](../../doc
 
 ## Before you start
 
-Nothing beyond the [Quick Start](../../README.md#quick-start).
+Nothing beyond the [Quick Start](../../README.md#quickstart).
 
 ## Deviations from the standard setup
 
