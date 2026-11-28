@@ -1,0 +1,2080 @@
+{
+  "$schema": "https://registry.getarcane.app/schema.json",
+  "name": "ScaleTail",
+  "description": "Self-hosted applications that join your tailnet through a Tailscale sidecar.",
+  "version": "1.0.0",
+  "author": "ScaleTail",
+  "url": "https://github.com/tailscale-dev/ScaleTail",
+  "templates": [
+    {
+      "id": "actual-budget",
+      "name": "Actual Budget",
+      "description": "Personal finance app for budgeting.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/actual-budget/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/actual-budget/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/actual-budget",
+      "content_hash": "eba52470e61f41db3850b38c2bf3f33bdfcf54a0b9c5758e0089581a85ab0703",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "adguardhome",
+      "name": "AdGuard Home",
+      "description": "DNS server that blocks ads and trackers on every device that uses it.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/adguardhome/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/adguardhome/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/adguardhome",
+      "content_hash": "4242b065761bc65a1314fd059cd675c9df2d39e8a40e9f869c9ee0ecc8b6aeca",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "adguardhome-sync",
+      "name": "AdGuard Home Sync",
+      "description": "Tool that copies the configuration of one AdGuard Home instance to replicas.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/adguardhome-sync/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/adguardhome-sync/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/adguardhome-sync",
+      "content_hash": "09a2ae0259de9b13018c4b94c4fbee7d9976ae755b85deb1d9439cc94c713fe7",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "affine",
+      "name": "AFFiNE",
+      "description": "Workspace for documents, whiteboards, and databases.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/affine/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/affine/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/affine",
+      "content_hash": "6557b6e03ae0f48614233b9c661b16cddfedd7655985f483ccebe286d8417194",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "anchor",
+      "name": "Anchor",
+      "description": "Note-taking app that works offline and syncs notes when you are back online.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/anchor/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/anchor/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/anchor",
+      "content_hash": "7275c2d58e47ff4d432d3a7509109085e127549238a8755c403179798073da52",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "artisttrackarr",
+      "name": "ArtistTrackarr",
+      "description": "Tracker for new albums, EPs, singles, and compilations from Spotify.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/artisttrackarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/artisttrackarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/artisttrackarr",
+      "content_hash": "7653c4382a57ee100cd2d621b5d211391d9519c47942637f5316f2725532f9f2",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "audiobookshelf",
+      "name": "Audiobookshelf",
+      "description": "Server for audiobooks and podcasts, with playback progress synced across devices.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/audiobookshelf/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/audiobookshelf/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/audiobookshelf",
+      "content_hash": "ca053deee1e98f2fe3cb4cf2657168f069a4f49efad2fd6955228fc242136a23",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "audiomuse-ai",
+      "name": "AudioMuse-AI",
+      "description": "Tool that analyzes your music library and builds playlists for your media server.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/audiomuse-ai/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/audiomuse-ai/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/audiomuse-ai",
+      "content_hash": "f87e2622fc64954a440b30d97d0630dc123f325a0b92143e9dfc0d248a4f9133",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "bazarr",
+      "name": "Bazarr",
+      "description": "Subtitle manager for movies and series in Radarr and Sonarr.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/bazarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/bazarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/bazarr",
+      "content_hash": "e8cd036f82164bfad278726057aadab8994763443c965e1e9ff0bf8b1c19a529",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "bentopdf",
+      "name": "BentoPDF",
+      "description": "PDF toolkit that works in your browser, without uploading files.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/bentopdf/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/bentopdf/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/bentopdf",
+      "content_hash": "c297152f40a092c5b9ec6eab9705ed1776018f25e204726b9f3e19e9f6c02820",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "beszel-agent",
+      "name": "Beszel Agent",
+      "description": "Agent that sends system and Docker stats to a Beszel hub.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/beszel-agent/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/beszel-agent/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/beszel-agent",
+      "content_hash": "3aa4e30e0c4bde5db39e3e8bf954fe327f0455a578b96ed8c5cc02809a143c35",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "beszel-hub",
+      "name": "Beszel Hub",
+      "description": "Server monitor with history, Docker stats, and alerts.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/beszel-hub/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/beszel-hub/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/beszel-hub",
+      "content_hash": "ec143291ff21ba32f8e03f63cf2d4efc16d1e86bbf69d6ab84090f3218202546",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "booklore",
+      "name": "BookLore",
+      "description": "Book manager and browser reader, with Kobo and KOReader sync. In maintenance mode.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/booklore/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/booklore/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/booklore",
+      "content_hash": "b0742be4a956463c3c93dee99e1fdca837df9a65cdcdd1d3ce64e59d42723b93",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "changedetection",
+      "name": "changedetection.io",
+      "description": "Monitor that watches web pages and notifies you when their content changes.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/changedetection/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/changedetection/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/changedetection",
+      "content_hash": "ec8f1ec7ca55dd790a89ed32fc3c6ab4fda0a0ad466456250ded5511a1872910",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "cleanslate",
+      "name": "Clean Slate",
+      "description": "Calorie tracker for food, recipes, and exercise.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/cleanslate/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/cleanslate/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/cleanslate",
+      "content_hash": "5038965deeb9606c3f98750b043ae4426e1bfcaff6728bcdcfd1d36323783509",
+      "tags": [
+        "tailscale",
+        "household"
+      ]
+    },
+    {
+      "id": "clipcascade",
+      "name": "ClipCascade",
+      "description": "Server that syncs your clipboard across devices, with end-to-end encryption.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/clipcascade/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/clipcascade/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/clipcascade",
+      "content_hash": "692fb02153f22119b475dafda3459fe6c154615c32ddf74c12e622d2d70ac41f",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "coder",
+      "name": "Coder",
+      "description": "Platform for development environments and AI coding agents, from Terraform.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/coder/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/coder/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/coder",
+      "content_hash": "854aecef12f241d09d520d3d3d84ede267e85499d49ea1d41c69d2c8652cee33",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "configarr",
+      "name": "Configarr",
+      "description": "Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/configarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/configarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/configarr",
+      "content_hash": "e1f41857a7ae64f1cbe36eeeebbe8fb01d6719b0db84e6ef858323bd919d3132",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "convertx",
+      "name": "ConvertX",
+      "description": "Web file converter for more than a thousand formats.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/convertx/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/convertx/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/convertx",
+      "content_hash": "aba320d0cc99c269892d6ef38528209566cd0b1e2afce7026d4b210a76e6f81e",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "copyparty",
+      "name": "Copyparty",
+      "description": "File server with resumable uploads, browser access, and WebDAV.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/copyparty/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/copyparty/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/copyparty",
+      "content_hash": "15a083e1c1f556085f9939f6f78fc8a284b7ddb0e663f34e14043fd258696e8a",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "cozy",
+      "name": "Cozy",
+      "description": "Personal cloud (now Twake Workplace) for files, photos, notes, and contacts.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/cozy/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/cozy/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/cozy",
+      "content_hash": "ebfffb5307184b9596f3439ad359c5b126c826a541238092ba577a76e8bb414e",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "cyberchef",
+      "name": "CyberChef",
+      "description": "Web app for encoding, decoding, encrypting, compressing, and analyzing data.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/cyberchef/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/cyberchef/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/cyberchef",
+      "content_hash": "53d2cb0e06397a5a99b65401d893d0ee2ae505a5ed33431d4cd9bdda6ed20232",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "ddns-updater",
+      "name": "DDNS Updater",
+      "description": "Updater that keeps DNS records pointed at your current public IP address.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ddns-updater/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ddns-updater/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/ddns-updater",
+      "content_hash": "0b031b86e2b1900c8db5ede836056773c0a1f49c92c17a8f419afdeed7b88d5d",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "dockge",
+      "name": "Dockge",
+      "description": "Web interface to manage Docker Compose stacks.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/dockge/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/dockge/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/dockge",
+      "content_hash": "9f5f2a0b6793e8992c8323d878f53bd33679d83689b399f6f5ff734e72a3a843",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "dockhand",
+      "name": "Dockhand",
+      "description": "Docker manager for local and remote hosts, free for home use.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/dockhand/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/dockhand/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/dockhand",
+      "content_hash": "9876b83ba0c4de3c62fdbc6cedb04ed1731743977ae7568e574efbcbf891b8c5",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "docmost",
+      "name": "Docmost",
+      "description": "Team wiki with real-time collaborative editing.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/docmost/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/docmost/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/docmost",
+      "content_hash": "fde5b6fd0ffb30a4ec46972c55b8ebfe9285a14184468bf969d7f96dfde871eb",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "donetick",
+      "name": "Donetick",
+      "description": "Task and chore manager for households and small groups.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/donetick/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/donetick/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/donetick",
+      "content_hash": "750b6846d151265bdbbdcd4f9ca6dae091b36006652a49c973f40b13c204058f",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "dumbdo",
+      "name": "DumbDo",
+      "description": "To-do list app that keeps its lists in one file, with no database.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/dumbdo/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/dumbdo/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/dumbdo",
+      "content_hash": "8a6cb9ef525b7e8a1ed0862ac7011c8c33e1b29ad470700a2a7c51c755052c29",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "eigenfocus",
+      "name": "Eigenfocus",
+      "description": "Project and task manager with boards, time tracking, and focus tools.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/eigenfocus/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/eigenfocus/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/eigenfocus",
+      "content_hash": "bf0e60d20062faf3f3ae4009db2a879344e46c7dec59f3dead85f5db49cee3bf",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "espocrm",
+      "name": "EspoCRM",
+      "description": "Customer relationship manager for contacts, companies, and sales opportunities.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/espocrm/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/espocrm/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/espocrm",
+      "content_hash": "e669d0854a95beeb4501301d3a94e7b7154e5cf3af53191998f453116e4cbaf9",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "excalidraw",
+      "name": "Excalidraw",
+      "description": "Virtual whiteboard for sketching diagrams in a hand-drawn style.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/excalidraw/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/excalidraw/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/excalidraw",
+      "content_hash": "6ae798fd20d30e22aa2b1019847a739a4886a7bba38e69e5804583b7dd34aca6",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "filebrowser",
+      "name": "File Browser",
+      "description": "Archived. Web file manager for one folder on your server, with no further security fixes.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/filebrowser/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/filebrowser/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/filebrowser",
+      "content_hash": "1e479f4292033dfba1d451280cb3f472068ab816f07d4a3c09fceac64c281414",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "flaresolverr",
+      "name": "FlareSolverr",
+      "description": "Proxy that solves Cloudflare and DDoS-GUARD challenges.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/flaresolverr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/flaresolverr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/flaresolverr",
+      "content_hash": "bb4e851e6b90211fb2d66a80dee82d4a22c9d84012ce30318f38aec49fe03160",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "flatnotes",
+      "name": "flatnotes",
+      "description": "Note-taking app that stores notes as plain Markdown files, with no database.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/flatnotes/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/flatnotes/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/flatnotes",
+      "content_hash": "be9c77e32bf37d217691c92ddf7160b5fe22a3fcbf65d2a87844b45e707c0e59",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "forgejo",
+      "name": "Forgejo",
+      "description": "Community-governed fork of Gitea.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/forgejo/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/forgejo/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/forgejo",
+      "content_hash": "b6404941e34dd191c04d6831c719b86c1e0d61c4ae480280f8fe626de9adc952",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "formbricks",
+      "name": "Formbricks",
+      "description": "Survey and feedback platform for websites, apps, and links.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/formbricks/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/formbricks/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/formbricks",
+      "content_hash": "68335671d860f33f2c3af34b9b867e884aa27b4bedabb6e9cdf28b3549f45241",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "fossflow",
+      "name": "FossFLOW",
+      "description": "Tool for drawing isometric infrastructure diagrams.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/fossflow/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/fossflow/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/fossflow",
+      "content_hash": "a6a846b2ed2f4d2962a7717f4088e354481274daef8973c9ed3bf54a8f63ad6a",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "freshrss",
+      "name": "FreshRSS",
+      "description": "RSS and Atom feed reader that uses SQLite, with no separate database server.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/freshrss/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/freshrss/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/freshrss",
+      "content_hash": "d311555f1ac10c38441a27550390aaf396369b54b216ae65b0074695435f0a8c",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "frigate",
+      "name": "Frigate",
+      "description": "Network video recorder with real-time AI object detection for IP cameras, using an optional GPU or accelerator.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/frigate/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/frigate/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/frigate",
+      "content_hash": "a9304d5d1c798f238f7fda5a2183559ba5000dbafd11ad27d251e33b66680bcb",
+      "tags": [
+        "tailscale",
+        "home-automation"
+      ]
+    },
+    {
+      "id": "fusion",
+      "name": "Fusion",
+      "description": "Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/fusion/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/fusion/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/fusion",
+      "content_hash": "6b8eb44b64b86d5c7cbc659ce05cddec08c01e61d40e1b776e01359afb22c20a",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "ghost",
+      "name": "Ghost",
+      "description": "Publishing platform for blogs and newsletters.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ghost/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ghost/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/ghost",
+      "content_hash": "24c70ae44bdccee267358e54fd9a05cab0cb893693decd1dded0a558c49d2714",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "gitea",
+      "name": "Gitea",
+      "description": "Git service with repositories, pull requests, issues, packages, and CI.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gitea/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gitea/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/gitea",
+      "content_hash": "e2a415df38a6c0639c674a2d8903710bbac4e497d04456b65d5e441b9c1bd6ca",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "gitsave",
+      "name": "GitSave",
+      "description": "Backup tool for your Git repositories, run on a schedule.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gitsave/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gitsave/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/gitsave",
+      "content_hash": "a85393c143d90c70dd6d0e8e8a25a6acf4786f20245fca25f23d7728771a64a2",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "glance",
+      "name": "Glance",
+      "description": "Dashboard that puts feeds, such as RSS, weather, and markets, on one page.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/glance/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/glance/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/glance",
+      "content_hash": "36aac02e499fcb2e8b68adb05dc3c367080790c94da0b79dd831e6a72a21bd55",
+      "tags": [
+        "tailscale",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "gokapi",
+      "name": "Gokapi",
+      "description": "File sharing server with links that expire after a number of downloads or days.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gokapi/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gokapi/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/gokapi",
+      "content_hash": "da97db620a64b2e3b2ee678e473ed5d3caf4a99719108a8f315e598847be1f7b",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "gotify",
+      "name": "Gotify",
+      "description": "Push notification server that shows messages from your scripts in its web interface and Android app.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gotify/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/gotify/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/gotify",
+      "content_hash": "3b3f8a82b1ab164488db9d0e92e4d6c92247bc5871e7f26b042e1cb1fd33f9d6",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "description": "Dashboards and alerts for metrics, logs, and traces from many data sources.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/grafana/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/grafana/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/grafana",
+      "content_hash": "7fc31ec2aa3b9ff2ea63c570d7e83c09e0eba77f7b096b33810920b4cfc6c3fd",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "grampsweb",
+      "name": "Gramps Web",
+      "description": "Genealogy web app for browsing and editing family trees together.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/grampsweb/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/grampsweb/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/grampsweb",
+      "content_hash": "fd1a7d5fa02a4a26da88670dea85ddf7fff51307963ad2d05e81422f25580d60",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "haptic",
+      "name": "Haptic",
+      "description": "Markdown note editor that keeps notes in the browser, not on the server.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/haptic/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/haptic/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/haptic",
+      "content_hash": "2e5dc9b472271a771385e0af1fd2544869eb53528e0da546f253bc0d02935720",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "hemmelig",
+      "name": "Hemmelig",
+      "description": "Archived. Encrypted secret sharing by link, with secrets deleted after reading or on expiry.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/hemmelig/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/hemmelig/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/hemmelig",
+      "content_hash": "2eee66a8a8f3b80a208c4599bda72d715b2e76da5a3faae6448daa2358ad1665",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "homarr",
+      "name": "Homarr",
+      "description": "Dashboard with user accounts that shows live data from the apps you connect.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/homarr",
+      "content_hash": "8f0b6bee5d2ba2a0f972c56e184e7d0d2f0220e6d560415180d13190c9e17334",
+      "tags": [
+        "tailscale",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "home-assistant",
+      "name": "Home Assistant",
+      "description": "Home automation platform for local control of smart devices.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/home-assistant/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/home-assistant/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/home-assistant",
+      "content_hash": "2a2949ccb429761f94b08c9cecb234f55c63b6e037d1edb6fa454de1e7c5323f",
+      "tags": [
+        "tailscale",
+        "home-automation"
+      ]
+    },
+    {
+      "id": "homebox",
+      "name": "Homebox",
+      "description": "Home inventory for items, with location, quantity, warranty, and purchase details.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homebox/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homebox/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/homebox",
+      "content_hash": "128251bf02a24911921621eb6108250bd9e3e3aa76e8677479a418c9c8b9aae7",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "homepage",
+      "name": "Homepage",
+      "description": "Dashboard that you set up in YAML files, with bookmarks and live data from apps and Docker.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homepage/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homepage/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/homepage",
+      "content_hash": "b679f092a0865da96ed2f8211ee860b2d20c0d234c1e631aa9c1e160505fe3bd",
+      "tags": [
+        "tailscale",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "homer",
+      "name": "Homer",
+      "description": "Static start page for your services, set up in one YAML file.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homer/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/homer/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/homer",
+      "content_hash": "e5012bacee6980181ab6bee5a34e358cef480d83622cc0f056041fe41435b017",
+      "tags": [
+        "tailscale",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "hytale",
+      "name": "Hytale",
+      "description": "Hytale game server in a community image, for players on your tailnet.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/hytale/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/hytale/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/hytale",
+      "content_hash": "f05ddd4af99d1345af19447e52a9f289230c11fdff1cd5f87725622136c5c4b4",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "imagemaid",
+      "name": "ImageMaid",
+      "description": "Cleaner that removes unused poster and background images from the Plex metadata folder.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/imagemaid/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/imagemaid/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/imagemaid",
+      "content_hash": "06e7a5e227779f3aea62cfb6728c89a687fa567059afc2b248b1862b224d597a",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "immich",
+      "name": "Immich",
+      "description": "Photo and video library that backs up mobile media, with search and sharing.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/immich/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/immich/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/immich",
+      "content_hash": "5528cf1b2f448d9c617b1b308b93182ffdadba41604991579ce2a7ab38657d2c",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "invoiceninja",
+      "name": "Invoice Ninja",
+      "description": "Invoicing app for quotes, invoices, expenses, and payments.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/invoiceninja/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/invoiceninja/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/invoiceninja",
+      "content_hash": "a64621ff7e794ad4c935b5fe0db49ad734cd1a2ed6b76858ecfc97e96d02b7be",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "isley",
+      "name": "Isley",
+      "description": "Cannabis grow journal for plants, watering, feeding, harvests, and sensors.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/isley/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/isley/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/isley",
+      "content_hash": "6516c3b2410611d04a1ae6ce988477f3da3dbeff7f307c512c7070b9f3743cd2",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "it-tools",
+      "name": "IT-Tools",
+      "description": "Online tools for developers and IT staff, such as converters and generators.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/it-tools/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/it-tools/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/it-tools",
+      "content_hash": "3f22108cb7c928811063cddacdc3ea8e310105a7ec300dcef1811f647a09da3a",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "jellyfin",
+      "name": "Jellyfin",
+      "description": "Media server that organizes and streams your movies, series, and music.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/jellyfin/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/jellyfin/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/jellyfin",
+      "content_hash": "3af7fa60b209ff905f0d06b442c748cba5526602ada0b7e74844cff2cfe1e5b6",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "joplin",
+      "name": "Joplin Server",
+      "description": "Sync server for the Joplin note-taking apps, for personal non-commercial use.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/joplin/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/joplin/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/joplin",
+      "content_hash": "df7f92808addc2e218b642382864dd88c283a1bf26e1a6a1b5c4be51cf040026",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "kaneo",
+      "name": "Kaneo",
+      "description": "Open-source project tracker with boards and tasks, an alternative to Trello and Linear.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kaneo/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kaneo/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/kaneo",
+      "content_hash": "070f0e6716a3ce2d031730edb83acb204ecaac4244fc5631e9a56dc131cc750e",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "karakeep",
+      "name": "Karakeep",
+      "description": "Bookmark manager that archives links, notes, and images, with full-text search and AI tagging.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/karakeep/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/karakeep/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/karakeep",
+      "content_hash": "13086d997a68669196e06b92e8cac5281e12e096a8fe205327d17a48185c7b79",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "kasm",
+      "name": "Kasm",
+      "description": "Platform that streams desktops and apps to your browser, each in a container.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kasm/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kasm/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/kasm",
+      "content_hash": "1cb162c9ce98ed48233d58f549a2c2f880f5711e3956e9bf38c6daad741a4fe6",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "kavita",
+      "name": "Kavita",
+      "description": "Digital library for comics, manga, and books, with progress synced across devices.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kavita/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kavita/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/kavita",
+      "content_hash": "fcaa81c72d30a77adbb65f5398d62fd34a70b98037cdc7f2cfe23ebcddae99b2",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "kitchenowl",
+      "name": "KitchenOwl",
+      "description": "Grocery list and recipe manager for households, with meal planning and expenses.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kitchenowl/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/kitchenowl/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/kitchenowl",
+      "content_hash": "b8db507724868752f216f4783a0fc4bdaf7f0c78c176382d74265e50862b55f3",
+      "tags": [
+        "tailscale",
+        "household"
+      ]
+    },
+    {
+      "id": "languagetool",
+      "name": "LanguageTool",
+      "description": "Grammar and spelling checker server for browser extensions, with no web interface.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/languagetool/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/languagetool/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/languagetool",
+      "content_hash": "297acb41e8006526c4af52516df03724354bd1644c81db888b4e966848aa9244",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "libretranslate",
+      "name": "LibreTranslate",
+      "description": "Machine translation service with a web interface and an API, running on your own server.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/libretranslate/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/libretranslate/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/libretranslate",
+      "content_hash": "f202aaa7c354e1518bfa8820927b1d47ab8ca780f47bf937a1d1da2bc05cf34e",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "logchef",
+      "name": "Logchef",
+      "description": "Log analytics interface for logs that already live in ClickHouse or VictoriaLogs.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/logchef/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/logchef/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/logchef",
+      "content_hash": "51bccc2df24523f09077b4bb0a5cd1aaec8ff8d0a0b47ad55065830d90d1c20b",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "lube-logger",
+      "name": "LubeLogger",
+      "description": "Tracker for vehicle maintenance and fuel use.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/lube-logger/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/lube-logger/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/lube-logger",
+      "content_hash": "32d41d99e228ab629702c90446e647c501ff53f7ee9e701e4c0ab5762d2188d4",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "mail-archiver",
+      "name": "Mail Archiver",
+      "description": "Archives incoming mail and makes it searchable from the browser.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mail-archiver/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mail-archiver/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/mail-archiver",
+      "content_hash": "957b3bb9d90b0585ba5ec86d56a3800aaa736806e710ff1758131f6885ba9c74",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "mailpit",
+      "name": "Mailpit",
+      "description": "Email testing tool that captures outgoing mail over SMTP for viewing and debugging.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mailpit/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mailpit/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/mailpit",
+      "content_hash": "e0b32c6e1c10d4db597754a9bea5a48702d2874692752c836a759683a139324c",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "mattermost",
+      "name": "Mattermost",
+      "description": "Team chat platform with channels, direct messages, and integrations.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mattermost/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mattermost/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/mattermost",
+      "content_hash": "e137ff729ab00db4ad2398d518802d26a9a39af25d3cc7e515d6ff21409a68a4",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "mealie",
+      "name": "Mealie",
+      "description": "Recipe manager and meal planner with shopping lists and imports from web addresses.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mealie/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/mealie/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/mealie",
+      "content_hash": "8be011debecfd8a94673c3d7c37576475b0dc0b6d9f648b420af47e6b9b694d8",
+      "tags": [
+        "tailscale",
+        "household"
+      ]
+    },
+    {
+      "id": "memos",
+      "name": "Memos",
+      "description": "Note-taking app for short Markdown notes, shown on a timeline.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/memos/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/memos/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/memos",
+      "content_hash": "2d37ef436bbabfe155390edf9079578398ce2c87225c062b3528839ddc12cce0",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "metube",
+      "name": "MeTube",
+      "description": "Web UI for yt-dlp that downloads videos and audio from YouTube and other sites.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/metube/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/metube/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/metube",
+      "content_hash": "71470d43a111bf23b4e130419af188578f53ced4d3d861f015720797f0143d80",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "minecraft",
+      "name": "Minecraft",
+      "description": "Minecraft Java Edition server that players reach over your tailnet.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/minecraft/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/minecraft/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/minecraft",
+      "content_hash": "d93a0b8a960e19bc2da41802adfc05497b9484d65fbacd8c42a9d471729d4764",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "miniflux",
+      "name": "Miniflux",
+      "description": "Minimalist feed reader for RSS, Atom, and JSON feeds, with a PostgreSQL database.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/miniflux/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/miniflux/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/miniflux",
+      "content_hash": "a6d50f0abd62fa56543a964ca7f1508bf63053dee0b3bbaacef2819b1faf7930",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "miniqr",
+      "name": "Mini QR",
+      "description": "Web app to create, style, and scan QR codes.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/miniqr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/miniqr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/miniqr",
+      "content_hash": "221fa4e57dbb4b5d05b046e16723f1d120b43ae367590cad322dab0909a91d0a",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "nanote",
+      "name": "Nanote",
+      "description": "Note-taking app that stores notes as Markdown files in folders.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/nanote/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/nanote/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/nanote",
+      "content_hash": "07d57167c01548019f60eee7f65ec41614b4231df692406cde7d74b01e6071d0",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "navidrome",
+      "name": "Navidrome",
+      "description": "Music server that streams your collection to its web player and Subsonic-compatible apps.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/navidrome/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/navidrome/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/navidrome",
+      "content_hash": "da3f7a3ada0cdb5688d56c617dee9e8f54fcbfa18bcdf088fc53caa569a99c1f",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "nessus",
+      "name": "Nessus",
+      "description": "Vulnerability scanner from Tenable, with the limited free Nessus Essentials license.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/nessus/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/nessus/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/nessus",
+      "content_hash": "2af77e18779f8974406c02a69b3d93f090802923337b073872ae5f370e6ef8a5",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "newwallpaperwhodis",
+      "name": "NewWallpaperWhoDis",
+      "description": "Wallpaper server that rotates your collection on browsers, tablets, TVs, and dashboards.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/newwallpaperwhodis/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/newwallpaperwhodis/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/newwallpaperwhodis",
+      "content_hash": "93bd79422f8ef87a39b90c3a0d5b83e4a5683bc28af067042787973b7d8c8f1a",
+      "tags": [
+        "tailscale",
+        "dashboard"
+      ]
+    },
+    {
+      "id": "next-explorer",
+      "name": "NextExplorer",
+      "description": "Web file manager for one folder on your server.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/next-explorer/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/next-explorer/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/next-explorer",
+      "content_hash": "134b237b1b260f9012ea041c59ab3d7c97fd79b31bfca170cbf59298c1bba20b",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "nodered",
+      "name": "Node-RED",
+      "description": "Low-code, flow-based tool for event-driven applications.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/nodered/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/nodered/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/nodered",
+      "content_hash": "cec2fbece796d2aa9830aa7a0427659cd9901cb6131fe2b433263a03f87033b1",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "ntfy",
+      "name": "ntfy",
+      "description": "Notification service that lets scripts and apps push messages to phones and browsers over HTTP.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ntfy/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ntfy/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/ntfy",
+      "content_hash": "92ae834c96542a1ff451ae574eeb379500ae12f332194cd94e8323a0e531daca",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "ollama",
+      "name": "Ollama",
+      "description": "Runtime for large language models, with an OpenAI-compatible API and no login.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ollama/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/ollama/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/ollama",
+      "content_hash": "53e2150d2d34ab3d29c4b30558d8b839dd825f341151e469ffca9cd071efa4d0",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "open-notebook",
+      "name": "Open Notebook",
+      "description": "Alternative to NotebookLM for chatting with your sources using AI.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/open-notebook/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/open-notebook/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/open-notebook",
+      "content_hash": "7e245d1f72f41f460364618df6e8f7ddcab858a70a4d45fe0e774c682e96679b",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "open-webui",
+      "name": "Open WebUI",
+      "description": "Chat interface for AI models, through Ollama or OpenAI-compatible APIs.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/open-webui/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/open-webui/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/open-webui",
+      "content_hash": "94a44491aabf9613dff051903181b08c235da206617f60709a8e73a425cba2fb",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "openclaw",
+      "name": "OpenClaw",
+      "description": "Personal AI assistant that connects agents to your chat apps.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/openclaw/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/openclaw/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/openclaw",
+      "content_hash": "338245a4de18f31a7223d7aa894fe8071a5d8b7c806a24d879c672a818949bd7",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "opencloud",
+      "name": "OpenCloud",
+      "description": "File sync and sharing platform with desktop and mobile clients.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/opencloud/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/opencloud/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/opencloud",
+      "content_hash": "b0b27153097a3c1a864a75ce06536ec413cd83e86775bd23bc876cf39af4a336",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "opengym",
+      "name": "openGym",
+      "description": "Gym and body-weight tracker for routines and workouts.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/opengym/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/opengym/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/opengym",
+      "content_hash": "d5263df2e636c96e4c5f74ef3e81210d5cda911381ed9f76f01010857bee2ec1",
+      "tags": [
+        "tailscale",
+        "household"
+      ]
+    },
+    {
+      "id": "outline",
+      "name": "Outline",
+      "description": "Team wiki and knowledge base with real-time collaborative editing.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/outline/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/outline/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/outline",
+      "content_hash": "768c278682e71b0db115d1b1c474f2ffeb4f8886d52d5a50844c6378fa26766c",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "oxicloud",
+      "name": "OxiCloud",
+      "description": "Self-hosted cloud for files, calendars, and contacts, with WebDAV, CalDAV, and CardDAV.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/oxicloud/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/oxicloud/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/oxicloud",
+      "content_hash": "77bedf0e1e72a5aba312a11b8dc9c17977041affbe5c4bbe5b4b969dd164ad40",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "paperless",
+      "name": "Paperless-ngx",
+      "description": "Document management system that turns scans and files into a searchable archive.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/paperless/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/paperless/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/paperless",
+      "content_hash": "41af3bc115d0524563bb0a0e05e0e89d1455d6bda80ba6fb88c68b30e0550f01",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "picard",
+      "name": "Picard",
+      "description": "MusicBrainz tag editor that writes tags and cover art, used in your browser.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/picard/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/picard/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/picard",
+      "content_hash": "b546796358f32f24cf886dbd23d5598b538ed404cd005e85b52d7647fb944d0c",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "pihole",
+      "name": "Pi-hole",
+      "description": "DNS sinkhole that blocks ads and trackers for every device that uses it.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/pihole/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/pihole/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/pihole",
+      "content_hash": "ef5fb47e75c7edec2c866e9e1947116b5bbf984adabbe4698a973dde817ef507",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "pingvin-share",
+      "name": "Pingvin Share",
+      "description": "Archived. File sharing platform with links that can expire.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/pingvin-share/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/pingvin-share/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/pingvin-share",
+      "content_hash": "af68dee0795d8bf73dd826e10161cc8995ff9c74035ab7b4436f0b570f7f6202",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "plex",
+      "name": "Plex",
+      "description": "Media server that streams your movies, series, and music to Plex apps; needs a Plex account.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/plex/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/plex/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/plex",
+      "content_hash": "4042d7ac474764ee0db5bd9b5a14fee1b0b75d2900144365bea3e0927b12f75b",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "pocket-id",
+      "name": "Pocket ID",
+      "description": "OpenID Connect provider that signs users in to your services with passkeys.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/pocket-id/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/pocket-id/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/pocket-id",
+      "content_hash": "f9cf8cee559fa08ef540ebdad0ce88ba53e6be1a133e572e585ef2b45109e1b6",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "portainer",
+      "name": "Portainer",
+      "description": "Web interface to manage Docker containers, images, volumes, and networks.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/portainer/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/portainer/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/portainer",
+      "content_hash": "8252ca9e2343bf341c11a4b0fa7f493d9e7ccbe3d421b941098e77ad72d76cda",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "portracker",
+      "name": "Portracker",
+      "description": "Port tracker that discovers the services on your systems and maps the ports they use.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/portracker/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/portracker/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/portracker",
+      "content_hash": "bca4c509fe68224b0ab0e4ede059ed7b4c563e6d22bf7c92b9bff1b656a00899",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "posterizarr",
+      "name": "Posterizarr",
+      "description": "Poster, background, and title card generator for Plex, Jellyfin, and Emby libraries.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/posterizarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/posterizarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/posterizarr",
+      "content_hash": "8bd433f5560f8131a0d2ac074480bba0a7443ac5fa94e78274ca3fa505e598bb",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "prowlarr",
+      "name": "Prowlarr",
+      "description": "Indexer manager for Usenet and torrent trackers, used by apps such as Radarr and Sonarr.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/prowlarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/prowlarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/prowlarr",
+      "content_hash": "296628b09c50beff7387741d5dccebe6e0a123d7f7074e14968f44a44aae8fe2",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "qbittorrent",
+      "name": "qBittorrent",
+      "description": "BitTorrent client with a web interface.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/qbittorrent/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/qbittorrent/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/qbittorrent",
+      "content_hash": "ab1e558ad0568b55b627f5aa8cc64e27fcea528dc82fe0a32f9ef47f8d3c491a",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "qui",
+      "name": "qui",
+      "description": "Web interface for qBittorrent that manages several instances, with automations and cross-seed.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/qui/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/qui/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/qui",
+      "content_hash": "0d2ab9948618f59ab698bd6f6efc992f7b25bb3e9eaee4b5a9008b4043a6d978",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "radarr",
+      "name": "Radarr",
+      "description": "Movie manager that searches Usenet and BitTorrent and sorts files into your library.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/radarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/radarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/radarr",
+      "content_hash": "c762564f9d54b80d2475fe539562516f96a8b92889ca829feab1a08737850e19",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "radicale",
+      "name": "Radicale",
+      "description": "CalDAV and CardDAV server that syncs calendars, to-do lists, and contacts.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/radicale/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/radicale/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/radicale",
+      "content_hash": "2371d07f2b5e7055d6020183e2e025b128aae308807e402cb59cb0211fc2f9ef",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "recyclarr",
+      "name": "Recyclarr",
+      "description": "Tool that applies TRaSH Guides quality profiles from a YAML file to Radarr and Sonarr on a schedule.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/recyclarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/recyclarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/recyclarr",
+      "content_hash": "91d95f6236f620d84b9e0618810b699ed7374d199bc1822e64bb8fff74810bed",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "resilio-sync",
+      "name": "Resilio Sync",
+      "description": "Peer-to-peer tool that syncs folders between your devices, without a central server.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/resilio-sync/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/resilio-sync/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/resilio-sync",
+      "content_hash": "6fe55927289f4f08784f22ebd50e2f119a26c1c7c1caae9a171a2b561a77b12b",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "rustdesk-server",
+      "name": "RustDesk Server",
+      "description": "Your own ID and relay server for RustDesk clients, so they skip the public servers.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/rustdesk-server/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/rustdesk-server/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/rustdesk-server",
+      "content_hash": "adbf3def104d026871516170efdec9ebaafd3f2db494377d49e9edd8af863a4d",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "seafile",
+      "name": "Seafile",
+      "description": "File sync and sharing platform that stores files in libraries.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/seafile/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/seafile/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/seafile",
+      "content_hash": "fbe5609c1baa15923e40a09f87a6fef61f0a9a2f301204b5aa00ee43b3a59d74",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "seerr",
+      "name": "Seerr",
+      "description": "Request manager for Plex, Jellyfin, and Emby that sends approved requests to Radarr and Sonarr.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/seerr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/seerr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/seerr",
+      "content_hash": "6e194d601bee1a0a403aece3136aa8495328d4e559d47888dc51f5c96dbda34a",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "semaphore",
+      "name": "Semaphore UI",
+      "description": "Web interface to run Ansible playbooks, Terraform, and scripts, with schedules.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/semaphore/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/semaphore/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/semaphore",
+      "content_hash": "8bd53ee5e6aec0ddbd195ae7ae241e3631dc8da910c162e17f52d5624894a1b8",
+      "tags": [
+        "tailscale",
+        "development"
+      ]
+    },
+    {
+      "id": "slink",
+      "name": "Slink",
+      "description": "Image hosting platform that shares uploads through links.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/slink/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/slink/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/slink",
+      "content_hash": "f1c600d7abc0721506a2ede2388ce86201cea86a3aeea51c6ba0b01a72a4e3c4",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "sonarr",
+      "name": "Sonarr",
+      "description": "Series manager that searches Usenet and BitTorrent for new episodes.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/sonarr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/sonarr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/sonarr",
+      "content_hash": "0343bec98a7fb5504aeda7f7b24e977c46e62ec0f7361958ced8e3dd5b174d6a",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "stirlingpdf",
+      "name": "Stirling-PDF",
+      "description": "PDF toolbox that runs on the server. The free plan covers five users.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/stirlingpdf/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/stirlingpdf/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/stirlingpdf",
+      "content_hash": "34e22cbf214f09421f4501cd90f85f642b3cdfd2773d4d46bfda4d1015c0007b",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "storyteller",
+      "name": "Storyteller",
+      "description": "Platform for reading ebooks with synced audiobook narration.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/storyteller/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/storyteller/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/storyteller",
+      "content_hash": "8239253ea23e8b85bf1010b9bb29aa51ef48c1918b5c092cfe0b1c8160f6e6e2",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "subtrackr",
+      "name": "SubTrackr",
+      "description": "Subscription tracker that shows monthly and yearly costs and when each one renews.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/subtrackr/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/subtrackr/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/subtrackr",
+      "content_hash": "fea322965980cf28173f4f44d53d62e7f56ed706758515a64be9baf8e4f386a2",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "sure",
+      "name": "Sure",
+      "description": "Fork of the archived Maybe finance app, for tracking accounts, investments, and net worth.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/sure/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/sure/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/sure",
+      "content_hash": "ec875b51f00941180f624c2498c511ab9a4bd24bad65a4921676119015811d22",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "swingmx",
+      "name": "Swing Music",
+      "description": "Music player and streaming server for your local audio files.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/swingmx/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/swingmx/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/swingmx",
+      "content_hash": "c6fb431ab7423898343a06bd2a5c37f587483244c57e7ba62dfc3c2ce6ee87ae",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "syncthing",
+      "name": "Syncthing",
+      "description": "Peer-to-peer tool that keeps folders in sync between your devices.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/syncthing/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/syncthing/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/syncthing",
+      "content_hash": "4b762c209f04456944d99b9d1ae7f5374e34345d9ea35f22af637a6540579aed",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "tailscale-app-connector-node",
+      "name": "Tailscale App Connector Node",
+      "description": "App connector that sends tailnet traffic for chosen domains through this host.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tailscale-app-connector-node/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tailscale-app-connector-node/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/tailscale-app-connector-node",
+      "content_hash": "b6250dbe408a7f381c7098a6858212723354ff0fcce6725a405f21e38ebe5b00",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "tailscale-exit-node",
+      "name": "Tailscale Exit Node",
+      "description": "Exit node that routes the internet traffic of other tailnet devices through this host.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tailscale-exit-node/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tailscale-exit-node/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/tailscale-exit-node",
+      "content_hash": "c243cf3c126ed96bb11787e7591d5d5ea9ad508e29afea357f464ec4037f55f4",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "tailscale-subnet-router-node",
+      "name": "Tailscale Subnet Router Node",
+      "description": "Subnet router that gives your tailnet access to a local network.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tailscale-subnet-router-node/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tailscale-subnet-router-node/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/tailscale-subnet-router-node",
+      "content_hash": "44286d7aec4af15e41d99e0d4c3a3c38504e3fb2f7b8af7d7effff4af63181c8",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "tandoor",
+      "name": "Tandoor Recipes",
+      "description": "Recipe manager and meal planner with shopping lists.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tandoor/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tandoor/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/tandoor",
+      "content_hash": "cf15947ef129d16c0ffe8558f2339d5bff16ff807419c56e9f67c9bdfa5df9e3",
+      "tags": [
+        "tailscale",
+        "household"
+      ]
+    },
+    {
+      "id": "tautulli",
+      "name": "Tautulli",
+      "description": "Monitoring tool for Plex Media Server, with viewing history, statistics, and notifications.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tautulli/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tautulli/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/tautulli",
+      "content_hash": "1ebcf7a71759a46f4fa265671d6177aed1dca08694dc547e806ac6a9b4f7fdf5",
+      "tags": [
+        "tailscale",
+        "media"
+      ]
+    },
+    {
+      "id": "technitium",
+      "name": "Technitium DNS",
+      "description": "Authoritative and recursive DNS server with ad blocking and your own zones.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/technitium/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/technitium/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/technitium",
+      "content_hash": "0d55da67f3569116be41ee4a16dbfc3ec324ef6ff975d7f256f7a28a083a74ee",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "tracktor",
+      "name": "Tracktor",
+      "description": "Tracker for vehicle fuel use, maintenance, insurance, and documents, with renewal dates.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tracktor/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/tracktor/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/tracktor",
+      "content_hash": "00b5b46b6ea92520c9acd630603a2f3bb9a6734f2ff6ed6438fdf1f192ed89fd",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "traefik",
+      "name": "Traefik",
+      "description": "Reverse proxy and load balancer that routes requests to Docker containers by label.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/traefik/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/traefik/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/traefik",
+      "content_hash": "8933657a6eab1439eba6064b3c3382377c034be256fb78e48ed5e4891ebac608",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "transmute",
+      "name": "Transmute",
+      "description": "Converter and compressor for images, video, audio, and documents, with a web UI and API.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/transmute/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/transmute/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/transmute",
+      "content_hash": "98272e9aa9d11a1509d66c47c426ac9ceacfb07675f49983714f2a8d4354c146",
+      "tags": [
+        "tailscale",
+        "tools"
+      ]
+    },
+    {
+      "id": "umami",
+      "name": "Umami",
+      "description": "Web analytics that uses no cookies and collects no personal data.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/umami/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/umami/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/umami",
+      "content_hash": "8046c574e6567e665facb5985a6276eadff47fc979ded581be530a43bc76a731",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "uptime-kuma",
+      "name": "Uptime Kuma",
+      "description": "Monitor for websites and services that alerts you when they go down.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/uptime-kuma/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/uptime-kuma/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/uptime-kuma",
+      "content_hash": "b1029f195be29c5902f28a8c1a7eee3f4abab26f11b12e81f99b4311119bb189",
+      "tags": [
+        "tailscale",
+        "monitoring"
+      ]
+    },
+    {
+      "id": "vaultwarden",
+      "name": "Vaultwarden",
+      "description": "Unofficial password manager server for the Bitwarden apps and extensions.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/vaultwarden/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/vaultwarden/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/vaultwarden",
+      "content_hash": "bdf0a3a53219600343c70d7cb2dd1d5892334520bf4fb2a57ab3be0d823320d6",
+      "tags": [
+        "tailscale",
+        "networking"
+      ]
+    },
+    {
+      "id": "wallabag",
+      "name": "Wallabag",
+      "description": "Read-it-later app that saves web pages as articles.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/wallabag/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/wallabag/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/wallabag",
+      "content_hash": "7af3e89896aad0b3b3435cf0a45697c8eb5f784ccbca4013ee70a77a1c138f9a",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    },
+    {
+      "id": "wallos",
+      "name": "Wallos",
+      "description": "Subscription tracker with payment reminders and budgets.",
+      "version": "1.0.0",
+      "author": "ScaleTail",
+      "compose_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/wallos/compose.yaml",
+      "env_url": "https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/services/wallos/.env",
+      "documentation_url": "https://github.com/tailscale-dev/ScaleTail/tree/main/services/wallos",
+      "content_hash": "8e98e0cce7836868be7d154f9fe03cdf599260a835aa4b9563ab52a8059203c9",
+      "tags": [
+        "tailscale",
+        "productivity"
+      ]
+    }
+  ]
+}

@@ -151,6 +151,18 @@ do not have to fix the rest of a stack that you touch.
    Insert the row in alphabetical order of the bold name, ignoring case. A
    space sorts before a letter, so "Open WebUI" comes before "OpenClaw".
 
+8. Rebuild the Arcane template registry from the repository root, after
+   `git add`, and commit `arcane-registry.json`:
+
+   ```sh
+   python3 .github/scripts/build-arcane-registry.py
+   ```
+
+   The script takes the name, description, and category from your row in the
+   root `README.md`. It leaves out stacks that need files other than
+   `compose.yaml`, `.env`, and `README.md`, because Arcane copies only
+   `compose.yaml` and `.env`.
+
 ## Update a service
 
 - Read the service README and Compose file before you make changes.
@@ -159,6 +171,9 @@ do not have to fix the rest of a stack that you touch.
 - Use `${VARIABLE}` for Compose interpolation, not `$(VARIABLE)`.
 - Update the service README when ports, paths, setup, or behavior change.
 - Update the root service list when you add, remove, or rename a service.
+- Rebuild `arcane-registry.json`, as in step 8 of "Add a service", when you
+  change the root service list or add or remove a file other than
+  `compose.yaml`, `.env`, and `README.md`.
 - Changing `SERVICE` renames the Tailnet device and its address, the
   containers, and the `./${SERVICE}-data` folder. Treat it like a volume change
   and add an "Upgrading" section.
@@ -198,6 +213,9 @@ Without `uv`, download that version from the
 `rumdl check --config .markdownlint.yml .`.
 
 After you stage new files, check whitespace with `git diff --check origin/main`.
+Then run `python3 .github/scripts/build-arcane-registry.py`. When
+`arcane-registry.json` changed, commit it, because CI fails while it is out of
+date.
 In a fork, compare with the `main` branch of this repository instead, for
 example `upstream/main`.
 
