@@ -246,6 +246,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Grafana**            | Dashboards and alerts for metrics, logs, and traces from many data sources.           | [Details](services/grafana)           |
 | **Logchef**            | Log analytics interface for logs that already live in ClickHouse or VictoriaLogs.     | [Details](services/logchef)           |
 | **Portracker**         | Port tracker that discovers the services on your systems and maps the ports they use. | [Details](services/portracker)        |
+| **SiteWatcher**        | Monitor for website uptime, response times, and expiring certificates and domains.    | [Details](services/sitewatcher)       |
 | **Speedtest Tracker**  | Tool that runs scheduled internet speed tests and charts the results over time.       | [Details](services/speedtest-tracker) |
 | **Umami**              | Web analytics that uses no cookies and collects no personal data.                     | [Details](services/umami)             |
 | **Uptime Kuma**        | Monitor for websites and services that alerts you when they go down.                  | [Details](services/uptime-kuma)       |
