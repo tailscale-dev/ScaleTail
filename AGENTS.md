@@ -20,6 +20,7 @@ ScaleTail is a collection of Docker Compose stacks. Each directory in `services/
 ## Files that change together
 
 - Add, rename, or remove a service: the `services/<name>/` directory and its row in the root `README.md`. Insert a new row in alphabetical order by the bold name, ignoring case and with a space before any letter, and leave the other rows alone.
+- Add, rename, or remove a service, change its row in the root `README.md`, or add or remove a file other than `compose.yaml`, `.env`, and `README.md` in a service: also `arcane-registry.json`, the template registry for [Arcane](services/arcane/README.md#scaletail-templates). Rebuild it from the repository root after `git add` with `python3 .github/scripts/build-arcane-registry.py`, and commit it. CI fails while it is out of date.
 - Make existing users act, such as with a new required secret, a moved volume, or a changed `SERVICE`: add an "Upgrading" section to the service README. `SERVICE` also names the Tailnet device, the containers, and most data folders.
 - Change the template: also update `documentation/standard-setup.md` and `CONTRIBUTING.md` where they describe the same setting. Validate it from `templates/service-template/` with `SERVICE=dummy IMAGE_URL=dummy docker compose config --quiet`, because the template leaves both values empty.
 
@@ -49,6 +50,8 @@ git diff --check origin/main
 ```
 
 Without `uv`, download that version from the [rumdl releases](https://github.com/rvben/rumdl/releases) and run `rumdl check --config .markdownlint.yml .`.
+
+When you changed the service list, a row in the root `README.md`, or the files of a service, rebuild `arcane-registry.json` with `python3 .github/scripts/build-arcane-registry.py`. Commit it when it changed.
 
 Lint the whole tree, because renaming a service breaks a link in the root `README.md`. `git diff --check origin/main` also covers staged and committed changes, but not untracked files, so stage new files first. In a fork, compare with the `main` branch of this repository instead, for example `upstream/main`.
 

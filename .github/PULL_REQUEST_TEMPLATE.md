@@ -28,6 +28,7 @@
 - [ ] I did not commit a working auth key, password, token, or other credential.
 - [ ] The service README uses the headings of the template, in the same order, and is up to date.
 - [ ] I added, removed, or renamed the service in the [root README.md](https://github.com/tailscale-dev/ScaleTail/blob/main/README.md), in alphabetical order, or this PR does not change the list of services.
+- [ ] I ran `python3 .github/scripts/build-arcane-registry.py` and committed `arcane-registry.json`, or the PR does not change the service list, a row in the root README.md, or the files of a service.
 
 ## Additional Context
 <!-- Any extra info for reviewers, such as gotchas, special requirements, devices, or dependencies. Use "None" if not applicable. -->

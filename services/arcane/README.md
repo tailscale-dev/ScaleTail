@@ -41,6 +41,25 @@ Open the web interface and log in with username `arcane` and that password. Arca
 
 Arcane lists the stacks in the stacks folder, up to three folders deep, also the ones that you started with `docker compose`. It creates each new project in its own folder there, such as `/opt/stacks/ntfy`. When this directory is in the stacks folder too, Arcane also lists its own stack. Manage that stack with `docker compose` on the host.
 
+## Configuration
+
+### ScaleTail templates
+
+ScaleTail publishes its stacks as an Arcane template registry, so you can create a project from a stack without a clone of this repository.
+
+1. In Arcane, go to **Projects → Templates**, open the **Manage Registries** tab, and click **Add Registry**.
+2. Set **Registry URL** to `https://raw.githubusercontent.com/tailscale-dev/ScaleTail/main/arcane-registry.json`, leave **Enable Registry** on, and click **Add Registry**.
+3. Open the **Browse Templates** tab, choose a stack, and read the README of the stack behind its **Documentation** link, especially "Before you start".
+4. Click **Create Project**. In the `.env` editor, set `TS_AUTHKEY` and every value with a `# Required:` comment.
+5. Create the project and start it.
+
+Keep in mind:
+
+- **Set `TS_AUTHKEY` before the first start.** Without it, the sidecar does not become healthy, and the start does not finish.
+- **A project is a copy.** Arcane copies `compose.yaml` and `.env` from the `main` branch when you create the project. Later changes to the stack do not reach the project.
+- **Shared values.** You can set a value for all projects under **Projects → Variables**, such as a reusable auth key as `TS_AUTHKEY`. A line in the `.env` of a project wins, even with an empty value, so delete that line from the project to use the shared value.
+- **Not every stack is in the registry.** Stacks that need files other than `compose.yaml` and `.env`, such as Caddy and Gatus, and the Arcane stacks themselves are left out. Copy the folder of such a stack to the stacks folder instead.
+
 ## Upgrading
 
 ### Stacks folder

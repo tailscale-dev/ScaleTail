@@ -85,6 +85,8 @@ You need:
 
 Every stack starts from the same [standard setup](documentation/standard-setup.md), which explains the containers, the tailnet address, the data folders, and the settings in `.env`.
 
+If you use [Arcane](services/arcane/README.md#scaletail-templates), you can also create most stacks from its web interface, without a clone of this repository.
+
 ## Available configurations
 
 ### Networking and security
