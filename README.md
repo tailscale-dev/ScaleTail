@@ -121,6 +121,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Configarr**      | Tool that applies YAML settings and TRaSH Guides profiles to Radarr and Sonarr, then exits.          | [Details](services/configarr)      |
 | **FreshRSS**       | RSS and Atom feed reader that uses SQLite, with no separate database server.                         | [Details](services/freshrss)       |
 | **Fusion**         | Lightweight feed reader for RSS, Atom, and JSON feeds, with a Fever API.                             | [Details](services/fusion)         |
+| **HolyArrs**       | Manager for shows, movies, and music, from requests and downloads to your library, in one app.       | [Details](services/holyarrs)       |
 | **Hytale**         | Hytale game server in a community image, for players on your tailnet.                                | [Details](services/hytale)         |
 | **ImageMaid**      | Cleaner that removes unused poster and background images from the Plex metadata folder.              | [Details](services/imagemaid)      |
 | **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                         | [Details](services/immich)         |
