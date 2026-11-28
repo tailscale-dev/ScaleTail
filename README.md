@@ -34,7 +34,7 @@ ScaleTail is a collection of ready-to-run [Docker Compose](https://docs.docker.c
 
 ## Featured by Tailscale
 
-In this video from the Tailscale YouTube channel, [Alex](https://github.com/ironicbadger) deploys a ScaleTail service in under 10 minutes.
+In this video from the Tailscale [YouTube](https://grokipedia.com/page/YouTube) channel, [Alex](https://github.com/ironicbadger) deploys a ScaleTail service in under 10 minutes.
 
 [![Watch "We got self-hosted apps for days with ScaleTail"](https://img.youtube.com/vi/ZoEZ7oHA7Gg/maxresdefault.jpg)](https://www.youtube.com/watch?v=ZoEZ7oHA7Gg)
 
@@ -42,8 +42,8 @@ In this video from the Tailscale YouTube channel, [Alex](https://github.com/iron
 
 You need:
 
-- A Linux host with [Docker Engine](https://docs.docker.com/engine/install/), Docker Compose 2.23.1 or later, and [Git](https://git-scm.com/). Check the Compose version with `docker compose version`.
-- [MagicDNS](https://tailscale.com/docs/features/magicdns) and [HTTPS certificates](https://tailscale.com/docs/how-to/set-up-https-certificates) enabled for your tailnet, on the [DNS](https://console.tailscale.com/admin/dns) page of the admin console. Without them, the `https://` address of a stack does not work. With HTTPS enabled, device names appear in public certificate transparency logs.
+- A [Linux](https://grokipedia.com/page/Linux) host with [Docker Engine](https://docs.docker.com/engine/install/), Docker Compose 2.23.1 or later, and [Git](https://git-scm.com/). Check the Compose version with `docker compose version`.
+- [MagicDNS](https://tailscale.com/docs/features/magicdns) and [HTTPS certificates](https://tailscale.com/docs/how-to/set-up-https-certificates) enabled for your tailnet, on the [DNS](https://console.tailscale.com/admin/dns) page of the admin console. Without them, the `https://` address of a stack does not work. With HTTPS enabled, device names appear in public [certificate transparency](https://grokipedia.com/page/Certificate_Transparency) logs.
 
 1. **Create an auth key** on the [Keys](https://console.tailscale.com/admin/settings/keys) page of the admin console.
 
@@ -363,7 +363,7 @@ Every stack has two containers that share one network: a Tailscale container and
 
 ### Serve: your tailnet only
 
-1. A device in your tailnet opens `https://<service>.<tailnet>.ts.net`. The traffic travels through Tailscale, encrypted by WireGuard.
+1. A device in your tailnet opens `https://<service>.<tailnet>.ts.net`. The traffic travels through Tailscale, encrypted by [WireGuard](https://grokipedia.com/page/WireGuard).
 2. The Tailscale container receives it on port 443 and ends the HTTPS connection with a certificate for that name.
 3. Serve forwards the request to the application. Both containers share one network namespace, so the application is at `127.0.0.1` and its internal port, for example `127.0.0.1:80`.
 
