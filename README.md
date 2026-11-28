@@ -126,6 +126,7 @@ Every stack starts from the same [standard setup](documentation/standard-setup.m
 | **Immich**         | Photo and video library that backs up mobile media, with search and sharing.                         | [Details](services/immich)         |
 | **Jellyfin**       | Media server that organizes and streams your movies, series, and music.                              | [Details](services/jellyfin)       |
 | **Kavita**         | Digital library for comics, manga, and books, with progress synced across devices.                   | [Details](services/kavita)         |
+| **Kometa**         | Tool that builds collections, overlays, and playlists in Plex from a YAML file, on a schedule.       | [Details](services/kometa)         |
 | **MeTube**         | Web UI for yt-dlp that downloads videos and audio from YouTube and other sites.                      | [Details](services/metube)         |
 | **Minecraft**      | Minecraft Java Edition server that players reach over your tailnet.                                  | [Details](services/minecraft)      |
 | **Miniflux**       | Minimalist feed reader for RSS, Atom, and JSON feeds, with a PostgreSQL database.                    | [Details](services/miniflux)       |
